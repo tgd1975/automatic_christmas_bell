@@ -18,9 +18,9 @@ verified in another project.
 
 Everything runs from the Nano's USB socket; its 5V pin supplies the servo. The simulation gives about 420 mA from USB while
 the bell swings (0.3 A assumed, with the base load of D-8) – within the 500 mA of the Nano's polyfuse. A stalled servo
-(0.7 A assumed) would draw about 825 mA. The original Nano's
+(0.7 A assumed) would draw about 810 mA. The original Nano's
 polyfuse (MF-MSMF050) holds 0.5 A and is only guaranteed to trip at 1.0 A, many clones have none, and the Schottky
-diode (MBR0520, 0.5 A average) then carries about 0.83 A – harmless for the few seconds of a bell phase, not as a
+diode (MBR0520, 0.5 A average) then carries about 0.81 A – harmless for the few seconds of a bell phase, not as a
 permanent state. The scenario `servo-stalled` runs as information only; the firmware may detach the servo once it has
 reached its rest position, so a jam there cannot become a permanent overload (M-1 review, note 4).
 

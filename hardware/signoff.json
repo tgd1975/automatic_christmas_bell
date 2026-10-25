@@ -1,6 +1,6 @@
 {
   "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, footprint geometry). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
-  "state_sha256": "136762d89841a1024002d1aeb097fc63f7e617efd2dacdd5c6496bd9c363073a",
+  "state_sha256": "d04ade33b0c9d4c1c73eebae596f9cdec3254c2c0406f6e97a4b06c0037fe78c",
   "layout_sha256": null,
   "manual": [
     {
@@ -10,7 +10,7 @@
       "text": "Critical parts (U1 Nano pinout, C1 polarity, the LEDs, J1 servo pinout) checked a second time independently against datasheet and footprint – e.g. by the agent electrical-reviewer",
       "done_by": "agent electrical-reviewer (Claude, independent session)",
       "date": "2026-10-25",
-      "note": "OK for state 136762d8…: U1 pinout against the official Nano pinout, C1 and LED polarity from the Gerber silkscreen, J1 = standard servo order, S1/S2 internal connections from the footprint. Notes taken over: D-3 wording (polyfuse not guaranteed to trip at 0.73 A), J1 needs - + S labels, schematic symbols of LED1/4/5 show A/K swapped (board correct)."
+      "note": "OK for state d04ade33… (delta to 136762d8…: base load R8/R9, i_min_a). R8/R9 0.18–0.25 W of 0.5 W derated; USB 123–177 mA idle to warning, 410–422 mA bell, lowest +5V 4.245 V. Open text fixes for the next circuit change (D-7): sim.json stall note 725 -> ~810 mA, C35218 footprint note (R2512 confirmed)."
     },
     {
       "id": "M-5",
