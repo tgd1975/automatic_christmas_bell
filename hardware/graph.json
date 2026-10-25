@@ -1,0 +1,467 @@
+{
+ "graph": {
+  "name": "weihnachtsglocke",
+  "version": "0.1",
+  "date": "2026-10-25",
+  "description": "Automatische Weihnachtsglocke: Arduino Nano, Servo schwingt die Glocke, fünf LEDs zeigen den Countdown, Taster Start und Reset. Übernommen aus weihnachtsglocke.fzz.",
+  "conventions": {
+   "pin_reference": "'<Bauteil>.<Pin>' mit den Pin-Nummern des EasyEDA-Symbols",
+   "v": "je Netz: [min, max] in V über alle Betriebszustände"
+  },
+  "components": [
+   {
+    "designator": "U1",
+    "type": "module",
+    "label": "Arduino Nano 3 (gesteckt)",
+    "part": "Arduino Nano",
+    "lcsc": "C9900017879",
+    "bom": false,
+    "pins": {
+     "1": "D1/TX",
+     "2": "D0/RX",
+     "3": "RESET",
+     "4": "GND",
+     "5": "D2",
+     "6": "D3",
+     "7": "D4",
+     "8": "D5",
+     "9": "D6",
+     "10": "D7",
+     "11": "D8",
+     "12": "D9",
+     "13": "D10",
+     "14": "D11/MOSI",
+     "15": "D12/MISO",
+     "16": "D13/SCK",
+     "17": "3V3",
+     "18": "AREF",
+     "19": "A0",
+     "20": "A1",
+     "21": "A2",
+     "22": "A3",
+     "23": "A4",
+     "24": "A5",
+     "25": "A6",
+     "26": "A7",
+     "27": "5V",
+     "28": "RESET",
+     "29": "GND",
+     "30": "VIN"
+    },
+    "nc": [
+     "1",
+     "2",
+     "3",
+     "10",
+     "12",
+     "13",
+     "16",
+     "17",
+     "18",
+     "19",
+     "20",
+     "21",
+     "22",
+     "23",
+     "24",
+     "25",
+     "26",
+     "28",
+     "30"
+    ],
+    "waive": {
+     "P-1": "VIN bleibt frei: der Nano läuft über seine USB-Buchse"
+    },
+    "notes": "Steckt in zwei Buchsenleisten 1×15, RM 2,54 (von Hand gelötet, nicht im Graphen). Versorgung über seine USB-Buchse; der 5V-Pin liefert USB minus Schottky-Diode an Servo und C1."
+   },
+   {
+    "designator": "J1",
+    "type": "connector",
+    "label": "Servo (GND, +5 V, Signal)",
+    "part": "PZ254V-11-03P",
+    "lcsc": "C2937625",
+    "bom": false,
+    "pins": {
+     "1": "1",
+     "2": "2",
+     "3": "3"
+    },
+    "notes": "Standard-Servostecker: braun = GND (1), rot = +5 V (2), orange = Signal (3)."
+   },
+   {
+    "designator": "C1",
+    "type": "capacitor",
+    "label": "Pufferelko für das Servo",
+    "part": "1000uF 16V",
+    "lcsc": "C439782",
+    "bom": false,
+    "pins": {
+     "1": "1",
+     "2": "2"
+    },
+    "notes": "Fängt die Anlaufspitzen des Servos ab, damit der Nano nicht neu startet."
+   },
+   {
+    "designator": "LED5",
+    "type": "led",
+    "label": "LED 5 mm grün, Countdown-Stufe 1",
+    "part": "XL-504UGD",
+    "lcsc": "C2895549",
+    "bom": false,
+    "pins": {
+     "2": "A",
+     "1": "K"
+    }
+   },
+   {
+    "designator": "R4",
+    "type": "resistor",
+    "label": "Vorwiderstand LED5",
+    "part": "330 Ω 0805",
+    "lcsc": "C17630",
+    "value": "330Ω",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    }
+   },
+   {
+    "designator": "LED4",
+    "type": "led",
+    "label": "LED 5 mm grün, Countdown-Stufe 2",
+    "part": "XL-504UGD",
+    "lcsc": "C2895549",
+    "bom": false,
+    "pins": {
+     "2": "A",
+     "1": "K"
+    }
+   },
+   {
+    "designator": "R3",
+    "type": "resistor",
+    "label": "Vorwiderstand LED4",
+    "part": "330 Ω 0805",
+    "lcsc": "C17630",
+    "value": "330Ω",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    }
+   },
+   {
+    "designator": "LED3",
+    "type": "led",
+    "label": "LED 5 mm gelb, Countdown-Stufe 3",
+    "part": "XL-504UYD",
+    "lcsc": "C2895495",
+    "bom": false,
+    "pins": {
+     "2": "A",
+     "1": "K"
+    }
+   },
+   {
+    "designator": "R2",
+    "type": "resistor",
+    "label": "Vorwiderstand LED3",
+    "part": "330 Ω 0805",
+    "lcsc": "C17630",
+    "value": "330Ω",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    }
+   },
+   {
+    "designator": "LED2",
+    "type": "led",
+    "label": "LED 5 mm gelb, Countdown-Stufe 4",
+    "part": "XL-504UYD",
+    "lcsc": "C2895495",
+    "bom": false,
+    "pins": {
+     "2": "A",
+     "1": "K"
+    }
+   },
+   {
+    "designator": "R1",
+    "type": "resistor",
+    "label": "Vorwiderstand LED2",
+    "part": "330 Ω 0805",
+    "lcsc": "C17630",
+    "value": "330Ω",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    }
+   },
+   {
+    "designator": "LED1",
+    "type": "led",
+    "label": "LED 5 mm rot, Countdown-Stufe 5",
+    "part": "XL-504SURD",
+    "lcsc": "C2895493",
+    "bom": false,
+    "pins": {
+     "1": "A",
+     "2": "K"
+    }
+   },
+   {
+    "designator": "R5",
+    "type": "resistor",
+    "label": "Vorwiderstand LED1",
+    "part": "330 Ω 0805",
+    "lcsc": "C17630",
+    "value": "330Ω",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    }
+   },
+   {
+    "designator": "S1",
+    "type": "button",
+    "label": "Taster Start",
+    "part": "K2-1102SP-C4SC-04",
+    "lcsc": "C127509",
+    "pins": {
+     "1": "A",
+     "2": "A (internal to 1)",
+     "3": "B (internal to 4)",
+     "4": "B"
+    },
+    "notes": "1/2 und 3/4 sind im Taster verbunden."
+   },
+   {
+    "designator": "R7",
+    "type": "resistor",
+    "label": "Pull-down Taster Start",
+    "part": "4,7 kΩ 0805",
+    "lcsc": "C17673",
+    "value": "4.7kΩ",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    }
+   },
+   {
+    "designator": "S2",
+    "type": "button",
+    "label": "Taster Reset",
+    "part": "K2-1102SP-C4SC-04",
+    "lcsc": "C127509",
+    "pins": {
+     "1": "A",
+     "2": "A (internal to 1)",
+     "3": "B (internal to 4)",
+     "4": "B"
+    },
+    "notes": "1/2 und 3/4 sind im Taster verbunden."
+   },
+   {
+    "designator": "R6",
+    "type": "resistor",
+    "label": "Pull-down Taster Reset",
+    "part": "4,7 kΩ 0805",
+    "lcsc": "C17673",
+    "value": "4.7kΩ",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    }
+   }
+  ],
+  "nets": [
+   {
+    "name": "+5V",
+    "pins": [
+     "U1.27",
+     "C1.1",
+     "J1.2",
+     "S1.1",
+     "S1.2",
+     "S2.1",
+     "S2.2"
+    ],
+    "v": [
+     0,
+     5.5
+    ],
+    "notes": "5V-Pin des Nano: USB minus Schottky-Diode; versorgt Servo und Taster."
+   },
+   {
+    "name": "GND",
+    "pins": [
+     "U1.4",
+     "U1.29",
+     "C1.2",
+     "J1.1",
+     "R6.2",
+     "R7.2",
+     "LED5.2",
+     "LED4.2",
+     "LED3.1",
+     "LED2.1",
+     "LED1.2"
+    ],
+    "v": [
+     0,
+     0
+    ]
+   },
+   {
+    "name": "SERVO",
+    "pins": [
+     "U1.11",
+     "J1.3"
+    ],
+    "v": [
+     0,
+     5.5
+    ]
+   },
+   {
+    "name": "BTN_START",
+    "pins": [
+     "U1.14",
+     "S1.3",
+     "S1.4",
+     "R7.1"
+    ],
+    "v": [
+     0,
+     5.5
+    ],
+    "notes": "Gedrückt = 5 V an D11, sonst zieht R7 auf GND (E-4)."
+   },
+   {
+    "name": "BTN_RESET",
+    "pins": [
+     "U1.15",
+     "S2.3",
+     "S2.4",
+     "R6.1"
+    ],
+    "v": [
+     0,
+     5.5
+    ],
+    "notes": "Gedrückt = 5 V an D12, sonst zieht R6 auf GND (E-4)."
+   },
+   {
+    "name": "LED_G1",
+    "pins": [
+     "U1.9",
+     "R4.1"
+    ],
+    "v": [
+     0,
+     5.5
+    ]
+   },
+   {
+    "name": "LED_G1_A",
+    "pins": [
+     "R4.2",
+     "LED5.1"
+    ],
+    "v": [
+     0,
+     5.5
+    ]
+   },
+   {
+    "name": "LED_G2",
+    "pins": [
+     "U1.8",
+     "R3.1"
+    ],
+    "v": [
+     0,
+     5.5
+    ]
+   },
+   {
+    "name": "LED_G2_A",
+    "pins": [
+     "R3.2",
+     "LED4.1"
+    ],
+    "v": [
+     0,
+     5.5
+    ]
+   },
+   {
+    "name": "LED_Y1",
+    "pins": [
+     "U1.5",
+     "R2.1"
+    ],
+    "v": [
+     0,
+     5.5
+    ]
+   },
+   {
+    "name": "LED_Y1_A",
+    "pins": [
+     "R2.2",
+     "LED3.2"
+    ],
+    "v": [
+     0,
+     5.5
+    ]
+   },
+   {
+    "name": "LED_Y2",
+    "pins": [
+     "U1.6",
+     "R1.1"
+    ],
+    "v": [
+     0,
+     5.5
+    ]
+   },
+   {
+    "name": "LED_Y2_A",
+    "pins": [
+     "R1.2",
+     "LED2.2"
+    ],
+    "v": [
+     0,
+     5.5
+    ]
+   },
+   {
+    "name": "LED_R",
+    "pins": [
+     "U1.7",
+     "R5.1"
+    ],
+    "v": [
+     0,
+     5.5
+    ]
+   },
+   {
+    "name": "LED_R_A",
+    "pins": [
+     "R5.2",
+     "LED1.1"
+    ],
+    "v": [
+     0,
+     5.5
+    ]
+   }
+  ],
+  "cables": []
+ }
+}

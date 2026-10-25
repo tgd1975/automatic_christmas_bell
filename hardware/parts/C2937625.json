@@ -1,0 +1,54 @@
+{
+  "lcsc": "C2937625",
+  "mpn": "PZ254V-11-03P",
+  "manufacturer": "XFCN(兴飞)",
+  "kind": "connector",
+  "package": "Stiftleiste 1×3, RM 2,54, gerade",
+  "footprint": "HDR-TH_3P-P2.54-V-M_PZ254V-11-03P",
+  "jlc_class": "Extended Part",
+  "datasheet": {
+    "url": "https://datasheet.lcsc.com/datasheet/pdf/3b85a1cdf6ed945f2e278f00c1e42442.pdf?productCode=C2937625",
+    "pinout_page": null
+  },
+  "pins": {
+    "1": {
+      "name": "1",
+      "type": "passive",
+      "role": "pin1"
+    },
+    "2": {
+      "name": "2",
+      "type": "passive",
+      "role": "pin2"
+    },
+    "3": {
+      "name": "3",
+      "type": "passive",
+      "role": "pin3"
+    }
+  },
+  "params": {
+    "r_contact_ohm": 0.02,
+    "pitch_mm": 2.54
+  },
+  "ratings": {
+    "i_max_a": 3.0,
+    "v_max": 250
+  },
+  "spice": {},
+  "sources": [
+    "EasyEDA-Bibliothek und LCSC-Parametertabelle (2026-10-25): 3 A, 250 V, Vierkantstift, Messing",
+    "LCSC-Lager 2026-10-25: 659 300 Stück (C492402 derselben Serie: 0 Stück)",
+    "Stift 0,64 mm Vierkant: übliches Maß für RM 2,54 – Annahme"
+  ],
+  "lead": {
+    "*": {
+      "shape": "square",
+      "a_mm": 0.64,
+      "b_mm": 0.64,
+      "tol_mm": null,
+      "hole_rec_mm": 1.0,
+      "source": "übliches Maß 0,64 mm Vierkant, Bohrung 1,0 mm – Annahme, Datenblatt prüfen"
+    }
+  }
+}

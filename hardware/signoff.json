@@ -1,0 +1,44 @@
+{
+  "about": "Abzeichnungen für das Freigabe-Gate (edakit gate). Jede gilt nur für den Hash ihres Bereichs: 'circuit' = state_sha256 (Graph, Teile-DB, Simulation), 'layout' = layout_sha256. Ändert sich dort etwas, gilt sie nicht mehr – nach der Wiederholung den neuen Hash aus dem Protokollkopf übernehmen.",
+  "state_sha256": null,
+  "layout_sha256": null,
+  "manual": [
+    {
+      "id": "M-1",
+      "phase": "export",
+      "scope": "circuit",
+      "text": "Kritische Teile (U1 Nano-Pinbelegung, C1 Polarität, die LEDs, J1 Servo-Belegung) ein zweites Mal unabhängig gegen Datenblatt bzw. Footprint geprüft – z. B. Agent electrical-reviewer",
+      "done_by": null,
+      "date": null,
+      "note": null
+    },
+    {
+      "id": "M-5",
+      "phase": "export",
+      "scope": "layout",
+      "text": "Layout unabhängig geprüft (Herstellbarkeit, Mechanik: Nano-USB an der Kante, Bedienung der Taster, Optik der LED-Reihe) auf den Fertigungsdaten eines Gate-Laufs – z. B. Agent pcb-reviewer",
+      "done_by": null,
+      "date": null,
+      "note": null
+    },
+    {
+      "id": "M-2",
+      "phase": "order",
+      "scope": "layout",
+      "text": "Bei JLCPCB nach dem Hochladen: Bestückungsvorschau (Taster, Widerstände), BOM ohne fehlende Teile, Preis",
+      "done_by": null,
+      "date": null,
+      "note": null
+    },
+    {
+      "id": "M-4",
+      "phase": "acceptance",
+      "scope": "layout",
+      "text": "Abnahme jeder gelieferten Platine: Sichtprüfung, Nano gesteckt, Strom über USB, jede LED, beide Taster, Servo schwingt",
+      "done_by": null,
+      "date": null,
+      "note": null
+    }
+  ],
+  "accepted_warnings": []
+}

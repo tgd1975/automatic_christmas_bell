@@ -1,0 +1,156 @@
+{
+  "about": "Szenarien für `edakit sim`: USB-Versorgung × Last × LED-Flussspannungs-Ecken. Werte mit 'note' sind Annahmen.",
+  "ambient_c": 30,
+  "sources": {
+    "U1": {
+      "plus": "27",
+      "minus": "4",
+      "r_ohm": 0.5,
+      "i_max_a": 0.5,
+      "note": "5V-Pin des Nano: USB minus Schottky-Diode; 0,5 Ohm für Kabel, Polyfuse und Diode; die Polyfuse des Nano hält 500 mA"
+    }
+  },
+  "supplies": {
+    "usb-min": {
+      "U1": 4.45,
+      "note": "4,75 V USB minus 0,3 V Diode"
+    },
+    "usb-nom": {
+      "U1": 4.7
+    },
+    "usb-max": {
+      "U1": 5.05,
+      "note": "5,25 V USB minus 0,2 V Diode bei kleinem Strom"
+    }
+  },
+  "loads": {
+    "ruhe": {
+      "about": "Countdown aus, Servo hält die Mitte",
+      "gpio": {},
+      "leds_on": [],
+      "external": {
+        "J1": {
+          "plus": "2",
+          "minus": "1",
+          "i_a": 0.01,
+          "note": "Servo im Stillstand"
+        }
+      }
+    },
+    "countdown": {
+      "about": "erste grüne LED an, Start gedrückt",
+      "gpio": {
+        "LED_G1": 1
+      },
+      "leds_on": [
+        "LED5"
+      ],
+      "buttons": [
+        "S1"
+      ],
+      "external": {
+        "J1": {
+          "plus": "2",
+          "minus": "1",
+          "i_a": 0.01
+        }
+      }
+    },
+    "warnung": {
+      "about": "letzte Warnung: alle LEDs an, Reset gedrückt",
+      "gpio": {
+        "LED_G1": 1,
+        "LED_G2": 1,
+        "LED_Y1": 1,
+        "LED_Y2": 1,
+        "LED_R": 1
+      },
+      "leds_on": "all",
+      "buttons": [
+        "S2"
+      ],
+      "external": {
+        "J1": {
+          "plus": "2",
+          "minus": "1",
+          "i_a": 0.01
+        }
+      }
+    },
+    "glocke": {
+      "about": "Servo schwingt die Glocke, LEDs aus",
+      "gpio": {},
+      "leds_on": [],
+      "external": {
+        "J1": {
+          "plus": "2",
+          "minus": "1",
+          "i_a": 0.3,
+          "note": "9-g-Servo unter Last 0,2–0,3 A (Annahme)"
+        }
+      }
+    },
+    "servo-blockiert": {
+      "about": "Servo blockiert (Glocke klemmt), LEDs aus",
+      "gpio": {},
+      "leds_on": [],
+      "external": {
+        "J1": {
+          "plus": "2",
+          "minus": "1",
+          "i_a": 0.7,
+          "note": "Blockierstrom eines 9-g-Servos 0,6–0,75 A (Annahme)"
+        }
+      },
+      "matrix": false
+    }
+  },
+  "corners": [
+    "min",
+    "max"
+  ],
+  "mcu": {
+    "U1": {
+      "outputs": [
+        "LED_G1",
+        "LED_G2",
+        "LED_Y1",
+        "LED_Y2",
+        "LED_R",
+        "SERVO"
+      ],
+      "inputs": [
+        "BTN_START",
+        "BTN_RESET"
+      ]
+    }
+  },
+  "derating": {
+    "p": 0.5,
+    "i": 0.8,
+    "v_cap": 0.67,
+    "v_diode": 0.67,
+    "v_bjt": 0.67
+  },
+  "criteria": {
+    "net_range_tol_v": 0.05,
+    "led_on_min_a": 0.002,
+    "led_off_max_a": 1e-05,
+    "rail_tol": 0.03
+  },
+  "report": [
+    "+5V",
+    "BTN_START"
+  ],
+  "extra_scenarios": [
+    {
+      "name": "usb-nom/servo-blockiert",
+      "supply": {
+        "U1": 4.7
+      },
+      "load": "servo-blockiert",
+      "info": true,
+      "note": "Fehlerfall: 725 mA über den 5V-Pin, die Polyfuse des Nano (500 mA) löst aus – Entscheidung E-3"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "lcsc": "C127509",
+  "mpn": "K2-1102SP-C4SC-04",
+  "manufacturer": "韩国韩荣",
+  "kind": "button",
+  "package": "6×6 SMD",
+  "footprint": "KEY-SMD_4P-L6.0-W6.0-P4.50-LS9.5-BL",
+  "jlc_class": "Extended Part",
+  "datasheet": {
+    "url": "https://item.szlcsc.com/datasheet/K2-1102SP-C4SC-04/138792.html",
+    "pinout_page": null
+  },
+  "pins": {
+    "1": {
+      "name": "A",
+      "type": "passive",
+      "role": "a"
+    },
+    "2": {
+      "name": "A (internal to 1)",
+      "type": "passive",
+      "role": "a"
+    },
+    "3": {
+      "name": "B (internal to 4)",
+      "type": "passive",
+      "role": "b"
+    },
+    "4": {
+      "name": "B",
+      "type": "passive",
+      "role": "b"
+    }
+  },
+  "params": {
+    "r_on_ohm": 0.1
+  },
+  "ratings": {
+    "i_max_a": 0.05,
+    "v_max": 12
+  },
+  "spice": {},
+  "sources": [
+    "hardware_graph.json (Pin-Namen aus dem EasyEDA-Symbol, 2026-10-19)",
+    "LCSC-Parametertabelle über EasyEDA (2026-10-20)",
+    "r_on: Annahme ohne Datenblatt-Beleg – beim Abzeichnen prüfen"
+  ],
+  "notes": null,
+  "verified": {
+    "by": "Claude Opus 5.5 (Datenblattprüfung, automatisiert)",
+    "date": "2026-10-20",
+    "datasheet": "HRO K2-1102SP Zeichnung (30.05.2013)",
+    "checked": [
+      "Pins 1/2 und 3/4 intern verbunden (Circuit Diagram)",
+      "Elektrische Werte nicht in der Zeichnung – LCSC: 50 mA / 12 V; Last hier 66 µA"
+    ],
+    "open": []
+  }
+}

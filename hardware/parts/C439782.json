@@ -1,0 +1,49 @@
+{
+  "lcsc": "C439782",
+  "mpn": "KM108M016G13RR0VH2FP0",
+  "manufacturer": "Chengx(承兴)",
+  "kind": "capacitor",
+  "package": "THT radial Ø10 × 13 mm, RM 5,0",
+  "footprint": "CAP-TH_BD10.0-P5.00-D0.6-FD",
+  "jlc_class": "Extended Part",
+  "datasheet": {
+    "url": "https://datasheet.lcsc.com/datasheet/pdf/c4fd22258d6f7116b203df2d4ecd7eec.pdf?productCode=C439782",
+    "pinout_page": null
+  },
+  "pins": {
+    "1": {
+      "name": "1",
+      "type": "passive",
+      "role": "plus"
+    },
+    "2": {
+      "name": "2",
+      "type": "passive",
+      "role": "minus"
+    }
+  },
+  "params": {
+    "value_f": 0.001,
+    "polarized": true
+  },
+  "ratings": {
+    "v_max": 16,
+    "i_ripple_a": 0.68
+  },
+  "spice": {},
+  "sources": [
+    "EasyEDA-Bibliothek und LCSC-Parametertabelle (2026-10-25): 1000 µF, 16 V, 680 mA Ripple @ 120 Hz, Ø10 × 13 mm, RM 5 mm, 2000 h @ 105 °C",
+    "LCSC-Lager 2026-10-25: 18 720 Stück",
+    "Pin-Namen und Polarität: Annahme bis zum Abgleich mit dem EasyEDA-Symbol (schematic create)",
+    "Bein Ø0,6 mm aus dem Footprint-Namen (D0.6) – Annahme"
+  ],
+  "lead": {
+    "*": {
+      "shape": "round",
+      "a_mm": 0.6,
+      "tol_mm": 0.05,
+      "hole_rec_mm": null,
+      "source": "Footprint CAP-TH_BD10.0-P5.00-D0.6 – Annahme, Datenblatt prüfen"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "lcsc": "C2895495",
+  "mpn": "XL-504UYD",
+  "manufacturer": "XINGLIGHT(成兴光)",
+  "kind": "led",
+  "package": "5 mm THT",
+  "footprint": "LED-TH_BD5.9-P2.54-RD_YELLOW",
+  "jlc_class": "Extended Part",
+  "datasheet": {
+    "url": "https://item.szlcsc.com/datasheet/XL-504UYD/3136210.html",
+    "pinout_page": null
+  },
+  "pins": {
+    "2": {
+      "name": "A",
+      "type": "passive",
+      "role": "anode"
+    },
+    "1": {
+      "name": "K",
+      "type": "passive",
+      "role": "cathode"
+    }
+  },
+  "params": {
+    "color": "gelb",
+    "vf_typ": 2.0,
+    "vf_min": 1.8,
+    "vf_max": 2.4,
+    "vf_at_a": 0.02,
+    "rs_ohm": 15
+  },
+  "ratings": {
+    "if_max_a": 0.02,
+    "vr_max": 5,
+    "p_max_w": 0.07
+  },
+  "spice": {},
+  "sources": [
+    "hardware_graph.json (Pin-Namen aus dem EasyEDA-Symbol, 2026-10-19)",
+    "LCSC-Parametertabelle über EasyEDA (2026-10-20)",
+    "Vf 2,1 V @ 20 mA laut LCSC; Streuung angenommen",
+    "VR_max = 5 V: üblicher LED-Wert, Annahme ohne Datenblatt-Beleg – beim Abzeichnen prüfen"
+  ],
+  "notes": null,
+  "verified": {
+    "by": "Claude Opus 5.5 (Datenblattprüfung, automatisiert)",
+    "date": "2026-10-20",
+    "datasheet": "XINGLIGHT XL-504UYD",
+    "checked": [
+      "IF 20 mA, IFP 80 mA, Pd 70 mW, VF 1.8/2.0/2.4 V @ 20 mA"
+    ],
+    "open": [
+      "Pad-Zuordnung am Footprint (P-2) und Bestückungsvorschau (M-2) noch offen",
+      "VR nicht angegeben – 5 V angenommen (XL-304UGD: 5 V)"
+    ]
+  },
+  "lead": {
+    "*": {
+      "shape": "square",
+      "a_mm": 0.5,
+      "b_mm": 0.5,
+      "tol_mm": null,
+      "hole_rec_mm": null,
+      "source": "Agent elektrotechniker, M-1-Nachtrag 2026-10-22: XINGLIGHT-Datenblatt (C2895495) S. 7 Outline Dimension, Bein 0.5 in Vorder- und Seitenansicht"
+    }
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "lcsc": "C9900017879",
+  "mpn": "Arduino Nano 3 (Klon mit CH340 oder Original mit FT232RL)",
+  "manufacturer": "Arduino / Nachbau",
+  "kind": "module",
+  "package": "Modul 43,2 × 17,8 mm auf zwei Stiftleisten 1×15, Reihenabstand 15,24 mm",
+  "footprint": "COMM-TH_ARDUINO_NANO",
+  "jlc_class": "Nutzerbibliothek (C99…), nicht bestellbar",
+  "datasheet": {
+    "url": "https://docs.arduino.cc/resources/datasheets/A000005-datasheet.pdf",
+    "pinout_page": null
+  },
+  "pins": {
+    "1": {
+      "name": "D1/TX",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "2": {
+      "name": "D0/RX",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "3": {
+      "name": "RESET",
+      "type": "input",
+      "vmax": 5.5
+    },
+    "4": {
+      "name": "GND",
+      "type": "ground",
+      "role": "gnd"
+    },
+    "5": {
+      "name": "D2",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "6": {
+      "name": "D3",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "7": {
+      "name": "D4",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "8": {
+      "name": "D5",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "9": {
+      "name": "D6",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "10": {
+      "name": "D7",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "11": {
+      "name": "D8",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "12": {
+      "name": "D9",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "13": {
+      "name": "D10",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "14": {
+      "name": "D11/MOSI",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "15": {
+      "name": "D12/MISO",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "16": {
+      "name": "D13/SCK",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "17": {
+      "name": "3V3",
+      "type": "power_output",
+      "role": "3v3"
+    },
+    "18": {
+      "name": "AREF",
+      "type": "analog",
+      "vmax": 5.5
+    },
+    "19": {
+      "name": "A0",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "20": {
+      "name": "A1",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "21": {
+      "name": "A2",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "22": {
+      "name": "A3",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "23": {
+      "name": "A4",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "24": {
+      "name": "A5",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "25": {
+      "name": "A6",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "26": {
+      "name": "A7",
+      "type": "bidirectional",
+      "role": "gpio",
+      "vmax": 5.5
+    },
+    "27": {
+      "name": "5V",
+      "type": "power_output",
+      "role": "vsys"
+    },
+    "28": {
+      "name": "RESET",
+      "type": "input",
+      "vmax": 5.5
+    },
+    "29": {
+      "name": "GND",
+      "type": "ground",
+      "role": "gnd"
+    },
+    "30": {
+      "name": "VIN",
+      "type": "power_in",
+      "vmax": 12
+    }
+  },
+  "params": {
+    "behavior": "mcu",
+    "v_io": "vin",
+    "regulator": "ldo",
+    "vout_v": 3.3,
+    "dropout_v": 1.0,
+    "i_core_a": 0.025,
+    "gpio_r_out_ohm": 25,
+    "vih_ratio": 0.6,
+    "vil_ratio": 0.3
+  },
+  "ratings": {
+    "vin_min": 3.8,
+    "i_3v3_ext_max_a": 0.01,
+    "i_gpio_max_a": 0.02
+  },
+  "spice": {},
+  "sources": [
+    "Symbol und Footprint aus einer EasyEDA-Nutzerbibliothek (C9900017879) – nicht bestellbar; der Nano wird gesteckt",
+    "Pin-Nummern: Arduino-Nano-Zählung (1 = D1/TX … 30 = VIN) – Annahme bis zum Abgleich mit dem Symbol",
+    "ATmega328P: VIH ≥ 0,6 × VCC, VIL ≤ 0,3 × VCC (Datenblatt Tab. 28-1); 16 MHz ab etwa 3,8 V (Safe Operating Area)",
+    "5V-Pin bei USB-Versorgung = VBUS minus Schottky-Diode (MBR0520) – Quelle in hardware/sim.json",
+    "3V3-Pin: beim Original aus dem FT232RL (max. 50 mA), bei CH340-Nachbauten aus dessen V3 – Belastbarkeit nicht angegeben, 10 mA angenommen",
+    "Strom je GPIO 20 mA empfohlen (40 mA absolut)"
+  ]
+}

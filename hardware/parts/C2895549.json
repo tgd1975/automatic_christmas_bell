@@ -1,0 +1,69 @@
+{
+  "lcsc": "C2895549",
+  "mpn": "XL-504UGD",
+  "manufacturer": "XINGLIGHT(成兴光)",
+  "kind": "led",
+  "package": "5 mm THT",
+  "footprint": "LED-TH_BD5.0-P2.54-FD",
+  "jlc_class": "Extended Part",
+  "datasheet": {
+    "url": "https://item.szlcsc.com/datasheet/XL-504UGD/3136214.html",
+    "pinout_page": null
+  },
+  "pins": {
+    "2": {
+      "name": "A",
+      "type": "passive",
+      "role": "cathode"
+    },
+    "1": {
+      "name": "K",
+      "type": "passive",
+      "role": "anode"
+    }
+  },
+  "params": {
+    "color": "grün",
+    "vf_typ": 3.0,
+    "vf_min": 2.8,
+    "vf_max": 3.4,
+    "vf_at_a": 0.02,
+    "rs_ohm": 15
+  },
+  "ratings": {
+    "if_max_a": 0.02,
+    "vr_max": 5,
+    "p_max_w": 0.07
+  },
+  "spice": {},
+  "sources": [
+    "hardware_graph.json (Pin-Namen aus dem EasyEDA-Symbol, 2026-10-19)",
+    "LCSC-Parametertabelle über EasyEDA (2026-10-20)",
+    "Vf 3,2 V @ 20 mA laut LCSC; Streuung angenommen",
+    "VR_max = 5 V: üblicher LED-Wert, Annahme ohne Datenblatt-Beleg – beim Abzeichnen prüfen",
+    "D-39: Rollen nach dem Bibliotheks-Footprint, nicht nach Symbol/Datenblatt: Pad 1 trägt den Druck „+“ (Anode, langes Bein), Pad 2 die Abflachung (Kathode). Namen bleiben wie im Symbol (1 = K, 2 = A), damit P-1 und S-2 passen. Befund M-1 (Agent elektrotechniker, 2026-10-22)."
+  ],
+  "notes": null,
+  "verified": {
+    "by": "Claude Opus 5.5 (Datenblattprüfung, automatisiert)",
+    "date": "2026-10-20",
+    "datasheet": "XINGLIGHT XL-504UGD",
+    "checked": [
+      "IF 20 mA, IFP 80 mA, Pd 70 mW, VF 2.8/3.0/3.4 V @ 20 mA"
+    ],
+    "open": [
+      "Pad-Zuordnung am Footprint (P-2) und Bestückungsvorschau (M-2) noch offen",
+      "VR nicht angegeben – 5 V angenommen (XL-304UGD: 5 V)"
+    ]
+  },
+  "lead": {
+    "*": {
+      "shape": "square",
+      "a_mm": 0.5,
+      "b_mm": 0.5,
+      "tol_mm": null,
+      "hole_rec_mm": null,
+      "source": "Agent elektrotechniker, M-1-Nachtrag 2026-10-22: XINGLIGHT-Datenblatt (C2895549) S. 7 Outline Dimension, Bein 0.5 in Vorder- und Seitenansicht"
+    }
+  }
+}
