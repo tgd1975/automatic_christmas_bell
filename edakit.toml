@@ -233,13 +233,16 @@ rows = [
   [ [ { title = "Arduino Nano", start = ["U1"] } ], [ { title = "Servo", start = ["J1"] } ] ],
   [ [ { title = "Notes" } ] ],
 ]
-near = { C1 = "J1" }
+near = { C1 = "J1", R8 = "U1", R9 = "U1" }
 
 [schematic.layout.notes]
 "Arduino Nano" = ["Plugged into two 1x15 female headers, powered through its USB socket",
                   "D2-D6: countdown LEDs, D8: servo, D11/D12: start/reset buttons"]
 Servo = ["Servo at the Nano's 5V pin; C1 buffers its start-up peaks"]
-Notes = ["Nets with the same name are connected (labels and power flags)."]
+Notes = ["Nets with the same name are connected (labels and power flags).",
+         "LED1, LED4, LED5: the library symbols name A and K the other way round;",
+         "the anode is the pad with the + print (footprint), see hardware/parts.",
+         "R8 + R9: base load, keeps USB power banks on (D-8)."]
 
 [schematic.layout.pin_table]
 component = "U1"
