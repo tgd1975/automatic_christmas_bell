@@ -1,5 +1,5 @@
 {
-  "about": "Abzeichnungen für das Freigabe-Gate (edakit gate). Jede gilt nur für den Hash ihres Bereichs: 'circuit' = state_sha256 (Graph, Teile-DB, Simulation), 'layout' = layout_sha256. Ändert sich dort etwas, gilt sie nicht mehr – nach der Wiederholung den neuen Hash aus dem Protokollkopf übernehmen.",
+  "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, footprint geometry). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
   "state_sha256": null,
   "layout_sha256": null,
   "manual": [
@@ -7,7 +7,7 @@
       "id": "M-1",
       "phase": "export",
       "scope": "circuit",
-      "text": "Kritische Teile (U1 Nano-Pinbelegung, C1 Polarität, die LEDs, J1 Servo-Belegung) ein zweites Mal unabhängig gegen Datenblatt bzw. Footprint geprüft – z. B. Agent electrical-reviewer",
+      "text": "Critical parts (U1 Nano pinout, C1 polarity, the LEDs, J1 servo pinout) checked a second time independently against datasheet and footprint – e.g. by the agent electrical-reviewer",
       "done_by": null,
       "date": null,
       "note": null
@@ -16,7 +16,7 @@
       "id": "M-5",
       "phase": "export",
       "scope": "layout",
-      "text": "Layout unabhängig geprüft (Herstellbarkeit, Mechanik: Nano-USB an der Kante, Bedienung der Taster, Optik der LED-Reihe) auf den Fertigungsdaten eines Gate-Laufs – z. B. Agent pcb-reviewer",
+      "text": "Layout reviewed independently (manufacturability; mechanics: the Nano's USB at the edge; operation of the buttons; looks of the LED row) on the manufacturing files of a gate run – e.g. by the agent pcb-reviewer",
       "done_by": null,
       "date": null,
       "note": null
@@ -25,7 +25,7 @@
       "id": "M-2",
       "phase": "order",
       "scope": "layout",
-      "text": "Bei JLCPCB nach dem Hochladen: Bestückungsvorschau (Taster, Widerstände), BOM ohne fehlende Teile, Preis",
+      "text": "At JLCPCB after the upload: assembly preview (buttons, resistors), BOM without missing parts, price",
       "done_by": null,
       "date": null,
       "note": null
@@ -34,7 +34,7 @@
       "id": "M-4",
       "phase": "acceptance",
       "scope": "layout",
-      "text": "Abnahme jeder gelieferten Platine: Sichtprüfung, Nano gesteckt, Strom über USB, jede LED, beide Taster, Servo schwingt",
+      "text": "Acceptance of every delivered board: visual check, Nano plugged in, current through USB, every LED, both buttons, the servo swings",
       "done_by": null,
       "date": null,
       "note": null

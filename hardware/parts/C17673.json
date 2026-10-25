@@ -32,18 +32,18 @@
   },
   "spice": {},
   "sources": [
-    "hardware_graph.json (Pin-Namen aus dem EasyEDA-Symbol, 2026-10-19)",
-    "LCSC-Parametertabelle über EasyEDA (2026-10-20)",
-    "P_max/U_max: LCSC-Tabelle ohne Wert, Standard der 0805W8F-Serie angenommen"
+    "pin names from the EasyEDA symbol (2026-10-19)",
+    "LCSC parameter table via EasyEDA (2026-10-20)",
+    "P_max/V_max: no value in the LCSC table, standard of the 0805W8F series assumed"
   ],
   "notes": null,
   "verified": {
-    "by": "Claude Opus 5.5 (Datenblattprüfung, automatisiert)",
+    "by": "Claude Opus 5.5 (datasheet check, automated)",
     "date": "2026-10-20",
-    "datasheet": "UNI-ROYAL Thick Film Chip Resistors V.3 (12.02.2019)",
+    "datasheet": "UNI-ROYAL Thick Film Chip Resistors V.3 (2019-02-12)",
     "checked": [
-      "Bestellcode 0805W8F…: W8 = 1/8 W, F = ±1 %",
-      "Tab. 7: 0805 max. Arbeitsspannung 150 V"
+      "order code 0805W8F…: W8 = 1/8 W, F = ±1 %",
+      "table 7: 0805 max. working voltage 150 V"
     ],
     "open": []
   }

@@ -41,18 +41,18 @@
   },
   "spice": {},
   "sources": [
-    "hardware_graph.json (Pin-Namen aus dem EasyEDA-Symbol, 2026-10-19)",
-    "LCSC-Parametertabelle über EasyEDA (2026-10-20)",
-    "r_on: Annahme ohne Datenblatt-Beleg – beim Abzeichnen prüfen"
+    "pin names from the EasyEDA symbol (2026-10-19)",
+    "LCSC parameter table via EasyEDA (2026-10-20)",
+    "r_on: assumption without datasheet evidence – check when signing off"
   ],
   "notes": null,
   "verified": {
-    "by": "Claude Opus 5.5 (Datenblattprüfung, automatisiert)",
+    "by": "Claude Opus 5.5 (datasheet check, automated)",
     "date": "2026-10-20",
-    "datasheet": "HRO K2-1102SP Zeichnung (30.05.2013)",
+    "datasheet": "HRO K2-1102SP drawing (2013-05-30)",
     "checked": [
-      "Pins 1/2 und 3/4 intern verbunden (Circuit Diagram)",
-      "Elektrische Werte nicht in der Zeichnung – LCSC: 50 mA / 12 V; Last hier 66 µA"
+      "pins 1/2 and 3/4 connected inside (circuit diagram)",
+      "electrical values not in the drawing – LCSC: 50 mA / 12 V; load here about 1 mA"
     ],
     "open": []
   }

@@ -3,7 +3,7 @@
   "mpn": "PZ254V-11-03P",
   "manufacturer": "XFCN(兴飞)",
   "kind": "connector",
-  "package": "Stiftleiste 1×3, RM 2,54, gerade",
+  "package": "pin header 1×3, pitch 2.54, straight",
   "footprint": "HDR-TH_3P-P2.54-V-M_PZ254V-11-03P",
   "jlc_class": "Extended Part",
   "datasheet": {
@@ -37,9 +37,9 @@
   },
   "spice": {},
   "sources": [
-    "EasyEDA-Bibliothek und LCSC-Parametertabelle (2026-10-25): 3 A, 250 V, Vierkantstift, Messing",
-    "LCSC-Lager 2026-10-25: 659 300 Stück (C492402 derselben Serie: 0 Stück)",
-    "Stift 0,64 mm Vierkant: übliches Maß für RM 2,54 – Annahme"
+    "EasyEDA library and LCSC parameter table (2026-10-25): 3 A, 250 V, square pin, brass",
+    "LCSC stock 2026-10-25: 659 300 pcs (C492402 of the same series: 0 pcs)",
+    "pin 0.64 mm square: the usual size for pitch 2.54 – assumption"
   ],
   "lead": {
     "*": {
@@ -48,7 +48,7 @@
       "b_mm": 0.64,
       "tol_mm": null,
       "hole_rec_mm": 1.0,
-      "source": "übliches Maß 0,64 mm Vierkant, Bohrung 1,0 mm – Annahme, Datenblatt prüfen"
+      "source": "usual size 0.64 mm square, hole 1.0 mm – assumption, check the datasheet"
     }
   }
 }

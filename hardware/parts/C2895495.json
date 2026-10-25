@@ -23,7 +23,7 @@
     }
   },
   "params": {
-    "color": "gelb",
+    "color": "yellow",
     "vf_typ": 2.0,
     "vf_min": 1.8,
     "vf_max": 2.4,
@@ -37,22 +37,22 @@
   },
   "spice": {},
   "sources": [
-    "hardware_graph.json (Pin-Namen aus dem EasyEDA-Symbol, 2026-10-19)",
-    "LCSC-Parametertabelle über EasyEDA (2026-10-20)",
-    "Vf 2,1 V @ 20 mA laut LCSC; Streuung angenommen",
-    "VR_max = 5 V: üblicher LED-Wert, Annahme ohne Datenblatt-Beleg – beim Abzeichnen prüfen"
+    "pin names from the EasyEDA symbol (2026-10-19)",
+    "LCSC parameter table via EasyEDA (2026-10-20)",
+    "Vf 2.1 V @ 20 mA per LCSC; spread assumed",
+    "VR_max = 5 V: usual LED value, assumption without datasheet evidence – check when signing off"
   ],
   "notes": null,
   "verified": {
-    "by": "Claude Opus 5.5 (Datenblattprüfung, automatisiert)",
+    "by": "Claude Opus 5.5 (datasheet check, automated)",
     "date": "2026-10-20",
     "datasheet": "XINGLIGHT XL-504UYD",
     "checked": [
       "IF 20 mA, IFP 80 mA, Pd 70 mW, VF 1.8/2.0/2.4 V @ 20 mA"
     ],
     "open": [
-      "Pad-Zuordnung am Footprint (P-2) und Bestückungsvorschau (M-2) noch offen",
-      "VR nicht angegeben – 5 V angenommen (XL-304UGD: 5 V)"
+      "pad assignment at the footprint (polarity sheet) and assembly preview (M-2) still open",
+      "VR not specified – 5 V assumed (XL-304UGD: 5 V)"
     ]
   },
   "lead": {
@@ -62,7 +62,7 @@
       "b_mm": 0.5,
       "tol_mm": null,
       "hole_rec_mm": null,
-      "source": "Agent elektrotechniker, M-1-Nachtrag 2026-10-22: XINGLIGHT-Datenblatt (C2895495) S. 7 Outline Dimension, Bein 0.5 in Vorder- und Seitenansicht"
+      "source": "agent electrical-reviewer, M-1 addendum 2026-10-22: XINGLIGHT datasheet (C2895495) p. 7 outline dimension, lead 0.5 in front and side view"
     }
   }
 }

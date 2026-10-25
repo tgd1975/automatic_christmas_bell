@@ -1,18 +1,19 @@
 {
  "graph": {
-  "name": "weihnachtsglocke",
+  "name": "christmas-bell",
   "version": "0.1",
   "date": "2026-10-25",
-  "description": "Automatische Weihnachtsglocke: Arduino Nano, Servo schwingt die Glocke, fünf LEDs zeigen den Countdown, Taster Start und Reset. Übernommen aus weihnachtsglocke.fzz.",
+  "description": "Automatic Christmas bell: an Arduino Nano counts down on five LEDs, then a servo swings a real bell. Start and reset buttons. Taken over from the Fritzing drawing weihnachtsglocke.fzz.",
   "conventions": {
-   "pin_reference": "'<Bauteil>.<Pin>' mit den Pin-Nummern des EasyEDA-Symbols",
-   "v": "je Netz: [min, max] in V über alle Betriebszustände"
+   "pin_reference": "'<designator>.<pin>' with the pin numbers of the EasyEDA symbol",
+   "v": "per net: [min, max] in V over all operating states",
+   "waive": "per net or component: {check id: reason} accepts a finding on purpose"
   },
   "components": [
    {
     "designator": "U1",
     "type": "module",
-    "label": "Arduino Nano 3 (gesteckt)",
+    "label": "Arduino Nano 3 (plugged in)",
     "part": "Arduino Nano",
     "lcsc": "C9900017879",
     "bom": false,
@@ -70,14 +71,14 @@
      "30"
     ],
     "waive": {
-     "P-1": "VIN bleibt frei: der Nano läuft über seine USB-Buchse"
+     "P-1": "VIN stays free: the Nano runs from its USB socket"
     },
-    "notes": "Steckt in zwei Buchsenleisten 1×15, RM 2,54 (von Hand gelötet, nicht im Graphen). Versorgung über seine USB-Buchse; der 5V-Pin liefert USB minus Schottky-Diode an Servo und C1."
+    "notes": "Plugs into two 1x15 female headers, pitch 2.54 mm (hand-soldered, not in the graph). Powered through its USB socket; its 5V pin (USB minus a Schottky diode) supplies the servo, C1 and the buttons."
    },
    {
     "designator": "J1",
     "type": "connector",
-    "label": "Servo (GND, +5 V, Signal)",
+    "label": "Servo (GND, +5 V, signal)",
     "part": "PZ254V-11-03P",
     "lcsc": "C2937625",
     "bom": false,
@@ -86,12 +87,12 @@
      "2": "2",
      "3": "3"
     },
-    "notes": "Standard-Servostecker: braun = GND (1), rot = +5 V (2), orange = Signal (3)."
+    "notes": "Standard servo plug: brown = GND (1), red = +5 V (2), orange = signal (3)."
    },
    {
     "designator": "C1",
     "type": "capacitor",
-    "label": "Pufferelko für das Servo",
+    "label": "Buffer capacitor for the servo",
     "part": "1000uF 16V",
     "lcsc": "C439782",
     "bom": false,
@@ -99,12 +100,12 @@
      "1": "1",
      "2": "2"
     },
-    "notes": "Fängt die Anlaufspitzen des Servos ab, damit der Nano nicht neu startet."
+    "notes": "Absorbs the servo's start-up peaks so the Nano does not reset."
    },
    {
     "designator": "LED5",
     "type": "led",
-    "label": "LED 5 mm grün, Countdown-Stufe 1",
+    "label": "5 mm LED, green, countdown step 1",
     "part": "XL-504UGD",
     "lcsc": "C2895549",
     "bom": false,
@@ -116,7 +117,7 @@
    {
     "designator": "R4",
     "type": "resistor",
-    "label": "Vorwiderstand LED5",
+    "label": "Series resistor LED5",
     "part": "330 Ω 0805",
     "lcsc": "C17630",
     "value": "330Ω",
@@ -128,7 +129,7 @@
    {
     "designator": "LED4",
     "type": "led",
-    "label": "LED 5 mm grün, Countdown-Stufe 2",
+    "label": "5 mm LED, green, countdown step 2",
     "part": "XL-504UGD",
     "lcsc": "C2895549",
     "bom": false,
@@ -140,7 +141,7 @@
    {
     "designator": "R3",
     "type": "resistor",
-    "label": "Vorwiderstand LED4",
+    "label": "Series resistor LED4",
     "part": "330 Ω 0805",
     "lcsc": "C17630",
     "value": "330Ω",
@@ -152,7 +153,7 @@
    {
     "designator": "LED3",
     "type": "led",
-    "label": "LED 5 mm gelb, Countdown-Stufe 3",
+    "label": "5 mm LED, yellow, countdown step 3",
     "part": "XL-504UYD",
     "lcsc": "C2895495",
     "bom": false,
@@ -164,7 +165,7 @@
    {
     "designator": "R2",
     "type": "resistor",
-    "label": "Vorwiderstand LED3",
+    "label": "Series resistor LED3",
     "part": "330 Ω 0805",
     "lcsc": "C17630",
     "value": "330Ω",
@@ -176,7 +177,7 @@
    {
     "designator": "LED2",
     "type": "led",
-    "label": "LED 5 mm gelb, Countdown-Stufe 4",
+    "label": "5 mm LED, yellow, countdown step 4",
     "part": "XL-504UYD",
     "lcsc": "C2895495",
     "bom": false,
@@ -188,7 +189,7 @@
    {
     "designator": "R1",
     "type": "resistor",
-    "label": "Vorwiderstand LED2",
+    "label": "Series resistor LED2",
     "part": "330 Ω 0805",
     "lcsc": "C17630",
     "value": "330Ω",
@@ -200,7 +201,7 @@
    {
     "designator": "LED1",
     "type": "led",
-    "label": "LED 5 mm rot, Countdown-Stufe 5",
+    "label": "5 mm LED, red, countdown step 5",
     "part": "XL-504SURD",
     "lcsc": "C2895493",
     "bom": false,
@@ -212,7 +213,7 @@
    {
     "designator": "R5",
     "type": "resistor",
-    "label": "Vorwiderstand LED1",
+    "label": "Series resistor LED1",
     "part": "330 Ω 0805",
     "lcsc": "C17630",
     "value": "330Ω",
@@ -224,7 +225,7 @@
    {
     "designator": "S1",
     "type": "button",
-    "label": "Taster Start",
+    "label": "Start button",
     "part": "K2-1102SP-C4SC-04",
     "lcsc": "C127509",
     "pins": {
@@ -233,13 +234,13 @@
      "3": "B (internal to 4)",
      "4": "B"
     },
-    "notes": "1/2 und 3/4 sind im Taster verbunden."
+    "notes": "1/2 and 3/4 are connected inside the button."
    },
    {
     "designator": "R7",
     "type": "resistor",
-    "label": "Pull-down Taster Start",
-    "part": "4,7 kΩ 0805",
+    "label": "Pull-down, start button",
+    "part": "4.7 kΩ 0805",
     "lcsc": "C17673",
     "value": "4.7kΩ",
     "pins": {
@@ -250,7 +251,7 @@
    {
     "designator": "S2",
     "type": "button",
-    "label": "Taster Reset",
+    "label": "Reset button",
     "part": "K2-1102SP-C4SC-04",
     "lcsc": "C127509",
     "pins": {
@@ -259,13 +260,13 @@
      "3": "B (internal to 4)",
      "4": "B"
     },
-    "notes": "1/2 und 3/4 sind im Taster verbunden."
+    "notes": "1/2 and 3/4 are connected inside the button."
    },
    {
     "designator": "R6",
     "type": "resistor",
-    "label": "Pull-down Taster Reset",
-    "part": "4,7 kΩ 0805",
+    "label": "Pull-down, reset button",
+    "part": "4.7 kΩ 0805",
     "lcsc": "C17673",
     "value": "4.7kΩ",
     "pins": {
@@ -290,7 +291,7 @@
      0,
      5.5
     ],
-    "notes": "5V-Pin des Nano: USB minus Schottky-Diode; versorgt Servo und Taster."
+    "notes": "5V pin of the Nano: USB minus its Schottky diode; supplies the servo and the buttons."
    },
    {
     "name": "GND",
@@ -335,7 +336,7 @@
      0,
      5.5
     ],
-    "notes": "Gedrückt = 5 V an D11, sonst zieht R7 auf GND (E-4)."
+    "notes": "Pressed = 5 V at D11, else R7 pulls to GND (D-4)."
    },
    {
     "name": "BTN_RESET",
@@ -349,7 +350,7 @@
      0,
      5.5
     ],
-    "notes": "Gedrückt = 5 V an D12, sonst zieht R6 auf GND (E-4)."
+    "notes": "Pressed = 5 V at D12, else R6 pulls to GND (D-4)."
    },
    {
     "name": "LED_G1",

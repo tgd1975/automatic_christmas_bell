@@ -1,26 +1,26 @@
-# edakit-Projektdatei der Weihnachtsglocke – Referenz: easyEDAAutomation/handbook/10-reference.md
+# edakit project file of the Christmas bell – reference: easyEDAAutomation/handbook/10-reference.md
 #
-# Trägerplatine für den Arduino Nano (gesteckt), Servo-Anschluss, Pufferelko, fünf 5-mm-LEDs, zwei Taster.
-# 2 Lagen, 85 × 56 mm wie die Fritzing-Platine. JLCPCB bestückt nur die SMD-Teile (Widerstände, Taster),
-# Nano-Buchsenleisten, LEDs, Elko und Servo-Stiftleiste werden von Hand gelötet (docs/entscheidungen.md E-1).
+# Carrier board for a plugged-in Arduino Nano: servo connector, buffer capacitor, five 5 mm LEDs, two buttons.
+# Two layers, 85 x 56 mm like the Fritzing board. JLCPCB assembles only the SMD parts (resistors, buttons); the Nano's
+# female headers, the LEDs, the capacitor and the servo header are hand-soldered (docs/decisions.md D-1).
 
 [project]
-name = "weihnachtsglocke"
+name = "christmas-bell"           # EasyEDA project, created by hand once
 graph = "hardware/graph.json"
 parts = "hardware/parts"
 artifacts = "build/edakit"
 reports = "build/release"
-company = "Weihnachtsglocke"
+company = "Christmas bell"
 ground = "GND"
 quantity = 5
 
 [boards.main]
-title = "Weihnachtsglocke"
+title = "Christmas bell"
 template = "generated_main"
 schematic = "layout_main"
 pcb = "main"
 view = "top"
-edge_ok = ["U1", "J1"]           # USB-Buchse des Nano an der Kante, Servostecker
+edge_ok = ["U1", "J1"]           # the Nano's USB socket at the edge, the servo plug
 
 [boards.main.outline]
 rect = [85, 56]
@@ -50,10 +50,10 @@ y = 52.5
 d = 3.2
 keep = 3.2
 
-[boards.main.tooling]            # JLCPCB Economic: Werkzeugbohrungen NPTH 1,152 mm
+[boards.main.tooling]            # JLCPCB Economic PCBA: tooling holes, NPTH 1.152 mm
 holes = [[3.5, 45], [81.5, 20]]
 
-[boards.main.place]              # Nano links mit der USB-Buchse an der Kante, LEDs oben in Countdown-Reihenfolge
+[boards.main.place]              # Nano on the left with its USB socket at the edge, LEDs on top in countdown order
 U1 = { x = 22.6, y = 28, rot = 0, side = "top" }
 LED5 = { x = 30, y = 48, rot = 0, side = "top" }
 LED4 = { x = 40, y = 48, rot = 0, side = "top" }
@@ -107,16 +107,16 @@ rows = [
 near = { C1 = "J1" }
 
 [schematic.layout.notes]
-"Arduino Nano" = ["Gesteckt in zwei Buchsenleisten 1x15; Versorgung über seine USB-Buchse",
-                  "D2-D6: Countdown-LEDs, D8: Servo, D11/D12: Taster Start/Reset"]
-Servo = ["Servo direkt am 5V-Pin des Nano; C1 puffert die Anlaufspitzen"]
-Notes = ["Netze mit gleichem Namen sind verbunden (Labels und Power-Flags)."]
+"Arduino Nano" = ["Plugged into two 1x15 female headers, powered through its USB socket",
+                  "D2-D6: countdown LEDs, D8: servo, D11/D12: start/reset buttons"]
+Servo = ["Servo at the Nano's 5V pin; C1 buffers its start-up peaks"]
+Notes = ["Nets with the same name are connected (labels and power flags)."]
 
 [schematic.layout.pin_table]
 component = "U1"
 block = "Arduino Nano"
 prefix = "D"
-notes = { LED_G1 = "Ausgang, grün 1", LED_G2 = "Ausgang, grün 2", LED_Y1 = "Ausgang, gelb 1", LED_Y2 = "Ausgang, gelb 2", LED_R = "Ausgang, rot", SERVO = "Ausgang, Servo-PWM", BTN_START = "Eingang, Pull-down", BTN_RESET = "Eingang, Pull-down" }
+notes = { LED_G1 = "out, green 1", LED_G2 = "out, green 2", LED_Y1 = "out, yellow 1", LED_Y2 = "out, yellow 2", LED_R = "out, red", SERVO = "out, servo PWM", BTN_START = "in, pull-down", BTN_RESET = "in, pull-down" }
 
 [sim]
 config = "hardware/sim.json"

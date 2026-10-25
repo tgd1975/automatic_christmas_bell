@@ -23,7 +23,7 @@
     }
   },
   "params": {
-    "color": "rot",
+    "color": "red",
     "vf_typ": 2.2,
     "vf_min": 1.8,
     "vf_max": 2.4,
@@ -37,30 +37,30 @@
   },
   "spice": {},
   "sources": [
-    "hardware_graph.json (Pin-Namen aus dem EasyEDA-Symbol, 2026-10-19)",
-    "LCSC-Parametertabelle über EasyEDA (2026-10-20)",
-    "Vf 2,2 V @ 20 mA laut LCSC",
-    "VR_max = 5 V: üblicher LED-Wert, Annahme ohne Datenblatt-Beleg – beim Abzeichnen prüfen"
+    "pin names from the EasyEDA symbol (2026-10-19)",
+    "LCSC parameter table via EasyEDA (2026-10-20)",
+    "Vf 2.2 V @ 20 mA per LCSC",
+    "VR_max = 5 V: usual LED value, assumption without datasheet evidence – check when signing off"
   ],
   "notes": null,
   "verified": {
-    "by": "Claude Opus 5.5 (Datenblattprüfung, automatisiert)",
+    "by": "Claude Opus 5.5 (datasheet check, automated)",
     "date": "2026-10-20",
     "datasheet": "XINGLIGHT XL-504SURD",
     "checked": [
       "IF 20 mA, IFP 80 mA, Pd 70 mW, VF 1.8/2.2/2.4 V @ 20 mA"
     ],
     "open": [
-      "VR nicht angegeben – 5 V angenommen (XL-304UGD: 5 V)"
+      "VR not specified – 5 V assumed (XL-304UGD: 5 V)"
     ],
     "second_check": {
-      "by": "Agent elektrotechniker (Claude, unabhängige Sitzung, M-1)",
+      "by": "agent electrical-reviewer (Claude, independent session, M-1)",
       "date": "2026-10-22",
-      "datasheet": "XINGLIGHT Datenblatt S. 7",
+      "datasheet": "XINGLIGHT datasheet p. 7",
       "checked": [
-        "Footprint-Druck („+“ bzw. Diodensymbol, Abflachung an Pad 2) passt zu Pin 1 = Anode"
+        "footprint print (\"+\" or diode symbol, flat at pad 2) matches pin 1 = anode"
       ],
-      "hint": "Pin-Nummern laut Bibliothek, nicht laut Datenblatt (dort ① = Kathode); bei D18/D22 ist das quadratische Pad die Anode"
+      "hint": "pin numbers as in the library, not the datasheet (there ① = cathode); the square pad is the anode"
     }
   },
   "lead": {
@@ -70,7 +70,7 @@
       "b_mm": 0.5,
       "tol_mm": null,
       "hole_rec_mm": null,
-      "source": "Agent elektrotechniker, M-1-Nachtrag 2026-10-22: XINGLIGHT-Datenblatt (C2895493) S. 7 Outline Dimension, Bein 0.5 in Vorder- und Seitenansicht"
+      "source": "agent electrical-reviewer, M-1 addendum 2026-10-22: XINGLIGHT datasheet (C2895493) p. 7 outline dimension, lead 0.5 in front and side view"
     }
   }
 }

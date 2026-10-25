@@ -3,7 +3,7 @@
   "mpn": "KM108M016G13RR0VH2FP0",
   "manufacturer": "Chengx(承兴)",
   "kind": "capacitor",
-  "package": "THT radial Ø10 × 13 mm, RM 5,0",
+  "package": "THT radial Ø10 × 13 mm, pitch 5.0",
   "footprint": "CAP-TH_BD10.0-P5.00-D0.6-FD",
   "jlc_class": "Extended Part",
   "datasheet": {
@@ -32,10 +32,10 @@
   },
   "spice": {},
   "sources": [
-    "EasyEDA-Bibliothek und LCSC-Parametertabelle (2026-10-25): 1000 µF, 16 V, 680 mA Ripple @ 120 Hz, Ø10 × 13 mm, RM 5 mm, 2000 h @ 105 °C",
-    "LCSC-Lager 2026-10-25: 18 720 Stück",
-    "Pin-Namen und Polarität: Annahme bis zum Abgleich mit dem EasyEDA-Symbol (schematic create)",
-    "Bein Ø0,6 mm aus dem Footprint-Namen (D0.6) – Annahme"
+    "EasyEDA library and LCSC parameter table (2026-10-25): 1000 µF, 16 V, 680 mA ripple @ 120 Hz, Ø10 × 13 mm, pitch 5 mm, 2000 h @ 105 °C",
+    "LCSC stock 2026-10-25: 18 720 pcs",
+    "pin names and polarity: assumption until compared with the EasyEDA symbol (schematic create)",
+    "lead Ø0.6 mm from the footprint name (D0.6) – assumption"
   ],
   "lead": {
     "*": {
@@ -43,7 +43,7 @@
       "a_mm": 0.6,
       "tol_mm": 0.05,
       "hole_rec_mm": null,
-      "source": "Footprint CAP-TH_BD10.0-P5.00-D0.6 – Annahme, Datenblatt prüfen"
+      "source": "footprint CAP-TH_BD10.0-P5.00-D0.6 – assumption, check the datasheet"
     }
   }
 }

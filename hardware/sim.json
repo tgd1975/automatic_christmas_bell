@@ -1,5 +1,5 @@
 {
-  "about": "Szenarien für `edakit sim`: USB-Versorgung × Last × LED-Flussspannungs-Ecken. Werte mit 'note' sind Annahmen.",
+  "about": "Scenarios for `edakit sim`: USB supply x load x LED forward-voltage corners. Values with 'note' are assumptions.",
   "ambient_c": 30,
   "sources": {
     "U1": {
@@ -7,25 +7,25 @@
       "minus": "4",
       "r_ohm": 0.5,
       "i_max_a": 0.5,
-      "note": "5V-Pin des Nano: USB minus Schottky-Diode; 0,5 Ohm für Kabel, Polyfuse und Diode; die Polyfuse des Nano hält 500 mA"
+      "note": "5V pin of the Nano: USB minus its Schottky diode; 0.5 ohm for cable, polyfuse and diode; the Nano's polyfuse holds 500 mA"
     }
   },
   "supplies": {
     "usb-min": {
       "U1": 4.45,
-      "note": "4,75 V USB minus 0,3 V Diode"
+      "note": "4.75 V USB minus 0.3 V diode"
     },
     "usb-nom": {
       "U1": 4.7
     },
     "usb-max": {
       "U1": 5.05,
-      "note": "5,25 V USB minus 0,2 V Diode bei kleinem Strom"
+      "note": "5.25 V USB minus 0.2 V diode at low current"
     }
   },
   "loads": {
-    "ruhe": {
-      "about": "Countdown aus, Servo hält die Mitte",
+    "idle": {
+      "about": "countdown off, servo holds the middle",
       "gpio": {},
       "leds_on": [],
       "external": {
@@ -33,12 +33,12 @@
           "plus": "2",
           "minus": "1",
           "i_a": 0.01,
-          "note": "Servo im Stillstand"
+          "note": "servo at rest"
         }
       }
     },
     "countdown": {
-      "about": "erste grüne LED an, Start gedrückt",
+      "about": "first green LED on, start pressed",
       "gpio": {
         "LED_G1": 1
       },
@@ -56,8 +56,8 @@
         }
       }
     },
-    "warnung": {
-      "about": "letzte Warnung: alle LEDs an, Reset gedrückt",
+    "warning": {
+      "about": "final warning: all LEDs on, reset pressed",
       "gpio": {
         "LED_G1": 1,
         "LED_G2": 1,
@@ -77,8 +77,8 @@
         }
       }
     },
-    "glocke": {
-      "about": "Servo schwingt die Glocke, LEDs aus",
+    "bell": {
+      "about": "servo swings the bell, LEDs off",
       "gpio": {},
       "leds_on": [],
       "external": {
@@ -86,12 +86,12 @@
           "plus": "2",
           "minus": "1",
           "i_a": 0.3,
-          "note": "9-g-Servo unter Last 0,2–0,3 A (Annahme)"
+          "note": "9 g servo under load 0.2-0.3 A (assumption)"
         }
       }
     },
-    "servo-blockiert": {
-      "about": "Servo blockiert (Glocke klemmt), LEDs aus",
+    "servo-stalled": {
+      "about": "servo stalled (bell stuck), LEDs off",
       "gpio": {},
       "leds_on": [],
       "external": {
@@ -99,7 +99,7 @@
           "plus": "2",
           "minus": "1",
           "i_a": 0.7,
-          "note": "Blockierstrom eines 9-g-Servos 0,6–0,75 A (Annahme)"
+          "note": "stall current of a 9 g servo 0.6-0.75 A (assumption)"
         }
       },
       "matrix": false
@@ -144,13 +144,13 @@
   ],
   "extra_scenarios": [
     {
-      "name": "usb-nom/servo-blockiert",
+      "name": "usb-nom/servo-stalled",
       "supply": {
         "U1": 4.7
       },
-      "load": "servo-blockiert",
+      "load": "servo-stalled",
       "info": true,
-      "note": "Fehlerfall: 725 mA über den 5V-Pin, die Polyfuse des Nano (500 mA) löst aus – Entscheidung E-3"
+      "note": "fault case: 725 mA through the 5V pin, the Nano's polyfuse (500 mA) trips – decision D-3"
     }
   ]
 }

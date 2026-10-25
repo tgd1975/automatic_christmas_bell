@@ -1,11 +1,11 @@
 {
   "lcsc": "C9900017879",
-  "mpn": "Arduino Nano 3 (Klon mit CH340 oder Original mit FT232RL)",
-  "manufacturer": "Arduino / Nachbau",
+  "mpn": "Arduino Nano 3 (clone with CH340 or original with FT232RL)",
+  "manufacturer": "Arduino / clone",
   "kind": "module",
-  "package": "Modul 43,2 × 17,8 mm auf zwei Stiftleisten 1×15, Reihenabstand 15,24 mm",
+  "package": "module 43.2 × 17.8 mm on two 1×15 pin headers, row spacing 15.24 mm",
   "footprint": "COMM-TH_ARDUINO_NANO",
-  "jlc_class": "Nutzerbibliothek (C99…), nicht bestellbar",
+  "jlc_class": "user library (C99…), not orderable",
   "datasheet": {
     "url": "https://docs.arduino.cc/resources/datasheets/A000005-datasheet.pdf",
     "pinout_page": null
@@ -202,11 +202,11 @@
   },
   "spice": {},
   "sources": [
-    "Symbol und Footprint aus einer EasyEDA-Nutzerbibliothek (C9900017879) – nicht bestellbar; der Nano wird gesteckt",
-    "Pin-Nummern: Arduino-Nano-Zählung (1 = D1/TX … 30 = VIN) – Annahme bis zum Abgleich mit dem Symbol",
-    "ATmega328P: VIH ≥ 0,6 × VCC, VIL ≤ 0,3 × VCC (Datenblatt Tab. 28-1); 16 MHz ab etwa 3,8 V (Safe Operating Area)",
-    "5V-Pin bei USB-Versorgung = VBUS minus Schottky-Diode (MBR0520) – Quelle in hardware/sim.json",
-    "3V3-Pin: beim Original aus dem FT232RL (max. 50 mA), bei CH340-Nachbauten aus dessen V3 – Belastbarkeit nicht angegeben, 10 mA angenommen",
-    "Strom je GPIO 20 mA empfohlen (40 mA absolut)"
+    "symbol and footprint from an EasyEDA user library (C9900017879) – not orderable; the Nano is plugged in",
+    "pin numbers: Arduino Nano numbering (1 = D1/TX … 30 = VIN); matches the EasyEDA symbol (schematic create, 2026-10-25)",
+    "ATmega328P: VIH ≥ 0.6 × VCC, VIL ≤ 0.3 × VCC (datasheet, DC characteristics); 16 MHz from about 3.8 V (safe operating area)",
+    "5V pin on USB power = VBUS minus a Schottky diode (MBR0520) – source in hardware/sim.json",
+    "3V3 pin: from the FT232RL on the original (max. 50 mA), from the CH340's V3 on clones – load not specified, 10 mA assumed; unused here (D-4)",
+    "20 mA per GPIO recommended (40 mA absolute maximum)"
   ]
 }

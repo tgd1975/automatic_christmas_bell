@@ -32,16 +32,16 @@
   },
   "spice": {},
   "sources": [
-    "EasyEDA-Bibliothek und LCSC-Parametertabelle (2026-10-25): 330 Ω ±1 %, 125 mW, 150 V",
-    "LCSC-Lager 2026-10-25: 1 020 500 Stück"
+    "EasyEDA library and LCSC parameter table (2026-10-25): 330 Ω ±1 %, 125 mW, 150 V",
+    "LCSC stock 2026-10-25: 1 020 500 pcs"
   ],
   "verified": {
-    "by": "Claude Opus 5.5 (Datenblattprüfung, automatisiert)",
+    "by": "Claude Opus 5.5 (datasheet check, automated)",
     "date": "2026-10-25",
-    "datasheet": "UNI-ROYAL Thick Film Chip Resistors (gleiche Serie wie C17673)",
+    "datasheet": "UNI-ROYAL Thick Film Chip Resistors (same series as C17673)",
     "checked": [
-      "Bestellcode 0805W8F3300: W8 = 1/8 W, F = ±1 %, 330 Ω",
-      "0805 max. Arbeitsspannung 150 V"
+      "order code 0805W8F3300: W8 = 1/8 W, F = ±1 %, 330 Ω",
+      "0805 max. working voltage 150 V"
     ],
     "open": []
   }
