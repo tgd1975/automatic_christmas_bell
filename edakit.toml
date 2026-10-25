@@ -19,6 +19,7 @@ title = "Christmas bell"
 template = "generated_main"
 schematic = "layout_main"
 pcb = "main"
+revision = "1.0"                 # board revision: printed bottom left with the title (edakit silk)
 view = "top"
 edge_ok = ["U1", "J1"]           # the Nano's USB socket at the edge, the servo plug
 
