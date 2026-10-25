@@ -62,3 +62,14 @@ possibly in the middle of the countdown, and the bell never rings. R8 ∥ R9 (2 
 100 mA from +5V, 0.25 W per resistor. Kept simple on purpose: the bell runs once a year for about 15 minutes, so the
 wasted energy does not matter; a load switched by the Nano would need a transistor and firmware. The simulation checks
 every scenario against a 100 mA minimum (`i_min_a`).
+
+## D-9 The LED row stays at the back edge (2026-10-25)
+
+The layout review (M-5) found that, seen flat from the front at a low angle, the plugged-in Nano (12–16 mm high) and C1
+(13 mm) hide part of the LED row. Owner's decision: the placement stays as it is – the board is seen from above in its
+place, and moving the row would mean a new layout for no practical gain.
+
+## D-10 No power switch on the board (2026-10-25)
+
+Kept simple: the bell runs once a year for about 15 minutes and is switched on and off by plugging in the power bank.
+A switch on the carrier could not switch the Nano anyway, which is powered through its own USB socket (D-3).

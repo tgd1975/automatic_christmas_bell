@@ -104,6 +104,7 @@ layers = ["TOP", "BOTTOM"]
 [boards.main.silk]
 designators = "top"
 label_h_mm = 1.0
+board_label = "Weihnachtsglocke rev {revision}"   # bottom left, German like the greeting
 
 # Artwork: hardware/art/make_art.py draws it; positions in plan mm (centre), width scales the motif
 
