@@ -53,6 +53,7 @@ of the female headers (0.91 mm across the diagonal; gate check L-9 failed). U1 n
 (COMM-TH_L43.2-W17.8-P2.54_ATMEGA328P): 1.1 mm holes, 1.7 mm pads, the same pad numbering (checked after placing:
 pad 14 = D11, pad 15 = D12 at the end of the row). Its symbol names the pins after the ATmega ports and labels pins
 14/15 the wrong way round (PB4/PB3); only the labels are swapped, the connections go by pin number.
+The footprint also brings the Nano's four corner holes (NPTH Ø1.9 mm) – harmless, nothing sits there.
 
 ## D-8 Base load for USB power banks (2026-10-25)
 
