@@ -64,13 +64,23 @@ One click in the GUI: *Design → Import Changes* once, which showed "no changes
 ## What the checks found
 
 - **Simulation:**
-  - A stalled servo draws 725 mA, more than the Nano's 500 mA polyfuse holds (D-3, fault case).
-  - The buttons first switched 3.3 V into the 5 V ATmega, only 0.28 V above its input threshold. They now switch
-    5 V (D-4).
-- **Pin names:** The LED symbols and footprints of one library series disagree on which pad is the anode. The roles in
-  `parts/` follow the footprint's "+" print, which the silkscreen render confirmed.
-- **Placement:** The plan check wants LEDs in a row to point the same way. The yellow footprints carry their "+" on
-  the other pad, so they are turned by 180°.
-- **Release gate:** Every stage passes except L-9. The Nano footprint has 0.9 mm holes, too small for the usual
-  0.64 mm square header tails; the decision is still open (D-7). The sign-offs M-1 and M-5 (independent reviews) are
-  still open as well.
+  - A stalled servo draws about 810 mA, more than the Nano's polyfuse is sure to stop (D-3, fault case).
+  - The circuit alone draws too little for USB power banks, so R8 ∥ R9 add a permanent 100 mA (D-8).
+  - The buttons first switched 3.3 V into the 5 V ATmega, only 0.28 V above its input threshold. They now switch 5 V
+    (D-4).
+- **Pin names:**
+  - The LED symbols and footprints of one library series disagree on which pad is the anode; the roles in `parts/`
+    follow the footprint's "+" print.
+  - The Nano symbol labels two pins the wrong way round. Only the labels are swapped (D-7); the connections go by pin
+    number.
+- **Placement:** LEDs in a row point the same way, so the yellow footprints, whose "+" sits on the other pad, are
+  turned by 180°.
+- **Holes:** The first Nano footprint had 0.9 mm holes, too small for the header tails. The one now used has 1.1 mm
+  holes (D-7).
+- **Reviews:**
+  - The electrical review (M-1) was signed by an independent agent. It also found two firmware bugs, which are fixed.
+  - The layout review (M-5) failed twice before it passed: printed texts below 1 mm, and copper too close to the
+    mounting holes. Both were fixed in edakit itself.
+
+**Released** on 2026-10-25, gate run 20261025-220549: every stage passes, M-1 and M-5 are signed. What remains is the
+manufacturer's assembly preview (M-2) and the acceptance test of the delivered boards (M-4).
