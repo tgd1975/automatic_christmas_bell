@@ -12,6 +12,9 @@
 *.sym
 build/
 
+# PlatformIO
+.pio/
+
 # Fritzing
 tmp/
 fritzing_temp/
