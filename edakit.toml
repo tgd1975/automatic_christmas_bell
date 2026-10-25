@@ -55,7 +55,7 @@ keep = 3.2
 holes = [[3.5, 45], [81.5, 20]]
 
 [boards.main.place]              # Nano on the left with its USB socket at the edge, LEDs on top in countdown order
-U1 = { x = 22.6, y = 28, rot = 0, side = "top" }
+U1 = { x = 22.6, y = 28, rot = 270, side = "top" }  # footprint drawn upright: 270 puts the USB end left
 LED5 = { x = 30, y = 48, rot = 0, side = "top" }
 LED4 = { x = 40, y = 48, rot = 0, side = "top" }
 LED3 = { x = 50, y = 48, rot = 180, side = "top" }  # yellow footprint has its "+" on pad 2
@@ -237,7 +237,8 @@ near = { C1 = "J1", R8 = "U1", R9 = "U1" }
 
 [schematic.layout.notes]
 "Arduino Nano" = ["Plugged into two 1x15 female headers, powered through its USB socket",
-                  "D2-D6: countdown LEDs, D8: servo, D11/D12: start/reset buttons"]
+                  "D2-D6: countdown LEDs, D8: servo, D11/D12: start/reset buttons",
+                  "Symbol pins are ATmega ports; pins 14/15 are labelled PB4/PB3 – on the Nano they are D11 = PB3, D12 = PB4"]
 Servo = ["Servo at the Nano's 5V pin; C1 buffers its start-up peaks"]
 Notes = ["Nets with the same name are connected (labels and power flags).",
          "LED1, LED4, LED5: the library symbols name A and K the other way round;",
@@ -247,7 +248,7 @@ Notes = ["Nets with the same name are connected (labels and power flags).",
 [schematic.layout.pin_table]
 component = "U1"
 block = "Arduino Nano"
-prefix = "D"
+prefix = "P"
 notes = { LED_G1 = "out, green 1", LED_G2 = "out, green 2", LED_Y1 = "out, yellow 1", LED_Y2 = "out, yellow 2", LED_R = "out, red", SERVO = "out, servo PWM", BTN_START = "in, pull-down", BTN_RESET = "in, pull-down" }
 
 [sim]

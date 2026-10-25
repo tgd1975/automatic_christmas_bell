@@ -151,7 +151,7 @@
       },
       "load": "servo-stalled",
       "info": true,
-      "note": "fault case: 725 mA through the 5V pin, the Nano's polyfuse (500 mA) trips – decision D-3"
+      "note": "fault case: about 810 mA through the 5V pin (with the base load), the Nano's polyfuse (500 mA hold) is not guaranteed to trip – decision D-3"
     }
   ]
 }

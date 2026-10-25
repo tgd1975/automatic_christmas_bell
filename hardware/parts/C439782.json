@@ -45,5 +45,17 @@
       "hole_rec_mm": null,
       "source": "footprint CAP-TH_BD10.0-P5.00-D0.6 – assumption, check the datasheet"
     }
+  },
+  "verified": {
+    "by": "agent electrical-reviewer (Claude, independent session, M-1)",
+    "date": "2026-10-25",
+    "datasheet": "LCSC parameter table (the PDF could not be downloaded)",
+    "checked": [
+      "polarity: '+' print and pad 1 on +5V, shaded segment and pad 2 on GND (silkscreen Gerber)",
+      "16 V against at most 5.5 V; 1000 µF, Ø10 × 13 mm, pitch 5 mm"
+    ],
+    "open": [
+      "lead Ø0.6 mm from the footprint name, not from the datasheet"
+    ]
   }
 }

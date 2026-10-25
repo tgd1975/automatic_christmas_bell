@@ -33,7 +33,7 @@
   "spice": {},
   "sources": [
     "JLCPCB catalogue (2026-10-25): 100 Ω ±1 %, 1 W, 200 V, 2512, thick film; 10 829 pcs",
-    "footprint name R2512 assumed – compare after placing"
+    "footprint R2512 confirmed after placing (pad pitch 6.13 mm, gate L-4)"
   ],
   "verified": {
     "by": "Claude Opus 5.5 (datasheet check, automated)",
