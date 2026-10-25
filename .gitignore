@@ -1,0 +1,33 @@
+# Arduino
+*.ino.
+*.ino~
+*.ino.bak
+*.hex
+*.elf
+*.eep
+*.o
+*.a
+*.lst
+*.map
+*.sym
+build/
+
+# Fritzing
+tmp/
+fritzing_temp/
+*.fz~\
+*.fzz~\
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
