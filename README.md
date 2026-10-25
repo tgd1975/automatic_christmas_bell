@@ -36,6 +36,9 @@ automatic_christmas_bell/
 │       └── buttons.ino     # Arduino-Sketch
 ├── platformio.ini         # PlatformIO-Konfiguration
 ├── Makefile               # Makefile für Arduino CLI
+├── hardware/
+│   └── img/
+│       └── silkscreen_top.png  # Bestückungsplan (Silkscreen)
 ├── docs/
 │   ├── IMPLEMENTIERUNG.md # Detaillierte Umsetzung
 │   └── old/
@@ -65,6 +68,10 @@ automatic_christmas_bell/
 - **LED Gelb 2:** Pin 3
 - **LED Rot:** Pin 4
 - **Servo:** Pin 8
+
+**Bestückungsplan (Silkscreen Top View):**
+
+![Silkscreen Top View](hardware/img/silkscreen_top.png)
 
 ---
 
