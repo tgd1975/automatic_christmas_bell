@@ -88,19 +88,19 @@
       "vmax": 5.5
     },
     "14": {
-      "name": "D11/MOSI",
+      "name": "D11",
       "type": "bidirectional",
       "role": "gpio",
       "vmax": 5.5
     },
     "15": {
-      "name": "D12/MISO",
+      "name": "D12",
       "type": "bidirectional",
       "role": "gpio",
       "vmax": 5.5
     },
     "16": {
-      "name": "D13/SCK",
+      "name": "D13",
       "type": "bidirectional",
       "role": "gpio",
       "vmax": 5.5
@@ -164,7 +164,7 @@
       "vmax": 5.5
     },
     "27": {
-      "name": "5V",
+      "name": "+5V",
       "type": "power_output",
       "role": "vsys"
     },
