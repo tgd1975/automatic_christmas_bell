@@ -1,26 +1,46 @@
-# Weihnachtsglocke (Xmas Bell) - Projektbeschreibung
+# Weihnachtsglocke (Christkind-Klingel)
 
-## Übersicht
+## Uebersicht
 
-Dieses Projekt ist eine automatische Weihnachtsglocke mit Countdown-Funktion. Das System verwendet einen Arduino Nano, einen Servo-Motor zur Betätigung der Glocke und mehrere LEDs für die visuelle Countdown-Anzeige. Zwei Taster ermöglichen das Starten und Zurücksetzen des Countdowns.
+Automatische mechanische Weihnachtsglocke fuer den traditionellen Christkind-Brauch an Heiligabend.
+
+**Ablauf:**
+1. Eltern bereiten Geschenke und Kerzen am Weihnachtsbaum vor
+2. Druecken Start-Taster -> Countdown beginnt (LEDs zeigen Zeit an)
+3. Eltern verlassen fuer sehr kurze Zeit den Raum (wegen Kerzen)
+4. Nach Timer-Ablauf laeutet die Glocke mechanisch
+5. Kinder hoeren das Laeuten und stuermen herein
+
+WICHTIG: Die Glocke wird PHYSIKALISCH angeschlagen (nicht elektronisch), um traditionellen Klang zu erzeugen!
+
+---
+
+## Anwendungsfall
+
+### Traditioneller Hintergrund
+In Oesterreich und Teilen Deutschlands bringt das Christkind die Geschenke. Die Eltern muessen den Raum kurz verlassen (wegen Kerzen), waehrend das Christkind seine Arbeit erledigt. Das Laeuten einer kleinen, hellen Glocke signalisiert, dass das Christkind fertig ist.
+
+### Diese Schaltung loest das Problem:
+- Diskret: Keine elektronischen Toene, sondern mechanische Glocke
+- Zeitgesteuert: Eltern haben Zeit, den Raum zu verlassen
+- Einfach: Ein Tastendruck startet alles
+- Zuverlaessig: Servo-Mechanik fuer praezises Anschlagen
 
 ---
 
 ## Hardware-Komponenten
 
-### aus Fritzing-Schaltplan (weihnachtsglocke.fzz)
+Aus Fritzing-Schaltplan (weihnachtsglocke.fzz):
 
-| Komponente | Menge | Beschreibung |
-|------------|-------|--------------|
-| **Arduino Nano 3** | 1 | Mikrocontroller-Plattform |
-| **Dagu DG Servo 9g** | 1 | Servo-Motor für Glockenschwung (männlicher Header) |
-| **5mm farbige LEDs** | 5 | Countdown-Visualisierung (2x Grün, 2x Gelb, 1x Rot) |
-| **Widerstände** | 7 | Vorwiderstände für LEDs und Pull-down für Taster |
-| **Drucktaster** | 2 | Start- und Reset-Taster (S1, S2) |
-| **Großer Elektrolyt-Kondensator** | 1 | Stabilisierung der Stromversorgung |
-| **Steckbrett** | 1 | Breadboard RSR03MB102 für Prototypenaufbau |
-| **Zweilagige PCB** | 1 | Optionale Platine (8,47 cm x 5,64 cm) |
-| **Verkabelung** | 121+ | Verbindungskabel |
+Komponenten:
+- Arduino Nano 3 (1x) - Mikrocontroller
+- Dagu DG Servo 9g (1x) - Servo-Motor fuer mechanische Glockenbetaetigung
+- 5mm farbige LEDs (5x) - Visueller Countdown (2x Gruen, 2x Gelb, 1x Rot)
+- Widerstaende (7x) - Vorwiderstaende fuer LEDs und Pull-down fuer Taster
+- Drucktaster (2x) - Start-Taster (Pin 11) und Reset-Taster (Pin 12)
+- Grosser Elektrolyt-Kondensator (1x) - Stabilisierung der Servo-Stromversorgung
+- Steckbrett (1x) - Breadboard RSR03MB102 fuer Prototypen
+- Zweilagige PCB (1x) - Optionale Platine (8.47 cm x 5.64 cm)
 
 ---
 
@@ -28,256 +48,237 @@ Dieses Projekt ist eine automatische Weihnachtsglocke mit Countdown-Funktion. Da
 
 ### Arduino-Sketch (buttons.ino)
 
-#### Pins und Anschlüsse
+Pins und Anschluesse:
+- Servo: Pin 8 (Servo-Steuerung fuer Glockenanschlag)
+- Button Start: Pin 11 (Pull-down mit 10kOhm)
+- Button Reset: Pin 12 (Pull-down mit 10kOhm)
+- LED Gruen 1: Pin 6
+- LED Gruen 2: Pin 5
+- LED Gelb 1: Pin 2
+- LED Gelb 2: Pin 3
+- LED Rot: Pin 4
 
-| Funktion | Pin | Beschreibung |
-|----------|-----|--------------|
-| **Servo** | 8 | Servo-Steuerung für Glockenschwung |
-| **Button Start** | 11 | Start-Taster (Pull-down) |
-| **Button Reset** | 12 | Reset-Taster (Pull-down) |
-| **LED Grün 1** | 6 | Erste grüne LED (Countdown-Stufe 1) |
-| **LED Grün 2** | 5 | Zweite grüne LED (Countdown-Stufe 2) |
-| **LED Gelb 1** | 2 | Erste gelbe LED (Countdown-Stufe 3) |
-| **LED Gelb 2** | 3 | Zweite gelbe LED (Countdown-Stufe 4) |
-| **LED Rot** | 4 | Rote LED (Countdown-Stufe 5 / Finale Warnung) |
+Servo-Parameter:
+- Winkelbereich: 60 bis 110 Grad (50 Grad Gesamt-Schwingbereich)
+- Schrittgroesse: 10 Grad
+- Schrittverzoegerung: 1 ms
+- Extrempositions-Verzoegerung: 400 ms
+- Ein Schwung: ca. 4.4 Sekunden
+- Anzahl Schwuenge: 6 pro Aktivierung
+- Glockendauer: ca. 26.4 Sekunden
 
-#### Servo-Parameter
-
-- **Winkelbereich:** 60° bis 110°
-- **Schrittgröße:** 10°
-- **Schrittverzögerung:** 1 ms
-- **Extrempositions-Verzögerung:** 400 ms
-- **Ein Schwung:** ~4,4 Sekunden (berechnet aus Winkeln und Verzögerungen)
-- **Anzahl Schwünge:** 6 pro Aktivierung
-- **Glockendauer:** ~26,4 Sekunden
-
-#### Timing-Parameter
-
-- **Countdown-Dauer:** 60 Sekunden (konfigurierbar)
-- **Finale Warnzeit:** 5 Sekunden (alle LEDs blinken schnell)
-- **Blinkrate:** 500 ms (LED-Blinkfrequenz)
+Timing-Parameter (anpassbar):
+- countdowntime: 60 Sekunden (30-45s empfohlen fuer Christkind-Szenario)
+- finalwarningtime: 5 Sekunden
+- blinkrate: 500 ms
 
 ---
 
 ## Funktionsweise
 
-### 1. System-Initialisierung
+### 1. Mechanische Glocke
 
-Bei jedem Start:
-- Serielle Verbindung mit 500.000 Baud wird aufgebaut
-- Alle LEDs werden auf HIGH (aus) gesetzt
-- Servo wird initialisiert und in Mittelposition (85°) gebracht
-- Systemkonfiguration wird über Serial Monitor ausgegeben
+Der Servo muss mit einem Hebel oder Arm verbunden sein, der eine ECHTE Glocke physisch anschlaegt.
 
-### 2. Countdown-Phasen
+Moegliche Ausfuehrungen:
+- Direkter Anschlag: Servo-Horn mit kleinem Arm -> Glocke
+- Hebeluebersetzung: Kurzer Arm am Servo, langer Arm mit Kloepfel an der Glocke
+- Seilzug: Nylonfaden vom Servo zum Kloepfel der Glocke
 
-Der Countdown wird in 5 visuelle Phasen unterteilt:
+### 2. Countdown-Phasen (fuer Eltern sichtbar)
 
-| Phase | Dauer | LED | Bedeutung |
-|-------|--------|-----|-----------|
-| 1 | 0-12s | LED Grün 1 | Start - grüne Phase |
-| 2 | 12-24s | LED Grün 2 | Zweite grüne Phase |
-| 3 | 24-36s | LED Gelb 1 | Erste Warnphase |
-| 4 | 36-48s | LED Gelb 2 | Zweite Warnphase |
-| 5 | 48-60s | LED Rot | Letzte Phase vor Warnung |
+Phase 1: 0-12s - LED Gruen 1 (noch viel Zeit)
+Phase 2: 12-24s - LED Gruen 2
+Phase 3: 24-36s - LED Gelb 1 (bereit machen zum Gehen)
+Phase 4: 36-48s - LED Gelb 2 (langsam Richtung Tuer)
+Phase 5: 48-60s - LED Rot (JETZT GEHEN!)
 
-### 3. Finale Warnung
+### 3. Finale Warnung (5 Sekunden)
 
-- **Dauer:** 5 Sekunden (60-65s)
-- **Verhalten:** Alle LEDs blinken schnell (500ms Intervall)
-- **Zweck:** Visueller Hinweis, dass die Glocke gleich läutet
+- Alle LEDs blinken schnell (500ms Intervall)
+- Letzte Chance fuer Eltern, die Tuer zu schliessen
 
 ### 4. Glockenklingeln
 
-- **Start:** Nach 65 Sekunden
-- **Dauer:** ~26,4 Sekunden
-- **Mechanismus:**
-  - Servo bewegt sich pendelartig zwischen 60° und 110°
-  - Jede Positionsänderung hat eine Verzögerung von 1ms
-  - An den Extrempositionen wartet der Servo 400ms
-  - Gesamt: 6 vollständige Schwingungen
-- **LED-Verhalten:** Alle LEDs sind aus
+- Start: Nach 65 Sekunden (60s Countdown + 5s Warnung)
+- Dauer: ca. 26.4 Sekunden
+- Mechanismus: Servo pendelt zwischen 60 und 110 Grad
+- 6 vollstaendige Schwingungen = mehrere klare Glockenschlaege
+- LEDs sind aus (keine Ablenkung)
 
 ### 5. Reset und Bypass
 
-- **Reset-Taster (Pin 12):** Setzt den Countdown zurück
-- **Start-Taster (Pin 11):** Startet neuen Countdown
-- **Bypass-Funktion:** Wenn Reset gedrückt wird, während Start gedrückt ist, wird der Countdown übersprungen und die Glocke läutet sofort
+- Reset-Taster: Setzt Countdown zurueck
+- Start-Taster: Startet neuen Countdown
+- Bypass: Reset + Start gedrueckt = sofortiges Laeuten (Test)
 
 ---
 
 ## Schaltplan-Architektur
 
-### Stromversorgung
+Stromversorgung:
+- Arduino Nano: USB oder externe 5V
+- Servo: SEPARATE Stromversorgung empfohlen! (5V, mind. 1A)
+  - Servo kann Stromspitzen verursachen, die Arduino resetten
+  - Grosser Kondensator (1000uF+) direkt am Servo verhindert dies
+- LEDs: Werden vom Arduino versorgt (max. 20mA pro LED)
 
-- Arduino Nano wird über USB oder externe Quelle versorgt
-- Servo benötigt separate Stromversorgung (5V) aufgrund des hohen Strombedarfs
-- Elektrolyt-Kondensator stabilisiert die Spannung für das Servo
+Signalverbindungen:
+Arduino Nano:
+- Pin 2 -> LED Gelb 1 (mit 220-1kOhm Widerstand)
+- Pin 3 -> LED Gelb 2 (mit 220-1kOhm Widerstand)
+- Pin 4 -> LED Rot (mit 220-1kOhm Widerstand)
+- Pin 5 -> LED Gruen 2 (mit 220-1kOhm Widerstand)
+- Pin 6 -> LED Gruen 1 (mit 220-1kOhm Widerstand)
+- Pin 8 -> Servo Signal (gelbes Kabel)
+- Pin 11 -> Taster Start (mit 10kOhm Pull-down)
+- Pin 12 -> Taster Reset (mit 10kOhm Pull-down)
 
-### Signalverbindungen
-
-```
-Arduino Nano
-├── Pin 2  → LED Gelb 1
-├── Pin 3  → LED Gelb 2
-├── Pin 4  → LED Rot
-├── Pin 5  → LED Grün 2
-├── Pin 6  → LED Grün 1
-├── Pin 8  → Servo Signal
-├── Pin 11 → Taster Start (mit Pull-down-Widerstand)
-└── Pin 12 → Taster Reset (mit Pull-down-Widerstand)
-
-Jede LED hat einen eigenen Vorwiderstand (typischerweise 220Ω-1kΩ)
-```
-
----
-
-## Code-Struktur
-
-### Wichtige Funktionen
-
-| Funktion | Beschreibung |
-|----------|--------------|
-| `setup()` | Initialisiert Pins, Servo und serielle Verbindung |
-| `loop()` | Hauptschleife - ruft alle anderen Funktionen auf |
-| `buttonPreLoop()` | Liest Tasterzustände |
-| `buttonPostLoop()` | Speichert Tasterzustände für nächsten Zyklus |
-| `bellHandling()` | Steuerung des Servo-Schwungs |
-| `cycleManagement()` | Verwaltung des gesamten Countdown-Zyklus |
-| `countdownVisualization()` | Steuerung der LED-Anzeige |
-| `countdownFinalWarning()` | Blinkende Warnung vor Glockenklingeln |
-| `countdownStartBell()` | Startet das Glockenklingeln |
-| `finishCycle()` | Beendet den Zyklus und setzt alles zurück |
-| `printConfig()` | Gibt Konfiguration über Serial aus |
-
-### Zustandsvariablen
-
-| Variable | Typ | Beschreibung |
-|----------|-----|--------------|
-| `cycleactive` | bool | Gibt an, ob ein Countdown aktiv ist |
-| `bellactive` | bool | Gibt an, ob die Glocke gerade läutet |
-| `finalwarningactive` | bool | Gibt an, ob die finale Warnphase aktiv ist |
-| `angle` | int | Aktueller Servo-Winkel |
-| `anglestep` | int | Aktuelle Schrittgröße (+10 oder -10) |
-| `currentledpin` | int | Aktuell aktive LED für Countdown |
+Servo-Stromversorgung:
+- Rot -> 5V (separate Versorgung!)
+- Braun -> GND
 
 ---
 
-## Konfigurationsmöglichkeiten
+## Mechanischer Aufbau
 
-Die folgenden Parameter können einfach im Code angepasst werden:
+### Servo-Glocken-Mechanismus
 
-```cpp
-// Timing
-const long countdowntime = 60;        // Countdown in Sekunden
-const long finalwarningtime = 5;     // Warnzeit in Sekunden
-const long blinkrate = 500;          // Blinkrate in ms
+Option 1: Direkter Anschlag
+Servo-Horn -> Kleiner Holz/Kunststoffarm (5-10 cm) -> Gummikopf/Filz -> Glocke
 
-// Servo-Einstellungen
-const int anglefrom = 60;            // Startwinkel
-const int angleto = 110;             // Endwinkel
-const int stepsize = 10;             // Schrittgröße
-const long anglestepdelay = 1;       // Verzögerung zwischen Schritten
-const long angleextremeposdelay = 400; // Verzögerung an Extrempositionen
-const long bellswings = 6;          // Anzahl der Schwingungen
+Option 2: Hebeluebersetzung (fuer mehr Kraft)
+Servo-Horn -> Kurzer Arm -> Hebel (Drehpunkt in Mitte) -> Glocke-Seite (langer Arm mit Kloepfel)
 
-// Pin-Belegung
-const int buttonPinStart = 11;
-const int buttonPinReset = 12;
-const int servoPin = 8;
-const int ledGreen1 = 6;
-const int ledGreen2 = 5;
-const int ledYellow1 = 2;
-const int ledYellow2 = 3;
-const int ledRed = 4;
-```
+Option 3: Seilzug (fuer entfernte Glocke)
+Servo-Horn -> Nylonfaden -> Kloepfel der Glocke
+
+### Gehaeuse-Empfehlungen
+
+1. Kompakt: Alles in kleiner Holzkiste (z.B. 15x10x8 cm)
+2. Glocke aussen: Glocke sichtbar oben auf dem Gehaeuse
+3. Taster zugaenglich: Start/Reset-Taster an der Seite
+4. LEDs sichtbar: LED-Anzeige an der Front fuer Eltern
+5. Belueftung: Loecher fuer Servo-Kuehlung
+
+### Materialien fuer die Glocke
+
+- Messing: Hell, klarer Klang (traditionell)
+- Bronze: Warmer, tiefer Klang
+- Eisen: Metallisch (rostet ohne Schutz)
+- Schellen: Hell, hoch (mehrere fuer intensiveren Klang)
+- Glas: Hoch, klar (Vorsicht - zerbrechlich)
 
 ---
 
-## Anwendungsfälle
+## Anpassungen fuer Christkind-Szenario
 
-### 1. Weihnachtsbaum-Dekoration
-- Automatisches Läuten zu festgelegten Zeiten
-- Visueller Countdown für Kinder
+### 1. Kuerzerer Countdown
+In buttons.ino aendern:
+const long countdowntime = 30;  // Statt 60 Sekunden
 
-### 2. Timer für Spiele/Events
-- Zeitmessung für Weihnachts-Spiele
-- Visueller Timer für Gruppenaktivitäten
+### 2. Lauteres Laeuten
+- Mehr Schwingungen: const long bellswings = 10;
+- Groesserer Winkelbereich: const int anglefrom = 45; const int angleto = 135;
+- Laengere Pause: const long angleextremeposdelay = 600;
 
-### 3. Lernprojekt
-- Einführung in Servo-Steuerung
-- Arbeit mit Tastern und LEDs
-- State-Machine-Konzept
+### 3. Deutlichere Warnung
+- Laengere Warnphase: const long finalwarningtime = 8;
+- Schnelleres Blinken: const long blinkrate = 300;
 
 ---
 
 ## Technische Spezifikationen
 
-| Spezifikation | Wert |
-|---------------|------|
-| **Versorgungsspannung** | 5V (Arduino) + 5V (Servo) |
-| **Stromverbrauch (Servo)** | ~500mA (im Betrieb) |
-| **Stromverbrauch (LEDs)** | ~20mA pro LED |
-| **Gesamtstrom** | ~600mA |
-| **Abmessungen** | ~8,5 cm x 5,6 cm (PCB) |
-| **Gewicht** | ~50-100g (ohne Gehäuse) |
-
----
-
-## Erweiterungsmöglichkeiten
-
-### Hardware
-- [ ] Externes RTC-Modul für präzise Zeitmessung
-- [ ] OLED-Display für numerischen Countdown
-- [ ] Piezo-Lautsprecher für akustische Warnung
-- [ ] EEPROM zum Speichern von Konfigurationen
-- [ ] Bluetooth/WiFi-Modul für Fernsteuerung
-
-### Software
-- [ ] Mehrere vorprogrammierte Countdown-Zeiten
-- [ ] Schlummerfunktion (Snooze)
-- [ ] Automatische Aktivierung zu bestimmten Uhrzeiten
-- [ ] Melodie-Wiedergabe während des Countdowns
-- [ ] Web-Interface für Konfiguration
-
----
-
-## Feindesign-Tipps
-
-### 1. Mechanische Glocke
-- Verwende einen stabilen Aufbau für die Glocke
-- Der Servo-Hebel sollte lang genug sein für guten Schwung
-- Achte auf ausgewogene Mechanik, um den Servo nicht zu überlasten
-
-### 2. Elektronik
-- Separate Stromversorgung für Servo empfohlen
-- Kondensator (1000μF+) nahe am Servo platzieren
-- alle Verbindungen fest löten oder mit Steckverbindern sichern
-
-### 3. Gehäuse
-- Schützendes Gehäuse für Außenbereich
-- Transparentes Fenster für LED-Anzeige
-- Einfacher Zugang zu Tastern
+- Versorgung Arduino: 5V (USB oder extern)
+- Versorgung Servo: 5V (SEPARAT!)
+- Strom Servo: ~500mA (Spitzen bis 1A)
+- Strom LEDs: ~20mA pro LED (5 LEDs = ~100mA)
+- Gesamtstrom: ~600mA (ohne Spitzen)
+- Abmessungen PCB: 8.47 cm x 5.64 cm
+- Gewicht: ~50-100g (ohne Gehaeuse und Glocke)
 
 ---
 
 ## Fehlersuche
 
-| Problem | Mögliche Ursache | Lösung |
-|---------|-------------------|--------|
-| Glocke läutet nicht | Servo nicht richtig angeschlossen | Verbindung prüfen |
-| LEDs bleiben dunkel | Falsche Pin-Belegung | Schaltplan prüfen |
-| Countdown startet nicht | Taster nicht richtig verdrahtet | Pull-down-Widerstände prüfen |
-| Servo zuckert | zu geringe Spannung | Separate Stromversorgung verwenden |
-| Arduino startet neu | Stromspitze beim Servo | Großer Kondensator hinzufügen |
+Problem: Glocke laeutet nicht -> Servo nicht richtig angeschlossen
+Problem: Glocke zu leise -> Servo-Hebel zu kurz, laengeren verwenden
+Problem: LEDs dunkel -> Falsche Pin-Belegung
+Problem: Countdown startet nicht -> Pull-down-Widerstaende (10kOhm) pruefen
+Problem: Servo zuckert/Arduino resettet -> Separate Stromversorgung + Kondensator (1000uF) verwenden
+Problem: Servo bewegt sich nicht -> anglefrom/angleto pruefen
+
+---
+
+## Erweiterungsmoeglichkeiten
+
+Fortgeschritten:
+- Externes RTC-Modul (praezise Zeitmessung)
+- OLED-Display (numerischer Countdown)
+- RFID/Taster am Tuerrahmen (automatischer Start)
+- Funkfernbedienung (433MHz)
+- Mehrere Glocken (Stereo-Klang)
+- Bluetooth (Smartphone-Steuerung)
+- Sprachausgabe ("Das Christkind kommt!")
+- Lichtsensor (automatisch bei Daemmerung)
+
+Einfach:
+- Kuerzere Draehte
+- Kleineres Gehaeuse
+- Andere Glocke
+- Mehr LEDs
+- Lautstaerkere Glocke
+
+---
+
+## Tradition & Brauchtum
+
+Warum mechanische Glocke?
+- Authentischer Klang (keine elektronischen Toene)
+- Tradition (echte Glocken seit Jahrhunderten)
+- Magie (Kinder glauben eher an Christkind)
+- Ritual (Klang signalisiert Bescherungsbeginn)
+
+Tipps fuer Inszenierung:
+1. Glocke verstecken (nicht zu offensichtlich)
+2. Klang testen (im ganzen Haus hoerbar?)
+3. Timing ueben (Eltern testen Countdown)
+4. Kerzen ausblasen vor Verlassen!
+5. Kinder vorbereiten (auf Glocke warten)
+
+---
+
+## Dateien im Repository
+
+- buttons.ino - Arduino-Sketch
+- weihnachtsglocke.fzz - Fritzing-Projekt
+- weihnachtsglocke_Schaltplan.png - Schaltplan Bild
+- weihnachtsglocke_Schaltplan.svg - Schaltplan Vektor
+- PROJEKT.md - Diese Beschreibung
+- LIZENZ - MIT-Lizenz
+- .gitignore - Ignorierliste
 
 ---
 
 ## Lizenz
 
-Dieses Projekt ist Open Source und kann frei verwendet, modifiziert und verteilt werden.
+MIT-Lizenz (siehe LIZENZ Datei)
 
 ---
 
-*Letzte Aktualisierung: 25. Oktober 2025*
-*Erstellt aus: buttons.ino und weihnachtsglocke.fzz*
+Letzte Aktualisierung: 25. Oktober 2025
+Erstellt aus: buttons.ino und weihnachtsglocke.fzz
+Anwendungsfall: Traditionelle Christkind-Klingel fuer Heiligabend
+
+---
+
+Frohe Weihnachten! 🎄✨
+
+"Wenn die Glocke laeutet, kommt das Christkind!"
+=> Jetzt koennen die Kinder reinkommen und die Bescherung beginnt!
+
+---
+
+Hinweis: In einigen Regionen wird auch eine Schelle oder ein Gloeckchen verwendet. 
+Die Mechanik bleibt die gleiche.
