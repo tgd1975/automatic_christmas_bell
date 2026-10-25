@@ -1,7 +1,7 @@
 {
  "graph": {
   "name": "christmas-bell",
-  "version": "0.1",
+  "version": "0.2",
   "date": "2026-10-25",
   "description": "Automatic Christmas bell: an Arduino Nano counts down on five LEDs, then a servo swings a real bell. Start and reset buttons. Taken over from the Fritzing drawing weihnachtsglocke.fzz.",
   "conventions": {
@@ -273,6 +273,32 @@
      "1": "1",
      "2": "2"
     }
+   },
+   {
+    "designator": "R8",
+    "type": "resistor",
+    "label": "Base load for USB power banks (R8 ∥ R9 = 50 Ω, 100 mA)",
+    "part": "100 Ω 2512 1 W",
+    "lcsc": "C35218",
+    "value": "100Ω",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    },
+    "notes": "Keeps a power bank from switching off: the circuit alone draws 35–75 mA (D-8)."
+   },
+   {
+    "designator": "R9",
+    "type": "resistor",
+    "label": "Base load for USB power banks (R8 ∥ R9 = 50 Ω, 100 mA)",
+    "part": "100 Ω 2512 1 W",
+    "lcsc": "C35218",
+    "value": "100Ω",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    },
+    "notes": "Keeps a power bank from switching off: the circuit alone draws 35–75 mA (D-8)."
    }
   ],
   "nets": [
@@ -285,7 +311,9 @@
      "S1.1",
      "S1.2",
      "S2.1",
-     "S2.2"
+     "S2.2",
+     "R8.1",
+     "R9.1"
     ],
     "v": [
      0,
@@ -306,7 +334,9 @@
      "LED4.2",
      "LED3.1",
      "LED2.1",
-     "LED1.2"
+     "LED1.2",
+     "R8.2",
+     "R9.2"
     ],
     "v": [
      0,

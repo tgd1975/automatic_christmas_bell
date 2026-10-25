@@ -16,10 +16,11 @@ verified in another project.
 
 ## D-3 USB power, servo at the Nano's 5V pin (2026-10-25)
 
-Everything runs from the Nano's USB socket; its 5V pin supplies the servo. The simulation gives 325 mA from USB while
-the bell swings (0.3 A assumed) – fine. A stalled servo (0.7 A assumed) would draw about 725 mA. The original Nano's
+Everything runs from the Nano's USB socket; its 5V pin supplies the servo. The simulation gives about 420 mA from USB while
+the bell swings (0.3 A assumed, with the base load of D-8) – within the 500 mA of the Nano's polyfuse. A stalled servo
+(0.7 A assumed) would draw about 825 mA. The original Nano's
 polyfuse (MF-MSMF050) holds 0.5 A and is only guaranteed to trip at 1.0 A, many clones have none, and the Schottky
-diode (MBR0520, 0.5 A average) then carries about 0.73 A – harmless for the few seconds of a bell phase, not as a
+diode (MBR0520, 0.5 A average) then carries about 0.83 A – harmless for the few seconds of a bell phase, not as a
 permanent state. The scenario `servo-stalled` runs as information only; the firmware may detach the servo once it has
 reached its rest position, so a jam there cannot become a permanent overload (M-1 review, note 4).
 
@@ -53,3 +54,11 @@ with the usual 0.64 mm square tail needs 0.91 mm across the diagonal; 1.0 mm is 
 1. Another Nano footprint with 1.0 mm holes (EasyEDA has two more in user libraries) – the next EasyEDA session.
 2. A female header whose datasheet gives a thinner tail (e.g. 0.6 mm square, 0.85 mm diagonal) – enter it as the lead
    size and buy exactly that one.
+
+## D-8 Base load for USB power banks (2026-10-25)
+
+Without the servo moving, the circuit draws 35–75 mA. Many power banks switch off below 50–100 mA after a few seconds –
+possibly in the middle of the countdown, and the bell never rings. R8 ∥ R9 (2 × 100 Ω, 2512, 1 W) draw a permanent
+100 mA from +5V, 0.25 W per resistor. Kept simple on purpose: the bell runs once a year for about 15 minutes, so the
+wasted energy does not matter; a load switched by the Nano would need a transistor and firmware. The simulation checks
+every scenario against a 100 mA minimum (`i_min_a`).

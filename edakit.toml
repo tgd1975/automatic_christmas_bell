@@ -72,6 +72,8 @@ R1 = { x = 60, y = 41.5, rot = 90, side = "top" }
 R5 = { x = 70, y = 41.5, rot = 90, side = "top" }
 R7 = { x = 51.5, y = 12, rot = 90, side = "top" }    # pull-downs next to their buttons
 R6 = { x = 65, y = 12, rot = 90, side = "top" }
+R8 = { x = 22, y = 16.3, rot = 0, side = "top" }    # base load, 0.25 W each – apart from each other
+R9 = { x = 33, y = 16.3, rot = 0, side = "top" }
 
 [boards.main.near]
 R4 = "LED5"
@@ -102,6 +104,124 @@ layers = ["TOP", "BOTTOM"]
 [boards.main.silk]
 designators = "top"
 label_h_mm = 1.0
+
+# Artwork: hardware/art/make_art.py draws it; positions in plan mm (centre), width scales the motif
+
+[[boards.main.silk.art]]
+svg = "hardware/art/bell.svg"
+x = 15.5
+y = 46.5
+width_mm = 15
+
+[[boards.main.silk.art]]
+svg = "hardware/art/greeting.svg"
+x = 28
+y = 11
+width_mm = 34
+
+[[boards.main.silk.art]]
+svg = "hardware/art/small_bell.svg"
+x = 76.5
+y = 46.5
+width_mm = 4
+
+[[boards.main.silk.art]]
+svg = "hardware/art/chevron.svg"
+x = 35
+y = 48
+width_mm = 1.4
+
+[[boards.main.silk.art]]
+svg = "hardware/art/chevron.svg"
+x = 45
+y = 48
+width_mm = 1.4
+
+[[boards.main.silk.art]]
+svg = "hardware/art/chevron.svg"
+x = 55
+y = 48
+width_mm = 1.4
+
+[[boards.main.silk.art]]
+svg = "hardware/art/chevron.svg"
+x = 65
+y = 48
+width_mm = 1.4
+
+[[boards.main.silk.art]]
+svg = "hardware/art/star.svg"
+x = 35
+y = 53.8
+width_mm = 1.6
+
+[[boards.main.silk.art]]
+svg = "hardware/art/star.svg"
+x = 45
+y = 53.8
+width_mm = 1.6
+
+[[boards.main.silk.art]]
+svg = "hardware/art/star.svg"
+x = 55
+y = 53.8
+width_mm = 1.6
+
+[[boards.main.silk.art]]
+svg = "hardware/art/star.svg"
+x = 65
+y = 53.8
+width_mm = 1.6
+
+[[boards.main.silk.art]]
+svg = "hardware/art/snowflake.svg"
+x = 65
+y = 4.5
+width_mm = 3
+
+[[boards.main.silk.art]]
+svg = "hardware/art/snowflake.svg"
+x = 75
+y = 40
+width_mm = 3
+
+[[boards.main.silk.art]]
+svg = "hardware/art/snowflake.svg"
+x = 6
+y = 16
+width_mm = 3
+
+# Labels: the buttons and the servo pins (J1: pin 1 = GND at the square pad)
+
+[[boards.main.silk.texts]]
+text = "START"
+x = 58
+y = 4.6
+h_mm = 1.2
+
+[[boards.main.silk.texts]]
+text = "RESET"
+x = 72
+y = 4.6
+h_mm = 1.2
+
+[[boards.main.silk.texts]]
+text = "GND"
+x = 76.6
+y = 27.46
+h_mm = 1.0
+
+[[boards.main.silk.texts]]
+text = "5V"
+x = 76.6
+y = 30
+h_mm = 1.0
+
+[[boards.main.silk.texts]]
+text = "SIG"
+x = 76.6
+y = 32.54
+h_mm = 1.0
 
 [schematic]
 stub = 10

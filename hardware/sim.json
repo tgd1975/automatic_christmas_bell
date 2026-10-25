@@ -7,7 +7,8 @@
       "minus": "4",
       "r_ohm": 0.5,
       "i_max_a": 0.5,
-      "note": "5V pin of the Nano: USB minus its Schottky diode; 0.5 ohm for cable, polyfuse and diode; the Nano's polyfuse holds 500 mA"
+      "note": "5V pin of the Nano: USB minus its Schottky diode; 0.5 ohm for cable, polyfuse and diode; the Nano's polyfuse holds 500 mA; power banks switch off below about 50–100 mA – 100 mA assumed (D-8)",
+      "i_min_a": 0.1
     }
   },
   "supplies": {
