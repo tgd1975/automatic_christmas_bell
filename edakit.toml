@@ -1,4 +1,4 @@
-# edakit project file of the Christmas bell – reference: easyEDAAutomation/handbook/10-reference.md
+# edakit project file of the Christmas bell – reference: edakit/handbook/10-reference.md
 #
 # Carrier board for a plugged-in Arduino Nano: servo connector, buffer capacitor, five 5 mm LEDs, two buttons.
 # Two layers, 85 x 56 mm like the Fritzing board. JLCPCB assembles only the SMD parts (resistors, buttons); the Nano's

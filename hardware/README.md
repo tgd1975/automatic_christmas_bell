@@ -1,6 +1,6 @@
 # The board
 
-This folder holds the Christmas bell's carrier board as an [edakit](https://github.com/tgd1975/easyEDAAutomation)
+This folder holds the Christmas bell's carrier board as an [edakit](https://github.com/tgd1975/edakit)
 project. It is the second board built with edakit and its public example.
 
 It was not a push-button run:
@@ -35,8 +35,8 @@ SMD parts (resistors, buttons); the headers, LEDs, C1 and J1 are hand-soldered.
 ## Offline
 
 ```bash
-uvx --from git+https://github.com/tgd1975/easyEDAAutomation edakit check   # 0 errors, 1 waived (VIN unused)
-uvx --from git+https://github.com/tgd1975/easyEDAAutomation edakit sim     # 1112 checks, 1 information (stalled servo)
+uvx --from git+https://github.com/tgd1975/edakit edakit check   # 0 errors, 1 waived (VIN unused)
+uvx --from git+https://github.com/tgd1975/edakit edakit sim     # 1112 checks, 1 information (stalled servo)
 ```
 
 ## Through EasyEDA
