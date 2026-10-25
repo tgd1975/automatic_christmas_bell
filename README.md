@@ -6,14 +6,15 @@ Automatische mechanische Weihnachtsglocke für den traditionellen **Christkind-B
 
 ## 📌 Was es macht
 
-An Heiligabend:
-1. Eltern bereiten Geschenke und Kerzen am Weihnachtsbaum vor
-2. **Start-Taster drücken** → Countdown (60s) beginnt, LEDs zeigen die verbleibende Zeit
-3. Eltern verlassen kurz den Raum (wegen der Kerzen)
-4. **Nach 65 Sekunden läutet die Glocke automatisch**
-5. Kinder stürmen herein → Bescherung beginnt! 🎅✨
+An Heiligabend (mit **elektrischen Kerzen**):
+1. Eltern bereiten Geschenke am Weihnachtsbaum vor
+2. **Elektrische Kerzen EINSCHALTEN**
+3. **Start-Taster drücken** → Countdown (60s) beginnt, LEDs zeigen die verbleibende Zeit
+4. Eltern verlassen den Raum
+5. **Nach 65 Sekunden läutet die Glocke automatisch**
+6. Kinder stürmen herein → Bescherung beginnt! 🎅✨
 
-> ⚠️ **Wichtig:** Die Glocke wird **mechanisch angeschlagen** (kein elektronischer Ton!) für authentischen Klang.
+> ⚠️ **Wichtig:** Die Glocke wird **mechanisch angeschlagen** (kein elektronischer Ton!) für authentischen Klang. **Elektrische Kerzen** bleiben während des gesamten Ablaufs eingeschaltet.
 
 ---
 
@@ -38,6 +39,7 @@ An Heiligabend:
 - **2 Taster** – Start und Reset
 - **Widerstände** – Für LEDs und Taster
 - **Echte Glocke** – Wird vom Servo angeschlagen
+- **Elektrische Kerzen** – Werden vor dem Start eingeschaltet
 
 ---
 
@@ -48,16 +50,23 @@ An Heiligabend:
 - Servo mit Hebelarm an Glocke anbringen
 - Stromversorgung: Arduino per USB, Servo separat (5V, 1A)
 
-### 2. Software hochladen
+### 2. Elektrische Kerzen vorbereiten
+- Kerzen am Baum anbringen und **testen**
+- Stromversorgung für Kerzen prüfen (Batterien/Netzteil)
+
+### 3. Software hochladen
 ```bash
 # Arduino IDE öffnen
 # buttons.ino öffnen und auf Arduino Nano hochladen
 ```
 
-### 3. Testen
-- Start-Taster drücken → Countdown beginnt
-- Nach 65 Sekunden läutet die Glocke
-- Reset-Taster zum Zurücksetzen
+### 4. Ablauf am Heiligabend
+1. Geschenke unter den Baum legen
+2. **Elektrische Kerzen EINSCHALTEN** → Baum leuchtet
+3. **Start-Taster drücken** → Countdown beginnt
+4. Raum verlassen
+5. **Glocke läutet nach 65 Sekunden**
+6. Kinder kommen rein → Bescherung! 🎄
 
 ---
 
@@ -104,10 +113,10 @@ Servo → Nylonfaden → Klöppel
 
 ## 🎯 Tipps für Heiligabend
 
-✅ **Glocke verstecken** – Nicht zu offensichtlich platzieren
+✅ **Kerzen testen** – Vorher prüfen, dass alle elektrischen Kerzen funktionieren
+✅ **Stromversorgung prüfen** – Batterien frisch? Netzteil ausreichend?
 ✅ **Klang testen** – Vorher prüfen, ob die Glocke im ganzen Haus hörbar ist
 ✅ **Timing üben** – Eltern sollten den Countdown vorher testen
-✅ **Kerzen ausblasen** – Vor dem Verlassen des Raums!
 ✅ **Kinder vorbereiten** – Ihnen erklären, dass sie auf die Glocke warten sollen
 
 ---
