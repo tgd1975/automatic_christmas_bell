@@ -1,132 +1,178 @@
 #include <Servo.h>
 
-// constants won't change. They're used here to set pin numbers:
+// ========== PIN DEFINITIONS ==========
 const int buttonPinStart = 11;     // the number of the pushbutton pin
 const int buttonPinReset = 12;
 
-const int ledGreen1 =  6;      // the number of the LED pin
-const int ledGreen2 =  5;      // the number of the LED pin
+const int ledGreen1 = 6;      // the number of the LED pin
+const int ledGreen2 = 5;      // the number of the LED pin
 const int ledYellow1 = 2;
 const int ledYellow2 = 3;
 const int ledRed = 4;
 
 const int servoPin = 8;
 
-const int blinkrate = 500; // toggle on/off every n ms
+// ========== TIMING CONSTANTS ==========
+const unsigned long blinkrate = 500; // toggle on/off every n ms
+const unsigned long DEBOUNCE_DELAY = 50; // ms for button debouncing
 
-const int NOEVENT = 0;
-const int TOLOW = -1;
-const int TOHIGH = 1;
-
-const long anglestepdelay = 1;
-const long angleextremeposdelay = 400;
-const int anglefrom = 60;
-const int angleto = 110;
+// ========== SERVO CONSTANTS ==========
+const unsigned long anglestepdelay = 1; // ms between angle steps
+const unsigned long angleextremeposdelay = 400; // ms to wait at extreme positions
+const int SERVO_MIN_ANGLE = 60;
+const int SERVO_MAX_ANGLE = 110;
+const int SERVO_REST_ANGLE = (SERVO_MIN_ANGLE + SERVO_MAX_ANGLE) / 2; // 85 degrees
 const int stepsize = 10;
 
-const long onebellswing = (((angleto-anglefrom)/2+anglefrom)*2/stepsize)*anglestepdelay + angleextremeposdelay*2;
+// Calculate one bell swing duration: (half swing * 2 / stepsize) * step delay + extreme pos delay * 2
+const int SERVO_RANGE = SERVO_MAX_ANGLE - SERVO_MIN_ANGLE;
+const long onebellswing = ((SERVO_RANGE / 2) * 2 / stepsize) * anglestepdelay + angleextremeposdelay * 2;
 const long bellswings = 6;
 
 const long countdowntime = 60; // seconds for countdown
 const long finalwarningtime = 5; // seconds for final warning that bell starts immediately
-const long bellduration = onebellswing*bellswings/1000; // seconds for bell ringing
+const long bellduration = onebellswing * bellswings / 1000; // seconds for bell ringing
 
-// variables will change:
+// ========== EVENT CONSTANTS ==========
+const int NOEVENT = 0;
+const int TOLOW = -1;
+const int TOHIGH = 1;
+
+// ========== STATE MACHINE ==========
+enum SystemState {
+  STATE_IDLE,
+  STATE_COUNTDOWN,
+  STATE_FINAL_WARNING,
+  STATE_BELL_RINGING,
+  STATE_FINISHED
+};
+
+// ========== GLOBAL VARIABLES ==========
+// Button states
 int currentStateStart = 0;         // variable for reading the pushbutton status
 int currentStateReset = 0;         // variable for reading the pushbutton status
-int lastStateStart = 0;         // variable for reading the pushbutton status
-int lastStateReset = 0;         // variable for reading the pushbutton status
-int eventStart = 0; // 0 ... no event, -1 ... to LOW, +1 ... to HIGH
-int eventReset = 0; // 0 ... no event, -1 ... to LOW, +1 ... to HIGH
+int lastStateStart = 0;            // previous reading for debouncing
+int lastStateReset = 0;            // previous reading for debouncing
+int eventStart = 0;                // 0 ... no event, -1 ... to LOW, +1 ... to HIGH
+int eventReset = 0;                // 0 ... no event, -1 ... to LOW, +1 ... to HIGH
+unsigned long lastDebounceTimeStart = 0;
+unsigned long lastDebounceTimeReset = 0;
 
+// Servo
 Servo servo;
-
-int angle = (angleto-anglefrom)/2 + anglefrom;
+int angle = SERVO_REST_ANGLE;
 int anglestep = stepsize;
 
-bool cycleactive = false;
-bool bellactive = false;
-bool finalwarningactive = true;
-
+// State
+SystemState state = STATE_IDLE;
 long cyclestarttime = 0;
 long nextbellupdatetime = 0;
 
-int currentledpin = -1;
+// LED Array for countdown visualization
+const int ledPins[] = {ledGreen1, ledGreen2, ledYellow1, ledYellow2, ledRed};
+const int numLEDs = 5;
+int currentledpin = ledRed; // FIX: Initialize to valid pin to avoid digitalWrite(-1, ...)
+
+// ========== HELPER FUNCTIONS ==========
+// Safe millis() comparison that handles overflow
+bool timeExpired(unsigned long &prevTime, unsigned long duration) {
+  unsigned long now = millis();
+  if (now < prevTime) { // Handle millis() overflow
+    prevTime = now;
+    return true;
+  }
+  if (now - prevTime >= duration) {
+    prevTime = now;
+    return true;
+  }
+  return false;
+}
+
+void allLEDStoHIGH() {
+  for (int i = 0; i < numLEDs; i++) {
+    digitalWrite(ledPins[i], HIGH);
+  }
+}
+
+void allLEDStoLOW() {
+  for (int i = 0; i < numLEDs; i++) {
+    digitalWrite(ledPins[i], LOW);
+  }
+}
 
 void printConfig() {
   Serial.println("config");
   Serial.println(" - timings:");
   Serial.print("   . Countdown duration: "); Serial.println(countdowntime);
-  Serial.print("   . Final warning duration: "); Serial.println(finalwarningtime);  
-  Serial.print("   . Bell duration: "); Serial.println(bellduration);  
-  Serial.print("   . Blinkrate: "); Serial.println(blinkrate);  
-  Serial.print("   . Anglestepdelay: "); Serial.println(anglestepdelay);  
-  Serial.print("   . Angleextremeposdelay: "); Serial.println(angleextremeposdelay);  
-  Serial.print("   . onebellswing: "); Serial.println(onebellswing);  
-  Serial.print("   . bellswings: "); Serial.println(bellswings);  
-  
+  Serial.print("   . Final warning duration: "); Serial.println(finalwarningtime);
+  Serial.print("   . Bell duration: "); Serial.println(bellduration);
+  Serial.print("   . Blinkrate: "); Serial.println(blinkrate);
+  Serial.print("   . Anglestepdelay: "); Serial.println(anglestepdelay);
+  Serial.print("   . Angleextremeposdelay: "); Serial.println(angleextremeposdelay);
+  Serial.print("   . onebellswing: "); Serial.println(onebellswing);
+  Serial.print("   . bellswings: "); Serial.println(bellswings);
+
   Serial.println(" - pins:");
-  Serial.print("   . Button Start: "); Serial.println(buttonPinStart);  
-  Serial.print("   . Button Reset: "); Serial.println(buttonPinReset);  
-  Serial.print("   . Led Green 1: "); Serial.println(ledGreen1);  
-  Serial.print("   . Led Green 2: "); Serial.println(ledGreen2);  
-  Serial.print("   . Led Yellow 1: "); Serial.println(ledYellow1);  
-  Serial.print("   . Led Yellow 2: "); Serial.println(ledYellow2);  
-  Serial.print("   . Led Red: "); Serial.println(ledRed);  
-  Serial.print("   . Servo: "); Serial.println(servoPin);  
+  Serial.print("   . Button Start: "); Serial.println(buttonPinStart);
+  Serial.print("   . Button Reset: "); Serial.println(buttonPinReset);
+  Serial.print("   . Led Green 1: "); Serial.println(ledGreen1);
+  Serial.print("   . Led Green 2: "); Serial.println(ledGreen2);
+  Serial.print("   . Led Yellow 1: "); Serial.println(ledYellow1);
+  Serial.print("   . Led Yellow 2: "); Serial.println(ledYellow2);
+  Serial.print("   . Led Red: "); Serial.println(ledRed);
+  Serial.print("   . Servo: "); Serial.println(servoPin);
   Serial.println(" - servo:");
-  Serial.print("   . anglefrom: "); Serial.println(anglefrom);  
-  Serial.print("   . angleto: "); Serial.println(angleto);  
-  Serial.print("   . stepsize: "); Serial.println(stepsize);  
+  Serial.print("   . angle from: "); Serial.println(SERVO_MIN_ANGLE);
+  Serial.print("   . angle to: "); Serial.println(SERVO_MAX_ANGLE);
+  Serial.print("   . rest angle: "); Serial.println(SERVO_REST_ANGLE);
+  Serial.print("   . stepsize: "); Serial.println(stepsize);
 }
 
+// ========== SETUP ==========
 void setup() {
-  Serial.begin(500000);
-  
+  Serial.begin(115200); // Changed from 500000 to 115200 for better compatibility
+
   Serial.println("setup");
   printConfig();
 
-  // initialize the LED pin as an output:
-  pinMode(ledGreen1, OUTPUT);
-  pinMode(ledYellow1, OUTPUT);
-  pinMode(ledGreen2, OUTPUT);
-  pinMode(ledYellow2, OUTPUT);
-  pinMode(ledRed, OUTPUT);
+  // Initialize LED pins as outputs
+  for (int i = 0; i < numLEDs; i++) {
+    pinMode(ledPins[i], OUTPUT);
+  }
   allLEDStoHIGH();
 
-  // initialize the pushbutton pin as an input:
+  // Initialize button pins as inputs
   pinMode(buttonPinStart, INPUT);
   pinMode(buttonPinReset, INPUT);
 
-  // initialize the bell servo
-  servo.attach(servoPin); 
+  // Initialize the bell servo
+  servo.attach(servoPin);
+  servo.write(SERVO_REST_ANGLE);
 }
 
-void bellHandling() {
-  if (bellactive) {
-    if (millis() > nextbellupdatetime) {
-      nextbellupdatetime = millis() + anglestepdelay;
-      angle += anglestep;
-      if (angle >= angleto) {
-        Serial.println("reached angleto");
-        angle = angleto;
-        anglestep = -stepsize;
-        nextbellupdatetime += angleextremeposdelay; // wait longer at extreme pos
-      } else if (angle < anglefrom) {
-        Serial.println("reached anglefrom");
-        angle = anglefrom;
-        anglestep = stepsize;
-        nextbellupdatetime += angleextremeposdelay; // wait longer at extreme pos
-      }
-      servo.write(angle);
-    }
-  }
-}
-
+// ========== BUTTON HANDLING WITH DEBOUNCING ==========
 void buttonPreLoop() {
-  currentStateStart = digitalRead(buttonPinStart);
-  currentStateReset = digitalRead(buttonPinReset);
+  unsigned long now = millis();
 
+  // Read and debounce Start button
+  int readingStart = digitalRead(buttonPinStart);
+  if (readingStart != lastStateStart) {
+    lastDebounceTimeStart = now;
+  }
+  if (now - lastDebounceTimeStart > DEBOUNCE_DELAY) {
+    currentStateStart = readingStart;
+  }
+
+  // Read and debounce Reset button
+  int readingReset = digitalRead(buttonPinReset);
+  if (readingReset != lastStateReset) {
+    lastDebounceTimeReset = now;
+  }
+  if (now - lastDebounceTimeReset > DEBOUNCE_DELAY) {
+    currentStateReset = readingReset;
+  }
+
+  // Calculate transition events
   eventStart = currentStateStart - lastStateStart;
   eventReset = currentStateReset - lastStateReset;
 
@@ -140,80 +186,97 @@ void buttonPreLoop() {
 
 void buttonPostLoop() {
   lastStateStart = currentStateStart;
-  lastStateReset = currentStateReset;  
+  lastStateReset = currentStateReset;
 }
 
-void startCycle() {
-  Serial.println("countdown started");
-  cycleactive = true;
-  finalwarningactive = false;
-  cyclestarttime = millis();
-  currentledpin = -1;
+// ========== STATE TRANSITIONS ==========
+void handleStateTransitions() {
+  // Button-based transitions
+  if (eventReset == TOHIGH && currentStateStart == HIGH) {
+    Serial.println("bypassed countdown");
+    state = STATE_FINAL_WARNING;
+    cyclestarttime = millis() - (countdowntime + finalwarningtime) * 1000;
+    currentledpin = ledRed;
+  } else if (eventStart == TOHIGH) {
+    Serial.println("countdown started");
+    state = STATE_COUNTDOWN;
+    cyclestarttime = millis();
+    currentledpin = ledRed;
+    bellactive = false;
+  } else if (eventReset == TOHIGH) {
+    Serial.println("countdown reset");
+    state = STATE_IDLE;
+    allLEDStoHIGH();
+    bellactive = false;
+  }
+
+  // Time-based transitions
+  if (state == STATE_COUNTDOWN) {
+    int timelapsed = (millis() - cyclestarttime) / 1000;
+    if (timelapsed >= countdowntime) {
+      Serial.println("countdown final warning");
+      state = STATE_FINAL_WARNING;
+    }
+  } else if (state == STATE_FINAL_WARNING) {
+    int timelapsed = (millis() - cyclestarttime) / 1000;
+    if (timelapsed >= countdowntime + finalwarningtime) {
+      Serial.println("countdown bell");
+      state = STATE_BELL_RINGING;
+      bellactive = true;
+      nextbellupdatetime = millis();
+      allLEDStoLOW();
+    }
+  } else if (state == STATE_BELL_RINGING) {
+    int timelapsed = (millis() - cyclestarttime) / 1000;
+    if (timelapsed >= countdowntime + finalwarningtime + bellduration) {
+      state = STATE_FINISHED;
+    }
+  } else if (state == STATE_FINISHED) {
+    finishCycle();
+  }
 }
 
-void resetCycle() {
-  Serial.println("countdown reset");
-  cycleactive = false;
-  bellactive = false;
-  finalwarningactive = false;
-  allLEDStoHIGH();
-}
-
-void allLEDStoHIGH() {
-  digitalWrite(ledRed, HIGH);
-  digitalWrite(ledGreen1, HIGH);
-  digitalWrite(ledYellow1, HIGH);
-  digitalWrite(ledGreen2, HIGH);
-  digitalWrite(ledYellow2, HIGH);
-}
-
-void allLEDStoLOW() {
-  digitalWrite(ledRed, LOW);
-  digitalWrite(ledGreen1, LOW);
-  digitalWrite(ledYellow1, LOW);
-  digitalWrite(ledGreen2, LOW);
-  digitalWrite(ledYellow2, LOW);
+// ========== STATE ACTIONS ==========
+void bellHandling() {
+  if (bellactive && state == STATE_BELL_RINGING) {
+    if (timeExpired(nextbellupdatetime, anglestepdelay)) {
+      angle += anglestep;
+      if (angle >= SERVO_MAX_ANGLE) {
+        Serial.println("reached angleto");
+        angle = SERVO_MAX_ANGLE;
+        anglestep = -stepsize;
+        nextbellupdatetime += angleextremeposdelay; // wait longer at extreme pos
+      } else if (angle < SERVO_MIN_ANGLE) {
+        Serial.println("reached anglefrom");
+        angle = SERVO_MIN_ANGLE;
+        anglestep = stepsize;
+        nextbellupdatetime += angleextremeposdelay; // wait longer at extreme pos
+      }
+      servo.write(angle);
+    }
+  }
 }
 
 void countdownVisualization(int timelapsed) {
-  long interval = countdowntime / 5;
-  
-  if (timelapsed < interval) {
-    if (currentledpin != ledGreen1) {
-      Serial.println("countdown green1");
-      Serial.println(timelapsed);
-      currentledpin = ledGreen1;
-    }
-  } else if (timelapsed < interval*2) {
-    if (currentledpin != ledGreen2) {
-      Serial.println("countdown green2");
-      Serial.println(timelapsed);
+  long interval = countdowntime / numLEDs;
+  int phase = timelapsed / interval;
+
+  // Clamp phase to valid range
+  if (phase < 0) phase = 0;
+  if (phase >= numLEDs) phase = numLEDs - 1;
+
+  if (currentledpin != ledPins[phase]) {
+    if (currentledpin >= 0) {
       digitalWrite(currentledpin, LOW);
-      currentledpin = ledGreen2;
     }
-  } else if (timelapsed < interval*3) {
-    if (currentledpin != ledYellow1) {
-      Serial.println("countdown yellow1");
-      Serial.println(timelapsed);
-      digitalWrite(currentledpin, LOW);
-      currentledpin = ledYellow1;
-    }
-  } else if (timelapsed < interval*4) {
-    if (currentledpin != ledYellow2) {
-      Serial.println("countdown yellow2");
-      Serial.println(timelapsed);
-      digitalWrite(currentledpin, LOW);
-      currentledpin = ledYellow2;
-    }
-  } else {
-    if (currentledpin != ledRed) {
-      Serial.println("countdown red");
-      Serial.println(timelapsed);
-      digitalWrite(currentledpin, LOW);
-      currentledpin = ledRed;          
-    }
+    currentledpin = ledPins[phase];
+    Serial.print("countdown phase ");
+    Serial.println(phase);
+    Serial.print("timelapsed: ");
+    Serial.println(timelapsed);
   }
-  
+
+  // Blink the current LED
   if ((millis() / blinkrate) % 2) {
     digitalWrite(currentledpin, HIGH);
   } else {
@@ -221,27 +284,12 @@ void countdownVisualization(int timelapsed) {
   }
 }
 
-
 void countdownFinalWarning() {
-  if (!finalwarningactive) {
-    Serial.println("countdown final warning");
-    finalwarningactive = true;
-  }
-  
+  // Blink all LEDs during final warning
   if ((millis() / blinkrate) % 2) {
     allLEDStoHIGH();
   } else {
     allLEDStoLOW();
-  }  
-}
-
-void countdownStartBell() {
-  if (!bellactive) {
-    Serial.println("countdown bell");
-    allLEDStoLOW();
-    bellactive = true;
-    finalwarningactive = false;
-    nextbellupdatetime = millis();
   }
 }
 
@@ -249,45 +297,36 @@ void finishCycle() {
   if (bellactive) {
     Serial.println("countdown finished");
     bellactive = false;
-    Serial.println((angleto-anglefrom)/2+anglefrom);
-    servo.write((angleto-anglefrom)/2+anglefrom);
-    delay(10);
-    finalwarningactive = false;
+    servo.write(SERVO_REST_ANGLE);
+    nextbellupdatetime = millis() + 10; // Non-blocking delay
     allLEDStoLOW();
+    state = STATE_IDLE;
   }
 }
 
-void cycleManagement() {
-  if (eventReset == TOHIGH && currentStateStart == HIGH) {
-    Serial.println("bypassed countdown");
-    startCycle();
-    cyclestarttime = millis() - (countdowntime + finalwarningtime)*1000;
-  } else if (eventStart == TOHIGH) {
-    resetCycle();
-    startCycle();
-  } else if (eventReset == TOHIGH) {
-    resetCycle();
-  } 
-
-  
-    
-  if (cycleactive) {
-    int timelapsed = (millis() - cyclestarttime)/1000;
-    if (timelapsed < countdowntime) { // countdown visualization via leds
-      countdownVisualization(timelapsed);
-    } else if (timelapsed < (countdowntime + finalwarningtime)) { // start final warning
-      countdownFinalWarning();
-    } else if (timelapsed < (countdowntime + finalwarningtime + bellduration)) { // start bell ringing
-      countdownStartBell();
-    } else { // finished cycle - deactivate and reset
-      finishCycle();
-    }
-  }
-}
-
+// ========== MAIN LOOP ==========
 void loop() {
   buttonPreLoop();
-  cycleManagement();
-  bellHandling();
   buttonPostLoop();
+
+  handleStateTransitions();
+
+  // Execute state-specific actions
+  switch (state) {
+    case STATE_COUNTDOWN: {
+      int timelapsed = (millis() - cyclestarttime) / 1000;
+      countdownVisualization(timelapsed);
+      break;
+    }
+    case STATE_FINAL_WARNING:
+      countdownFinalWarning();
+      break;
+    case STATE_BELL_RINGING:
+      bellHandling();
+      break;
+    case STATE_IDLE:
+    case STATE_FINISHED:
+      // No specific actions needed
+      break;
+  }
 }
