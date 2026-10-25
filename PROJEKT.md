@@ -16,6 +16,8 @@ WICHTIG:
 - Die Glocke wird PHYSIKALISCH angeschlagen (nicht elektronisch)
 - ELEKTRISCHE KERZEN werden VOR dem Start eingeschaltet und bleiben an
 - Kein Kerzen-Ausblasen noetig!
+- **Servo-Arm haengt NACH UNTEN, Glocke haengt UNTEN dran**
+- **Intended Position: In einem Buchregal oder aehnlichem erhoehten Ort**
 
 ---
 
@@ -30,6 +32,24 @@ In Oesterreich und Teilen Deutschlands bringt das Christkind die Geschenke. Die 
 - Einfach: Ein Tastendruck startet alles
 - Zuverlaessig: Servo-Mechanik fuer praezises Anschlagen
 - **Sicher: Elektrische Kerzen - kein Feuerrisiko!**
+- **Unauffaellig: Im Regal platziert, Kinder fokussieren auf Baum**
+
+---
+
+## Positionierung
+
+### Intended Position
+- **Buchregal** oder aehnlicher erhoehter Ort
+- **Servo-Arm haengt NACH UNTEN**
+- **Glocke haengt UNTEN am Arm**
+- **Weiter hinten** im Regal platzieren
+- **Etwas hoeher** positionieren
+
+**Vorteile dieser Position:**
+- Kinder sind auf den Weihnachtsbaum fokussiert -> Glocke bleibt unentdeckt
+- Natuerliche Position fuer haengende Mechanik
+- Gute Schallverbreitung (Glocke haengt frei)
+- Einfache Montage im Regal
 
 ---
 
@@ -98,12 +118,20 @@ Timing-Parameter (anpassbar):
 - Wetterunabhaengig
 - Wiederverwendbar
 
-### 2. Mechanische Glocke
+### 2. Mechanische Glocke (haengend)
 
-Der Servo muss mit einem Hebel oder Arm verbunden sein, der eine ECHTE Glocke physisch anschlaegt.
+Der Servo ist **OBEN** befestigt, der Arm haengt **NACH UNTEN**, und die Glocke haengt **UNTEN am Arm**.
+
+Diese Anordnung ist perfekt fuer:
+- Buchregale
+- Schraenke
+- Hohe Kommoden
+- Window Banks
+
+Der Servo bewegt den Arm nach unten hengend in einem Bogen, die Glocke schwingt und schlaegt an.
 
 Moegliche Ausfuehrungen:
-- Direkter Anschlag: Servo-Horn mit kleinem Arm -> Glocke
+- Direkter Anschlag: Servo-Horn mit Arm nach unten -> Glocke unten dran
 - Hebeluebersetzung: Kurzer Arm am Servo, langer Arm mit Kloepfel an der Glocke
 - Seilzug: Nylonfaden vom Servo zum Kloepfel der Glocke
 
@@ -163,26 +191,55 @@ Servo-Stromversorgung:
 
 ---
 
-## Mechanischer Aufbau
+## Mechanischer Aufbau (haengend)
 
-### Servo-Glocken-Mechanismus
+### Servo-Glocken-Mechanismus fuer Regal
 
-Option 1: Direkter Anschlag
-Servo-Horn -> Kleiner Holz/Kunststoffarm (5-10 cm) -> Gummikopf/Filz -> Glocke
+**Option 1: Direkter Anschlag (einfachste Loesung)**
+```
+Buchregal-Oberseite
+  └── Servo (festgeschraubt)
+       └── Arm nach UNTEN hängend (5-10 cm)
+            └── Glocke UNTEN dran
+```
+**Vorteile:** Einfach, zuverlaessig, guter Klang
 
-Option 2: Hebeluebersetzung (fuer mehr Kraft)
-Servo-Horn -> Kurzer Arm -> Hebel (Drehpunkt in Mitte) -> Glocke-Seite (langer Arm mit Kloepfel)
+**Option 2: Hebeluebersetzung (fuer mehr Kraft/Schwingung)**
+```
+Buchregal-Oberseite
+  └── Servo (festgeschraubt)
+       └── Kurzer Arm nach unten
+            └── Hebel (Drehpunkt am Regal)
+                 ├── Servo-Seite (kurz)
+                 └── Glocke-Seite (lang) mit Klöppel -> Glocke unten
+```
+**Vorteile:** Mehr Kraft, lauterer Klang, groessere Schwingung
 
-Option 3: Seilzug (fuer entfernte Glocke)
-Servo-Horn -> Nylonfaden -> Kloepfel der Glocke
+**Option 3: Seilzug (fuer flexible Positionierung)**
+```
+Buchregal-Oberseite
+  └── Servo (festgeschraubt)
+       └── Arm nach unten
+            └── Nylonfaden/Schnur
+                 └── Klöppel der Glocke (unten im Regal)
+```
+**Vorteile:** Glocke kann weiter entfernt sein, flexibel
 
-### Gehaeuse-Empfehlungen
+### Montage-Tipps fuer Buchregal
 
-1. Kompakt: Alles in kleiner Holzkiste (z.B. 15x10x8 cm)
-2. Glocke aussen: Glocke sichtbar oben auf dem Gehaeuse
-3. Taster zugaenglich: Start/Reset-Taster an der Seite
-4. LEDs sichtbar: LED-Anzeige an der Front fuer Eltern
-5. Belueftung: Loecher fuer Servo-Kuehlung
+1. **Servo befestigen:** Mit Schrauben oder starkem Klebeband an Regal-Oberseite
+2. **Arm-Laenge:** 5-10 cm fuer gute Schwingung
+3. **Glocke positionieren:** So dass sie frei haengt und anschlaegt
+4. **Kabelmanagement:** Kabel mit Kabelbindern ordentlich verlegen
+5. **Testen:** Vor Heiligabend mehrmals testen!
+
+### Gehaeuse (optional)
+
+Fuer sauberere Optik:
+- Kleines Gehaeuse fuer Arduino und Servo
+- Offene Unterseite damit Arm nach unten haengt
+- Unauffaellig farbig (z.B. braun wie Holz)
+- Im Regal weiter hinten platzieren
 
 ### Materialien fuer die Glocke
 
@@ -240,6 +297,7 @@ Problem: Countdown startet nicht -> Pull-down-Widerstaende (10kOhm) pruefen
 Problem: Servo zuckert/Arduino resettet -> Separate Stromversorgung + Kondensator (1000uF) verwenden
 Problem: Servo bewegt sich nicht -> anglefrom/angleto pruefen
 Problem: **Kerzen leuchten nicht** -> **Stromversorgung der Kerzen pruefen**
+Problem: **Glocke schlaegt nicht an** -> **Position im Regal anpassen, Arm-Laenge pruefen**
 
 ---
 
@@ -247,7 +305,7 @@ Problem: **Kerzen leuchten nicht** -> **Stromversorgung der Kerzen pruefen**
 
 ### Spezifisch fuer elektrische Kerzen:
 - **Fernsteuerung fuer Kerzen:** Kerzen zusammen mit Glocke steuern
-- **Lichtsensor:** Automatische Aktivierung bei Dämmerung
+- **Lichtsensor:** Automatische Aktivierung bei Daemmerung
 - **Zeitschaltuhr:** Automatisches Einschalten der Kerzen zu bestimmter Zeit
 
 Fortgeschritten:
@@ -282,12 +340,19 @@ Warum mechanische Glocke?
 - Wiederholbares Experimentieren mit Timing
 - Wetterunabhaengig (auch bei geschlossenem Fenster moeglich)
 
+**Angepasst fuer Regal-Position:**
+- Unauffaellig platziert (Kinder fokussieren auf Baum)
+- Haengende Mechanik nutzt natuerliche Gravitation
+- Gute Schallverbreitung in Regal
+- Einfache Montage
+
 Tipps fuer Inszenierung:
-1. **Kerzen testen** – Vorher prüfen, dass alle elektrischen Kerzen funktionieren
-2. **Stromversorgung prüfen** – Batterien frisch? Netzteil ausreichend?
-3. **Klang testen** – Vorher prüfen, ob die Glocke im ganzen Haus hoerbar ist
+1. **Position testen** – Glocke im Regal platzieren und Klang im Raum pruefen
+2. **Kerzen testen** – Vorher pruefen, dass alle elektrischen Kerzen funktionieren
+3. **Stromversorgung pruefen** – Batterien frisch? Netzteil ausreichend?
 4. **Timing ueben** – Eltern sollten den Countdown vorher testen
 5. **Kinder vorbereiten** – Ihnen erklären, dass sie auf die Glocke warten sollen
+6. **Regal vorbereiten** – Servo fest montieren, Kabel ordentlich verlegen
 
 ---
 
@@ -298,6 +363,7 @@ Tipps fuer Inszenierung:
 - weihnachtsglocke_Schaltplan.png - Schaltplan Bild
 - weihnachtsglocke_Schaltplan.svg - Schaltplan Vektor
 - PROJEKT.md - Diese Beschreibung
+- README.md - Kurze Uebersicht
 - LIZENZ - MIT-Lizenz
 - .gitignore - Ignorierliste
 
@@ -312,6 +378,7 @@ MIT-Lizenz (siehe LIZENZ Datei)
 Letzte Aktualisierung: 25. Oktober 2025
 Erstellt aus: buttons.ino und weihnachtsglocke.fzz
 Anwendungsfall: Traditionelle Christkind-Klingel fuer Heiligabend mit ELEKTRISCHEN KERZEN
+Position: Servo-Arm haengt nach unten, Glocke haengt unten dran, in Buchregal platziert
 
 ---
 

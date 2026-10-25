@@ -14,7 +14,18 @@ An Heiligabend (mit **elektrischen Kerzen**):
 5. **Nach 65 Sekunden läutet die Glocke automatisch**
 6. Kinder stürmen herein → Bescherung beginnt! 🎅✨
 
-> ⚠️ **Wichtig:** Die Glocke wird **mechanisch angeschlagen** (kein elektronischer Ton!) für authentischen Klang. **Elektrische Kerzen** bleiben während des gesamten Ablaufs eingeschaltet.
+> ⚠️ **Wichtig:** Die Glocke wird **mechanisch angeschlagen** (kein elektronischer Ton!). **Elektrische Kerzen** bleiben während des gesamten Ablaufs eingeschaltet.
+
+---
+
+## 📍 Positionierung
+
+**Intended Position:** In einem **Buchregal** oder ähnlich erhöhten Ort platzieren.
+
+- **Servo-Arm hängt NACH UNTEN**
+- **Glocke hängt UNTEN am Arm**
+- **Höher und weiter hinten** platzieren, damit es nicht auffällt
+- **Kinder sind ohnehin auf den Weihnachtsbaum fokussiert** → perfekte Tarnung!
 
 ---
 
@@ -38,8 +49,7 @@ An Heiligabend (mit **elektrischen Kerzen**):
 - **5 LEDs** – Visueller Countdown (2× Grün, 2× Gelb, 1× Rot)
 - **2 Taster** – Start und Reset
 - **Widerstände** – Für LEDs und Taster
-- **Echte Glocke** – Wird vom Servo angeschlagen
-- **Elektrische Kerzen** – Werden vor dem Start eingeschaltet
+- **Echte Glocke** – Hängt unten am Servo-Arm
 
 ---
 
@@ -47,20 +57,25 @@ An Heiligabend (mit **elektrischen Kerzen**):
 
 ### 1. Hardware aufbauen
 - Fritzing-Schaltplan (`weihnachtsglocke_Schaltplan.png`) verwenden
-- Servo mit Hebelarm an Glocke anbringen
+- Servo mit **nach unten hängendem Arm** an Glocke anbringen
 - Stromversorgung: Arduino per USB, Servo separat (5V, 1A)
 
-### 2. Elektrische Kerzen vorbereiten
+### 2. Position wählen
+- **Buchregal** oder ähnlichen erhöhten Ort
+- **Weiter hinten** platzieren, damit es nicht sichtbar ist
+- **Glocke nach unten** hängend montieren
+
+### 3. Elektrische Kerzen vorbereiten
 - Kerzen am Baum anbringen und **testen**
 - Stromversorgung für Kerzen prüfen (Batterien/Netzteil)
 
-### 3. Software hochladen
+### 4. Software hochladen
 ```bash
 # Arduino IDE öffnen
 # buttons.ino öffnen und auf Arduino Nano hochladen
 ```
 
-### 4. Ablauf am Heiligabend
+### 5. Ablauf am Heiligabend
 1. Geschenke unter den Baum legen
 2. **Elektrische Kerzen EINSCHALTEN** → Baum leuchtet
 3. **Start-Taster drücken** → Countdown beginnt
@@ -92,21 +107,27 @@ const long blinkrate = 300;
 
 ## 📐 Mechanik
 
-### Servo-Glocken-Mechanismus
+### Servo-Glocken-Mechanismus (nach unten hängend)
 
-**Option 1: Direkter Anschlag**
+**Option 1: Direkter Anschlag (empfohlen für Regal)**
 ```
-Servo-Horn → Holzarm (5-10 cm) → Gummikopf → Glocke
-```
-
-**Option 2: Hebelübersetzung** (für mehr Kraft)
-```
-Servo (kurzer Arm) → Hebel → Glocke (langer Arm mit Klöppel)
+Servo (oben befestigt)
+  └── Arm nach UNTEN hängend
+       └── Glocke UNTEN dran
 ```
 
-**Option 3: Seilzug** (für entfernte Glocke)
+**Option 2: Hebelübersetzung (für mehr Kraft)**
 ```
-Servo → Nylonfaden → Klöppel
+Servo (oben) → Kurzer Arm nach unten
+               └── Hebel (Drehpunkt)
+                    └── Glocke UNTEN (langer Arm mit Klöppel)
+```
+
+**Option 3: Seilzug (für Regal mit Abstand)**
+```
+Servo (oben) → Arm nach unten
+             └── Nylonfaden
+                  └── Klöppel der Glocke (unten)
 ```
 
 ---
@@ -114,10 +135,11 @@ Servo → Nylonfaden → Klöppel
 ## 🎯 Tipps für Heiligabend
 
 ✅ **Kerzen testen** – Vorher prüfen, dass alle elektrischen Kerzen funktionieren
+✅ **Position testen** – Glocke im Regal platzieren und Klang prüfen
 ✅ **Stromversorgung prüfen** – Batterien frisch? Netzteil ausreichend?
-✅ **Klang testen** – Vorher prüfen, ob die Glocke im ganzen Haus hörbar ist
 ✅ **Timing üben** – Eltern sollten den Countdown vorher testen
 ✅ **Kinder vorbereiten** – Ihnen erklären, dass sie auf die Glocke warten sollen
+✅ **Platzierung** – Im Regal weiter hinten, Kinder fokussieren auf Baum
 
 ---
 
