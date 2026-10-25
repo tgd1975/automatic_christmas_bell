@@ -12,12 +12,12 @@
   },
   "pins": {
     "2": {
-      "name": "A",
+      "name": "+",
       "type": "passive",
       "role": "anode"
     },
     "1": {
-      "name": "K",
+      "name": "-",
       "type": "passive",
       "role": "cathode"
     }
@@ -37,10 +37,10 @@
   },
   "spice": {},
   "sources": [
-    "pin names from the EasyEDA symbol (2026-10-19)",
     "LCSC parameter table via EasyEDA (2026-10-20)",
     "Vf 2.1 V @ 20 mA per LCSC; spread assumed",
-    "VR_max = 5 V: usual LED value, assumption without datasheet evidence – check when signing off"
+    "VR_max = 5 V: usual LED value, assumption without datasheet evidence – check when signing off",
+    "pin names as in the EasyEDA symbol (1 = -, 2 = +); roles follow the symbol; the footprint's \"+\" print sits at pad 2 = anode (silkscreen render, 2026-10-25)"
   ],
   "notes": null,
   "verified": {
@@ -51,8 +51,8 @@
       "IF 20 mA, IFP 80 mA, Pd 70 mW, VF 1.8/2.0/2.4 V @ 20 mA"
     ],
     "open": [
-      "pad assignment at the footprint (polarity sheet) and assembly preview (M-2) still open",
-      "VR not specified – 5 V assumed (XL-304UGD: 5 V)"
+      "VR not specified – 5 V assumed (XL-304UGD: 5 V)",
+      "assembly preview (M-2) still open"
     ]
   },
   "lead": {

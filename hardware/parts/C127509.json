@@ -12,22 +12,22 @@
   },
   "pins": {
     "1": {
-      "name": "A",
+      "name": "1",
       "type": "passive",
       "role": "a"
     },
     "2": {
-      "name": "A (internal to 1)",
+      "name": "2",
       "type": "passive",
       "role": "a"
     },
     "3": {
-      "name": "B (internal to 4)",
+      "name": "3",
       "type": "passive",
       "role": "b"
     },
     "4": {
-      "name": "B",
+      "name": "4",
       "type": "passive",
       "role": "b"
     }
@@ -41,9 +41,9 @@
   },
   "spice": {},
   "sources": [
-    "pin names from the EasyEDA symbol (2026-10-19)",
     "LCSC parameter table via EasyEDA (2026-10-20)",
-    "r_on: assumption without datasheet evidence – check when signing off"
+    "r_on: assumption without datasheet evidence – check when signing off",
+    "pin names as in the EasyEDA symbol (1-4); 1/2 and 3/4 are connected inside"
   ],
   "notes": null,
   "verified": {

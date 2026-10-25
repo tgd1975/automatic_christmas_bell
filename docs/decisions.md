@@ -42,3 +42,12 @@ C439782, 18 720 pcs at LCSC.
 ## D-6 Servo header C2937625 instead of C492402 (2026-10-25)
 
 The same header (XFCN PZ254V-11-03P), but C492402 has 0 pcs in stock, C2937625 has 659 300.
+
+## D-7 Holes for the Nano's female headers (2026-10-25, open)
+
+The gate fails L-9: the Nano footprint from the EasyEDA user library (C9900017879) has 0.90 mm holes. A female header
+with the usual 0.64 mm square tail needs 0.91 mm across the diagonal; 1.0 mm is recommended. Options:
+
+1. Another Nano footprint with 1.0 mm holes (EasyEDA has two more in user libraries) – the next EasyEDA session.
+2. A female header whose datasheet gives a thinner tail (e.g. 0.6 mm square, 0.85 mm diagonal) – enter it as the lead
+   size and buy exactly that one.

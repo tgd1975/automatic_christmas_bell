@@ -57,13 +57,20 @@ holes = [[3.5, 45], [81.5, 20]]
 U1 = { x = 22.6, y = 28, rot = 0, side = "top" }
 LED5 = { x = 30, y = 48, rot = 0, side = "top" }
 LED4 = { x = 40, y = 48, rot = 0, side = "top" }
-LED3 = { x = 50, y = 48, rot = 0, side = "top" }
-LED2 = { x = 60, y = 48, rot = 0, side = "top" }
+LED3 = { x = 50, y = 48, rot = 180, side = "top" }  # yellow footprint has its "+" on pad 2
+LED2 = { x = 60, y = 48, rot = 180, side = "top" }  # yellow footprint has its "+" on pad 2
 LED1 = { x = 70, y = 48, rot = 0, side = "top" }
 J1 = { x = 80, y = 30, rot = 90, side = "top" }
 C1 = { x = 64, y = 30, rot = 0, side = "top" }
 S1 = { x = 58, y = 12, rot = 0, side = "top" }
 S2 = { x = 72, y = 12, rot = 0, side = "top" }
+R4 = { x = 30, y = 41.5, rot = 90, side = "top" }  # series resistors right below their LEDs
+R3 = { x = 40, y = 41.5, rot = 90, side = "top" }
+R2 = { x = 50, y = 41.5, rot = 90, side = "top" }
+R1 = { x = 60, y = 41.5, rot = 90, side = "top" }
+R5 = { x = 70, y = 41.5, rot = 90, side = "top" }
+R7 = { x = 51.5, y = 12, rot = 90, side = "top" }    # pull-downs next to their buttons
+R6 = { x = 65, y = 12, rot = 90, side = "top" }
 
 [boards.main.near]
 R4 = "LED5"

@@ -208,5 +208,15 @@
     "5V pin on USB power = VBUS minus a Schottky diode (MBR0520) – source in hardware/sim.json",
     "3V3 pin: from the FT232RL on the original (max. 50 mA), from the CH340's V3 on clones – load not specified, 10 mA assumed; unused here (D-4)",
     "20 mA per GPIO recommended (40 mA absolute maximum)"
-  ]
+  ],
+  "lead": {
+    "*": {
+      "shape": "square",
+      "a_mm": 0.64,
+      "b_mm": 0.64,
+      "tol_mm": null,
+      "hole_rec_mm": 1.0,
+      "source": "tail of a 2.54 mm female header 1x15 (the Nano plugs into it): usually 0.64 mm square – assumption, check the header's datasheet"
+    }
+  }
 }

@@ -12,12 +12,12 @@
   },
   "pins": {
     "1": {
-      "name": "A",
+      "name": "K",
       "type": "passive",
       "role": "anode"
     },
     "2": {
-      "name": "K",
+      "name": "A",
       "type": "passive",
       "role": "cathode"
     }
@@ -37,10 +37,10 @@
   },
   "spice": {},
   "sources": [
-    "pin names from the EasyEDA symbol (2026-10-19)",
     "LCSC parameter table via EasyEDA (2026-10-20)",
     "Vf 2.2 V @ 20 mA per LCSC",
-    "VR_max = 5 V: usual LED value, assumption without datasheet evidence – check when signing off"
+    "VR_max = 5 V: usual LED value, assumption without datasheet evidence – check when signing off",
+    "pin names as in the EasyEDA symbol (1 = K, 2 = A); roles follow the footprint, whose print marks pad 1 as anode (+) – symbol and footprint of this library part disagree"
   ],
   "notes": null,
   "verified": {
