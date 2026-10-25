@@ -51,8 +51,10 @@ enum SystemState {
 // Button states
 int currentStateStart = 0;         // variable for reading the pushbutton status
 int currentStateReset = 0;         // variable for reading the pushbutton status
-int lastStateStart = 0;            // previous reading for debouncing
-int lastStateReset = 0;            // previous reading for debouncing
+int lastStateStart = 0;            // debounced state of the previous loop (for the events)
+int lastStateReset = 0;            // debounced state of the previous loop (for the events)
+int lastReadingStart = LOW;        // raw reading of the previous loop (for debouncing)
+int lastReadingReset = LOW;        // raw reading of the previous loop (for debouncing)
 int eventStart = 0;                // 0 ... no event, -1 ... to LOW, +1 ... to HIGH
 int eventReset = 0;                // 0 ... no event, -1 ... to LOW, +1 ... to HIGH
 unsigned long lastDebounceTimeStart = 0;
@@ -65,27 +67,19 @@ int anglestep = stepsize;
 
 // State
 SystemState state = STATE_IDLE;
-long cyclestarttime = 0;
-long nextbellupdatetime = 0;
+bool bellactive = false;
+unsigned long cyclestarttime = 0;
+unsigned long nextbellupdatetime = 0;
 
 // LED Array for countdown visualization
 const int ledPins[] = {ledGreen1, ledGreen2, ledYellow1, ledYellow2, ledRed};
 const int numLEDs = 5;
-int currentledpin = ledRed; // FIX: Initialize to valid pin to avoid digitalWrite(-1, ...)
+int currentledpin = -1; // no countdown LED yet; countdownVisualization() checks for -1 before writing
 
 // ========== HELPER FUNCTIONS ==========
-// Safe millis() comparison that handles overflow
-bool timeExpired(unsigned long &prevTime, unsigned long duration) {
-  unsigned long now = millis();
-  if (now < prevTime) { // Handle millis() overflow
-    prevTime = now;
-    return true;
-  }
-  if (now - prevTime >= duration) {
-    prevTime = now;
-    return true;
-  }
-  return false;
+// True once millis() has reached `when` – also across the millis() overflow
+bool reached(unsigned long when) {
+  return (long)(millis() - when) >= 0;
 }
 
 void allLEDStoHIGH() {
@@ -156,8 +150,9 @@ void buttonPreLoop() {
 
   // Read and debounce Start button
   int readingStart = digitalRead(buttonPinStart);
-  if (readingStart != lastStateStart) {
+  if (readingStart != lastReadingStart) {
     lastDebounceTimeStart = now;
+    lastReadingStart = readingStart;
   }
   if (now - lastDebounceTimeStart > DEBOUNCE_DELAY) {
     currentStateStart = readingStart;
@@ -165,8 +160,9 @@ void buttonPreLoop() {
 
   // Read and debounce Reset button
   int readingReset = digitalRead(buttonPinReset);
-  if (readingReset != lastStateReset) {
+  if (readingReset != lastReadingReset) {
     lastDebounceTimeReset = now;
+    lastReadingReset = readingReset;
   }
   if (now - lastDebounceTimeReset > DEBOUNCE_DELAY) {
     currentStateReset = readingReset;
@@ -201,7 +197,7 @@ void handleStateTransitions() {
     Serial.println("countdown started");
     state = STATE_COUNTDOWN;
     cyclestarttime = millis();
-    currentledpin = ledRed;
+    currentledpin = -1;
     bellactive = false;
   } else if (eventReset == TOHIGH) {
     Serial.println("countdown reset");
@@ -239,7 +235,8 @@ void handleStateTransitions() {
 // ========== STATE ACTIONS ==========
 void bellHandling() {
   if (bellactive && state == STATE_BELL_RINGING) {
-    if (timeExpired(nextbellupdatetime, anglestepdelay)) {
+    if (reached(nextbellupdatetime)) {
+      nextbellupdatetime = millis() + anglestepdelay;
       angle += anglestep;
       if (angle >= SERVO_MAX_ANGLE) {
         Serial.println("reached angleto");
