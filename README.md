@@ -1,17 +1,17 @@
 # 🎄 Weihnachtsglocke - Christkind-Klingel
 
-Automatische mechanische Weihnachtsglocke für den traditionellen **Christkind-Brauch** an Heiligabend. Die Schaltung läuft einen Countdown ab und läutet dann eine **echte Glocke** mechanisch an, um den Kindern zu signalisieren, dass sie hereinkommen dürfen.
+**Automatische mechanische Glocke für den Christkind-Brauch an Heiligabend.**
 
 ---
 
-## 📌 Was es macht
+## 🎯 Anwendung
 
-An Heiligabend (mit **elektrischen Kerzen**):
+An Heiligabend:
 1. Eltern bereiten Geschenke am Weihnachtsbaum vor
-2. **Elektrische Kerzen EINSCHALTEN**
-3. **Start-Taster drücken** → Countdown (60s) beginnt, LEDs zeigen die verbleibende Zeit
+2. Elektrische Kerzen einschalten
+3. **Start-Taster drücken** → Countdown beginnt (LEDs zeigen verbleibende Zeit)
 4. Eltern verlassen den Raum
-5. **Nach 65 Sekunden läutet die Glocke automatisch**
+5. **Nach 65 Sekunden läutet die Glocke mechanisch**
 6. Kinder stürmen herein → Bescherung beginnt! 🎅✨
 
 > ⚠️ **Wichtig:** Die Glocke wird **mechanisch angeschlagen** (kein elektronischer Ton!).
@@ -20,126 +20,64 @@ An Heiligabend (mit **elektrischen Kerzen**):
 
 ## 📍 Positionierung
 
-**Intended Position:** In einem **Buchregal** oder ähnlich erhöhten Ort platzieren.
-
-- **Servo-Arm hängt NACH UNTEN**
-- **Glocke hängt UNTEN am Arm**
-- **Höher und weiter hinten** platzieren, damit es nicht auffällt
-- **Kinder sind ohnehin auf den Weihnachtsbaum fokussiert** → perfekte Tarnung!
+- **Intended Position:** Buchregal oder ähnlicher erhöhter Ort
+- **Servo-Arm hängt nach UNTEN**, Glocke hängt UNTEN dran
+- **Weiter hinten platzieren** – Kinder sind auf den Baum fokussiert
 
 ---
 
-## 📁 Dateien
+## 📁 Struktur
 
-| Datei | Beschreibung |
-|-------|--------------|
-| `buttons.ino` | Arduino-Sketch (Hauptprogramm) |
-| `weihnachtsglocke.fzz` | Fritzing-Projektdatei |
-| `weihnachtsglocke_Schaltplan.png` | Schaltplan (Bild) |
-| `weihnachtsglocke_Schaltplan.svg` | Schaltplan (Vektor) |
-| `PROJEKT.md` | Detaillierte Projektbeschreibung |
-| `LIZENZ` | MIT-Lizenz |
+```
+automatic_christmas_bell/
+├── README.md              # Anwendung (dieses Dokument)
+├── buttons.ino             # Arduino-Sketch
+├── weihnachtsglocke.fzz   # Fritzing-Projekt
+├── weihnachtsglocke_Schaltplan.png
+├── weihnachtsglocke_Schaltplan.svg
+└── docs/
+    └── IMPLEMENTIERUNG.md   # Detaillierte Umsetzung
+```
 
 ---
 
-## 🔧 Hardware
+## 🔧 Hardware (Übersicht)
 
 - **Arduino Nano** – Mikrocontroller
 - **Servo 9g** – Betätigt die Glocke mechanisch
 - **5 LEDs** – Visueller Countdown (2× Grün, 2× Gelb, 1× Rot)
 - **2 Taster** – Start und Reset
-- **Widerstände** – Für LEDs und Taster
-- **Echte Glocke** – Hängt unten am Servo-Arm
+- **Echte Glocke** – Wird vom Servo angeschlagen
 
 ---
 
 ## ⚡ Schnellstart
 
-### 1. Hardware aufbauen
+### 1. Position wählen
+- Im Buchregal oben befestigen
+- Servo mit nach unten hängendem Arm an Glocke anbringen
+
+### 2. Hardware aufbauen
 - Fritzing-Schaltplan (`weihnachtsglocke_Schaltplan.png`) verwenden
-- Servo mit **nach unten hängendem Arm** an Glocke anbringen
 - Stromversorgung: Arduino per USB, Servo separat (5V, 1A)
 
-### 2. Position wählen
-- **Buchregal** oder ähnlichen erhöhten Ort
-- **Weiter hinten** platzieren, damit es nicht sichtbar ist
-- **Glocke nach unten** hängend montieren
-
-### 3. Elektrische Kerzen vorbereiten
-- Kerzen am Baum anbringen und **testen**
-- Stromversorgung für Kerzen prüfen (Batterien/Netzteil)
-
-### 4. Software hochladen
+### 3. Software hochladen
 ```bash
 # Arduino IDE öffnen
 # buttons.ino öffnen und auf Arduino Nano hochladen
 ```
 
-### 5. Ablauf am Heiligabend
-1. Geschenke unter den Baum legen
-2. **Elektrische Kerzen EINSCHALTEN** → Baum leuchtet
-3. **Start-Taster drücken** → Countdown beginnt
-4. Raum verlassen
-5. **Glocke läutet nach 65 Sekunden**
-6. Kinder kommen rein → Bescherung! 🎄
+### 4. Testen
+- Start-Taster drücken → Countdown beginnt
+- Nach 65 Sekunden läutet die Glocke
+- Reset-Taster zum Zurücksetzen
 
 ---
 
-## 🛠️ Anpassungen
+## 📖 Detaillierte Dokumentation
 
-In `buttons.ino`:
-
-```cpp
-// Kürzerer Countdown (30-45s empfohlen für Christkind-Szenario)
-const long countdowntime = 30;
-
-// Lauteres Läuten
-const long bellswings = 10;      // Mehr Schwingungen
-const int anglefrom = 45;        // Größerer Winkelbereich
-const int angleto = 135;
-
-// Schnellere Warnung
-const long finalwarningtime = 8;
-const long blinkrate = 300;
-```
-
----
-
-## 📐 Mechanik
-
-### Servo-Glocken-Mechanismus (nach unten hängend)
-
-**Option 1: Direkter Anschlag (empfohlen für Regal)**
-```
-Servo (oben befestigt)
-  └── Arm nach UNTEN hängend
-       └── Glocke UNTEN dran
-```
-
-**Option 2: Hebelübersetzung (für mehr Kraft)**
-```
-Servo (oben) → Kurzer Arm nach unten
-               └── Hebel (Drehpunkt)
-                    └── Glocke UNTEN (langer Arm mit Klöppel)
-```
-
-**Option 3: Seilzug (für Regal mit Abstand)**
-```
-Servo (oben) → Arm nach unten
-             └── Nylonfaden
-                  └── Klöppel der Glocke (unten)
-```
-
----
-
-## 🎯 Tipps für Heiligabend
-
-✅ **Kerzen testen** – Vorher prüfen, dass alle elektrischen Kerzen funktionieren
-✅ **Position testen** – Glocke im Regal platzieren und Klang prüfen
-✅ **Stromversorgung prüfen** – Batterien frisch? Netzteil ausreichend?
-✅ **Timing üben** – Eltern sollten den Countdown vorher testen
-✅ **Kinder vorbereiten** – Ihnen erklären, dass sie auf die Glocke warten sollen
-✅ **Platzierung** – Im Regal weiter hinten, Kinder fokussieren auf Baum
+Die komplette Implementierung (Schaltplan, Code-Erklärung, Mechanik, Anpassungen) findest du in:
+→ **[docs/IMPLEMENTIERUNG.md](docs/IMPLEMENTIERUNG.md)**
 
 ---
 
