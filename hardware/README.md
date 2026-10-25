@@ -1,9 +1,21 @@
-# The board – made with edakit
+# The board
 
-This folder is the example project of [easyEDAAutomation](https://github.com/tgd1975/easyEDAAutomation): the Christmas
-bell's carrier board, taken from the Fritzing drawing (`weihnachtsglocke.fzz`) through EasyEDA Pro to manufacturing
-files with [edakit](https://github.com/tgd1975/easyEDAAutomation/tree/main/handbook). Nothing in the EasyEDA project is
-drawn by hand; everything is generated from the files here and can be regenerated.
+This folder holds the Christmas bell's carrier board as an [edakit](https://github.com/tgd1975/easyEDAAutomation)
+project. It is the second board built with edakit and its public example.
+
+It was not a push-button run:
+
+- **Circuit:** It comes from the Fritzing drawing (`weihnachtsglocke.fzz`). The hardware graph, the parts database
+  and the simulation scenarios were written for it, with Claude Code.
+- **Gaps in edakit:** Taking it through EasyEDA Pro showed gaps that had to be developed first: pin names checked
+  against the symbols, adopting the default board of a new project, LEDs in a row pointing the same way, off-board
+  loads and input levels in the simulation, and a guard after a generated schematic once landed in the wrong EasyEDA
+  project.
+- **Manual steps:** Creating the EasyEDA project, one click on *Import Changes*, and every decision in
+  [docs/decisions.md](../docs/decisions.md).
+
+Generated is the content of the EasyEDA project: schematic, placement, tracks, copper pours and silkscreen come from
+the files here and can be deleted and regenerated.
 
 ![Silkscreen, top](img/silkscreen_top.png)
 
