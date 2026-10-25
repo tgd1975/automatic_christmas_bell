@@ -14,7 +14,6 @@ Automatische mechanische Weihnachtsglocke fuer den traditionellen Christkind-Bra
 
 WICHTIG: 
 - Die Glocke wird PHYSIKALISCH angeschlagen (nicht elektronisch)
-- ELEKTRISCHE KERZEN werden VOR dem Start eingeschaltet und bleiben an
 - Kein Kerzen-Ausblasen noetig!
 - **Servo-Arm haengt NACH UNTEN, Glocke haengt UNTEN dran**
 - **Intended Position: In einem Buchregal oder aehnlichem erhoehten Ort**

@@ -14,7 +14,7 @@ An Heiligabend (mit **elektrischen Kerzen**):
 5. **Nach 65 Sekunden läutet die Glocke automatisch**
 6. Kinder stürmen herein → Bescherung beginnt! 🎅✨
 
-> ⚠️ **Wichtig:** Die Glocke wird **mechanisch angeschlagen** (kein elektronischer Ton!). **Elektrische Kerzen** bleiben während des gesamten Ablaufs eingeschaltet.
+> ⚠️ **Wichtig:** Die Glocke wird **mechanisch angeschlagen** (kein elektronischer Ton!).
 
 ---
 
