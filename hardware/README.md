@@ -30,7 +30,8 @@ SMD parts (resistors, buttons); the headers, LEDs, C1 and J1 are hand-soldered.
 | [parts/](parts/) | one entry per LCSC number: pins with roles, ratings, lead sizes, datasheet sign-off |
 | [sim.json](sim.json) | USB at 4.45/4.7/5.05 V × idle, countdown, warning, bell × LED corners; a stalled servo as fault case |
 | [signoff.json](signoff.json) | manual checks M-1, M-5, M-2, M-4 |
-| [../docs/decisions.md](../docs/decisions.md) | numbered decisions D-1 … D-7 |
+| [../docs/decisions.md](../docs/decisions.md) | numbered decisions D-1 … D-15 |
+| [../variants](../variants/README.md) | three variants of this board: SMD, THT only, ESP32 with display (D-11 … D-15) |
 
 ## Offline
 
