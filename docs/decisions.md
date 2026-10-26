@@ -211,3 +211,18 @@ The firmware is variants/esp32/firmware (PlatformIO; the countdown logic lib/Bel
   stalled servo, above the module's 1N5819 (1 A) for the seconds of a bell phase (information, like D-3); the servo is
   detached at rest. Power the bell from a USB charger or power bank with at least 1 A rather than from a computer.
   M-1 was renewed for it.
+
+## D-18 Proposals to edakit from the reviews of D-16 and D-17 (2026-10-26)
+
+Owner's decision: what the reviewers of D-16 and D-17 suggested for edakit goes there as proposals (edakit handbook
+14.4 and 11.6) – all but the hint on a module's battery input.
+
+| # | Proposal | Kind | edakit |
+|---|---|---|---|
+| 1 | radio power at the RF port and the antenna gain | feature | [#21](https://github.com/tgd1975/edakit/issues/21) |
+| 2a | a transmitter stays in the EU bands, or the graph says how it is used | check | [#22](https://github.com/tgd1975/edakit/issues/22) |
+| 2b | modules and microcontrollers state their radio | check | [#23](https://github.com/tgd1975/edakit/issues/23) |
+| 3 | own use and gifts: EMVG § 6 and REACH Art. 33 | hint (handbook 15) | [#24](https://github.com/tgd1975/edakit/issues/24) |
+| 4 | a lower bound of a module's current for the minimum-load check | feature | [#25](https://github.com/tgd1975/edakit/issues/25) |
+| 5 | dissipation of a module's on-board LDO | feature | [#26](https://github.com/tgd1975/edakit/issues/26) |
+| 6 | ESP32 firmware fixes the country with 802.11d off | hint (handbook 15) | [#27](https://github.com/tgd1975/edakit/issues/27) |
