@@ -90,7 +90,13 @@ pio test -e native              # the countdown logic lib/BellTimer on the compu
   | reset held 10 s, released | forget the home network, the hotspot opens (red LED while held) |
 
 - **Radio:** channels 1–13 only (country DE, 802.11d off), no Bluetooth (D-13 "Radio").
-- Not yet tried on a module: flash it, then check the buttons, the LEDs, the servo, the page and the hotspot.
+- **Before the module leaves the house** (gift, repair, e-waste): erase its flash, `pio run -e tdisplay -t erase` –
+  the home Wi-Fi password is stored in it.
+- **Servo:** an analog one (SG90 type). The firmware detaches it at rest so that a jam cannot load the supply; a
+  digital servo would keep holding without pulses.
+- Not yet tried on a module: flash it, then check the buttons, the LEDs, the servo, the page and the hotspot – a
+  Wi-Fi analyser app shows `Glocke-XXXX` on a channel 1–13 with WPA2 – and that the module is marked T-DISPLAY V1.1
+  (M-4).
 
 ## Status (2026-10-26)
 
@@ -99,18 +105,19 @@ pio test -e native              # the countdown logic lib/BellTimer on the compu
 | check, hints, sim | 0 errors, 1186 checks | 0 errors, 1186 checks | 0 errors, 1412 checks |
 | schematics in EasyEDA = graph | yes | yes | yes |
 | PCB routed | 15 nets, 3 vias | 15 nets, 1 via | 16 nets, 7 vias |
-| M-1 circuit review | OK (1ed944d2…) | OK (5ddc2553…) | OK (6224647f…) |
+| M-1 circuit review | OK (1ed944d2…) | OK (5ddc2553…) | OK (3f7cec3d…) |
 | M-5 layout review | OK (67c811e0…) | OK (d0021b33…) | OK (4e836f8e…) |
-| M-6 regulatory review | OK, private (1ed944d2…) | OK, private (5ddc2553…) | OK, private, radio off (6224647f…) |
+| M-6 regulatory review | OK, private (1ed944d2…) | OK, private (5ddc2553…) | OK, private, Wi-Fi (3f7cec3d…) |
 | last gate run with EasyEDA | 20261026-123018 | 20261026-123036 | 20261026-123051 |
 | release gate | L-3 open | L-3 open | L-3 open |
 
 The hashes are the ones the reviewers signed. The move to edakit's split config (commit a1a1d80) re-stamped the
 layout hashes without a change of content ("rehashed" in each signoff.json). The purpose `private` in each graph
 (D-16) changed the circuit hashes: M-1 was confirmed again, M-6 – the regulatory review, required for every release
-since edakit ef1183f – signed for the new ones. On esp32 it holds only while the firmware keeps Wi-Fi and Bluetooth
-off and the module runs from USB without a cell (D-13). The offline gate (runs 20261026-145535 of smd and tht,
-20261026-145638 of esp32) counts M-1, M-5 and M-6. One thing is left:
+since edakit ef1183f – signed for the new ones. On esp32 both were renewed for Wi-Fi (D-17): M-6 holds with the radio
+settings of D-13 (channels 1–13, no Bluetooth) and USB power without a cell, M-1 with the module's higher current
+and a USB source of at least 1 A. The offline gate (runs 20261026-145535 of smd and tht, 20261026-172213 of esp32)
+counts M-1, M-5 and M-6. One thing is left:
 
 - **L-3** (EasyEDA DRC without findings): EasyEDA reports "Netlist Error – Import Changes" for parts freshly placed in
   a schematic until its import view was opened once in the GUI (edakit handbook 7.3). That needs a person at EasyEDA:

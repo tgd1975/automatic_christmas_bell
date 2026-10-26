@@ -23,7 +23,7 @@ polyfuse (MF-MSMF050) holds 0.5 A and is only guaranteed to trip at 1.0 A, many 
 diode (MBR0520, 0.5 A average) then carries about 0.81 A – harmless for the few seconds of a bell phase, not as a
 permanent state. The scenario `servo-stalled` runs as information only; the firmware detaches the servo 1 s after it
 has reached its rest position (since 2026-10-26, D-16), so a jam there cannot become a permanent overload (M-1
-review, note 4).
+review, note 4) – with an analog servo such as the SG90; a digital one may keep holding without pulses.
 
 ## D-4 Buttons switch 5 V instead of 3.3 V (2026-10-25)
 
@@ -179,7 +179,8 @@ The reviews of 2026-10-26, each by an agent in its own session:
 - **M-6** OK on esp32 after one round: the ESP32 could use Wi-Fi channel 14, outside the EU band, so the firmware
   keeps Wi-Fi and Bluetooth off (D-13 "Radio"); its power is within the limit. USB power only, no cell at the module's
   battery input. The T-Display's radio data and certificates – a test lab's CE attestation, no EU declaration of
-  conformity – are in its parts entry (variants/esp32/hardware/parts/C18722937.json).
+  conformity – are in its parts entry (variants/esp32/hardware/parts/C18722937.json). D-17 then put Wi-Fi to use
+  on channels 1–13; M-1 and M-6 of esp32 were renewed for it.
 - **Notes:** the Nano firmware did not detach the servo, so a jam at rest stayed an overload until the bell was
   unplugged (D-3); since 2026-10-26 it detaches the servo 1 s after the rest move (owner's OK). At its end the bell
   goes to e-waste collection (ElektroG § 10).
@@ -209,3 +210,4 @@ The firmware is variants/esp32/firmware (PlatformIO; the countdown logic lib/Bel
   continuously, ESP32 datasheet table 5-4). The simulation gives up to 0.66 A while the bell swings and 1.06 A with a
   stalled servo, above the module's 1N5819 (1 A) for the seconds of a bell phase (information, like D-3); the servo is
   detached at rest. Power the bell from a USB charger or power bank with at least 1 A rather than from a computer.
+  M-1 was renewed for it.

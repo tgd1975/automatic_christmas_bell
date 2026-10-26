@@ -1,6 +1,6 @@
 {
   "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, footprint geometry). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
-  "state_sha256": "6224647f706489a736c85d4c749d28f7a2ede0d28fdd76dfbd4787fa8e9607dd",
+  "state_sha256": "3f7cec3dee2ec86b900a0147ab38ce5f9ba55e8f35f8f40cef4073b58d03e432",
   "layout_sha256": "02d457776038c5d6a733139cb7469529821303ce5c7837753ebed610c3db0fd9",
   "manual": [
     {
@@ -10,7 +10,7 @@
       "text": "Critical parts (U1 T-Display pinout and the project-library footprint, C1 polarity, the 0805 LEDs' polarity, J1 servo pinout) checked a second time independently against datasheet and footprint – e.g. by the agent electrical-reviewer",
       "done_by": "agent electrical-reviewer (Claude, independent session)",
       "date": "2026-10-26",
-      "note": "Confirmed for state 6224647f… on 2026-10-26: commits 0e95428 (D-16) and 39893c3 add only the purpose and the T-Display's compliance data; check, sim and hints unchanged. OK for state 369afd68… (review of bc51d69e…, gate run 20261026-114808, then the corrected C17408 text and R8/R9 notes confirmed): U1 pins 1–24 = LILYGO pin map = schematic P4/P5 = KiCad/Eagle; 24 × Ø1.10 mm, rows Y 16.57/39.43 (22.86 mm), pitch 2.54, pins 1/13 square at the USB edge, 5V row at the front, copper traced from the Gerber files; ESP32 levels (buttons 3V3 on input-only IO38/IO37, strapping pins free), LEDs 7.3–11.4 mA, D2 1N5819 476 mA in the bell phase; C1 + at pad 1; LED cathodes at pad 2; J1 1 GND / 2 +5V / 3 SIG. Notes: the module's USB-C has one CC pull-down only (C-to-C works in one plug orientation); a stalled servo loads D2 with 87 % of 1 A – the firmware port must detach the servo at rest; check the U1 drill pattern again after the Import Changes click; the module fits turned by 180° (silkscreen 5V mark)."
+      "note": "OK for state 3f7cec3d… on 2026-10-26 (commit e6e8391, D-17: Wi-Fi, i_core_a 0.27 A as an upper bound): the module's 1N5819 carries 0.28 W in the bell phase and 0.48 W stalled for at most 5.8 s (rating 550 mW); the AP2112K stays within 600 mA; a USB source of at least 1 A is right, a 500 mA computer port is too little; the firmware variants/esp32/firmware keeps D-13 – plain inputs, debounce, the servo detached at rest, pins = pin_locks, LEDC 50 Hz. Notes: with one i_core_a the minimum-load check passes trivially (real minimum about 0.13 A, D-8 holds) and the R8/R9 notes still use the 0.08 A model – for the next circuit change; the module's LDO dissipation is not simulated (0.25–0.4 W in real use); the detach needs an analog servo. Before: Confirmed for state 6224647f… on 2026-10-26: commits 0e95428 (D-16) and 39893c3 add only the purpose and the T-Display's compliance data; check, sim and hints unchanged. OK for state 369afd68… (review of bc51d69e…, gate run 20261026-114808, then the corrected C17408 text and R8/R9 notes confirmed): U1 pins 1–24 = LILYGO pin map = schematic P4/P5 = KiCad/Eagle; 24 × Ø1.10 mm, rows Y 16.57/39.43 (22.86 mm), pitch 2.54, pins 1/13 square at the USB edge, 5V row at the front, copper traced from the Gerber files; ESP32 levels (buttons 3V3 on input-only IO38/IO37, strapping pins free), LEDs 7.3–11.4 mA, D2 1N5819 476 mA in the bell phase; C1 + at pad 1; LED cathodes at pad 2; J1 1 GND / 2 +5V / 3 SIG. Notes: the module's USB-C has one CC pull-down only (C-to-C works in one plug orientation); a stalled servo loads D2 with 87 % of 1 A – the firmware port must detach the servo at rest; check the U1 drill pattern again after the Import Changes click; the module fits turned by 180° (silkscreen 5V mark)."
     },
     {
       "id": "M-5",
@@ -28,7 +28,7 @@
       "text": "Regulatory review: circuit and parts against EU law for the stated purpose (RoHS, REACH, radio, batteries, product safety) – the agent regulatory-reviewer in its own session",
       "done_by": "agent regulatory-reviewer (Claude, independent session)",
       "date": "2026-10-26",
-      "note": "OK for state 6224647f… and purpose private (D-16), after one round (finding 'important': the radio): the T-Display's ESP32 transmits at 2.4 GHz within 100 mW e.i.r.p. (at most 20.5 dBm at the chip, antenna -4.32 dBi per MIC 211-211207), but can also use Wi-Fi channel 14 (2484 MHz), outside the EU band – the firmware keeps Wi-Fi and Bluetooth off (D-13 'Radio'). USB-C power only, no cell at the module's battery input (base load, no switch), no mains. LILYGO publishes a test lab's CE attestation (BACL SZ1210507-15661E-RF), not an EU declaration of conformity; RoHS and REACH data are not needed for own use. Notes: the board from JLCPCB carries no transmitter (U1 bom false); read the module's marking (attested model T-DISPLAY V1.1)."
+      "note": "OK for state 3f7cec3d… and purpose private (D-17, Wi-Fi in use): station and setup hotspot (WPA2, channel 1) only on channels 1–13 – every Wi-Fi start sets country DE with 802.11d off; the default power limit of 20 dBm with the -4.32 dBi antenna gives about 16 dBm e.i.r.p. against 20 dBm; no Bluetooth, no frames to other WLANs. Notes: the page is open to everyone in the home network (accepted in D-17); the home Wi-Fi password is stored in the module's flash – erase it before the module leaves the house. Before: OK for 6224647f… with the radio off (one round: channel 14)."
     },
     {
       "id": "M-2",
@@ -43,7 +43,7 @@
       "id": "M-4",
       "phase": "acceptance",
       "scope": "layout",
-      "text": "Acceptance of every delivered board: visual check, T-Display plugged in, current through USB, every LED, both buttons, the servo swings, the display shows the countdown",
+      "text": "Acceptance of every delivered board: visual check, T-Display plugged in, current through USB, every LED, both buttons, the servo swings, the display shows the countdown; Wi-Fi: the setup hotspot Glocke-XXXX on channels 1–13 with WPA2, the page at glocke.local, no Bluetooth device of the bell; the module marked T-DISPLAY V1.1",
       "done_by": null,
       "date": null,
       "note": null
