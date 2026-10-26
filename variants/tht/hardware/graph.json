@@ -4,6 +4,11 @@
   "version": "0.1",
   "date": "2026-10-26",
   "description": "Automatic Christmas bell, variant THT (D-12): the circuit of the main board with through-hole parts only, no assembly – a bare board to solder by hand.",
+  "purpose": {
+   "use": "private",
+   "market": "EU",
+   "notes": "Automatic Christmas bell, THT variant, for the owner's home, built and used by the owner – not sold or given away (D-16). Powered from a USB port or power bank through the Nano's USB; no battery holder, no mains, no radio."
+  },
   "conventions": {
    "pin_reference": "'<designator>.<pin>' with the pin numbers of the EasyEDA symbol",
    "v": "per net: [min, max] in V over all operating states",

@@ -150,3 +150,12 @@ Owner's decision: no new EasyEDA projects – the variants are the boards `smd`,
 edakit.toml, graph, parts database, simulation config and sign-offs. The parts database is not shared: the circuit
 hash of a board covers every file of its parts folder, so a part added for one variant would void the sign-offs of
 the others.
+
+## D-16 Purpose: private, all four boards (2026-10-26)
+
+Owner's decision: the boards main, smd, tht and esp32 are built for the owner's own use – `purpose.use = private`,
+market EU, in each graph. The regulatory review M-6 (edakit handbook 15, required for a release since edakit ef1183f)
+checks for this purpose; giving boards away or selling them needs a new purpose and a new M-6. The purpose is part of
+the circuit hash: adding it voids M-1 once on all four boards, the electrical reviewer confirms M-1 against that change. The main
+board stays released as ordered (hardware/README.md) – M-6 counts for a new order. The radio data of the T-Display
+(bands, power, no EU declaration of conformity found) is in its parts entry (variants/esp32/hardware/parts/C18722937.json).

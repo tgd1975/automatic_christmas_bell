@@ -218,6 +218,25 @@
    "source": "tail of a 2.54 mm female header 1x12 (the module plugs into it): usually 0.64 mm square – assumption like the Nano's (D-7)"
   }
  },
+ "compliance": {
+  "rohs": null,
+  "reach": null,
+  "radio": {
+   "bands_mhz": [
+    [
+     2402,
+     2480
+    ],
+    [
+     2412,
+     2484
+    ]
+   ],
+   "max_dbm": 20.5,
+   "doc": null
+  },
+  "source": "Espressif ESP32 datasheet v5.3 (2026-07), table 5-6 Wi-Fi radio: operating frequency range 2412-2484 MHz (channel centres 1-14, set by software: 'Device should operate in the frequency range allocated by regional regulatory authorities'), TX power 11b mode 18.5/19.5/20.5 dBm min/typ/max, 11n MCS7 12-14 dBm, 'Target TX power is configurable'; table 5-12 Bluetooth LE: power control range -12 to +9 dBm; Bluetooth/BLE channels 2402-2480 MHz. Power is conducted at the chip's RF port – the gain of the T-Display's antenna is not stated by LILYGO. No EU declaration of conformity, RoHS or REACH statement for the T-Display found on lilygo.cc, in github.com/Xinyuan-LilyGO/TTGO-T-Display or by web search (2026-10-26)."
+ },
  "hints": [
   "The 5V pin is USB VBUS behind the module's 1N5819 (D2, 1 A); with a LiPo on the module it carries the battery voltage through Q5 instead.",
   "IO36-IO39 are input-only, without internal pulls; IO12/IO15/IO2 are strapping pins."
