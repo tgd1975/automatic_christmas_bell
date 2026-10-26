@@ -31,7 +31,7 @@ SMD parts (resistors, buttons); the headers, LEDs, C1 and J1 are hand-soldered.
 | [graph.json](graph.json) | the hardware graph: 17 parts, 15 nets with voltage ranges, the pin locks for the firmware – the only source of the circuit |
 | [parts/](parts/) | one entry per LCSC number: pins with roles, ratings, lead sizes, datasheet sign-off |
 | [sim.json](sim.json) | USB at 4.45/4.7/5.05 V × idle, countdown, warning, bell × LED corners; a stalled servo as fault case |
-| [signoff.json](signoff.json) | manual checks M-1, M-5, M-2, M-4 |
+| [signoff.json](signoff.json) | manual checks M-1, M-5, M-6, M-2, M-4 |
 | [../docs/decisions.md](../docs/decisions.md) | numbered decisions D-1 … D-15 |
 | [../variants](../variants/README.md) | three variants of this board: SMD, THT only, ESP32 with display (D-11 … D-15) |
 
@@ -87,3 +87,7 @@ One click in the GUI: *Design → Import Changes* once, which showed "no changes
 
 **Released** on 2026-10-25, gate run 20261025-220549: every stage passes, M-1 and M-5 are signed. What remains is the
 manufacturer's assembly preview (M-2) and the acceptance test of the delivered boards (M-4).
+
+For a new order: since 2026-10-26 the graph states the purpose `private` (D-16). M-1 was confirmed again for the new
+circuit hash, and the regulatory review M-6, which edakit now requires for a release, is signed. A gate run with
+EasyEDA releases the current state.

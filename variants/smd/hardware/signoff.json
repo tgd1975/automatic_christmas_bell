@@ -1,6 +1,6 @@
 {
   "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, footprint geometry). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
-  "state_sha256": "7ec279135b38b1a8b94286d0501bfea94ba756363a28102ee9560b298f375ebb",
+  "state_sha256": "1ed944d2acdf7a30ac3515850c7252b2e41dc79077dee3591fe5bfb9e80ed9f0",
   "layout_sha256": "dc785647946b99be7fe5f0023596a2813bd0559c27f9e8ef858dfcbf5f25c1d5",
   "manual": [
     {
@@ -10,7 +10,7 @@
       "text": "Critical parts (U1 Nano pinout, C1 polarity, the 0805 LEDs' polarity, J1 servo pinout) checked a second time independently against datasheet and footprint – e.g. by the agent electrical-reviewer",
       "done_by": "agent electrical-reviewer (Claude, independent session)",
       "date": "2026-10-26",
-      "note": "OK for state ae05035e… (gate run 20261026-114752): KT-0805 LED polarity at LED0805-R-RD from five sources (datasheets p. 2, footprint triangle/chamfer, symbols, graph/pcb.json, polarity sheet), LED currents 5.8–9.0 mA red/yellow and 3.7–6.6 mA green against 25/30 mA, C1 C3359 16 V and pad 1 = plus (datasheet Fig. 1), J1 pad 1 GND / 2 +5V / 3 SERVO, rest byte-identical to the main board. Notes: the SMD header J1 holds less sideways pull – plug straight, tie the servo cable to the frame (D-11 stands); the greens are about 5x brighter than red/yellow (no change); wording in C41417360/C9900187880 for the next circuit change."
+      "note": "Confirmed for state 1ed944d2… on 2026-10-26: commit 0e95428 (D-16) adds only the purpose; check, sim and hints unchanged. OK for state ae05035e… (gate run 20261026-114752): KT-0805 LED polarity at LED0805-R-RD from five sources (datasheets p. 2, footprint triangle/chamfer, symbols, graph/pcb.json, polarity sheet), LED currents 5.8–9.0 mA red/yellow and 3.7–6.6 mA green against 25/30 mA, C1 C3359 16 V and pad 1 = plus (datasheet Fig. 1), J1 pad 1 GND / 2 +5V / 3 SERVO, rest byte-identical to the main board. Notes: the SMD header J1 holds less sideways pull – plug straight, tie the servo cable to the frame (D-11 stands); the greens are about 5x brighter than red/yellow (no change); wording in C41417360/C9900187880 for the next circuit change."
     },
     {
       "id": "M-5",
@@ -20,6 +20,15 @@
       "done_by": "agent pcb-reviewer (Claude, independent session)",
       "date": "2026-10-26",
       "note": "OK for layout hash 67c811e0… (gate run 20261026-123018; first review of a0a80809… OK with notes, then keep-outs under the chevrons and the order-number placeholder under the Nano): smallest gap 0.206 mm (rule 0.203), copper 0.50 mm from the edge and 1.60 mm from the M3 cut-outs, tracks ≥ 0.557 mm from the Nano's NPTH holes, mask webs ≥ 0.136 mm, thermal spokes on every GND pad, polarity marks of LEDs/C1/J1 against P-2, silk ≥ 0.15 mm from openings. Notes: a tented GND via at (37.82, 48.00) sits on LED4's silk outline (cosmetic; a keep-out [37.2, 46.6, 38.4, 49.4] would move it); SMD J1 holds less sideways pull (D-11); order with 'Order Number (Specify Position)'."
+    },
+    {
+      "id": "M-6",
+      "phase": "export",
+      "scope": "circuit",
+      "text": "Regulatory review: circuit and parts against EU law for the stated purpose (RoHS, REACH, radio, batteries, product safety) – the agent regulatory-reviewer in its own session",
+      "done_by": "agent regulatory-reviewer (Claude, independent session)",
+      "date": "2026-10-26",
+      "note": "OK for state 1ed944d2… and purpose private (D-16): no transmitter, 5 V USB only, no battery, no mains; RoHS and REACH data are not needed for own use. Notes: the firmware never detaches the servo, so a jam at rest stays an overload until unplugged (D-3) – detach it after the rest move; EMVG § 6 applies to own use too (disturb nothing, no formalities) – nothing to do for this board; at its end the bell goes to e-waste collection (ElektroG § 10)."
     },
     {
       "id": "M-2",

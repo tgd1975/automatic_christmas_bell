@@ -1,6 +1,6 @@
 {
   "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, footprint geometry). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
-  "state_sha256": "1cfc41054d961d71c16e497c8d053177df325bb123e9fcf55bc76bdc2900636a",
+  "state_sha256": "5ddc2553ed77857eb2c21f141b2002500bbcc4ade0466987839877877435c8c8",
   "layout_sha256": "72508987cd839ab506f9eee8549040b5dd2e5882c47a4729f8b2799b257da397",
   "manual": [
     {
@@ -10,7 +10,7 @@
       "text": "Critical parts (U1 Nano pinout, C1 polarity, the 5 mm LEDs, J1 servo pinout, the THT buttons) checked a second time independently against datasheet and footprint – e.g. by the agent electrical-reviewer",
       "done_by": "agent electrical-reviewer (Claude, independent session)",
       "date": "2026-10-26",
-      "note": "OK for state 2d82925b… (gate run 20261026-114555): resistor ratings (R8/R9 0.25 W of 1 W, about 50 °C), every lead against its hole from the drill file (play 0.115–0.54 mm), buttons C110153 pins 1/2 and 3/4 connected (HRO drawing, cannot be soldered in wrong), 5 mm LEDs, C1, J1, U1 as on the main board. Notes: S1/S2 holes 1.3 mm against 1.0 mm recommended – press the button flat while soldering; C110153 lead thickness 0.30 mm is a drawing value; stale lines in C439782/C9900187880 for the next circuit change."
+      "note": "Confirmed for state 5ddc2553… on 2026-10-26: commit 0e95428 (D-16) adds only the purpose; check, sim and hints unchanged. OK for state 2d82925b… (gate run 20261026-114555): resistor ratings (R8/R9 0.25 W of 1 W, about 50 °C), every lead against its hole from the drill file (play 0.115–0.54 mm), buttons C110153 pins 1/2 and 3/4 connected (HRO drawing, cannot be soldered in wrong), 5 mm LEDs, C1, J1, U1 as on the main board. Notes: S1/S2 holes 1.3 mm against 1.0 mm recommended – press the button flat while soldering; C110153 lead thickness 0.30 mm is a drawing value; stale lines in C439782/C9900187880 for the next circuit change."
     },
     {
       "id": "M-5",
@@ -20,6 +20,15 @@
       "done_by": "agent pcb-reviewer (Claude, independent session)",
       "date": "2026-10-26",
       "note": "OK for layout hash d0021b33… (gate run 20261026-123036; first review of 660dee04… OK with notes, then 12 mil clearance, bottom-preferred layer cost and the order-number placeholder): smallest track-to-pad gap 0.310 mm, mask webs ≥ 0.184 mm, one tented via under the Nano, rings ≥ 0.26 mm, L-9 for all 71 holes, spokes on every GND pad. Notes: S1/S2 holes 1.3 mm (press flat while soldering); the top carries about 0.36 m of track (like the main board); order with 'Order Number (Specify Position)'."
+    },
+    {
+      "id": "M-6",
+      "phase": "export",
+      "scope": "circuit",
+      "text": "Regulatory review: circuit and parts against EU law for the stated purpose (RoHS, REACH, radio, batteries, product safety) – the agent regulatory-reviewer in its own session",
+      "done_by": "agent regulatory-reviewer (Claude, independent session)",
+      "date": "2026-10-26",
+      "note": "OK for state 5ddc2553… and purpose private (D-16): no transmitter, 5 V USB only, no battery, no mains; RoHS and REACH data are not needed for own use. Notes: the firmware never detaches the servo, so a jam at rest stays an overload until unplugged (D-3) – detach it after the rest move; EMVG § 6 applies to own use too (disturb nothing, no formalities) – nothing to do for this board; at its end the bell goes to e-waste collection (ElektroG § 10)."
     },
     {
       "id": "M-2",

@@ -141,7 +141,7 @@ female headers – the owner's choice, "the smaller variant" (the T-Display-S3 h
   20 dBm). Checked at M-4: none of these calls in the source, a phone shows no network or Bluetooth device of the
   bell. Radio later needs a decision of its own and a new M-6: channels 1–13 only (ESP-IDF's default country "01" or
   `esp_wifi_set_country_code("DE", true)`, never "JP" or channel 14), the module's own antenna, no custom PHY init
-  data.
+  data, no frames that disconnect or disturb other WLANs (BNetzA Vfg. 91/2025).
 - **Use:** the module's USB-C socket has a 5.1 kΩ pull-down on one CC line only: from a USB-C source (C-to-C cable)
   it gets power in one plug orientation only – use a USB-A-to-C cable or turn the plug over. The 2 × 12 pin field is
   symmetric: plug the module in with USB-C at the board edge and the display up (silkscreen "5V" at U1.1). No cell at
@@ -167,6 +167,19 @@ the others.
 Owner's decision: the boards main, smd, tht and esp32 are built for the owner's own use – `purpose.use = private`,
 market EU, in each graph. The regulatory review M-6 (edakit handbook 15, required for a release since edakit ef1183f)
 checks for this purpose; giving boards away or selling them needs a new purpose and a new M-6. The purpose is part of
-the circuit hash: adding it voids M-1 once on all four boards, the electrical reviewer confirms M-1 against that change. The main
-board stays released as ordered (hardware/README.md) – M-6 counts for a new order. The radio data of the T-Display
-(bands, power, no EU declaration of conformity found) is in its parts entry (variants/esp32/hardware/parts/C18722937.json).
+the circuit hash: adding it voided M-1 once on all four boards. The main board stays released as ordered
+(hardware/README.md) – M-6 counts for a new order.
+
+The reviews of 2026-10-26, each by an agent in its own session:
+
+- **M-1** confirmed on all four boards: the change adds only the purpose and, on esp32, the T-Display's compliance
+  data; checks, simulation and hints are unchanged.
+- **M-6** OK on main, smd and tht: no transmitter, 5 V USB only, no battery, no mains; RoHS and REACH data are not
+  needed for own use.
+- **M-6** OK on esp32 after one round: the ESP32 could use Wi-Fi channel 14, outside the EU band, so the firmware
+  keeps Wi-Fi and Bluetooth off (D-13 "Radio"); its power is within the limit. USB power only, no cell at the module's
+  battery input. The T-Display's radio data and certificates – a test lab's CE attestation, no EU declaration of
+  conformity – are in its parts entry (variants/esp32/hardware/parts/C18722937.json).
+- **Notes:** the Nano firmware never detaches the servo, so a jam at rest stays an overload until the bell is
+  unplugged (D-3) – detaching it after the rest move is a change of src/firmware and waits for the owner. At its end
+  the bell goes to e-waste collection (ElektroG § 10).

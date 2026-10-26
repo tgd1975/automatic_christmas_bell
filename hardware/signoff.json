@@ -1,6 +1,6 @@
 {
   "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, footprint geometry). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
-  "state_sha256": "0258cd6a45036feec039e828c830c5305fa0c03b37fd1ada836e6ab416e7de2c",
+  "state_sha256": "36ddd746a60dc92b54efb64c8eefd81f1cd7c3ae73fba79b2bef6c865b7362c4",
   "layout_sha256": "c874760d934571bac6f3be6f8aeb96da3e2f81ae8530672550f031e45d358417",
   "manual": [
     {
@@ -9,8 +9,8 @@
       "scope": "circuit",
       "text": "Critical parts (U1 Nano pinout, C1 polarity, the LEDs, J1 servo pinout) checked a second time independently against datasheet and footprint – e.g. by the agent electrical-reviewer",
       "done_by": "agent electrical-reviewer (Claude, independent session)",
-      "date": "2026-10-25",
-      "note": "OK for state 24059d28… (Nano footprint swap, D-7): every U1 pad checked by position against the standard Nano header order and the firmware pins (D2–D6 LEDs, D8 servo, pad 14 = D11 BTN_START, pad 15 = D12 BTN_RESET, 27 = 5V, 4/29 = GND); holes 1.10 mm. The U1 'verified' entry was written before this review and is backed by it. Open for the next circuit change: two stale source lines (C439782 polarity note, C9900187880 symbol-name note)."
+      "date": "2026-10-26",
+      "note": "Confirmed for state 36ddd746… on 2026-10-26: commit 0e95428 (D-16) adds only the purpose; check, sim and hints unchanged. OK for state 24059d28… (Nano footprint swap, D-7): every U1 pad checked by position against the standard Nano header order and the firmware pins (D2–D6 LEDs, D8 servo, pad 14 = D11 BTN_START, pad 15 = D12 BTN_RESET, 27 = 5V, 4/29 = GND); holes 1.10 mm. The U1 'verified' entry was written before this review and is backed by it. Open for the next circuit change: two stale source lines (C439782 polarity note, C9900187880 symbol-name note)."
     },
     {
       "id": "M-5",
@@ -20,6 +20,15 @@
       "done_by": "agent pcb-reviewer (Claude, independent session)",
       "date": "2026-10-25",
       "note": "OK for layout hash 519be82b… (gate run 20261025-215346, Nano footprint swap D-7): U1 pads at the old positions with the same nets, holes 1.1 mm with 0.30 mm ring, smallest copper gap 0.206 mm (rule 0.203), capitals ≥ 1.016 mm, copper 1.6 mm from the mounting cutouts. Notes: the top GND pour is more broken up (cosmetic, both pieces on GND); 4 NPTH corner holes of the Nano footprint."
+    },
+    {
+      "id": "M-6",
+      "phase": "export",
+      "scope": "circuit",
+      "text": "Regulatory review: circuit and parts against EU law for the stated purpose (RoHS, REACH, radio, batteries, product safety) – the agent regulatory-reviewer in its own session",
+      "done_by": "agent regulatory-reviewer (Claude, independent session)",
+      "date": "2026-10-26",
+      "note": "OK for state 36ddd746… and purpose private (D-16): no transmitter, 5 V USB only, no battery, no mains; RoHS and REACH data are not needed for own use. Notes: the firmware never detaches the servo, so a jam at rest stays an overload until unplugged (D-3) – detach it after the rest move; EMVG § 6 applies to own use too (disturb nothing, no formalities) – nothing to do for this board; at its end the bell goes to e-waste collection (ElektroG § 10)."
     },
     {
       "id": "M-2",

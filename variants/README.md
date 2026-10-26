@@ -71,19 +71,19 @@ pin 1 (5V) and pin 13 (3V3) at the USB end.
 | check, hints, sim | 0 errors, 1186 checks | 0 errors, 1186 checks | 0 errors, 1412 checks |
 | schematics in EasyEDA = graph | yes | yes | yes |
 | PCB routed | 15 nets, 3 vias | 15 nets, 1 via | 16 nets, 7 vias |
-| M-1 circuit review | OK (ae05035e…) | OK (2d82925b…) | OK (369afd68…) |
+| M-1 circuit review | OK (1ed944d2…) | OK (5ddc2553…) | OK (6224647f…) |
 | M-5 layout review | OK (67c811e0…) | OK (d0021b33…) | OK (4e836f8e…) |
-| last gate run | 20261026-123018 | 20261026-123036 | 20261026-123051 |
-| release gate | L-3 and M-6 open | L-3 and M-6 open | L-3 and M-6 open |
+| M-6 regulatory review | OK, private (1ed944d2…) | OK, private (5ddc2553…) | OK, private, radio off (6224647f…) |
+| last gate run with EasyEDA | 20261026-123018 | 20261026-123036 | 20261026-123051 |
+| release gate | L-3 open | L-3 open | L-3 open |
 
-The hashes are the ones the reviewers signed. The move to edakit's split config (commit a1a1d80) re-stamped them
-without a change of content ("rehashed" in each signoff.json). The offline gate with edakit 148d525 (run
-20261026-142714 of each variant) counts M-1 and M-5 and leaves two things open:
+The hashes are the ones the reviewers signed. The move to edakit's split config (commit a1a1d80) re-stamped the
+layout hashes without a change of content ("rehashed" in each signoff.json). The purpose `private` in each graph
+(D-16) changed the circuit hashes: M-1 was confirmed again, M-6 – the regulatory review, required for every release
+since edakit ef1183f – signed for the new ones. On esp32 it holds only while the firmware keeps Wi-Fi and Bluetooth
+off and the module runs from USB without a cell (D-13). The offline gate (runs 20261026-145535 of smd and tht,
+20261026-145638 of esp32) counts M-1, M-5 and M-6. One thing is left:
 
-- **M-6, the regulatory review** (edakit handbook 15), required for every release since edakit ef1183f. It needs the
-  owner's decision first: the purpose in each graph – `private`, `gift` or `sale`. The purpose is part of the circuit
-  hash, so M-1 has to be confirmed again for the new hash; then the agent regulatory-reviewer checks each board. The
-  ESP32 board carries a radio (the T-Display's Wi-Fi and Bluetooth): with `sale` the radio rules apply to it.
 - **L-3** (EasyEDA DRC without findings): EasyEDA reports "Netlist Error – Import Changes" for parts freshly placed in
   a schematic until its import view was opened once in the GUI (edakit handbook 7.3). That needs a person at EasyEDA:
 
@@ -96,14 +96,17 @@ without a change of content ("rehashed" in each signoff.json). The offline gate 
    table, ignoring the `G04` header lines, e.g.
    `for f in <old run>/fab/esp32/gerber/*; do diff -q <(grep -v '^G04' "$f") <(grep -v '^G04' "<new run>/fab/esp32/gerber/${f##*/}"); done`.
    Any difference – above all at U1's holes on esp32 – needs the reviewer again.
-4. RELEASED once M-6 is signed too: archive the run folder (`git add -f`), order from it (edakit release skill). At JLCPCB choose "Order
+4. RELEASED: archive the run folder (`git add -f`), order from it (edakit release skill). At JLCPCB choose "Order
    Number: Specify Position" – each board has `JLCJLCJLCJLC` under the module.
 
 ## Open
 
 - ESP32 firmware: src/firmware is written for the Nano. The pins of the ESP32 board are fixed in `checks.pin_locks` of
   the graph [esp32/hardware/graph.json](esp32/hardware/graph.json) (LEDs IO27/IO26/IO25/IO33/IO32, servo IO13, buttons
-  IO38/IO37); requirements from the review in D-13.
+  IO38/IO37); requirements from the reviews in D-13 – plain inputs, debounce, the servo detached at rest (M-1), Wi-Fi
+  and Bluetooth off (M-6).
+- Nano firmware (smd, tht and the main board): the servo is never detached, so a jam at rest stays an overload until
+  the bell is unplugged – detach it after the rest move (D-3, D-16). A change of src/firmware, it waits for the owner.
 - smd, cosmetic: a tented GND via sits on LED4's silkscreen outline at (37.82, 48.00); a keep-out
   `rect = [37.2, 46.6, 38.4, 49.4]` would move it (then route, silk, gate and M-5 again).
 - The EasyEDA project library still holds a device "zz-test-copy-nano" from the T-Display experiments; it is used
