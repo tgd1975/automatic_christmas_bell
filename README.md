@@ -127,6 +127,26 @@ make monitor
 
 ---
 
+## 📶 Variante ESP32: Display und Webseite
+
+Die Platine mit dem LILYGO T-Display ([variants](variants/README.md)) zeigt den Countdown auf ihrem Display und hat
+eine Webseite: Status, Zeit bis zum Läuten, Start, Pause, Stopp und Timer.
+
+1. **Erster Start:** Die Glocke öffnet den Hotspot `Glocke-XXXX`, Name und Passwort stehen auf dem Display.
+2. Mit dem Handy verbinden – die Einrichtungsseite öffnet sich (sonst http://192.168.4.1).
+3. Heim-WLAN wählen, Passwort eingeben, speichern.
+4. Danach: **http://glocke.local** (die Adresse steht auch auf dem Display).
+
+| Taste | Wirkung |
+|---|---|
+| Start | Countdown starten, nach Pause weiter |
+| Reset | Stopp |
+| Start halten + Reset | sofort läuten |
+| Reset 3 s halten, loslassen | WLAN an/aus (grüne LEDs leuchten) |
+| Reset 10 s halten, loslassen | WLAN vergessen, Hotspot öffnet sich (rote LED leuchtet) |
+
+---
+
 ## 📖 Detaillierte Dokumentation
 
 Die komplette Implementierung (Schaltplan, Code-Erklärung, Mechanik, Anpassungen) findest du in:

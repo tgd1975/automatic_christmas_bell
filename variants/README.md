@@ -56,13 +56,41 @@ pin 1 (5V) and pin 13 (3V3) at the USB end.
 
 - **ESP32:** solder the two 1×12 female headers with the T-Display plugged in, so they stand straight. Plug the module
   in with USB-C at the board edge and the display up – the pin field is symmetric, turned round it shorts 5V to GND
-  (silkscreen "5V" next to U1.1). The module's USB-C has a CC pull-down on one line only: power it from a USB-A port
-  with an A-to-C cable, or turn a C-to-C plug over if it stays dark. No LiPo at the module's battery connector: the
-  base load would drain it (D-13).
+  (silkscreen "5V" next to U1.1). The module's USB-C has a CC pull-down on one line only: power it from a USB charger
+  or power bank (at least 1 A, D-17) with an A-to-C cable, or turn a C-to-C plug over if it stays dark. No LiPo at the
+  module's battery connector: the base load would drain it (D-13).
 - **SMD and ESP32:** the SMD servo header J1 holds less sideways pull than a through-hole one – plug the servo
   straight and tie its cable to the frame.
 - **THT:** the button holes are 1.3 mm (library footprint) – press each button flat while soldering its first leg.
   5 mm LEDs: flat side and short leg to the right.
+
+## The ESP32 firmware
+
+[esp32/firmware](esp32/firmware) is a PlatformIO project (D-17): the countdown of the Nano, plus the display and a
+web page – status, time to ding, start, pause, stop and the timer.
+
+```bash
+cd variants/esp32/firmware
+pio run -e tdisplay -t upload   # build and flash (USB-C of the T-Display)
+pio test -e native              # the countdown logic lib/BellTimer on the computer
+```
+
+- **First start:** the bell opens the hotspot `Glocke-XXXX`; name and password are on the display. Join it with a
+  phone, the setup page opens (otherwise http://192.168.4.1), choose the home network and enter its password. The
+  bell joins it and shows its address – http://glocke.local. A network it cannot reach within 30 s opens the hotspot
+  again.
+- **Buttons:**
+
+  | Button | Does |
+  |---|---|
+  | start | countdown; while paused: go on |
+  | reset | stop |
+  | start held, then reset | ring now |
+  | reset held 3 s, released | Wi-Fi on/off (green LEDs while held) |
+  | reset held 10 s, released | forget the home network, the hotspot opens (red LED while held) |
+
+- **Radio:** channels 1–13 only (country DE, 802.11d off), no Bluetooth (D-13 "Radio").
+- Not yet tried on a module: flash it, then check the buttons, the LEDs, the servo, the page and the hotspot.
 
 ## Status (2026-10-26)
 
@@ -101,10 +129,7 @@ off and the module runs from USB without a cell (D-13). The offline gate (runs 2
 
 ## Open
 
-- ESP32 firmware: src/firmware is written for the Nano. The pins of the ESP32 board are fixed in `checks.pin_locks` of
-  the graph [esp32/hardware/graph.json](esp32/hardware/graph.json) (LEDs IO27/IO26/IO25/IO33/IO32, servo IO13, buttons
-  IO38/IO37); requirements from the reviews in D-13 – plain inputs, debounce, the servo detached at rest (M-1), Wi-Fi
-  and Bluetooth off (M-6).
+- ESP32 firmware: built and its countdown logic tested on the computer, not yet on a module (see above).
 - smd, cosmetic: a tented GND via sits on LED4's silkscreen outline at (37.82, 48.00); a keep-out
   `rect = [37.2, 46.6, 38.4, 49.4]` would move it (then route, silk, gate and M-5 again).
 - The EasyEDA project library still holds a device "zz-test-copy-nano" from the T-Display experiments; it is used

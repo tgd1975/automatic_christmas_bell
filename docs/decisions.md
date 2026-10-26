@@ -126,23 +126,22 @@ female headers – the owner's choice, "the smaller variant" (the T-Display-S3 h
 - **3.3 V logic:** the buttons switch the module's 3V3 (AP2112K) instead of 5 V – the ESP32's inputs take at most
   3.6 V (D-4 does not apply). The servo gets a 3.3 V PWM signal; hobby servos accept it.
 - **Supply:** the module's 5V pin is USB VBUS behind its 1N5819 (1 A): servo, C1 and the base load R8/R9 (D-8, kept)
-  hang there as on the Nano. The simulation gives about 470 mA while the bell swings, 870 mA with a stalled servo.
+  hang there as on the Nano. The simulation gives about 470 mA while the bell swings, 870 mA with a stalled servo –
+  with Wi-Fi (D-17) up to 0.66 A and 1.06 A.
 - **Placement:** the module where the Nano was, USB-C at the left edge; R8/R9 move to the right (the module covers
   their place).
-- **Open:** the firmware (src/firmware) is written for the Nano; the ESP32 needs its own port with the pins above
-  (`checks.pin_locks` in variants/esp32/hardware/graph.json) and a 3.3 V servo library. Requirements from the M-1
-  review: IO37/IO38 configured as plain inputs (no internal pulls exist), debounce as in buttons.ino (H-3), and the
-  servo detached once it is at rest with a limited bell phase – a stalled servo loads the module's 1N5819 with 0.87 A
-  of its 1 A (like D-3 on the Nano).
-- **Radio** (requirement from the M-6 review, D-16): the bell's firmware never switches on Wi-Fi or Bluetooth – no
-  Wi-Fi or Bluetooth library in the sketch (Arduino: no `WiFi.mode/begin/softAP/scanNetworks`, `BLEDevice::init`,
-  `BluetoothSerial.begin`, `btStart`; ESP-IDF: no `esp_wifi_start`, `esp_bt_controller_enable`); the Arduino core
-  starts neither by itself. The ESP32 can also use Wi-Fi channel 14 (2484 MHz), outside the EU band 2400–2483.5 MHz;
-  its power stays within the limit (at most 20.5 dBm at the chip, antenna −4.32 dBi: about 16 dBm e.i.r.p. against
-  20 dBm). Checked at M-4: none of these calls in the source, a phone shows no network or Bluetooth device of the
-  bell. Radio later needs a decision of its own and a new M-6: channels 1–13 only (ESP-IDF's default country "01" or
-  `esp_wifi_set_country_code("DE", true)`, never "JP" or channel 14), the module's own antenna, no custom PHY init
-  data, no frames that disconnect or disturb other WLANs (BNetzA Vfg. 91/2025).
+- **Firmware:** variants/esp32/firmware (D-17), the port of src/firmware with the pins above (`checks.pin_locks` in
+  variants/esp32/hardware/graph.json), the servo on an LEDC channel at 50 Hz. Requirements from the M-1 review:
+  IO37/IO38 configured as plain inputs (no internal pulls exist), debounce as in buttons.ino (H-3), and the servo
+  detached once it is at rest with a limited bell phase – a stalled servo loads the module's 1N5819 with 0.87 A of its
+  1 A (like D-3 on the Nano), with Wi-Fi up to 1.06 A.
+- **Radio** (requirement from the M-6 review, D-16; Wi-Fi since D-17): Bluetooth is never started – no
+  `BLEDevice::init`, `BluetoothSerial.begin`, `btStart`, `esp_bt_controller_enable`. Wi-Fi only as D-17 says: the
+  ESP32 can also use channel 14 (2484 MHz), outside the EU band 2400–2483.5 MHz, so the firmware sets the country DE
+  with 802.11d off (`esp_wifi_set_country_code("DE", false)` – with 802.11d on, an access point announcing JP would
+  open channel 14): channels 1–13 only. The module's own antenna, the default power limit (at most 20.5 dBm at the
+  chip, antenna −4.32 dBi: about 16 dBm e.i.r.p. against 20 dBm), no custom PHY init data, no frames that disconnect
+  or disturb other WLANs (BNetzA Vfg. 91/2025). Checked at M-4: a phone shows no Bluetooth device of the bell.
 - **Use:** the module's USB-C socket has a 5.1 kΩ pull-down on one CC line only: from a USB-C source (C-to-C cable)
   it gets power in one plug orientation only – use a USB-A-to-C cable or turn the plug over. The 2 × 12 pin field is
   symmetric: plug the module in with USB-C at the board edge and the display up (silkscreen "5V" at U1.1). No cell at
@@ -184,3 +183,29 @@ The reviews of 2026-10-26, each by an agent in its own session:
 - **Notes:** the Nano firmware did not detach the servo, so a jam at rest stayed an overload until the bell was
   unplugged (D-3); since 2026-10-26 it detaches the servo 1 s after the rest move (owner's OK). At its end the bell
   goes to e-waste collection (ElektroG § 10).
+
+## D-17 Variant ESP32: a web page over Wi-Fi (2026-10-26)
+
+Owner's decision: the ESP32 board gets a simple web page – status, time to ding, start, stop, pause and the timer.
+The firmware is variants/esp32/firmware (PlatformIO; the countdown logic lib/BellTimer with host tests).
+
+- **Wi-Fi:** on its first start the bell opens a setup hotspot `Glocke-XXXX` (WPA2; name and a password made once
+  per module on the display). Its page – phones show it as a login page – stores the home network; the bell then
+  joins it as a station and serves its page at http://glocke.local, the address is on the display. A home network
+  that was never reached opens the hotspot again after 30 s; one that worked before is retried. No internet service,
+  no Bluetooth; the page is open to everyone in the home network. Radio settings: D-13 "Radio" – channels 1–13
+  (country DE, 802.11d off), the module's own antenna, the default power limit. This replaces "Wi-Fi and Bluetooth
+  stay off" of D-16; M-6 was renewed for it.
+- **Buttons:** as on the Nano – start (while paused: go on), reset = stop, start held and reset = ring now. Reset held
+  3 s and released: Wi-Fi on or off, kept over a power cut. Held 10 s and released: forget the home network, the
+  setup hotspot opens. While reset is held, the display shows what releasing it does, and the LEDs: the green ones =
+  on/off, red = forget. A short press only stops, start during the hold cancels it.
+- **Timer:** the time from start to ding, 10 s to 24 h, 65 s by default as on the Nano (the countdown on the LEDs,
+  then 5 s final warning). It is stored in the module and counts from the next start. Pause holds the time to ding,
+  the current LED stays on; start goes on.
+- **Display:** the state, the time to ding (when idle: the timer) and the address of the page; while the setup
+  hotspot is open and the bell idle, its name and password.
+- **Supply:** with Wi-Fi the module draws more – 0.27 A as an upper bound in its parts entry (transmitting
+  continuously, ESP32 datasheet table 5-4). The simulation gives up to 0.66 A while the bell swings and 1.06 A with a
+  stalled servo, above the module's 1N5819 (1 A) for the seconds of a bell phase (information, like D-3); the servo is
+  detached at rest. Power the bell from a USB charger or power bank with at least 1 A rather than from a computer.

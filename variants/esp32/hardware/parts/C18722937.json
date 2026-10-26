@@ -197,7 +197,7 @@
   "regulator": "ldo",
   "vout_v": 3.3,
   "dropout_v": 0.25,
-  "i_core_a": 0.08,
+  "i_core_a": 0.27,
   "gpio_r_out_ohm": 30,
   "vih_ratio": 0.75,
   "vil_ratio": 0.25
@@ -247,7 +247,7 @@
   "LILYGO schematic ESP32-TFT(6-26): header P4 = 5V GND IO27 IO26 IO25 IO33 IO32 IO39 IO38 IO37 IO36 3V3 (pins 1-12), P5 = 3V3 GND GND IO12 IO13 IO15 IO2 IO17 IO22 IO21 GND GND; +5V = VBUS through 1N5819 (D2) or VBAT through SI2307 (Q5); 3V3 from AP2112K-3.3 (U7, 600 mA, dropout 250 mV at 600 mA)",
   "KiCad footprint TTGO-T-Display.kicad_mod and Eagle TTGO-TDisplay.lbr (LILYGO repository): rows 22.86 mm apart, pitch 2.54 mm, board 25.09 × 51.49 mm, first pin 15.93 mm from the USB end – same order as the pin map",
   "ESP32 datasheet: VIH 0.75 VDD, VIL 0.25 VDD, I/O at most VDD + 0.3 V = 3.6 V, input-only GPIO34-39, strapping pins MTDI (IO12), MTDO (IO15), IO2",
-  "i_core_a 0.08 A (ESP32 without WiFi plus display backlight): assumption",
+  "i_core_a 0.27 A with Wi-Fi (D-17): ESP32 datasheet v5.3 table 5-4 – transmitting 802.11b at +19.5 dBm 240 mA (50 % duty cycle), receiving 95-100 mA – plus about 0.03 A display backlight (assumption); an upper bound, the web page transmits little. Without Wi-Fi about 0.08 A (assumption)",
   "gpio_r_out_ohm 30 Ω and gpio_i_max_a 20 mA (default drive strength): assumption from the ESP32 datasheet (40 mA at the strongest setting)",
   "vin_min 3.6 V: AP2112K needs about 3.3 V + dropout; assumption",
   "EasyEDA: a device created through the API cannot be placed in the local client (GET_DEVICE: 'Device details data does not exist'); the stand-in C18722937 (2541FV-2x12P, symbol pins 1-24, prefix U) is placed, and its project copies are rebuilt – like pytree's RP2350-Zero (2026-10-26)"
