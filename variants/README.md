@@ -73,11 +73,18 @@ pin 1 (5V) and pin 13 (3V3) at the USB end.
 | M-1 circuit review | OK (ae05035e…) | OK (2d82925b…) | OK (369afd68…) |
 | M-5 layout review | OK (67c811e0…) | OK (d0021b33…) | OK (4e836f8e…) |
 | last gate run | 20261026-123018 | 20261026-123036 | 20261026-123051 |
-| release gate | only L-3 open | only L-3 open | only L-3 open |
+| release gate | L-3 and M-6 open | L-3 and M-6 open | L-3 and M-6 open |
 
-Every stage passes except L-3 (EasyEDA DRC without findings): EasyEDA reports "Netlist Error – Import Changes" for
-parts freshly placed in a schematic until its import view was opened once in the GUI (edakit handbook 7.3). That needs
-a person at EasyEDA:
+The hashes are the ones the reviewers signed. The move to edakit's split config (commit a1a1d80) re-stamped them
+without a change of content ("rehashed" in each signoff.json). The offline gate with edakit 148d525 (run
+20261026-142714 of each variant) counts M-1 and M-5 and leaves two things open:
+
+- **M-6, the regulatory review** (edakit handbook 15), required for every release since edakit ef1183f. It needs the
+  owner's decision first: the purpose in each graph – `private`, `gift` or `sale`. The purpose is part of the circuit
+  hash, so M-1 has to be confirmed again for the new hash; then the agent regulatory-reviewer checks each board. The
+  ESP32 board carries a radio (the T-Display's Wi-Fi and Bluetooth): with `sale` the radio rules apply to it.
+- **L-3** (EasyEDA DRC without findings): EasyEDA reports "Netlist Error – Import Changes" for parts freshly placed in
+  a schematic until its import view was opened once in the GUI (edakit handbook 7.3). That needs a person at EasyEDA:
 
 1. In EasyEDA, for each of the PCBs `smd`, `tht` and `esp32`: open the PCB, *Design → Import Changes*, it shows "no
    changes", close.
@@ -88,7 +95,7 @@ a person at EasyEDA:
    table, ignoring the `G04` header lines, e.g.
    `for f in <old run>/fab/esp32/gerber/*; do diff -q <(grep -v '^G04' "$f") <(grep -v '^G04' "<new run>/fab/esp32/gerber/${f##*/}"); done`.
    Any difference – above all at U1's holes on esp32 – needs the reviewer again.
-4. RELEASED: archive the run folder (`git add -f`), order from it (edakit release skill). At JLCPCB choose "Order
+4. RELEASED once M-6 is signed too: archive the run folder (`git add -f`), order from it (edakit release skill). At JLCPCB choose "Order
    Number: Specify Position" – each board has `JLCJLCJLCJLC` under the module.
 
 ## Open
