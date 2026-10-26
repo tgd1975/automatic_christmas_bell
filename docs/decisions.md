@@ -129,7 +129,13 @@ female headers – the owner's choice, "the smaller variant" (the T-Display-S3 h
 - **Placement:** the module where the Nano was, USB-C at the left edge; R8/R9 move to the right (the module covers
   their place).
 - **Open:** the firmware (src/firmware) is written for the Nano; the ESP32 needs its own port with the pins above
-  (`[checks] pin_locks` in variants/esp32/edakit.toml) and a 3.3 V servo library.
+  (`[checks] pin_locks` in variants/esp32/edakit.toml) and a 3.3 V servo library. Requirements from the M-1 review:
+  IO37/IO38 configured as plain inputs (no internal pulls exist), debounce as in buttons.ino (H-3), and the servo
+  detached once it is at rest with a limited bell phase – a stalled servo loads the module's 1N5819 with 0.87 A of its
+  1 A (like D-3 on the Nano).
+- **Use:** the module's USB-C socket has a 5.1 kΩ pull-down on one CC line only: from a USB-C source (C-to-C cable)
+  it gets power in one plug orientation only – use a USB-A-to-C cable or turn the plug over. The 2 × 12 pin field is
+  symmetric: plug the module in with USB-C at the board edge and the display up (silkscreen "5V" at U1.1).
 
 ## D-14 Variant ESP32: yellow-green instead of emerald green (2026-10-26)
 

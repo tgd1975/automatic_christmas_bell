@@ -7,7 +7,7 @@
  "footprint": "R0805",
  "jlc_class": "Basic Part",
  "datasheet": {
-  "url": "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C17630",
+  "url": "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C17408",
   "pinout_page": null
  },
  "pins": {
@@ -32,15 +32,15 @@
  },
  "spice": {},
  "sources": [
-  "EasyEDA library and LCSC parameter table (2026-10-25): 330 Ω ±1 %, 125 mW, 150 V",
-  "LCSC stock 2026-10-25: 1 020 500 pcs"
+  "LCSC parameter table (2026-10-26): 100 Ω ±1 %, 125 mW, 0805 thick film",
+  "LCSC stock 2026-10-26: 5 479 800 pcs; JLCPCB Basic Part (8 071 392 pcs at the gate run 20261026-114808)"
  ],
  "verified": {
-  "by": "Claude Opus 5.5 (datasheet check, automated)",
-  "date": "2026-10-25",
-  "datasheet": "UNI-ROYAL Thick Film Chip Resistors (same series as C17673)",
+  "by": "Claude Opus 5.5 (datasheet check)",
+  "date": "2026-10-26",
+  "datasheet": "UNI-ROYAL Thick Film Chip Resistors (same series as C17630, C17673)",
   "checked": [
-   "order code 0805W8F3300: W8 = 1/8 W, F = ±1 %, 330 Ω",
+   "order code 0805W8F1000: W8 = 1/8 W, F = ±1 %, 100 Ω",
    "0805 max. working voltage 150 V"
   ],
   "open": []
