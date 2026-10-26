@@ -63,8 +63,40 @@ pin 1 (5V) and pin 13 (3V3) at the USB end.
 - **THT:** the button holes are 1.3 mm (library footprint) – press each button flat while soldering its first leg.
   5 mm LEDs: flat side and short leg to the right.
 
+## Status (2026-10-26)
+
+| | smd | tht | esp32 |
+|---|---|---|---|
+| check, hints, sim | 0 errors, 1186 checks | 0 errors, 1186 checks | 0 errors, 1412 checks |
+| schematics in EasyEDA = graph | yes | yes | yes |
+| PCB routed | 15 nets, 3 vias | 15 nets, 1 via | 16 nets, 7 vias |
+| M-1 circuit review | OK (ae05035e…) | OK (2d82925b…) | OK (369afd68…) |
+| M-5 layout review | OK (67c811e0…) | OK (d0021b33…) | OK (4e836f8e…) |
+| last gate run | 20261026-123018 | 20261026-123036 | 20261026-123051 |
+| release gate | only L-3 open | only L-3 open | only L-3 open |
+
+Every stage passes except L-3 (EasyEDA DRC without findings): EasyEDA reports "Netlist Error – Import Changes" for
+parts freshly placed in a schematic until its import view was opened once in the GUI (edakit handbook 7.3). That needs
+a person at EasyEDA:
+
+1. In EasyEDA, for each of the PCBs `smd`, `tht` and `esp32`: open the PCB, *Design → Import Changes*, it shows "no
+   changes", close.
+2. Close all other tabs, then per variant `edakit gate --easyeda --config variants/<v>/edakit.toml`. With several
+   boards in one project, EasyEDA's BOM tool lists the parts of every open schematic tab – other boards' tabs make
+   F-1 fail.
+3. The reviews hold only for the files they checked: compare each new run's `fab/<v>/gerber/` with the run in the
+   table, ignoring the `G04` header lines, e.g.
+   `for f in <old run>/fab/esp32/gerber/*; do diff -q <(grep -v '^G04' "$f") <(grep -v '^G04' "<new run>/fab/esp32/gerber/${f##*/}"); done`.
+   Any difference – above all at U1's holes on esp32 – needs the reviewer again.
+4. RELEASED: archive the run folder (`git add -f`), order from it (edakit release skill). At JLCPCB choose "Order
+   Number: Specify Position" – each board has `JLCJLCJLCJLC` under the module.
+
 ## Open
 
 - ESP32 firmware: src/firmware is written for the Nano. The pins of the ESP32 board are fixed in
   `[checks] pin_locks` of [esp32/edakit.toml](esp32/edakit.toml) (LEDs IO27/IO26/IO25/IO33/IO32, servo IO13,
-  buttons IO38/IO37).
+  buttons IO38/IO37); requirements from the review in D-13.
+- smd, cosmetic: a tented GND via sits on LED4's silkscreen outline at (37.82, 48.00); a keep-out
+  `rect = [37.2, 46.6, 38.4, 49.4]` would move it (then route, silk, gate and M-5 again).
+- The EasyEDA project library still holds a device "zz-test-copy-nano" from the T-Display experiments; it is used
+  nowhere and can be deleted in EasyEDA (Library → Project).
