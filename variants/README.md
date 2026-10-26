@@ -41,11 +41,13 @@ Through EasyEDA the order is the one of the main board (../hardware/README.md), 
 
 ## The T-Display in EasyEDA
 
-The T-Display is neither in EasyEDA's library nor at LCSC. [esp32/hardware/lib/tdisplay_device.py](esp32/hardware/lib/tdisplay_device.py)
-draws its symbol, footprint and device into the project library of `christmas-bell`, from LILYGO's pin map, schematic
-and KiCad/Eagle libraries (all agree). The parts entry has no LCSC number; its key `LILYGO-T-DISPLAY-V1.1` stands in
-for one, and edakit finds the device through its device cache. After a fresh clone, run the script's `cache` step
-once before `schematic create` (`uv run --project <edakit> python variants/esp32/hardware/lib/tdisplay_device.py cache`).
+The T-Display is neither in EasyEDA's library nor at LCSC, and a device created through EasyEDA's API cannot be placed
+in the local client. The EasyEDA device of U1 is therefore a stand-in, the 2×12 female header C18722937, whose symbol
+and footprint copies in the project are rebuilt into the T-Display's by
+[esp32/hardware/lib/tdisplay_device.py](esp32/hardware/lib/tdisplay_device.py) (D-13). Order on a fresh EasyEDA
+project: `schematic create` (places the header, the copies appear in the project), the script, `schematic create`
+again (now with the T-Display's pins), then as usual. The parts entry
+[esp32/hardware/parts/C18722937.json](esp32/hardware/parts/C18722937.json) describes the T-Display, not the header.
 
 **Before ordering the ESP32 board, measure the module:** two rows of 12 pins, pitch 2.54 mm, rows 22.86 mm apart,
 pin 1 (5V) and pin 13 (3V3) at the USB end.

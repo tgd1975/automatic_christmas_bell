@@ -111,12 +111,15 @@ SMD button C127509, same pin pairs). LEDs, C1, J1 and the Nano as on the main bo
 Like the variant SMD, with a LILYGO T-Display V1.1 (ESP32-D0WDQ6, 1.14 inch ST7789V TFT) plugged into two 1×12
 female headers – the owner's choice, "the smaller variant" (the T-Display-S3 has a 1.9 inch display).
 
-- **Library:** the module is neither in EasyEDA's library nor at LCSC. Symbol, footprint and device were drawn into the
-  project library of `christmas-bell` (variants/esp32/hardware/lib/tdisplay_device.py) from LILYGO's pin map, its
-  schematic (headers P4/P5) and the KiCad and Eagle libraries of its repository – all four agree. Holes 1.1 mm, pads
-  1.7 mm as on the Nano footprint (D-7). The parts entry has no LCSC number but the key LILYGO-T-DISPLAY-V1.1; edakit
-  finds the device through its device cache (variants/README.md). **Measure the module before ordering:** rows
-  22.86 mm apart, pitch 2.54 mm.
+- **Library:** the module is neither in EasyEDA's library nor at LCSC, and a device created through the API cannot
+  be placed in the local client (GET_DEVICE: "Device details data does not exist"). So the EasyEDA device is a
+  stand-in: the 2×12 female header 2541FV-2x12P (C18722937, symbol pins 1–24, prefix U). EasyEDA keeps its symbol and
+  footprint as copies in the project; variants/esp32/hardware/lib/tdisplay_device.py rebuilds both into the
+  T-Display's – pin names from LILYGO's pin map, its schematic (headers P4/P5) and the KiCad and Eagle libraries of its
+  repository (all four agree), 2 × 12 pads 22.86 mm apart, holes 1.1 mm and pads 1.7 mm as on the Nano footprint
+  (D-7), module outline and USB end on the silkscreen. The same way the pytree project builds its RP2350-Zero from the
+  RP2040-Zero. Only the board esp32 uses C18722937; the footprint keeps the header's name. **Measure the module before
+  ordering:** rows 22.86 mm apart, pitch 2.54 mm.
 - **Pins:** LEDs on IO27, IO26, IO25, IO33, IO32 (one row, in countdown order), servo on IO13, buttons on IO38/IO37
   (input only, no internal pulls – R7/R6 pull down). The strapping pins IO12, IO15 and IO2 stay free.
 - **3.3 V logic:** the buttons switch the module's 3V3 (AP2112K) instead of 5 V – the ESP32's inputs take at most

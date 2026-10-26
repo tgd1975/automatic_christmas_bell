@@ -20,7 +20,7 @@
     "type": "module",
     "label": "LILYGO T-Display V1.1 (plugged in)",
     "part": "LILYGO TTGO T-Display V1.1",
-    "lcsc": "LILYGO-T-DISPLAY-V1.1",
+    "lcsc": "C18722937",
     "bom": false,
     "pins": {
      "1": "5V",
@@ -59,7 +59,7 @@
      "21",
      "22"
     ],
-    "notes": "Plugs into two 1x12 female headers, pitch 2.54 mm, rows 22.86 mm apart (hand-soldered, not in the graph). Powered through its USB-C socket; its 5V pin (VBUS behind the module's 1N5819) supplies the servo and C1, its 3V3 pin (AP2112K) the buttons. Strapping pins IO12/IO15/IO2 and the second 3V3 pin stay free (D-13)."
+    "notes": "Plugs into two 1x12 female headers, pitch 2.54 mm, rows 22.86 mm apart (hand-soldered, not in the graph). Powered through its USB-C socket; its 5V pin (VBUS behind the module's 1N5819) supplies the servo and C1, its 3V3 pin (AP2112K) the buttons. Strapping pins IO12/IO15/IO2 and the second 3V3 pin stay free. LCSC C18722937 is a stand-in for the EasyEDA device: its symbol and footprint are rebuilt in the project (D-13)."
    },
    {
     "designator": "J1",

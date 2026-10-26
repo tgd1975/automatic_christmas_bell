@@ -1,11 +1,11 @@
 {
- "lcsc": "LILYGO-T-DISPLAY-V1.1",
- "mpn": "LILYGO TTGO T-Display V1.1 (ESP32-D0WDQ6, 1.14 inch ST7789V TFT)",
+ "lcsc": "C18722937",
+ "mpn": "LILYGO TTGO T-Display V1.1 (ESP32-D0WDQ6, 1.14 inch ST7789V TFT); EasyEDA symbol and footprint: copies of 2541FV-2x12P (C18722937), rebuilt",
  "manufacturer": "LILYGO",
  "kind": "module",
  "package": "module 25.09 × 51.49 mm on two 1×12 pin headers, row spacing 22.86 mm; holes 1.1 mm, pads 1.7 mm",
- "footprint": "LILYGO-T-DISPLAY-V1.1_2x12-P2.54-LS22.86",
- "jlc_class": "not at LCSC/JLCPCB – project-library device of the EasyEDA project (variants/esp32/hardware/lib)",
+ "footprint": "HDR-TH_24P-P2.54-V-F-R2-C12-S2.54-2",
+ "jlc_class": "stand-in: not orderable as such – the T-Display is bought separately (not at LCSC/JLCPCB)",
  "datasheet": {
   "url": "https://github.com/Xinyuan-LilyGO/TTGO-T-Display",
   "pinout_page": "image/pinmap.jpg"
@@ -229,9 +229,10 @@
   "ESP32 datasheet: VIH 0.75 VDD, VIL 0.25 VDD, I/O at most VDD + 0.3 V = 3.6 V, input-only GPIO34-39, strapping pins MTDI (IO12), MTDO (IO15), IO2",
   "i_core_a 0.08 A (ESP32 without WiFi plus display backlight): assumption",
   "gpio_r_out_ohm 30 Ω and gpio_i_max_a 20 mA (default drive strength): assumption from the ESP32 datasheet (40 mA at the strongest setting)",
-  "vin_min 3.6 V: AP2112K needs about 3.3 V + dropout; assumption"
+  "vin_min 3.6 V: AP2112K needs about 3.3 V + dropout; assumption",
+  "EasyEDA: a device created through the API cannot be placed in the local client (GET_DEVICE: 'Device details data does not exist'); the stand-in C18722937 (2541FV-2x12P, symbol pins 1-24, prefix U) is placed, and its project copies are rebuilt – like pytree's RP2350-Zero (2026-10-26)"
  ],
- "notes": "Plugged into two 1x12 female headers (hand-soldered). Not in EasyEDA's library: symbol, footprint and device were drawn by variants/esp32/hardware/lib/tdisplay_device.py into the project library (D-13).",
+ "notes": "Plugged into two 1x12 female headers (hand-soldered). The LCSC number is a stand-in: the 2x12 female header C18722937 gives the EasyEDA device; variants/esp32/hardware/lib/tdisplay_device.py rebuilds its symbol and footprint copies in the project into the T-Display's (pins below, 2 x 12 pads 22.86 mm apart). The footprint keeps the header's name (D-13).",
  "verified": {
   "by": "Claude Opus 5.5 (datasheet check)",
   "date": "2026-10-26",
