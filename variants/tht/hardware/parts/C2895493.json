@@ -1,0 +1,76 @@
+{
+  "lcsc": "C2895493",
+  "mpn": "XL-504SURD",
+  "manufacturer": "XINGLIGHT(成兴光)",
+  "kind": "led",
+  "package": "5 mm THT",
+  "footprint": "LED-TH_BD5.9-P2.54-FD-RED",
+  "jlc_class": "Extended Part",
+  "datasheet": {
+    "url": "https://item.szlcsc.com/datasheet/XL-504SURD/3136208.html",
+    "pinout_page": null
+  },
+  "pins": {
+    "1": {
+      "name": "K",
+      "type": "passive",
+      "role": "anode"
+    },
+    "2": {
+      "name": "A",
+      "type": "passive",
+      "role": "cathode"
+    }
+  },
+  "params": {
+    "color": "red",
+    "vf_typ": 2.2,
+    "vf_min": 1.8,
+    "vf_max": 2.4,
+    "vf_at_a": 0.02,
+    "rs_ohm": 15
+  },
+  "ratings": {
+    "if_max_a": 0.02,
+    "vr_max": 5,
+    "p_max_w": 0.07
+  },
+  "spice": {},
+  "sources": [
+    "LCSC parameter table via EasyEDA (2026-10-20)",
+    "Vf 2.2 V @ 20 mA per LCSC",
+    "VR_max = 5 V: usual LED value, assumption without datasheet evidence – check when signing off",
+    "pin names as in the EasyEDA symbol (1 = K, 2 = A); roles follow the footprint, whose print marks pad 1 as anode (+) – symbol and footprint of this library part disagree"
+  ],
+  "notes": null,
+  "verified": {
+    "by": "Claude Opus 5.5 (datasheet check, automated)",
+    "date": "2026-10-20",
+    "datasheet": "XINGLIGHT XL-504SURD",
+    "checked": [
+      "IF 20 mA, IFP 80 mA, Pd 70 mW, VF 1.8/2.2/2.4 V @ 20 mA"
+    ],
+    "open": [
+      "VR not specified – 5 V assumed (XL-304UGD: 5 V)"
+    ],
+    "second_check": {
+      "by": "agent electrical-reviewer (Claude, independent session, M-1)",
+      "date": "2026-10-22",
+      "datasheet": "XINGLIGHT datasheet p. 7",
+      "checked": [
+        "footprint print (\"+\" or diode symbol, flat at pad 2) matches pin 1 = anode"
+      ],
+      "hint": "pin numbers as in the library, not the datasheet (there ① = cathode); the square pad is the anode"
+    }
+  },
+  "lead": {
+    "*": {
+      "shape": "square",
+      "a_mm": 0.5,
+      "b_mm": 0.5,
+      "tol_mm": null,
+      "hole_rec_mm": null,
+      "source": "agent electrical-reviewer, M-1 addendum 2026-10-22: XINGLIGHT datasheet (C2895493) p. 7 outline dimension, lead 0.5 in front and side view"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+ "lcsc": "C3359",
+ "mpn": "RVT1C102M1010",
+ "manufacturer": "Honor Elec",
+ "kind": "capacitor",
+ "package": "SMD aluminium electrolytic Ø10 × 10.2 mm",
+ "footprint": "CAP-SMD_BD10.0-L10.3-W10.3-FD",
+ "jlc_class": "Extended Part",
+ "datasheet": {
+  "url": "https://datasheet.lcsc.com/datasheet/pdf/4ec4cfc2b89f173d2532ed891957b1a7.pdf",
+  "pinout_page": null
+ },
+ "pins": {
+  "1": {
+   "name": "1",
+   "type": "passive",
+   "role": "plus"
+  },
+  "2": {
+   "name": "2",
+   "type": "passive",
+   "role": "minus"
+  }
+ },
+ "params": {
+  "value_f": 0.001,
+  "polarized": true
+ },
+ "ratings": {
+  "v_max": 16,
+  "i_ripple_a": 0.347
+ },
+ "spice": {},
+ "sources": [
+  "LCSC/JLCPCB parameters (2026-10-26): 1000 µF ±20 %, 16 V, 2000 h at 105 °C, 347 mA ripple at 120 Hz, D10 × L10.2 mm",
+  "JLCPCB part page (2026-10-26): PCBA type 'Economic and Standard' – the Economic assembly places it (D-11)",
+  "footprint CAP-SMD_BD10.0-L10.3-W10.3-FD (LCSC footprint SVG, 2026-10-26): '+' printed next to pad 1, '-' next to pad 2 – pin 1 = plus"
+ ],
+ "notes": null,
+ "verified": {
+  "by": "Claude Opus 5.5 (datasheet check)",
+  "date": "2026-10-26",
+  "datasheet": "Honor Elec RVT series (LCSC)",
+  "checked": [
+   "16 V rated, 1000 µF",
+   "pad 1 = plus (footprint print)"
+  ],
+  "open": [
+   "assembly preview at JLCPCB (M-2): capacitor polarity"
+  ]
+ }
+}

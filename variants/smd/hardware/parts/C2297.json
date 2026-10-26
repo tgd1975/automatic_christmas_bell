@@ -1,0 +1,58 @@
+{
+ "lcsc": "C2297",
+ "mpn": "KT-0805G",
+ "manufacturer": "Hubei KENTO Elec",
+ "kind": "led",
+ "package": "0805",
+ "footprint": "LED0805-R-RD",
+ "jlc_class": "Basic Part",
+ "datasheet": {
+  "url": "https://datasheet.lcsc.com/datasheet/pdf/de342fde3322df0797012cd7a04e2194.pdf",
+  "pinout_page": null
+ },
+ "pins": {
+  "1": {
+   "name": "A",
+   "type": "passive",
+   "role": "anode"
+  },
+  "2": {
+   "name": "K",
+   "type": "passive",
+   "role": "cathode"
+  }
+ },
+ "params": {
+  "color": "green",
+  "vf_typ": 2.85,
+  "vf_min": 2.6,
+  "vf_max": 3.1,
+  "vf_at_a": 0.005,
+  "rs_ohm": 10
+ },
+ "ratings": {
+  "if_max_a": 0.03,
+  "vr_max": 5,
+  "p_max_w": 0.1
+ },
+ "spice": {},
+ "sources": [
+  "datasheet KENTO KT-0805G Rev. A.0 (LCSC): VF 2.6-3.1 V at 5 mA, IF 30 mA, Pd 100 mW, VR 5 V, IV 175-430 mcd at 5 mA",
+  "pin names as in the EasyEDA symbol (LCSC symbol SVG, 2026-10-26)",
+  "footprint LED0805-R-RD (LCSC footprint SVG, 2026-10-26): pad 2 left, pad 1 right; the silkscreen triangle between the pads points to pad 2 and the outline is chamfered at pad 2 – pad 2 = cathode, as the symbol says (K = 2)",
+  "rs_ohm 10: assumption (fits the VF spread of the datasheet)"
+ ],
+ "notes": null,
+ "verified": {
+  "by": "Claude Opus 5.5 (datasheet check)",
+  "date": "2026-10-26",
+  "datasheet": "KENTO KT-0805G Rev. A.0",
+  "checked": [
+   "IF 30 mA, Pd 100 mW, VR 5 V, VF 2.6-3.1 V at 5 mA",
+   "symbol pin 1 = anode, pin 2 = cathode; footprint marks pad 2 as cathode (triangle and chamfer)"
+  ],
+  "open": [
+   "assembly preview at JLCPCB (M-2): LED polarity"
+  ]
+ }
+}

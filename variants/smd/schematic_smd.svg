@@ -1,0 +1,380 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="254.0mm" height="264.2mm" viewBox="0 0 1000 1040" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" stroke-linecap="round" stroke-linejoin="round">
+<rect width="1000" height="1040" fill="#ffffff"/>
+<polyline points="10,1030 990,1030 990,10 10,10 10,1030" fill="none" stroke="#888888" stroke-width="1.5"/>
+<polyline points="600,1030 990,1030 990,910 600,910 600,1030" fill="none" stroke="#888888" stroke-width="1.5"/>
+<text x="612" y="932" dy="0.35em" font-size="16" text-anchor="start" fill="#000000" font-weight="bold" xml:space="preserve">Christmas bell SMD</text>
+<text x="612" y="956" dy="0.35em" font-size="8" text-anchor="start" fill="#000000" xml:space="preserve">christmas-bell · board smd</text>
+<text x="612" y="974" dy="0.35em" font-size="8" text-anchor="start" fill="#000000" xml:space="preserve">graph v0.1 (2026-10-26) · 254 x 264 mm</text>
+<text x="612" y="992" dy="0.35em" font-size="7" text-anchor="start" fill="#000000" xml:space="preserve">drawn by edakit schematic draw – change the graph, not this drawing</text>
+<polyline points="48.84,674.5 590,674.5 590,40 48.84,40 48.84,674.5" fill="none" stroke="#888888" stroke-width="1" stroke-dasharray="6 4"/>
+<polyline points="655.6,244 960,244 960,40 655.6,40 655.6,244" fill="none" stroke="#888888" stroke-width="1" stroke-dasharray="6 4"/>
+<polyline points="40,870 430,870 430,730 40,730 40,870" fill="none" stroke="#888888" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="58.84" y="62" dy="0" font-size="16" text-anchor="start" fill="#000000" font-weight="bold" xml:space="preserve">Arduino Nano</text>
+<text x="58.84" y="76.4" dy="0" font-size="8" text-anchor="start" fill="#000000" xml:space="preserve">Plugged into two 1x15 female headers, powered through its USB socket</text>
+<text x="58.84" y="84.4" dy="0" font-size="8" text-anchor="start" fill="#000000" xml:space="preserve">D2-D6: countdown LEDs, D8: servo, D11/D12: start/reset buttons</text>
+<text x="58.84" y="92.4" dy="0" font-size="8" text-anchor="start" fill="#000000" xml:space="preserve">Symbol pins are ATmega ports; pins 14/15 are labelled PB4/PB3 – on the Nano they are D11 = PB3, D12 = PB4</text>
+<text x="665.6" y="62" dy="0" font-size="16" text-anchor="start" fill="#000000" font-weight="bold" xml:space="preserve">Servo</text>
+<text x="665.6" y="76.4" dy="0" font-size="8" text-anchor="start" fill="#000000" xml:space="preserve">Servo at the Nano&#x27;s 5V pin; C1 buffers its start-up peaks</text>
+<text x="50" y="752" dy="0" font-size="16" text-anchor="start" fill="#000000" font-weight="bold" xml:space="preserve">Notes</text>
+<text x="50" y="766.4" dy="0" font-size="8" text-anchor="start" fill="#000000" xml:space="preserve">Nets with the same name are connected (labels and power flags).</text>
+<text x="50" y="774.4" dy="0" font-size="8" text-anchor="start" fill="#000000" xml:space="preserve">Variant SMD (D-11): 0805 LEDs, SMD servo header and SMD buffer capacitor,</text>
+<text x="50" y="782.4" dy="0" font-size="8" text-anchor="start" fill="#000000" xml:space="preserve">all placed by JLCPCB; only the Nano&#x27;s female headers are hand-soldered.</text>
+<text x="50" y="790.4" dy="0" font-size="8" text-anchor="start" fill="#000000" xml:space="preserve">R8 + R9: base load, keeps USB power banks on (D-8).</text>
+<text x="50" y="798.4" dy="0" font-size="8" text-anchor="start" fill="#000000" xml:space="preserve">Source: graph.json v0.1 (2026-10-26)</text>
+<text x="50" y="806.4" dy="0" font-size="8" text-anchor="start" fill="#000000" xml:space="preserve">Drawn by edakit schematic draw – change the graph, not this sheet.</text>
+<polyline points="300,290 290,290" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="290,290 290,140" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="290,140 240,140" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="300,300 280,300" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="280,300 280,170" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="280,170 240,170" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="240,170 230,170" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="230,170 210,170" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="170,170 160,170" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="160,170 120,170" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="300,310 270,310" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="270,310 270,220" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="270,220 240,220" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="240,220 230,220" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="230,220 210,220" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="170,220 160,220" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="160,220 120,220" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="300,320 260,320" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="260,320 260,270" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="260,270 240,270" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="240,270 230,270" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="230,270 210,270" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="170,270 160,270" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="160,270 120,270" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="300,330 250,330" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="250,330 250,320" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="250,320 240,320" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="240,320 230,320" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="230,320 210,320" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="170,320 160,320" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="160,320 120,320" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="300,340 260,340" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="260,340 260,370" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="260,370 240,370" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="240,370 230,370" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="230,370 210,370" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="170,370 160,370" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="160,370 120,370" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="300,350 270,350" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="270,350 270,410" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="270,410 240,410" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="240,410 200,410" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="300,360 280,360" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="280,360 280,500" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="280,500 240,500" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="240,500 230,500" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="230,500 130,500" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="130,520 200,520" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="230,440 210,440" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="230,440 230,500" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="300,370 290,370" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="290,370 290,620" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="290,620 240,620" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="240,620 230,620" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="230,620 130,620" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="130,640 200,640" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="230,560 210,560" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="230,560 230,620" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="380,300 390,300" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="390,300 410,300" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="390,340 410,340" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="390,390 410,390" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="390,390 390,340" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="390,340 390,300" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="770,180 780,180" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="780,180 780,220" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="780,220 800,220" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="800,220 840,220" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="770,170 790,170" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="790,170 790,140" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="790,140 800,140" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="800,140 810,140" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="810,140 830,140" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="810,190 830,190" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="810,190 810,140" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="770,160 780,160" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="780,160 780,130" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<polyline points="780,130 800,130" fill="none" stroke="#16801a" stroke-width="1.2"/>
+<circle cx="230" cy="500" r="2.2" fill="#16801a" stroke="#16801a" stroke-width="1.2"/>
+<circle cx="230" cy="620" r="2.2" fill="#16801a" stroke="#16801a" stroke-width="1.2"/>
+<circle cx="390" cy="300" r="2.2" fill="#16801a" stroke="#16801a" stroke-width="1.2"/>
+<circle cx="390" cy="340" r="2.2" fill="#16801a" stroke="#16801a" stroke-width="1.2"/>
+<circle cx="810" cy="140" r="2.2" fill="#16801a" stroke="#16801a" stroke-width="1.2"/>
+<text x="245" y="165.5" dy="0.35em" font-size="6" text-anchor="middle" fill="#1f3a9f" xml:space="preserve">LED_Y1</text>
+<text x="145" y="165.5" dy="0.35em" font-size="6" text-anchor="middle" fill="#1f3a9f" xml:space="preserve">LED_Y1_A</text>
+<text x="240" y="215.5" dy="0.35em" font-size="6" text-anchor="middle" fill="#1f3a9f" xml:space="preserve">LED_Y2</text>
+<text x="145" y="215.5" dy="0.35em" font-size="6" text-anchor="middle" fill="#1f3a9f" xml:space="preserve">LED_Y2_A</text>
+<text x="235" y="265.5" dy="0.35em" font-size="6" text-anchor="middle" fill="#1f3a9f" xml:space="preserve">LED_R</text>
+<text x="145" y="265.5" dy="0.35em" font-size="6" text-anchor="middle" fill="#1f3a9f" xml:space="preserve">LED_R_A</text>
+<text x="275" y="325.5" dy="0.35em" font-size="6" text-anchor="middle" fill="#1f3a9f" xml:space="preserve">LED_G2</text>
+<text x="145" y="315.5" dy="0.35em" font-size="6" text-anchor="middle" fill="#1f3a9f" xml:space="preserve">LED_G2_A</text>
+<text x="235" y="365.5" dy="0.35em" font-size="6" text-anchor="middle" fill="#1f3a9f" xml:space="preserve">LED_G1</text>
+<text x="145" y="365.5" dy="0.35em" font-size="6" text-anchor="middle" fill="#1f3a9f" xml:space="preserve">LED_G1_A</text>
+<text x="200" y="405.5" dy="0.35em" font-size="6" text-anchor="start" fill="#1f3a9f" xml:space="preserve">SERVO</text>
+<text x="840" y="215.5" dy="0.35em" font-size="6" text-anchor="end" fill="#1f3a9f" xml:space="preserve">SERVO</text>
+<text x="205" y="495.5" dy="0.35em" font-size="6" text-anchor="middle" fill="#1f3a9f" xml:space="preserve">BTN_START</text>
+<text x="200" y="515.5" dy="0.35em" font-size="6" text-anchor="end" fill="#1f3a9f" xml:space="preserve">BTN_START</text>
+<text x="210" y="615.5" dy="0.35em" font-size="6" text-anchor="middle" fill="#1f3a9f" xml:space="preserve">BTN_RESET</text>
+<text x="200" y="635.5" dy="0.35em" font-size="6" text-anchor="end" fill="#1f3a9f" xml:space="preserve">BTN_RESET</text>
+<polyline points="240,140 234,140" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="234,136 234,144" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="232,137.5 232,142.5" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="230,139 230,141" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="80,170 74,170" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="74,166 74,174" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="72,167.5 72,172.5" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="70,169 70,171" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="80,220 74,220" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="74,216 74,224" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="72,217.5 72,222.5" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="70,219 70,221" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="80,270 74,270" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="74,266 74,274" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="72,267.5 72,272.5" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="70,269 70,271" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="80,320 74,320" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="74,316 74,324" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="72,317.5 72,322.5" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="70,319 70,321" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="80,370 74,370" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="74,366 74,374" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="72,367.5 72,372.5" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="70,369 70,371" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="90,500 84,500" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="84,496 84,504" fill="none" stroke="#8b1a1a" stroke-width="1.8"/>
+<text x="81" y="500" dy="0.35em" font-size="6" text-anchor="end" fill="#1f3a9f" xml:space="preserve">+5V</text>
+<polyline points="90,520 84,520" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="84,516 84,524" fill="none" stroke="#8b1a1a" stroke-width="1.8"/>
+<text x="81" y="520" dy="0.35em" font-size="6" text-anchor="end" fill="#1f3a9f" xml:space="preserve">+5V</text>
+<polyline points="170,440 164,440" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="164,436 164,444" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="162,437.5 162,442.5" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="160,439 160,441" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="90,620 84,620" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="84,616 84,624" fill="none" stroke="#8b1a1a" stroke-width="1.8"/>
+<text x="81" y="620" dy="0.35em" font-size="6" text-anchor="end" fill="#1f3a9f" xml:space="preserve">+5V</text>
+<polyline points="90,640 84,640" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="84,636 84,644" fill="none" stroke="#8b1a1a" stroke-width="1.8"/>
+<text x="81" y="640" dy="0.35em" font-size="6" text-anchor="end" fill="#1f3a9f" xml:space="preserve">+5V</text>
+<polyline points="170,560 164,560" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="164,556 164,564" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="162,557.5 162,562.5" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="160,559 160,561" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="410,300 416,300" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="416,304 416,296" fill="none" stroke="#8b1a1a" stroke-width="1.8"/>
+<text x="419" y="300" dy="0.35em" font-size="6" text-anchor="start" fill="#1f3a9f" xml:space="preserve">+5V</text>
+<polyline points="450,340 456,340" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="456,344 456,336" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="458,342.5 458,337.5" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="460,341 460,339" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="450,390 456,390" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="456,394 456,386" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="458,392.5 458,387.5" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="460,391 460,389" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="380,290 386,290" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="386,294 386,286" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="388,292.5 388,287.5" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="390,291 390,289" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="830,140 836,140" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="836,144 836,136" fill="none" stroke="#8b1a1a" stroke-width="1.8"/>
+<text x="839" y="140" dy="0.35em" font-size="6" text-anchor="start" fill="#1f3a9f" xml:space="preserve">+5V</text>
+<polyline points="870,190 876,190" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="876,194 876,186" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="878,192.5 878,187.5" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="880,191 880,189" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="800,130 806,130" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="806,134 806,126" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="808,132.5 808,127.5" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="810,131 810,129" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="300,290 310,290" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="300,300 310,300" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="300,310 310,310" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="300,320 310,320" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="300,330 310,330" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="300,340 310,340" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="300,350 310,350" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="300,360 310,360" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="300,370 310,370" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="380,290 370,290" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="380,300 370,300" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="310,380 370,380 370,280 310,280" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="312.5" y="290" dy="0.35em" font-size="6" text-anchor="start" fill="#000000" xml:space="preserve">GND</text>
+<text x="308.5" y="287" dy="0.35em" font-size="5" text-anchor="end" fill="#555555" xml:space="preserve">4</text>
+<text x="312.5" y="300" dy="0.35em" font-size="6" text-anchor="start" fill="#000000" xml:space="preserve">PD2</text>
+<text x="308.5" y="297" dy="0.35em" font-size="5" text-anchor="end" fill="#555555" xml:space="preserve">5</text>
+<text x="312.5" y="310" dy="0.35em" font-size="6" text-anchor="start" fill="#000000" xml:space="preserve">PD3</text>
+<text x="308.5" y="307" dy="0.35em" font-size="5" text-anchor="end" fill="#555555" xml:space="preserve">6</text>
+<text x="312.5" y="320" dy="0.35em" font-size="6" text-anchor="start" fill="#000000" xml:space="preserve">PD4</text>
+<text x="308.5" y="317" dy="0.35em" font-size="5" text-anchor="end" fill="#555555" xml:space="preserve">7</text>
+<text x="312.5" y="330" dy="0.35em" font-size="6" text-anchor="start" fill="#000000" xml:space="preserve">PD5</text>
+<text x="308.5" y="327" dy="0.35em" font-size="5" text-anchor="end" fill="#555555" xml:space="preserve">8</text>
+<text x="312.5" y="340" dy="0.35em" font-size="6" text-anchor="start" fill="#000000" xml:space="preserve">PD6</text>
+<text x="308.5" y="337" dy="0.35em" font-size="5" text-anchor="end" fill="#555555" xml:space="preserve">9</text>
+<text x="312.5" y="350" dy="0.35em" font-size="6" text-anchor="start" fill="#000000" xml:space="preserve">PB0</text>
+<text x="308.5" y="347" dy="0.35em" font-size="5" text-anchor="end" fill="#555555" xml:space="preserve">11</text>
+<text x="312.5" y="360" dy="0.35em" font-size="6" text-anchor="start" fill="#000000" xml:space="preserve">PB4</text>
+<text x="308.5" y="357" dy="0.35em" font-size="5" text-anchor="end" fill="#555555" xml:space="preserve">14</text>
+<text x="312.5" y="370" dy="0.35em" font-size="6" text-anchor="start" fill="#000000" xml:space="preserve">PB3</text>
+<text x="308.5" y="367" dy="0.35em" font-size="5" text-anchor="end" fill="#555555" xml:space="preserve">15</text>
+<text x="367.5" y="290" dy="0.35em" font-size="6" text-anchor="end" fill="#000000" xml:space="preserve">GND</text>
+<text x="371.5" y="287" dy="0.35em" font-size="5" text-anchor="start" fill="#555555" xml:space="preserve">29</text>
+<text x="367.5" y="300" dy="0.35em" font-size="6" text-anchor="end" fill="#000000" xml:space="preserve">5V</text>
+<text x="371.5" y="297" dy="0.35em" font-size="5" text-anchor="start" fill="#555555" xml:space="preserve">27</text>
+<text x="310" y="274" dy="0.35em" font-size="7" text-anchor="start" fill="#000000" xml:space="preserve">U1</text>
+<text x="310" y="386" dy="0.35em" font-size="6" text-anchor="start" fill="#000000" xml:space="preserve">Arduino Nano V3</text>
+<polyline points="210,170 200,170" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="170,170 180,170" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="200,166 180,166 180,174 200,174" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="190" y="159" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">R2</text>
+<text x="190" y="181" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">330Ω</text>
+<polyline points="120,170 110,170" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="80,170 90,170" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="110,170 105,170" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="95,170 90,170" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="105,164 105,176 95,170" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="95,164 95,176" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="102,177 98,181" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="97,182 98.06,179.53 99.47,180.94" fill="#8b1a1a" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="97,177 93,181" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="92,182 93.06,179.53 94.47,180.94" fill="#8b1a1a" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="100" y="157" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">LED3</text>
+<text x="100" y="189" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">KT-0805Y</text>
+<polyline points="210,220 200,220" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="170,220 180,220" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="200,216 180,216 180,224 200,224" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="190" y="209" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">R1</text>
+<text x="190" y="231" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">330Ω</text>
+<polyline points="120,220 110,220" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="80,220 90,220" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="110,220 105,220" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="95,220 90,220" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="105,214 105,226 95,220" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="95,214 95,226" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="102,227 98,231" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="97,232 98.06,229.53 99.47,230.94" fill="#8b1a1a" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="97,227 93,231" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="92,232 93.06,229.53 94.47,230.94" fill="#8b1a1a" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="100" y="207" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">LED2</text>
+<text x="100" y="239" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">KT-0805Y</text>
+<polyline points="210,270 200,270" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="170,270 180,270" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="200,266 180,266 180,274 200,274" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="190" y="259" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">R5</text>
+<text x="190" y="281" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">330Ω</text>
+<polyline points="120,270 110,270" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="80,270 90,270" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="110,270 105,270" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="95,270 90,270" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="105,264 105,276 95,270" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="95,264 95,276" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="102,277 98,281" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="97,282 98.06,279.53 99.47,280.94" fill="#8b1a1a" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="97,277 93,281" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="92,282 93.06,279.53 94.47,280.94" fill="#8b1a1a" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="100" y="257" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">LED1</text>
+<text x="100" y="289" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">KT-0805R</text>
+<polyline points="210,320 200,320" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="170,320 180,320" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="200,316 180,316 180,324 200,324" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="190" y="309" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">R3</text>
+<text x="190" y="331" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">330Ω</text>
+<polyline points="120,320 110,320" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="80,320 90,320" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="110,320 105,320" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="95,320 90,320" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="105,314 105,326 95,320" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="95,314 95,326" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="102,327 98,331" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="97,332 98.06,329.53 99.47,330.94" fill="#8b1a1a" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="97,327 93,331" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="92,332 93.06,329.53 94.47,330.94" fill="#8b1a1a" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="100" y="307" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">LED4</text>
+<text x="100" y="339" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">KT-0805G</text>
+<polyline points="210,370 200,370" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="170,370 180,370" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="200,366 180,366 180,374 200,374" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="190" y="359" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">R4</text>
+<text x="190" y="381" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">330Ω</text>
+<polyline points="120,370 110,370" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="80,370 90,370" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="110,370 105,370" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="95,370 90,370" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="105,364 105,376 95,370" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="95,364 95,376" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="102,377 98,381" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="97,382 98.06,379.53 99.47,380.94" fill="#8b1a1a" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="97,377 93,381" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="92,382 93.06,379.53 94.47,380.94" fill="#8b1a1a" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="100" y="357" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">LED5</text>
+<text x="100" y="389" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">KT-0805G</text>
+<polyline points="90,500 100,500" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="90,520 100,520" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="100,500 100,520" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="130,500 120,500" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="130,520 120,520" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="120,500 120,520" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="100,500 103.5,500" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="116.5,500 120,500" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<circle cx="105" cy="500" r="1.5" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<circle cx="115" cy="500" r="1.5" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="102,496 118,496" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="110,496 110,491" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="107,491 113,491" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="110" y="484" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">S1</text>
+<polyline points="210,440 200,440" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="170,440 180,440" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="200,436 180,436 180,444 200,444" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="190" y="429" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">R7</text>
+<text x="190" y="451" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">4.7kΩ</text>
+<polyline points="90,620 100,620" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="90,640 100,640" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="100,620 100,640" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="130,620 120,620" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="130,640 120,640" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="120,620 120,640" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="100,620 103.5,620" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="116.5,620 120,620" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<circle cx="105" cy="620" r="1.5" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<circle cx="115" cy="620" r="1.5" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="102,616 118,616" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="110,616 110,611" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="107,611 113,611" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="110" y="604" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">S2</text>
+<polyline points="210,560 200,560" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="170,560 180,560" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="200,556 180,556 180,564 200,564" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="190" y="549" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">R6</text>
+<text x="190" y="571" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">4.7kΩ</text>
+<polyline points="410,340 420,340" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="450,340 440,340" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="420,344 440,344 440,336 420,336" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="430" y="329" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">R8</text>
+<text x="430" y="351" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">100Ω</text>
+<polyline points="410,390 420,390" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="450,390 440,390" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="420,394 440,394 440,386 420,386" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="430" y="379" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">R9</text>
+<text x="430" y="401" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">100Ω</text>
+<polyline points="770,160 760,160" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="770,170 760,170" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="770,180 760,180" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polygon points="740,190 760,190 760,150 740,150" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
+<text x="761.5" y="157" dy="0.35em" font-size="5" text-anchor="start" fill="#555555" xml:space="preserve">1</text>
+<text x="761.5" y="167" dy="0.35em" font-size="5" text-anchor="start" fill="#555555" xml:space="preserve">2</text>
+<text x="761.5" y="177" dy="0.35em" font-size="5" text-anchor="start" fill="#555555" xml:space="preserve">3</text>
+<text x="760" y="144" dy="0.35em" font-size="7" text-anchor="end" fill="#000000" xml:space="preserve">J1</text>
+<text x="760" y="196" dy="0.35em" font-size="6" text-anchor="end" fill="#000000" xml:space="preserve">HX PZ2.54-1x3P TP-YQ</text>
+<polyline points="830,190 840,190" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="870,190 860,190" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="840,190 847.5,190" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="852.5,190 860,190" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="847.5,197 847.5,183" fill="none" stroke="#8b1a1a" stroke-width="2.4"/>
+<polyline points="852.5,197 852.5,183" fill="none" stroke="#8b1a1a" stroke-width="2.4"/>
+<text x="843" y="184" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">+</text>
+<text x="850" y="176" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">C1</text>
+</svg>

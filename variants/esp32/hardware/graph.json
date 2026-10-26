@@ -1,0 +1,502 @@
+{
+ "graph": {
+  "name": "christmas-bell-esp32",
+  "version": "0.1",
+  "date": "2026-10-26",
+  "description": "Automatic Christmas bell, variant ESP32 (D-13): like the SMD variant, with a LILYGO T-Display V1.1 (ESP32, 1.14 inch TFT) instead of the Nano. 3.3 V logic: the buttons switch 3V3, the LEDs run from 3.3 V outputs (yellow-green instead of emerald green, D-14).",
+  "conventions": {
+   "pin_reference": "'<designator>.<pin>' with the pin numbers of the EasyEDA symbol",
+   "v": "per net: [min, max] in V over all operating states",
+   "waive": "per net or component: {check id: reason} accepts a finding on purpose"
+  },
+  "hints": {
+   "H-1": "C1 1000 µF / 16 V electrolytic on +5V, next to J1 (it buffers the module's 5V pin)",
+   "H-3": "to be debounced in the ESP32 firmware like buttons.ino (50 ms); the firmware port is open (D-13)",
+   "H-7": "J1 is the servo's own cable inside the bell's frame, plugged once; no TVS – like the main board"
+  },
+  "components": [
+   {
+    "designator": "U1",
+    "type": "module",
+    "label": "LILYGO T-Display V1.1 (plugged in)",
+    "part": "LILYGO TTGO T-Display V1.1",
+    "lcsc": "LILYGO-T-DISPLAY-V1.1",
+    "bom": false,
+    "pins": {
+     "1": "5V",
+     "2": "GND",
+     "3": "IO27",
+     "4": "IO26",
+     "5": "IO25",
+     "6": "IO33",
+     "7": "IO32",
+     "8": "IO39",
+     "9": "IO38",
+     "10": "IO37",
+     "11": "IO36",
+     "12": "3V3",
+     "13": "3V3",
+     "14": "GND",
+     "15": "GND",
+     "16": "IO12",
+     "17": "IO13",
+     "18": "IO15",
+     "19": "IO2",
+     "20": "IO17",
+     "21": "IO22",
+     "22": "IO21",
+     "23": "GND",
+     "24": "GND"
+    },
+    "nc": [
+     "8",
+     "11",
+     "13",
+     "16",
+     "18",
+     "19",
+     "20",
+     "21",
+     "22"
+    ],
+    "notes": "Plugs into two 1x12 female headers, pitch 2.54 mm, rows 22.86 mm apart (hand-soldered, not in the graph). Powered through its USB-C socket; its 5V pin (VBUS behind the module's 1N5819) supplies the servo and C1, its 3V3 pin (AP2112K) the buttons. Strapping pins IO12/IO15/IO2 and the second 3V3 pin stay free (D-13)."
+   },
+   {
+    "designator": "J1",
+    "type": "connector",
+    "label": "Servo (GND, +5 V, signal), SMD header",
+    "part": "HX PZ2.54-1x3P TP-YQ",
+    "lcsc": "C41417360",
+    "pins": {
+     "1": "1",
+     "2": "2",
+     "3": "3"
+    },
+    "notes": "Standard servo plug: brown = GND (1), red = +5 V (2), orange = signal (3). SMD header, placed by JLCPCB (D-11)."
+   },
+   {
+    "designator": "C1",
+    "type": "capacitor",
+    "label": "Buffer capacitor for the servo (SMD)",
+    "part": "RVT1C102M1010 1000uF 16V SMD",
+    "lcsc": "C3359",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    },
+    "notes": "Absorbs the servo's start-up peaks so the ESP32 does not reset. SMD can (D-11)."
+   },
+   {
+    "designator": "LED5",
+    "type": "led",
+    "label": "0805 LED, yellow-green, countdown step 1",
+    "part": "KT-0805YG",
+    "lcsc": "C2292",
+    "pins": {
+     "1": "A",
+     "2": "K"
+    },
+    "notes": "D-14: yellow-green (VF 1.8-2.4 V) instead of emerald green (2.6-3.1 V) – the ESP32's 3.3 V outputs do not drive the emerald green reliably"
+   },
+   {
+    "designator": "R4",
+    "type": "resistor",
+    "label": "Series resistor LED5",
+    "part": "100 Ω 0805",
+    "lcsc": "C17408",
+    "value": "100Ω",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    },
+    "notes": "D-14: (3.3 V - 2.1 V) / (100 Ω + 30 Ω GPIO + 10 Ω LED) = 8.6 mA typ."
+   },
+   {
+    "designator": "LED4",
+    "type": "led",
+    "label": "0805 LED, yellow-green, countdown step 2",
+    "part": "KT-0805YG",
+    "lcsc": "C2292",
+    "pins": {
+     "1": "A",
+     "2": "K"
+    },
+    "notes": "D-14: yellow-green (VF 1.8-2.4 V) instead of emerald green (2.6-3.1 V) – the ESP32's 3.3 V outputs do not drive the emerald green reliably"
+   },
+   {
+    "designator": "R3",
+    "type": "resistor",
+    "label": "Series resistor LED4",
+    "part": "100 Ω 0805",
+    "lcsc": "C17408",
+    "value": "100Ω",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    },
+    "notes": "D-14: (3.3 V - 2.1 V) / (100 Ω + 30 Ω GPIO + 10 Ω LED) = 8.6 mA typ."
+   },
+   {
+    "designator": "LED3",
+    "type": "led",
+    "label": "0805 LED, yellow, countdown step 3",
+    "part": "KT-0805Y",
+    "lcsc": "C2296",
+    "pins": {
+     "1": "+",
+     "2": "-"
+    },
+    "notes": "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)"
+   },
+   {
+    "designator": "R2",
+    "type": "resistor",
+    "label": "Series resistor LED3",
+    "part": "100 Ω 0805",
+    "lcsc": "C17408",
+    "value": "100Ω",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    },
+    "notes": "D-14: (3.3 V - 2.1 V) / (100 Ω + 30 Ω GPIO + 10 Ω LED) = 8.6 mA typ."
+   },
+   {
+    "designator": "LED2",
+    "type": "led",
+    "label": "0805 LED, yellow, countdown step 4",
+    "part": "KT-0805Y",
+    "lcsc": "C2296",
+    "pins": {
+     "1": "+",
+     "2": "-"
+    },
+    "notes": "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)"
+   },
+   {
+    "designator": "R1",
+    "type": "resistor",
+    "label": "Series resistor LED2",
+    "part": "100 Ω 0805",
+    "lcsc": "C17408",
+    "value": "100Ω",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    },
+    "notes": "D-14: (3.3 V - 2.1 V) / (100 Ω + 30 Ω GPIO + 10 Ω LED) = 8.6 mA typ."
+   },
+   {
+    "designator": "LED1",
+    "type": "led",
+    "label": "0805 LED, red, countdown step 5",
+    "part": "KT-0805R",
+    "lcsc": "C2295",
+    "pins": {
+     "1": "A",
+     "2": "K"
+    },
+    "notes": "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)"
+   },
+   {
+    "designator": "R5",
+    "type": "resistor",
+    "label": "Series resistor LED1",
+    "part": "100 Ω 0805",
+    "lcsc": "C17408",
+    "value": "100Ω",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    },
+    "notes": "D-14: (3.3 V - 2.1 V) / (100 Ω + 30 Ω GPIO + 10 Ω LED) = 8.6 mA typ."
+   },
+   {
+    "designator": "S1",
+    "type": "button",
+    "label": "Start button",
+    "part": "K2-1102SP-C4SC-04",
+    "lcsc": "C127509",
+    "pins": {
+     "1": "1",
+     "2": "2",
+     "3": "3",
+     "4": "4"
+    },
+    "notes": "1/2 and 3/4 are connected inside the button."
+   },
+   {
+    "designator": "R7",
+    "type": "resistor",
+    "label": "Pull-down, start button",
+    "part": "4.7 kΩ 0805",
+    "lcsc": "C17673",
+    "value": "4.7kΩ",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    }
+   },
+   {
+    "designator": "S2",
+    "type": "button",
+    "label": "Reset button",
+    "part": "K2-1102SP-C4SC-04",
+    "lcsc": "C127509",
+    "pins": {
+     "1": "1",
+     "2": "2",
+     "3": "3",
+     "4": "4"
+    },
+    "notes": "1/2 and 3/4 are connected inside the button."
+   },
+   {
+    "designator": "R6",
+    "type": "resistor",
+    "label": "Pull-down, reset button",
+    "part": "4.7 kΩ 0805",
+    "lcsc": "C17673",
+    "value": "4.7kΩ",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    }
+   },
+   {
+    "designator": "R8",
+    "type": "resistor",
+    "label": "Base load for USB power banks (R8 ∥ R9 = 50 Ω, 100 mA)",
+    "part": "100 Ω 2512 1 W",
+    "lcsc": "C35218",
+    "value": "100Ω",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    },
+    "notes": "Keeps a power bank from switching off: the circuit alone draws 35–75 mA (D-8)."
+   },
+   {
+    "designator": "R9",
+    "type": "resistor",
+    "label": "Base load for USB power banks (R8 ∥ R9 = 50 Ω, 100 mA)",
+    "part": "100 Ω 2512 1 W",
+    "lcsc": "C35218",
+    "value": "100Ω",
+    "pins": {
+     "1": "1",
+     "2": "2"
+    },
+    "notes": "Keeps a power bank from switching off: the circuit alone draws 35–75 mA (D-8)."
+   }
+  ],
+  "nets": [
+   {
+    "name": "+5V",
+    "pins": [
+     "C1.1",
+     "J1.2",
+     "R8.1",
+     "R9.1",
+     "U1.1"
+    ],
+    "v": [
+     0,
+     5.5
+    ],
+    "notes": "5V pin of the T-Display: USB VBUS behind the module's 1N5819; supplies the servo and C1."
+   },
+   {
+    "name": "+3V3",
+    "pins": [
+     "U1.12",
+     "S1.1",
+     "S1.2",
+     "S2.1",
+     "S2.2"
+    ],
+    "v": [
+     0,
+     3.4
+    ],
+    "notes": "3V3 pin of the T-Display (AP2112K-3.3); switched to the inputs by the buttons (D-13)."
+   },
+   {
+    "name": "GND",
+    "pins": [
+     "C1.2",
+     "J1.1",
+     "R6.2",
+     "R7.2",
+     "R8.2",
+     "R9.2",
+     "LED5.2",
+     "LED4.2",
+     "LED3.2",
+     "LED2.2",
+     "LED1.2",
+     "U1.2",
+     "U1.14",
+     "U1.15",
+     "U1.23",
+     "U1.24"
+    ],
+    "v": [
+     0,
+     0
+    ]
+   },
+   {
+    "name": "SERVO",
+    "pins": [
+     "J1.3",
+     "U1.17"
+    ],
+    "v": [
+     0,
+     3.4
+    ],
+    "notes": "IO13, 3.3 V PWM into the servo's signal input (D-13)."
+   },
+   {
+    "name": "BTN_START",
+    "pins": [
+     "S1.3",
+     "S1.4",
+     "R7.1",
+     "U1.9"
+    ],
+    "v": [
+     0,
+     3.4
+    ],
+    "notes": "Pressed = 3.3 V at IO38 (input only), else R7 pulls to GND (D-13)."
+   },
+   {
+    "name": "BTN_RESET",
+    "pins": [
+     "S2.3",
+     "S2.4",
+     "R6.1",
+     "U1.10"
+    ],
+    "v": [
+     0,
+     3.4
+    ],
+    "notes": "Pressed = 3.3 V at IO37 (input only), else R6 pulls to GND (D-13)."
+   },
+   {
+    "name": "LED_G1",
+    "pins": [
+     "R4.1",
+     "U1.3"
+    ],
+    "v": [
+     0,
+     3.4
+    ]
+   },
+   {
+    "name": "LED_G1_A",
+    "pins": [
+     "R4.2",
+     "LED5.1"
+    ],
+    "v": [
+     0,
+     3.4
+    ]
+   },
+   {
+    "name": "LED_G2",
+    "pins": [
+     "R3.1",
+     "U1.4"
+    ],
+    "v": [
+     0,
+     3.4
+    ]
+   },
+   {
+    "name": "LED_G2_A",
+    "pins": [
+     "R3.2",
+     "LED4.1"
+    ],
+    "v": [
+     0,
+     3.4
+    ]
+   },
+   {
+    "name": "LED_Y1",
+    "pins": [
+     "R2.1",
+     "U1.5"
+    ],
+    "v": [
+     0,
+     3.4
+    ]
+   },
+   {
+    "name": "LED_Y1_A",
+    "pins": [
+     "R2.2",
+     "LED3.1"
+    ],
+    "v": [
+     0,
+     3.4
+    ]
+   },
+   {
+    "name": "LED_Y2",
+    "pins": [
+     "R1.1",
+     "U1.6"
+    ],
+    "v": [
+     0,
+     3.4
+    ]
+   },
+   {
+    "name": "LED_Y2_A",
+    "pins": [
+     "R1.2",
+     "LED2.1"
+    ],
+    "v": [
+     0,
+     3.4
+    ]
+   },
+   {
+    "name": "LED_R",
+    "pins": [
+     "R5.1",
+     "U1.7"
+    ],
+    "v": [
+     0,
+     3.4
+    ]
+   },
+   {
+    "name": "LED_R_A",
+    "pins": [
+     "R5.2",
+     "LED1.1"
+    ],
+    "v": [
+     0,
+     3.4
+    ]
+   }
+  ],
+  "cables": []
+ }
+}

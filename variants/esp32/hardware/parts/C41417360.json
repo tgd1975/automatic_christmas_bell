@@ -1,0 +1,55 @@
+{
+ "lcsc": "C41417360",
+ "mpn": "HX PZ2.54-1x3P TP-YQ",
+ "manufacturer": "hanxia",
+ "kind": "connector",
+ "package": "pin header 1×3, pitch 2.54, SMD, vertical, staggered pins",
+ "footprint": "HDR-SMD_3P-P2.54-V-M_HX-PZ2.54-1X3P-TP-YQ",
+ "jlc_class": "Extended Part",
+ "datasheet": {
+  "url": "https://datasheet.lcsc.com/datasheet/pdf/fa1181a8bfc52bffce9f2fd5323a6a2c.pdf",
+  "pinout_page": null
+ },
+ "pins": {
+  "1": {
+   "name": "1",
+   "type": "passive",
+   "role": "pin1"
+  },
+  "2": {
+   "name": "2",
+   "type": "passive",
+   "role": "pin2"
+  },
+  "3": {
+   "name": "3",
+   "type": "passive",
+   "role": "pin3"
+  }
+ },
+ "params": {
+  "r_contact_ohm": 0.02,
+  "pitch_mm": 2.54
+ },
+ "ratings": {
+  "i_max_a": 3.0,
+  "v_max": 250
+ },
+ "spice": {},
+ "sources": [
+  "JLCPCB parameters (2026-10-26): 1×3, 2.54 mm, 3 A, SMD vertical, staggered pins",
+  "v_max 250 V: assumption like the THT header C2937625 (JLCPCB lists 1 kV withstanding)",
+  "footprint (LCSC footprint SVG, 2026-10-26): pads 1-2-3 in a row, 2.54 mm apart, 1 and 3 to one side, 2 to the other"
+ ],
+ "notes": "SMD header for the servo plug (D-11); its pads hold less pulling force than through-holes",
+ "verified": {
+  "by": "Claude Opus 5.5 (datasheet check)",
+  "date": "2026-10-26",
+  "datasheet": "hanxia HX PZ2.54-1x3P TP-YQ drawing",
+  "checked": [
+   "pin order 1-2-3 along the row",
+   "3 A"
+  ],
+  "open": []
+ }
+}

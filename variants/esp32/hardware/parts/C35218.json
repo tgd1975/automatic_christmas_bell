@@ -1,0 +1,48 @@
+{
+  "lcsc": "C35218",
+  "mpn": "25121WF1000T4E",
+  "manufacturer": "UNI-ROYAL(厚声)",
+  "kind": "resistor",
+  "package": "2512",
+  "footprint": "R2512",
+  "jlc_class": "Extended Part",
+  "datasheet": {
+    "url": "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C35218",
+    "pinout_page": null
+  },
+  "pins": {
+    "1": {
+      "name": "1",
+      "type": "passive",
+      "role": "1"
+    },
+    "2": {
+      "name": "2",
+      "type": "passive",
+      "role": "2"
+    }
+  },
+  "params": {
+    "value_ohm": 100.0,
+    "tolerance": 0.01
+  },
+  "ratings": {
+    "p_max_w": 1.0,
+    "v_max": 200
+  },
+  "spice": {},
+  "sources": [
+    "JLCPCB catalogue (2026-10-25): 100 Ω ±1 %, 1 W, 200 V, 2512, thick film; 10 829 pcs",
+    "footprint R2512 confirmed after placing (pad pitch 6.13 mm, gate L-4)"
+  ],
+  "verified": {
+    "by": "Claude Opus 5.5 (datasheet check, automated)",
+    "date": "2026-10-25",
+    "datasheet": "UNI-ROYAL Thick Film Chip Resistors (25121W series)",
+    "checked": [
+      "order code 25121WF1000: 1 W, F = ±1 %, 100 Ω",
+      "2512 max. working voltage 200 V"
+    ],
+    "open": []
+  }
+}

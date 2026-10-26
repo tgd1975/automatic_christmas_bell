@@ -1,0 +1,56 @@
+{
+ "lcsc": "C119469",
+ "mpn": "MF1W-100Ω±1% T",
+ "manufacturer": "CCO (Chian Chia Elec)",
+ "kind": "resistor",
+ "package": "THT axial Ø4.5 × 11.5 mm, pitch 15.5 mm",
+ "footprint": "RES-TH_BD4.0-L11.5-P15.50-D0.7",
+ "jlc_class": "Extended Part",
+ "datasheet": {
+  "url": "https://datasheet.lcsc.com/datasheet/pdf/442097c559f2eb401b6de319ad027dae.pdf",
+  "pinout_page": null
+ },
+ "pins": {
+  "1": {
+   "name": "1",
+   "type": "passive",
+   "role": "1"
+  },
+  "2": {
+   "name": "2",
+   "type": "passive",
+   "role": "2"
+  }
+ },
+ "params": {
+  "value_ohm": 100.0,
+  "tolerance": 0.01
+ },
+ "ratings": {
+  "p_max_w": 1.0,
+  "v_max": 350
+ },
+ "spice": {},
+ "lead": {
+  "*": {
+   "shape": "round",
+   "a_mm": 0.68,
+   "tol_mm": 0.05,
+   "hole_rec_mm": null,
+   "source": "CCO MF spec, MF1W: lead Ø0.68 ± 0.05 mm"
+  }
+ },
+ "sources": [
+  "CCO metal film spec: MF1W 1 W at 70 °C, 350 V working, Ø4.5 × 11.5 mm, lead 0.68 mm"
+ ],
+ "notes": null,
+ "verified": {
+  "by": "Claude Opus 5.5 (datasheet check)",
+  "date": "2026-10-26",
+  "datasheet": "CCO MF series spec (LCSC)",
+  "checked": [
+   "1 W, 350 V, lead 0.68 mm"
+  ],
+  "open": []
+ }
+}

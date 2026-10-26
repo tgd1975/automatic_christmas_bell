@@ -1,0 +1,248 @@
+{
+ "lcsc": "LILYGO-T-DISPLAY-V1.1",
+ "mpn": "LILYGO TTGO T-Display V1.1 (ESP32-D0WDQ6, 1.14 inch ST7789V TFT)",
+ "manufacturer": "LILYGO",
+ "kind": "module",
+ "package": "module 25.09 × 51.49 mm on two 1×12 pin headers, row spacing 22.86 mm; holes 1.1 mm, pads 1.7 mm",
+ "footprint": "LILYGO-T-DISPLAY-V1.1_2x12-P2.54-LS22.86",
+ "jlc_class": "not at LCSC/JLCPCB – project-library device of the EasyEDA project (variants/esp32/hardware/lib)",
+ "datasheet": {
+  "url": "https://github.com/Xinyuan-LilyGO/TTGO-T-Display",
+  "pinout_page": "image/pinmap.jpg"
+ },
+ "pins": {
+  "1": {
+   "name": "5V",
+   "type": "power_output",
+   "role": "vsys"
+  },
+  "2": {
+   "name": "GND",
+   "type": "ground",
+   "role": "gnd"
+  },
+  "3": {
+   "name": "IO27",
+   "type": "bidirectional",
+   "role": "gpio",
+   "vmax": 3.6
+  },
+  "4": {
+   "name": "IO26",
+   "type": "bidirectional",
+   "role": "gpio",
+   "vmax": 3.6
+  },
+  "5": {
+   "name": "IO25",
+   "type": "bidirectional",
+   "role": "gpio",
+   "vmax": 3.6
+  },
+  "6": {
+   "name": "IO33",
+   "type": "bidirectional",
+   "role": "gpio",
+   "vmax": 3.6
+  },
+  "7": {
+   "name": "IO32",
+   "type": "bidirectional",
+   "role": "gpio",
+   "vmax": 3.6
+  },
+  "8": {
+   "name": "IO39",
+   "type": "input",
+   "role": "gpio",
+   "vmax": 3.6,
+   "hint": "input only, no internal pull; ESP32 errata 3.11: short pull-down glitches while the ADC/RTC runs"
+  },
+  "9": {
+   "name": "IO38",
+   "type": "input",
+   "role": "gpio",
+   "vmax": 3.6,
+   "hint": "input only, no internal pull"
+  },
+  "10": {
+   "name": "IO37",
+   "type": "input",
+   "role": "gpio",
+   "vmax": 3.6,
+   "hint": "input only, no internal pull"
+  },
+  "11": {
+   "name": "IO36",
+   "type": "input",
+   "role": "gpio",
+   "vmax": 3.6,
+   "hint": "input only, no internal pull; ESP32 errata 3.11: short pull-down glitches while the ADC/RTC runs"
+  },
+  "12": {
+   "name": "3V3",
+   "type": "power_output",
+   "role": "3v3"
+  },
+  "13": {
+   "name": "3V3",
+   "type": "power_output",
+   "role": "3v3"
+  },
+  "14": {
+   "name": "GND",
+   "type": "ground",
+   "role": "gnd"
+  },
+  "15": {
+   "name": "GND",
+   "type": "ground",
+   "role": "gnd"
+  },
+  "16": {
+   "name": "IO12",
+   "type": "bidirectional",
+   "role": "gpio",
+   "vmax": 3.6,
+   "strap": "low",
+   "pull": "down",
+   "hint": "MTDI: high at reset selects 1.8 V flash – the module does not boot"
+  },
+  "17": {
+   "name": "IO13",
+   "type": "bidirectional",
+   "role": "gpio",
+   "vmax": 3.6
+  },
+  "18": {
+   "name": "IO15",
+   "type": "bidirectional",
+   "role": "gpio",
+   "vmax": 3.6,
+   "strap": "high",
+   "pull": "up",
+   "hint": "MTDO: low at reset silences the boot log"
+  },
+  "19": {
+   "name": "IO2",
+   "type": "bidirectional",
+   "role": "gpio",
+   "vmax": 3.6,
+   "strap": "low",
+   "pull": "down",
+   "hint": "must be low or open for the serial download"
+  },
+  "20": {
+   "name": "IO17",
+   "type": "bidirectional",
+   "role": "gpio",
+   "vmax": 3.6
+  },
+  "21": {
+   "name": "IO22",
+   "type": "bidirectional",
+   "role": "gpio",
+   "vmax": 3.6
+  },
+  "22": {
+   "name": "IO21",
+   "type": "bidirectional",
+   "role": "gpio",
+   "vmax": 3.6
+  },
+  "23": {
+   "name": "GND",
+   "type": "ground",
+   "role": "gnd"
+  },
+  "24": {
+   "name": "GND",
+   "type": "ground",
+   "role": "gnd"
+  }
+ },
+ "symbol": {
+  "left": [
+   "24",
+   "23",
+   "22",
+   "21",
+   "20",
+   "19",
+   "18",
+   "17",
+   "16",
+   "15",
+   "14",
+   "13"
+  ],
+  "right": [
+   "12",
+   "11",
+   "10",
+   "9",
+   "8",
+   "7",
+   "6",
+   "5",
+   "4",
+   "3",
+   "2",
+   "1"
+  ]
+ },
+ "params": {
+  "behavior": "mcu",
+  "v_io": 3.3,
+  "regulator": "ldo",
+  "vout_v": 3.3,
+  "dropout_v": 0.25,
+  "i_core_a": 0.08,
+  "gpio_r_out_ohm": 30,
+  "vih_ratio": 0.75,
+  "vil_ratio": 0.25
+ },
+ "ratings": {
+  "vin_min": 3.6,
+  "i_3v3_ext_max_a": 0.2,
+  "gpio_i_max_a": 0.02
+ },
+ "spice": {},
+ "lead": {
+  "*": {
+   "shape": "square",
+   "a_mm": 0.64,
+   "b_mm": 0.64,
+   "tol_mm": null,
+   "hole_rec_mm": 1.0,
+   "source": "tail of a 2.54 mm female header 1x12 (the module plugs into it): usually 0.64 mm square – assumption like the Nano's (D-7)"
+  }
+ },
+ "hints": [
+  "The 5V pin is USB VBUS behind the module's 1N5819 (D2, 1 A); with a LiPo on the module it carries the battery voltage through Q5 instead.",
+  "IO36-IO39 are input-only, without internal pulls; IO12/IO15/IO2 are strapping pins."
+ ],
+ "sources": [
+  "LILYGO pin map 'ESP32 TTGO T-Display V1.1' (image/pinmap.jpg): left row GND GND 21 22 17 2 15 13 12 GND GND 3V3, right row 3V3 36 37 38 39 32 33 25 26 27 GND 5V, USB at the bottom",
+  "LILYGO schematic ESP32-TFT(6-26): header P4 = 5V GND IO27 IO26 IO25 IO33 IO32 IO39 IO38 IO37 IO36 3V3 (pins 1-12), P5 = 3V3 GND GND IO12 IO13 IO15 IO2 IO17 IO22 IO21 GND GND; +5V = VBUS through 1N5819 (D2) or VBAT through SI2307 (Q5); 3V3 from AP2112K-3.3 (U7, 600 mA, dropout 250 mV at 600 mA)",
+  "KiCad footprint TTGO-T-Display.kicad_mod and Eagle TTGO-TDisplay.lbr (LILYGO repository): rows 22.86 mm apart, pitch 2.54 mm, board 25.09 × 51.49 mm, first pin 15.93 mm from the USB end – same order as the pin map",
+  "ESP32 datasheet: VIH 0.75 VDD, VIL 0.25 VDD, I/O at most VDD + 0.3 V = 3.6 V, input-only GPIO34-39, strapping pins MTDI (IO12), MTDO (IO15), IO2",
+  "i_core_a 0.08 A (ESP32 without WiFi plus display backlight): assumption",
+  "gpio_r_out_ohm 30 Ω and gpio_i_max_a 20 mA (default drive strength): assumption from the ESP32 datasheet (40 mA at the strongest setting)",
+  "vin_min 3.6 V: AP2112K needs about 3.3 V + dropout; assumption"
+ ],
+ "notes": "Plugged into two 1x12 female headers (hand-soldered). Not in EasyEDA's library: symbol, footprint and device were drawn by variants/esp32/hardware/lib/tdisplay_device.py into the project library (D-13).",
+ "verified": {
+  "by": "Claude Opus 5.5 (datasheet check)",
+  "date": "2026-10-26",
+  "datasheet": "LILYGO pin map T-Display V1.1, schematic ESP32-TFT(6-26), ESP32 datasheet",
+  "checked": [
+   "pin order of both rows = pin map = schematic headers P4/P5 = KiCad and Eagle footprint",
+   "row spacing 22.86 mm, pitch 2.54 mm, pin 1 (5V) and pin 13 (3V3) at the USB end",
+   "5V pin = VBUS behind 1N5819 (1 A); 3V3 from AP2112K-3.3"
+  ],
+  "open": [
+   "measure the module before ordering: rows 22.86 mm apart (D-13)"
+  ]
+ }
+}

@@ -73,3 +73,71 @@ place, and moving the row would mean a new layout for no practical gain.
 
 Kept simple: the bell runs once a year for about 15 minutes and is switched on and off by plugging in the power bank.
 A switch on the carrier could not switch the Nano anyway, which is powered through its own USB socket (D-3).
+
+# Board variants (2026-10-26)
+
+Three variants of the board, each with the full edakit pipeline (variants/README.md). The main board above stays as
+released on 2026-10-25.
+
+## D-11 Variant SMD: everything the Economic assembly can place (2026-10-26)
+
+The circuit of the main board, assembled by JLCPCB's Economic PCBA on the top side; only the Nano's two female headers
+are hand-soldered (owner's wish: "smd LEDs, the pins as SMD if possible, the microcontroller on headers to solder
+yourself, the capacitor only if it does not force the more expensive assembly").
+
+- **LEDs:** 0805 LEDs of one series, KENTO KT-0805: red KT-0805R (C2295, Extended), yellow KT-0805Y (C2296, Basic),
+  emerald green KT-0805G (C2297, Basic). One footprint (LED0805-R-RD) for all five: its triangle and its chamfered
+  corner both mark pad 2 as the cathode, and every symbol has the anode on pin 1 – the row points the same way at 0°.
+  The Basic red NCD0805R1 (C84256) was dropped: its footprint has the chamfer at pad 1 but a bar mark at pad 2, too
+  ambiguous for a part JLCPCB turns by the footprint. The series resistors stay 330 Ω: 5.8–9.0 mA (red, yellow) and
+  3.7–6.6 mA (green) in the simulation.
+- **Servo header:** SMD 1×3, 2.54 mm, staggered pins (C41417360). It holds less pulling force than the through-hole
+  header; the servo plug is plugged once.
+- **C1:** 1000 µF / 16 V SMD can Ø10 × 10.2 mm (C3359). JLCPCB lists it for Economic *and* Standard PCBA, so it does
+  not force the Standard assembly; it costs one more Extended-part fee.
+- Alternatives: 1206 LEDs (larger, all Extended), the 5 mm LEDs through Standard PCBA (THT assembly, more expensive),
+  C1 hand-soldered as on the main board.
+
+## D-12 Variant THT: no assembly, through-hole only (2026-10-26)
+
+A bare board, every part soldered by hand: resistors 1/4 W metal film (330 Ω C58608, 4.7 kΩ C57204), the base load
+1 W metal film (100 Ω C119469), buttons 6 × 6 mm THT (K2-1102DP-C4SW-04, C110153 – the through-hole sibling of the
+SMD button C127509, same pin pairs). LEDs, C1, J1 and the Nano as on the main board. The BOM is empty
+(`[release] assembly = { sides = [] }`), no tooling holes. The series resistors lie flat below their LEDs, staggered
+(10.5 mm pitch next to 10 mm LED spacing); R8/R9 stand between the Nano and C1, 6 mm apart.
+
+## D-13 Variant ESP32: LILYGO T-Display V1.1 instead of the Nano (2026-10-26)
+
+Like the variant SMD, with a LILYGO T-Display V1.1 (ESP32-D0WDQ6, 1.14 inch ST7789V TFT) plugged into two 1×12
+female headers – the owner's choice, "the smaller variant" (the T-Display-S3 has a 1.9 inch display).
+
+- **Library:** the module is neither in EasyEDA's library nor at LCSC. Symbol, footprint and device were drawn into the
+  project library of `christmas-bell` (variants/esp32/hardware/lib/tdisplay_device.py) from LILYGO's pin map, its
+  schematic (headers P4/P5) and the KiCad and Eagle libraries of its repository – all four agree. Holes 1.1 mm, pads
+  1.7 mm as on the Nano footprint (D-7). The parts entry has no LCSC number but the key LILYGO-T-DISPLAY-V1.1; edakit
+  finds the device through its device cache (variants/README.md). **Measure the module before ordering:** rows
+  22.86 mm apart, pitch 2.54 mm.
+- **Pins:** LEDs on IO27, IO26, IO25, IO33, IO32 (one row, in countdown order), servo on IO13, buttons on IO38/IO37
+  (input only, no internal pulls – R7/R6 pull down). The strapping pins IO12, IO15 and IO2 stay free.
+- **3.3 V logic:** the buttons switch the module's 3V3 (AP2112K) instead of 5 V – the ESP32's inputs take at most
+  3.6 V (D-4 does not apply). The servo gets a 3.3 V PWM signal; hobby servos accept it.
+- **Supply:** the module's 5V pin is USB VBUS behind its 1N5819 (1 A): servo, C1 and the base load R8/R9 (D-8, kept)
+  hang there as on the Nano. The simulation gives about 470 mA while the bell swings, 870 mA with a stalled servo.
+- **Placement:** the module where the Nano was, USB-C at the left edge; R8/R9 move to the right (the module covers
+  their place).
+- **Open:** the firmware (src/firmware) is written for the Nano; the ESP32 needs its own port with the pins above
+  (`[checks] pin_locks` in variants/esp32/edakit.toml) and a 3.3 V servo library.
+
+## D-14 Variant ESP32: yellow-green instead of emerald green (2026-10-26)
+
+The emerald-green KT-0805G needs 2.6–3.1 V at 5 mA; from a 3.3 V output it would shine unevenly from part to part.
+Owner's decision: yellow-green KT-0805YG (C2292, Extended, 1.8–2.4 V). All five series resistors 100 Ω (C17408):
+(3.3 V − 2.1 V) / (100 Ω + 30 Ω output + 10 Ω LED) ≈ 8.6 mA; 7.3–11.4 mA over all corners in the simulation.
+
+## D-15 Variants as boards of one EasyEDA project, as folders in the repository (2026-10-26)
+
+Owner's decision: no new EasyEDA projects – the variants are the boards `smd`, `tht` and `esp32` of the project
+`christmas-bell`, next to `main`. In the repository each variant is a folder variants/<variant>/ with its own
+edakit.toml, graph, parts database, simulation config and sign-offs. The parts database is not shared: the circuit
+hash of a board covers every file of its parts folder, so a part added for one variant would void the sign-offs of
+the others.

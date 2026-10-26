@@ -1,0 +1,56 @@
+{
+ "lcsc": "C58608",
+ "mpn": "MFR0W4F3300A50",
+ "manufacturer": "UNI-ROYAL",
+ "kind": "resistor",
+ "package": "THT axial Ø2.2 × 6.5 mm, pitch 10.5 mm",
+ "footprint": "RES-TH_BD2.5-L6.5-P10.50-D0.6",
+ "jlc_class": "Extended Part",
+ "datasheet": {
+  "url": "https://datasheet.lcsc.com/datasheet/pdf/d64f229a8d7408b8f346128da3329b41.pdf",
+  "pinout_page": null
+ },
+ "pins": {
+  "1": {
+   "name": "1",
+   "type": "passive",
+   "role": "1"
+  },
+  "2": {
+   "name": "2",
+   "type": "passive",
+   "role": "2"
+  }
+ },
+ "params": {
+  "value_ohm": 330.0,
+  "tolerance": 0.01
+ },
+ "ratings": {
+  "p_max_w": 0.25,
+  "v_max": 250
+ },
+ "spice": {},
+ "lead": {
+  "*": {
+   "shape": "round",
+   "a_mm": 0.54,
+   "tol_mm": 0.05,
+   "hole_rec_mm": null,
+   "source": "UNI-ROYAL metal film spec, MF 1/4W: lead Ø0.54 mm"
+  }
+ },
+ "sources": [
+  "UNI-ROYAL metal film resistor spec: MF 1/4W, Ø2.2 × 6.5 mm, lead 0.54 mm, 250 V working"
+ ],
+ "notes": null,
+ "verified": {
+  "by": "Claude Opus 5.5 (datasheet check)",
+  "date": "2026-10-26",
+  "datasheet": "UNI-ROYAL MF spec (LCSC)",
+  "checked": [
+   "0.25 W, 250 V, lead 0.54 mm"
+  ],
+  "open": []
+ }
+}
