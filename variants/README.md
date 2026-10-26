@@ -105,8 +105,6 @@ off and the module runs from USB without a cell (D-13). The offline gate (runs 2
   the graph [esp32/hardware/graph.json](esp32/hardware/graph.json) (LEDs IO27/IO26/IO25/IO33/IO32, servo IO13, buttons
   IO38/IO37); requirements from the reviews in D-13 – plain inputs, debounce, the servo detached at rest (M-1), Wi-Fi
   and Bluetooth off (M-6).
-- Nano firmware (smd, tht and the main board): the servo is never detached, so a jam at rest stays an overload until
-  the bell is unplugged – detach it after the rest move (D-3, D-16). A change of src/firmware, it waits for the owner.
 - smd, cosmetic: a tented GND via sits on LED4's silkscreen outline at (37.82, 48.00); a keep-out
   `rect = [37.2, 46.6, 38.4, 49.4]` would move it (then route, silk, gate and M-5 again).
 - The EasyEDA project library still holds a device "zz-test-copy-nano" from the T-Display experiments; it is used

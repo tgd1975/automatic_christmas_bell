@@ -90,6 +90,8 @@ Servo-Parameter:
 - Extrempositions-Verzoegerung: 400 ms
 - Ein Schwung: ca. 4.4 Sekunden
 - Anzahl Schwuenge: 6 pro Aktivierung
+- Ruhe: nach dem Laeuten faehrt der Servo in die Ruhestellung und wird 1 s spaeter abgeschaltet (D-3) – ein
+  blockierter Arm belastet die 5 V nicht dauerhaft
 - Glockendauer: ca. 26.4 Sekunden
 
 Timing-Parameter (anpassbar):

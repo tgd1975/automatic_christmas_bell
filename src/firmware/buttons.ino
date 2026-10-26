@@ -23,6 +23,7 @@ const int SERVO_MIN_ANGLE = 60;
 const int SERVO_MAX_ANGLE = 110;
 const int SERVO_REST_ANGLE = (SERVO_MIN_ANGLE + SERVO_MAX_ANGLE) / 2; // 85 degrees
 const int stepsize = 10;
+const unsigned long SERVO_SETTLE_MS = 1000; // ms at rest before the servo is detached (D-3)
 
 // Calculate one bell swing duration: (half swing * 2 / stepsize) * step delay + extreme pos delay * 2
 const int SERVO_RANGE = SERVO_MAX_ANGLE - SERVO_MIN_ANGLE;
@@ -64,6 +65,8 @@ unsigned long lastDebounceTimeReset = 0;
 Servo servo;
 int angle = SERVO_REST_ANGLE;
 int anglestep = stepsize;
+unsigned long servodetachtime = 0;
+bool servodetachpending = false;
 
 // State
 SystemState state = STATE_IDLE;
@@ -80,6 +83,32 @@ int currentledpin = -1; // no countdown LED yet; countdownVisualization() checks
 // True once millis() has reached `when` – also across the millis() overflow
 bool reached(unsigned long when) {
   return (long)(millis() - when) >= 0;
+}
+
+// Attach the servo for a bell phase
+void servoAttach() {
+  servodetachpending = false;
+  if (!servo.attached()) {
+    servo.attach(servoPin);
+  }
+}
+
+// Move the servo to its rest position and detach it once it is there, so a jam at rest
+// cannot load the Nano's 5V permanently (D-3)
+void servoToRest() {
+  servoAttach();
+  angle = SERVO_REST_ANGLE;
+  servo.write(SERVO_REST_ANGLE);
+  servodetachtime = millis() + SERVO_SETTLE_MS;
+  servodetachpending = true;
+}
+
+void servoHandling() {
+  if (servodetachpending && reached(servodetachtime)) {
+    servo.detach();
+    servodetachpending = false;
+    Serial.println("servo detached");
+  }
 }
 
 void allLEDStoHIGH() {
@@ -139,9 +168,8 @@ void setup() {
   pinMode(buttonPinStart, INPUT);
   pinMode(buttonPinReset, INPUT);
 
-  // Initialize the bell servo
-  servo.attach(servoPin);
-  servo.write(SERVO_REST_ANGLE);
+  // Initialize the bell servo: to its rest position, then detached
+  servoToRest();
 }
 
 // ========== BUTTON HANDLING WITH DEBOUNCING ==========
@@ -190,17 +218,26 @@ void handleStateTransitions() {
   // Button-based transitions
   if (eventReset == TOHIGH && currentStateStart == HIGH) {
     Serial.println("bypassed countdown");
+    if (bellactive) {
+      servoToRest();
+    }
     state = STATE_FINAL_WARNING;
     cyclestarttime = millis() - (countdowntime + finalwarningtime) * 1000;
     currentledpin = ledRed;
   } else if (eventStart == TOHIGH) {
     Serial.println("countdown started");
+    if (bellactive) {
+      servoToRest();
+    }
     state = STATE_COUNTDOWN;
     cyclestarttime = millis();
     currentledpin = -1;
     bellactive = false;
   } else if (eventReset == TOHIGH) {
     Serial.println("countdown reset");
+    if (bellactive) {
+      servoToRest();
+    }
     state = STATE_IDLE;
     allLEDStoHIGH();
     bellactive = false;
@@ -219,6 +256,7 @@ void handleStateTransitions() {
       Serial.println("countdown bell");
       state = STATE_BELL_RINGING;
       bellactive = true;
+      servoAttach();
       nextbellupdatetime = millis();
       allLEDStoLOW();
     }
@@ -294,7 +332,7 @@ void finishCycle() {
   if (bellactive) {
     Serial.println("countdown finished");
     bellactive = false;
-    servo.write(SERVO_REST_ANGLE);
+    servoToRest();
     nextbellupdatetime = millis() + 10; // Non-blocking delay
     allLEDStoLOW();
     state = STATE_IDLE;
@@ -326,4 +364,5 @@ void loop() {
       // No specific actions needed
       break;
   }
+  servoHandling();
 }

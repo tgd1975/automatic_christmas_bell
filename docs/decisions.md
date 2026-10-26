@@ -21,8 +21,9 @@ the bell swings (0.3 A assumed, with the base load of D-8) – within the 500 mA
 (0.7 A assumed) would draw about 810 mA. The original Nano's
 polyfuse (MF-MSMF050) holds 0.5 A and is only guaranteed to trip at 1.0 A, many clones have none, and the Schottky
 diode (MBR0520, 0.5 A average) then carries about 0.81 A – harmless for the few seconds of a bell phase, not as a
-permanent state. The scenario `servo-stalled` runs as information only; the firmware may detach the servo once it has
-reached its rest position, so a jam there cannot become a permanent overload (M-1 review, note 4).
+permanent state. The scenario `servo-stalled` runs as information only; the firmware detaches the servo 1 s after it
+has reached its rest position (since 2026-10-26, D-16), so a jam there cannot become a permanent overload (M-1
+review, note 4).
 
 ## D-4 Buttons switch 5 V instead of 3.3 V (2026-10-25)
 
@@ -180,6 +181,6 @@ The reviews of 2026-10-26, each by an agent in its own session:
   keeps Wi-Fi and Bluetooth off (D-13 "Radio"); its power is within the limit. USB power only, no cell at the module's
   battery input. The T-Display's radio data and certificates – a test lab's CE attestation, no EU declaration of
   conformity – are in its parts entry (variants/esp32/hardware/parts/C18722937.json).
-- **Notes:** the Nano firmware never detaches the servo, so a jam at rest stays an overload until the bell is
-  unplugged (D-3) – detaching it after the rest move is a change of src/firmware and waits for the owner. At its end
-  the bell goes to e-waste collection (ElektroG § 10).
+- **Notes:** the Nano firmware did not detach the servo, so a jam at rest stayed an overload until the bell was
+  unplugged (D-3); since 2026-10-26 it detaches the servo 1 s after the rest move (owner's OK). At its end the bell
+  goes to e-waste collection (ElektroG § 10).
