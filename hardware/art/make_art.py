@@ -1,5 +1,5 @@
-"""Silkscreen artwork of the Christmas bell board -> SVG files in this folder (edakit places them, edakit.toml
-[[boards.main.silk.art]]).
+"""Silkscreen artwork of the Christmas bell board -> SVG files in this folder (edakit places them, [[silk.art]] in
+hardware/boards/main.toml).
 
     uv run --project <edakit> python hardware/art/make_art.py
 

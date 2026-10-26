@@ -1,7 +1,7 @@
 {
   "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, footprint geometry). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
-  "state_sha256": "2d82925bfeed251b73b8438808e785762fd1cccff370f472da1a71e02b44c55e",
-  "layout_sha256": "d0021b33c4ac3ea9bea2f7e81a56e25e3495cecb5eb440e516000b174b23bfb8",
+  "state_sha256": "1cfc41054d961d71c16e497c8d053177df325bb123e9fcf55bc76bdc2900636a",
+  "layout_sha256": "72508987cd839ab506f9eee8549040b5dd2e5882c47a4729f8b2799b257da397",
   "manual": [
     {
       "id": "M-1",
@@ -40,5 +40,20 @@
       "note": null
     }
   ],
-  "accepted_warnings": []
+  "accepted_warnings": [],
+  "rehashed": [
+    {
+      "date": "2026-10-26",
+      "by": "edakit scripts/split_config.py",
+      "why": "edakit.toml split into board, schematic and graph files (handbook 10.1); every value read back unchanged",
+      "state_sha256": [
+        "2d82925bfeed251b73b8438808e785762fd1cccff370f472da1a71e02b44c55e",
+        "1cfc41054d961d71c16e497c8d053177df325bb123e9fcf55bc76bdc2900636a"
+      ],
+      "layout_sha256": [
+        "d0021b33c4ac3ea9bea2f7e81a56e25e3495cecb5eb440e516000b174b23bfb8",
+        "72508987cd839ab506f9eee8549040b5dd2e5882c47a4729f8b2799b257da397"
+      ]
+    }
+  ]
 }

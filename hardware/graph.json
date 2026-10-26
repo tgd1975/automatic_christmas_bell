@@ -493,6 +493,18 @@
     ]
    }
   ],
-  "cables": []
+  "cables": [],
+  "checks": {
+   "pin_locks": {
+    "U1.5": "LED_Y1",
+    "U1.6": "LED_Y2",
+    "U1.7": "LED_R",
+    "U1.8": "LED_G2",
+    "U1.9": "LED_G1",
+    "U1.11": "SERVO",
+    "U1.14": "BTN_START",
+    "U1.15": "BTN_RESET"
+   }
+  }
  }
 }

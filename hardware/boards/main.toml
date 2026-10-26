@@ -1,0 +1,207 @@
+# Board main of christmas-bell: outline, holes, placement, routing, pours, silk – the PCB designer's file,
+# in the layout hash (edakit handbook 10.2)
+
+revision = "1.0"                 # board revision: printed bottom left with the title (edakit silk)
+view = "top"
+edge_ok = ["U1", "J1"]           # the Nano's USB socket at the edge, the servo plug
+
+[outline]
+rect = [85, 56]
+corner_radius = 2
+
+[[holes]]
+x = 3.5
+y = 3.5
+d = 3.2
+keep = 3.2
+
+[[holes]]
+x = 81.5
+y = 3.5
+d = 3.2
+keep = 3.2
+
+[[holes]]
+x = 3.5
+y = 52.5
+d = 3.2
+keep = 3.2
+
+[[holes]]
+x = 81.5
+y = 52.5
+d = 3.2
+keep = 3.2
+
+[tooling]                        # JLCPCB Economic PCBA: tooling holes, NPTH 1.152 mm
+holes = [[3.5, 45], [81.5, 20]]
+
+[place]                          # Nano on the left with its USB socket at the edge, LEDs on top in countdown order
+U1 = { x = 22.6, y = 28, rot = 270, side = "top" }  # footprint drawn upright: 270 puts the USB end left
+LED5 = { x = 30, y = 48, rot = 0, side = "top" }
+LED4 = { x = 40, y = 48, rot = 0, side = "top" }
+LED3 = { x = 50, y = 48, rot = 180, side = "top" }  # yellow footprint has its "+" on pad 2
+LED2 = { x = 60, y = 48, rot = 180, side = "top" }  # yellow footprint has its "+" on pad 2
+LED1 = { x = 70, y = 48, rot = 0, side = "top" }
+J1 = { x = 80, y = 30, rot = 90, side = "top" }
+C1 = { x = 64, y = 30, rot = 0, side = "top" }
+S1 = { x = 58, y = 12, rot = 0, side = "top" }
+S2 = { x = 72, y = 12, rot = 0, side = "top" }
+R4 = { x = 30, y = 41.5, rot = 90, side = "top" }  # series resistors right below their LEDs
+R3 = { x = 40, y = 41.5, rot = 90, side = "top" }
+R2 = { x = 50, y = 41.5, rot = 90, side = "top" }
+R1 = { x = 60, y = 41.5, rot = 90, side = "top" }
+R5 = { x = 70, y = 41.5, rot = 90, side = "top" }
+R7 = { x = 51.5, y = 12, rot = 90, side = "top" }    # pull-downs next to their buttons
+R6 = { x = 65, y = 12, rot = 90, side = "top" }
+R8 = { x = 22, y = 16.3, rot = 0, side = "top" }    # base load, 0.25 W each – apart from each other
+R9 = { x = 33, y = 16.3, rot = 0, side = "top" }
+
+[near]
+R4 = "LED5"
+R3 = "LED4"
+R2 = "LED3"
+R1 = "LED2"
+R5 = "LED1"
+R7 = "S1"
+R6 = "S2"
+
+[routing]
+clearance_mil = 8
+signal_mil = 12
+via = [24, 12]
+edge_clearance_um = 400
+passes = 40
+attempts = 5
+layer_cost = { TOP = [1.0, 1.8], BOTTOM = [1.5, 2.5] }
+
+[routing.classes]
+POWER = { width_mil = 30, nets = ["+5V"] }
+GND = { width_mil = 30, nets = ["GND"] }
+
+[[pours]]
+net = "GND"
+layers = ["TOP", "BOTTOM"]
+
+[silk]
+designators = "top"
+label_h_mm = 1.0
+board_label = "Weihnachtsglocke rev {revision}"   # bottom left, German like the greeting
+
+# Artwork: hardware/art/make_art.py draws it; positions in plan mm (centre), width scales the motif
+
+[[silk.art]]
+svg = "hardware/art/bell.svg"
+x = 15.5
+y = 46.5
+width_mm = 15
+
+[[silk.art]]
+svg = "hardware/art/greeting.svg"
+x = 28
+y = 11
+width_mm = 34
+
+[[silk.art]]
+svg = "hardware/art/small_bell.svg"
+x = 76.5
+y = 46.5
+width_mm = 4
+
+[[silk.art]]
+svg = "hardware/art/chevron.svg"
+x = 35
+y = 48
+width_mm = 1.4
+
+[[silk.art]]
+svg = "hardware/art/chevron.svg"
+x = 45
+y = 48
+width_mm = 1.4
+
+[[silk.art]]
+svg = "hardware/art/chevron.svg"
+x = 55
+y = 48
+width_mm = 1.4
+
+[[silk.art]]
+svg = "hardware/art/chevron.svg"
+x = 65
+y = 48
+width_mm = 1.4
+
+[[silk.art]]
+svg = "hardware/art/star.svg"
+x = 35
+y = 53.8
+width_mm = 1.6
+
+[[silk.art]]
+svg = "hardware/art/star.svg"
+x = 45
+y = 53.8
+width_mm = 1.6
+
+[[silk.art]]
+svg = "hardware/art/star.svg"
+x = 55
+y = 53.8
+width_mm = 1.6
+
+[[silk.art]]
+svg = "hardware/art/star.svg"
+x = 65
+y = 53.8
+width_mm = 1.6
+
+[[silk.art]]
+svg = "hardware/art/snowflake.svg"
+x = 65
+y = 4.5
+width_mm = 3
+
+[[silk.art]]
+svg = "hardware/art/snowflake.svg"
+x = 75
+y = 40
+width_mm = 3
+
+[[silk.art]]
+svg = "hardware/art/snowflake.svg"
+x = 6
+y = 16
+width_mm = 3
+
+# Labels: the buttons and the servo pins (J1: pin 1 = GND at the square pad)
+
+[[silk.texts]]
+text = "START"
+x = 58
+y = 4.6
+h_mm = 1.2
+
+[[silk.texts]]
+text = "RESET"
+x = 72
+y = 4.6
+h_mm = 1.2
+
+[[silk.texts]]
+text = "GND"
+x = 76.6
+y = 27.46
+h_mm = 1.0
+
+[[silk.texts]]
+text = "5V"
+x = 76.6
+y = 30
+h_mm = 1.0
+
+[[silk.texts]]
+text = "SIG"
+x = 76.6
+y = 32.54
+h_mm = 1.0

@@ -25,8 +25,10 @@ SMD parts (resistors, buttons); the headers, LEDs, C1 and J1 are hand-soldered.
 
 | File | Content |
 |---|---|
-| [../edakit.toml](../edakit.toml) | EasyEDA project `christmas-bell`, board 85 × 56 mm, holes, tooling holes, placement plan, routing rules, schematic blocks, pin locks, release |
-| [graph.json](graph.json) | the hardware graph: 17 parts, 15 nets with voltage ranges – the only source of the circuit |
+| [../edakit.toml](../edakit.toml) | the table of contents: EasyEDA project `christmas-bell`, the board `main`, where the files are, release |
+| [boards/main.toml](boards/main.toml) | the board: 85 × 56 mm, holes, tooling holes, placement plan, routing rules, pours, silkscreen and artwork |
+| [schematic.toml](schematic.toml) | the blocks, notes and pin table of the schematic |
+| [graph.json](graph.json) | the hardware graph: 17 parts, 15 nets with voltage ranges, the pin locks for the firmware – the only source of the circuit |
 | [parts/](parts/) | one entry per LCSC number: pins with roles, ratings, lead sizes, datasheet sign-off |
 | [sim.json](sim.json) | USB at 4.45/4.7/5.05 V × idle, countdown, warning, bell × LED corners; a stalled servo as fault case |
 | [signoff.json](signoff.json) | manual checks M-1, M-5, M-2, M-4 |

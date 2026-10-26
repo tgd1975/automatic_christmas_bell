@@ -1,9 +1,9 @@
 # Board variants
 
-Three variants of the Christmas bell's carrier board, next to the released main board ([../hardware](../hardware)).
-Each one is an edakit project of its own: a folder here with its own edakit.toml, hardware graph, parts database,
-simulation config and sign-offs. All four share the EasyEDA project `christmas-bell`, one EasyEDA board each
-(decision D-15 in [../docs/decisions.md](../docs/decisions.md)).
+Three variants of the Christmas bell's carrier board, next to the released main board ([../hardware](../hardware)). Each
+one is an edakit project of its own: a folder here with its own edakit.toml, board and schematic file, hardware graph,
+parts database, simulation config and sign-offs. All four share the EasyEDA project `christmas-bell`, one EasyEDA board
+each (decision D-15 in [../docs/decisions.md](../docs/decisions.md)).
 
 | | [smd](smd) | [tht](tht) | [esp32](esp32) |
 |---|---|---|---|
@@ -93,9 +93,9 @@ a person at EasyEDA:
 
 ## Open
 
-- ESP32 firmware: src/firmware is written for the Nano. The pins of the ESP32 board are fixed in
-  `[checks] pin_locks` of [esp32/edakit.toml](esp32/edakit.toml) (LEDs IO27/IO26/IO25/IO33/IO32, servo IO13,
-  buttons IO38/IO37); requirements from the review in D-13.
+- ESP32 firmware: src/firmware is written for the Nano. The pins of the ESP32 board are fixed in `checks.pin_locks` of
+  the graph [esp32/hardware/graph.json](esp32/hardware/graph.json) (LEDs IO27/IO26/IO25/IO33/IO32, servo IO13, buttons
+  IO38/IO37); requirements from the review in D-13.
 - smd, cosmetic: a tented GND via sits on LED4's silkscreen outline at (37.82, 48.00); a keep-out
   `rect = [37.2, 46.6, 38.4, 49.4]` would move it (then route, silk, gate and M-5 again).
 - The EasyEDA project library still holds a device "zz-test-copy-nano" from the T-Display experiments; it is used

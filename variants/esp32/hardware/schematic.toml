@@ -1,0 +1,27 @@
+# Schematic of christmas-bell: blocks, notes, pin table (edakit handbook 10.3)
+
+stub = 10
+
+[layout]
+power_flags = { GND = "Ground", "+5V" = "Power", "+3V3" = "Power" }
+rows = [
+  [ [ { title = "T-Display", start = ["U1"] } ], [ { title = "Servo", start = ["J1"] } ] ],
+  [ [ { title = "Notes" } ] ],
+]
+near = { C1 = "J1", R8 = "U1", R9 = "U1" }
+
+[layout.notes]
+"T-Display" = ["LILYGO T-Display V1.1 (ESP32, 1.14 inch TFT) in two 1x12 female headers, powered through its USB-C socket",
+               "IO27/IO26/IO25/IO33/IO32: countdown LEDs, IO13: servo, IO38/IO37: start/reset buttons (input only)",
+               "3.3 V logic: the buttons switch 3V3; IO12, IO15, IO2 (strapping pins) stay free"]
+Servo = ["Servo at the module's 5V pin (USB behind its 1N5819); C1 buffers its start-up peaks"]
+Notes = ["Nets with the same name are connected (labels and power flags).",
+         "Variant ESP32 (D-13): the SMD variant with a T-Display instead of the Nano;",
+         "yellow-green LEDs (D-14) – the 3.3 V outputs do not drive emerald green reliably.",
+         "R8 + R9: base load, keeps USB power banks on (D-8)."]
+
+[layout.pin_table]
+component = "U1"
+block = "T-Display"
+prefix = "IO"
+notes = { LED_G1 = "out, green 1", LED_G2 = "out, green 2", LED_Y1 = "out, yellow 1", LED_Y2 = "out, yellow 2", LED_R = "out, red", SERVO = "out, servo PWM", BTN_START = "in, pull-down", BTN_RESET = "in, pull-down" }
