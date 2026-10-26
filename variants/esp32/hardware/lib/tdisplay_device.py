@@ -40,8 +40,9 @@ ROW_X = 11.43          # mm from the centre, 22.86 mm between the rows
 PITCH = 2.54
 PAD, HOLE = 1.7, 1.1   # mm
 OUTLINE = (-12.83, -30.2, 12.83, 21.9)  # module 25.09 x 51.49 mm plus 0.15 mm, so the line stays clear of the pads
-USB = (-4.6, -31.2, 4.6, -27.9)         # USB-C receptacle, stands out at the end
+USB = (-4.6, -29.9, 4.6, -27.9)         # USB-C receptacle at the module end (not past it: board edge, M-5)
 SILK = 3                                # top silkscreen
+TEXT_MM = 1.5                           # font size: capitals about 1.05 mm (JLCPCB: at least 1 mm)
 SHAPE = 48                              # component shape: the outline edakit and EasyEDA take as the part's extent
 HEADER_LAYERS = (SILK, SHAPE, 49, 50)   # the header's outline, pin-1 mark and pin marks go; 49/50 are not redrawn
 
@@ -129,9 +130,9 @@ def rebuild_footprint(mcp, uuid, project):
     api(mcp, "PCB_PrimitivePolyline.create", "", SILK, rect_poly(*OUTLINE), 6)
     api(mcp, "PCB_PrimitivePolyline.create", "", SILK, rect_poly(*USB), 6)
     api(mcp, "PCB_PrimitivePolyline.create", "", SHAPE, rect_poly(*OUTLINE), 6)
-    api(mcp, "PCB_PrimitiveString.create", SILK, 0, round(-26.0 * MIL, 2), "USB", "default", round(1.2 * MIL, 2), 6, 5,
-        0, False, 0, False, False)
-    api(mcp, "PCB_PrimitiveString.create", SILK, 0, round(18.5 * MIL, 2), "T-Display", "default", round(1.2 * MIL, 2),
+    api(mcp, "PCB_PrimitiveString.create", SILK, 0, round(-25.8 * MIL, 2), "USB", "default", round(TEXT_MM * MIL, 2), 6,
+        5, 0, False, 0, False, False)
+    api(mcp, "PCB_PrimitiveString.create", SILK, 0, round(18.3 * MIL, 2), "T-Display", "default", round(TEXT_MM * MIL, 2),
         6, 5, 0, False, 0, False, False)
     pads = list(map(eda.state, api(mcp, "PCB_PrimitivePad.getAll") or []))
     print(f"  footprint: {len(pads)} pads, saved {api(mcp, 'PCB_Document.save')}")

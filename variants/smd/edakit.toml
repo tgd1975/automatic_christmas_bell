@@ -116,6 +116,27 @@ layer = ["TOP", "BOTTOM"]
 what = "all"
 rect = [41.62, 34.32, 44.22, 36.92]
 
+# No vias under the chevrons between the LEDs: a tented via shows through the print (M-5).
+[[boards.smd.routing.keepouts]]
+layer = ["TOP", "BOTTOM"]
+what = "all"
+rect = [34.2, 47.2, 35.8, 48.8]
+
+[[boards.smd.routing.keepouts]]
+layer = ["TOP", "BOTTOM"]
+what = "all"
+rect = [44.2, 47.2, 45.8, 48.8]
+
+[[boards.smd.routing.keepouts]]
+layer = ["TOP", "BOTTOM"]
+what = "all"
+rect = [54.2, 47.2, 55.8, 48.8]
+
+[[boards.smd.routing.keepouts]]
+layer = ["TOP", "BOTTOM"]
+what = "all"
+rect = [64.2, 47.2, 65.8, 48.8]
+
 [boards.smd.routing.classes]
 POWER = { width_mil = 30, nets = ["+5V"] }
 GND = { width_mil = 30, nets = ["GND"] }
@@ -216,6 +237,12 @@ y = 16
 width_mm = 3
 
 # Labels: the buttons and the servo pins (J1: pin 1 = GND)
+
+[[boards.smd.silk.texts]]
+text = "JLCJLCJLCJLC"              # JLCPCB's order number goes here (order with "Specify a location"), hidden under the module
+x = 22.6
+y = 28
+h_mm = 1.0
 
 [[boards.smd.silk.texts]]
 text = "START"

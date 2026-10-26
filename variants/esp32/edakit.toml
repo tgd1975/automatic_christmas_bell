@@ -96,6 +96,59 @@ passes = 40
 attempts = 5
 layer_cost = { TOP = [1.0, 1.8], BOTTOM = [1.5, 2.5] }
 
+# The anode links R -> LED as fixed top tracks (M-5): otherwise Freerouting's GND chain between the resistor and the
+# LED row pushed three of them through the bottom (six vias in the visible LED row, LED4's label turned vertical).
+[[boards.esp32.routing.fixed_wires]]
+net = "LED_G1_A"
+layer = "TOP"
+width_mil = 12
+points = [[30, 45.0], [30, 45.95], [31.05, 47.0], [31.05, 48.0]]
+
+[[boards.esp32.routing.fixed_wires]]
+net = "LED_G2_A"
+layer = "TOP"
+width_mil = 12
+points = [[40, 45.0], [40, 45.95], [41.05, 47.0], [41.05, 48.0]]
+
+[[boards.esp32.routing.fixed_wires]]
+net = "LED_Y1_A"
+layer = "TOP"
+width_mil = 12
+points = [[50, 45.0], [50, 45.95], [51.05, 47.0], [51.05, 48.0]]
+
+[[boards.esp32.routing.fixed_wires]]
+net = "LED_Y2_A"
+layer = "TOP"
+width_mil = 12
+points = [[60, 45.0], [60, 45.95], [61.05, 47.0], [61.05, 48.0]]
+
+[[boards.esp32.routing.fixed_wires]]
+net = "LED_R_A"
+layer = "TOP"
+width_mil = 12
+points = [[70, 45.0], [70, 45.95], [71.05, 47.0], [71.05, 48.0]]
+
+# No vias under the chevrons between the LEDs: a tented via shows through the print (M-5).
+[[boards.esp32.routing.keepouts]]
+layer = ["TOP", "BOTTOM"]
+what = "all"
+rect = [34.2, 47.2, 35.8, 48.8]
+
+[[boards.esp32.routing.keepouts]]
+layer = ["TOP", "BOTTOM"]
+what = "all"
+rect = [44.2, 47.2, 45.8, 48.8]
+
+[[boards.esp32.routing.keepouts]]
+layer = ["TOP", "BOTTOM"]
+what = "all"
+rect = [54.2, 47.2, 55.8, 48.8]
+
+[[boards.esp32.routing.keepouts]]
+layer = ["TOP", "BOTTOM"]
+what = "all"
+rect = [64.2, 47.2, 65.8, 48.8]
+
 [boards.esp32.routing.classes]
 POWER = { width_mil = 30, nets = ["+5V"] }
 GND = { width_mil = 30, nets = ["GND"] }
@@ -196,6 +249,18 @@ y = 10
 width_mm = 3
 
 # Labels: the buttons and the servo pins (J1: pin 1 = GND)
+
+[[boards.esp32.silk.texts]]
+text = "JLCJLCJLCJLC"              # JLCPCB's order number goes here (order with "Specify a location"), under the module
+x = 30.5
+y = 28
+h_mm = 1.0
+
+[[boards.esp32.silk.texts]]
+text = "5V"                        # orientation of the plugged-in module: its 5V pin (U1.1) at the USB end (M-5)
+x = 13.6
+y = 16.57
+h_mm = 1.0
 
 [[boards.esp32.silk.texts]]
 text = "START"

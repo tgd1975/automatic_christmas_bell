@@ -83,13 +83,13 @@ R6 = "S2"
 C1 = "J1"
 
 [boards.tht.routing]
-clearance_mil = 8
+clearance_mil = 12               # hand-soldered: more room between track and pad than the 8 mil of the assembled boards (M-5)
 signal_mil = 12
 via = [24, 12]
 edge_clearance_um = 400
 passes = 40
 attempts = 5
-layer_cost = { TOP = [1.0, 1.8], BOTTOM = [1.5, 2.5] }
+layer_cost = { TOP = [2.5, 3.5], BOTTOM = [1.0, 1.5] }  # tracks preferably on the bottom: the top is the visible side (M-5)
 
 # The Nano footprint brings four NPTH holes Ø1.9 mm at its corners (local ±7.62 / ±20.32 mm, D-7). Freerouting
 # does not see them, and a track once ran 0.11 mm past one (DRC): keep tracks and vias 1.3 mm from their centres.
@@ -213,6 +213,12 @@ y = 16
 width_mm = 3
 
 # Labels: the buttons and the servo pins (J1: pin 1 = GND at the square pad)
+
+[[boards.tht.silk.texts]]
+text = "JLCJLCJLCJLC"              # JLCPCB's order number goes here (order with "Specify a location"), hidden under the module
+x = 22.6
+y = 28
+h_mm = 1.0
 
 [[boards.tht.silk.texts]]
 text = "START"
