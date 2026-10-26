@@ -129,13 +129,24 @@ female headers – the owner's choice, "the smaller variant" (the T-Display-S3 h
 - **Placement:** the module where the Nano was, USB-C at the left edge; R8/R9 move to the right (the module covers
   their place).
 - **Open:** the firmware (src/firmware) is written for the Nano; the ESP32 needs its own port with the pins above
-  (`[checks] pin_locks` in variants/esp32/edakit.toml) and a 3.3 V servo library. Requirements from the M-1 review:
-  IO37/IO38 configured as plain inputs (no internal pulls exist), debounce as in buttons.ino (H-3), and the servo
-  detached once it is at rest with a limited bell phase – a stalled servo loads the module's 1N5819 with 0.87 A of its
-  1 A (like D-3 on the Nano).
+  (`checks.pin_locks` in variants/esp32/hardware/graph.json) and a 3.3 V servo library. Requirements from the M-1
+  review: IO37/IO38 configured as plain inputs (no internal pulls exist), debounce as in buttons.ino (H-3), and the
+  servo detached once it is at rest with a limited bell phase – a stalled servo loads the module's 1N5819 with 0.87 A
+  of its 1 A (like D-3 on the Nano).
+- **Radio** (requirement from the M-6 review, D-16): the bell's firmware never switches on Wi-Fi or Bluetooth – no
+  Wi-Fi or Bluetooth library in the sketch (Arduino: no `WiFi.mode/begin/softAP/scanNetworks`, `BLEDevice::init`,
+  `BluetoothSerial.begin`, `btStart`; ESP-IDF: no `esp_wifi_start`, `esp_bt_controller_enable`); the Arduino core
+  starts neither by itself. The ESP32 can also use Wi-Fi channel 14 (2484 MHz), outside the EU band 2400–2483.5 MHz;
+  its power stays within the limit (at most 20.5 dBm at the chip, antenna −4.32 dBi: about 16 dBm e.i.r.p. against
+  20 dBm). Checked at M-4: none of these calls in the source, a phone shows no network or Bluetooth device of the
+  bell. Radio later needs a decision of its own and a new M-6: channels 1–13 only (ESP-IDF's default country "01" or
+  `esp_wifi_set_country_code("DE", true)`, never "JP" or channel 14), the module's own antenna, no custom PHY init
+  data.
 - **Use:** the module's USB-C socket has a 5.1 kΩ pull-down on one CC line only: from a USB-C source (C-to-C cable)
   it gets power in one plug orientation only – use a USB-A-to-C cable or turn the plug over. The 2 × 12 pin field is
-  symmetric: plug the module in with USB-C at the board edge and the display up (silkscreen "5V" at U1.1).
+  symmetric: plug the module in with USB-C at the board edge and the display up (silkscreen "5V" at U1.1). No cell at
+  the module's battery input: the base load R8 ∥ R9 (D-8) would drain it with about 80 mA, and there is no switch
+  (D-10); a cell needs a new M-6 (D-16).
 
 ## D-14 Variant ESP32: yellow-green instead of emerald green (2026-10-26)
 

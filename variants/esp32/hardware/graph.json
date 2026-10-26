@@ -7,7 +7,7 @@
   "purpose": {
    "use": "private",
    "market": "EU",
-   "notes": "Automatic Christmas bell, ESP32 variant, for the owner's home, built and used by the owner – not sold or given away (D-16). Powered through the T-Display's USB-C; no battery holder, no mains. The T-Display's ESP32 has Wi-Fi and Bluetooth (2.4 GHz); the bell needs neither, its firmware is not ported yet (D-13)."
+   "notes": "Automatic Christmas bell, ESP32 variant, for the owner's home, built and used by the owner – not sold or given away (D-16). Powered through the T-Display's USB-C only – no cell at the module's battery input, no mains. The T-Display's ESP32 has Wi-Fi and Bluetooth (2.4 GHz); the bell needs neither, its firmware is not ported yet (D-13)."
   },
   "conventions": {
    "pin_reference": "'<designator>.<pin>' with the pin numbers of the EasyEDA symbol",

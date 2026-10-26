@@ -57,7 +57,8 @@ pin 1 (5V) and pin 13 (3V3) at the USB end.
 - **ESP32:** solder the two 1×12 female headers with the T-Display plugged in, so they stand straight. Plug the module
   in with USB-C at the board edge and the display up – the pin field is symmetric, turned round it shorts 5V to GND
   (silkscreen "5V" next to U1.1). The module's USB-C has a CC pull-down on one line only: power it from a USB-A port
-  with an A-to-C cable, or turn a C-to-C plug over if it stays dark.
+  with an A-to-C cable, or turn a C-to-C plug over if it stays dark. No LiPo at the module's battery connector: the
+  base load would drain it (D-13).
 - **SMD and ESP32:** the SMD servo header J1 holds less sideways pull than a through-hole one – plug the servo
   straight and tie its cable to the frame.
 - **THT:** the button holes are 1.3 mm (library footprint) – press each button flat while soldering its first leg.

@@ -233,9 +233,10 @@
     ]
    ],
    "max_dbm": 20.5,
+   "antenna_dbi": -4.32,
    "doc": null
   },
-  "source": "Espressif ESP32 datasheet v5.3 (2026-07), table 5-6 Wi-Fi radio: operating frequency range 2412-2484 MHz (channel centres 1-14, set by software: 'Device should operate in the frequency range allocated by regional regulatory authorities'), TX power 11b mode 18.5/19.5/20.5 dBm min/typ/max, 11n MCS7 12-14 dBm, 'Target TX power is configurable'; table 5-12 Bluetooth LE: power control range -12 to +9 dBm; Bluetooth/BLE channels 2402-2480 MHz. Power is conducted at the chip's RF port – the gain of the T-Display's antenna is not stated by LILYGO. No EU declaration of conformity, RoHS or REACH statement for the T-Display found on lilygo.cc, in github.com/Xinyuan-LilyGO/TTGO-T-Display or by web search (2026-10-26)."
+  "source": "Espressif ESP32 datasheet v5.3 (2026-07): table 5-6 Wi-Fi 2412-2484 MHz (channel centres 1-14, set by software: 'Device should operate in the frequency range allocated by regional regulatory authorities'), TX power 11b mode 18.5/19.5/20.5 dBm min/typ/max conducted, 11n MCS7 12-14 dBm, 'Target TX power is configurable'; table 5-12 Bluetooth LE power control range -12 to +9 dBm. LILYGO certifications page (lilygo.cc/pages/certifications, T-Display, read 2026-10-26): CE attestation of conformity BACL SZ1210507-15661E-RF (2021-06-25) for model T-DISPLAY V1.1 – RED 2014/53/EU, EN 300 328 V2.2.2, EN 301 489-1 V2.2.3, EN 301 489-17 V3.2.4, EN 62368-1, EN IEC 62311 – a test lab's attestation, not LILYGO's EU declaration of conformity, which is not published; Japan MIC type approval 211-211207 (2022-04-25, T-Display V1.1): Bluetooth 2402-2480 MHz, Wi-Fi 2412-2472 MHz and 2484 MHz (channel 14), 'PCB Antenna, -4.32 dBi' – at most about 16.2 dBm e.i.r.p.; FCC grant 2ASYE-T-DISPLAY (2022-04-01): 2402.0-2480.0 MHz, 0.005 W conducted. No RoHS or REACH statement for the T-Display."
  },
  "hints": [
   "The 5V pin is USB VBUS behind the module's 1N5819 (D2, 1 A); with a LiPo on the module it carries the battery voltage through Q5 instead.",
