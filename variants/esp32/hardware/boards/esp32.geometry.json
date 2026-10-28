@@ -1,0 +1,639 @@
+{
+ "C1": {
+  "primitiveId": "c364a327dedbacb6",
+  "footprint": "CAP-SMD_BD10.0-L10.3-W10.3-FD",
+  "device": "RVT1C102M1010",
+  "bbox": [
+   -265.74,
+   -208.76,
+   265.74,
+   208.76
+  ],
+  "pads": {
+   "1": {
+    "x": -177.2,
+    "y": -0.05,
+    "net": "+5V",
+    "tht": false
+   },
+   "2": {
+    "x": 177.2,
+    "y": -0.05,
+    "net": "GND",
+    "tht": false
+   }
+  }
+ },
+ "J1": {
+  "primitiveId": "96e6895eea08e2a9",
+  "footprint": "HDR-SMD_3P-P2.54-V-M_HX-PZ2.54-1X3P-TP-YQ",
+  "device": "HX PZ2.54-1x3P TP-YQ",
+  "bbox": [
+   -155.0,
+   -125.98,
+   155.0,
+   125.98
+  ],
+  "pads": {
+   "1": {
+    "x": -99.96,
+    "y": -62.95,
+    "net": "GND",
+    "tht": false
+   },
+   "2": {
+    "x": 0.04,
+    "y": 62.95,
+    "net": "+5V",
+    "tht": false
+   },
+   "3": {
+    "x": 100.04,
+    "y": -62.95,
+    "net": "SERVO",
+    "tht": false
+   }
+  }
+ },
+ "LED1": {
+  "primitiveId": "d6024008afecaea6",
+  "footprint": "LED0805-R-RD",
+  "device": "KT-0805R",
+  "bbox": [
+   -92.55,
+   -46.05,
+   83.45,
+   44.95
+  ],
+  "pads": {
+   "2": {
+    "x": -41.32,
+    "y": -0.05,
+    "net": "GND",
+    "tht": false
+   },
+   "1": {
+    "x": 41.38,
+    "y": -0.05,
+    "net": "LED_R_A",
+    "tht": false
+   }
+  }
+ },
+ "LED2": {
+  "primitiveId": "206b7c5d08e0c48a",
+  "footprint": "LED0805-R-RD",
+  "device": "KT-0805Y",
+  "bbox": [
+   -92.55,
+   -46.05,
+   83.45,
+   44.95
+  ],
+  "pads": {
+   "2": {
+    "x": -41.38,
+    "y": -0.05,
+    "net": "GND",
+    "tht": false
+   },
+   "1": {
+    "x": 41.32,
+    "y": -0.05,
+    "net": "LED_Y2_A",
+    "tht": false
+   }
+  }
+ },
+ "LED3": {
+  "primitiveId": "b9de6fe278235134",
+  "footprint": "LED0805-R-RD",
+  "device": "KT-0805Y",
+  "bbox": [
+   -92.55,
+   -46.05,
+   83.45,
+   44.95
+  ],
+  "pads": {
+   "2": {
+    "x": -41.34,
+    "y": -0.05,
+    "net": "GND",
+    "tht": false
+   },
+   "1": {
+    "x": 41.36,
+    "y": -0.05,
+    "net": "LED_Y1_A",
+    "tht": false
+   }
+  }
+ },
+ "LED4": {
+  "primitiveId": "d6e0b9cc25b48afa",
+  "footprint": "LED0805-R-RD",
+  "device": "KT-0805YG",
+  "bbox": [
+   -92.55,
+   -46.05,
+   83.45,
+   44.95
+  ],
+  "pads": {
+   "2": {
+    "x": -41.3,
+    "y": -0.05,
+    "net": "GND",
+    "tht": false
+   },
+   "1": {
+    "x": 41.4,
+    "y": -0.05,
+    "net": "LED_G2_A",
+    "tht": false
+   }
+  }
+ },
+ "LED5": {
+  "primitiveId": "fe2e0240c04221bd",
+  "footprint": "LED0805-R-RD",
+  "device": "KT-0805YG",
+  "bbox": [
+   -92.55,
+   -46.05,
+   83.45,
+   44.95
+  ],
+  "pads": {
+   "2": {
+    "x": -41.3,
+    "y": 0.01,
+    "net": "GND",
+    "tht": false
+   },
+   "1": {
+    "x": 41.4,
+    "y": 0.01,
+    "net": "LED_G1_A",
+    "tht": false
+   }
+  }
+ },
+ "R1": {
+  "primitiveId": "ac74e76b02d07372",
+  "footprint": "R0805",
+  "device": "0805W8F1000T5E_C17408",
+  "bbox": [
+   -72.34,
+   -39.11,
+   72.34,
+   39.11
+  ],
+  "pads": {
+   "2": {
+    "x": 39.34,
+    "y": 0.01,
+    "net": "LED_Y2_A",
+    "tht": false
+   },
+   "1": {
+    "x": -39.36,
+    "y": 0.01,
+    "net": "LED_Y2",
+    "tht": false
+   }
+  }
+ },
+ "R2": {
+  "primitiveId": "461c832deefd4e43",
+  "footprint": "R0805",
+  "device": "0805W8F1000T5E_C17408",
+  "bbox": [
+   -72.34,
+   -39.11,
+   72.34,
+   39.11
+  ],
+  "pads": {
+   "2": {
+    "x": 39.38,
+    "y": 0.01,
+    "net": "LED_Y1_A",
+    "tht": false
+   },
+   "1": {
+    "x": -39.32,
+    "y": 0.01,
+    "net": "LED_Y1",
+    "tht": false
+   }
+  }
+ },
+ "R3": {
+  "primitiveId": "f21bb27c3a6aa20e",
+  "footprint": "R0805",
+  "device": "0805W8F1000T5E_C17408",
+  "bbox": [
+   -72.34,
+   -39.11,
+   72.34,
+   39.11
+  ],
+  "pads": {
+   "2": {
+    "x": 39.42,
+    "y": 0.01,
+    "net": "LED_G2_A",
+    "tht": false
+   },
+   "1": {
+    "x": -39.38,
+    "y": 0.01,
+    "net": "LED_G2",
+    "tht": false
+   }
+  }
+ },
+ "R4": {
+  "primitiveId": "89d1598adc10a74a",
+  "footprint": "R0805",
+  "device": "0805W8F1000T5E_C17408",
+  "bbox": [
+   -72.34,
+   -39.11,
+   72.34,
+   39.11
+  ],
+  "pads": {
+   "2": {
+    "x": 39.36,
+    "y": 0.01,
+    "net": "LED_G1_A",
+    "tht": false
+   },
+   "1": {
+    "x": -39.34,
+    "y": 0.01,
+    "net": "LED_G1",
+    "tht": false
+   }
+  }
+ },
+ "R5": {
+  "primitiveId": "585dc994aa27ea83",
+  "footprint": "R0805",
+  "device": "0805W8F1000T5E_C17408",
+  "bbox": [
+   -72.34,
+   -39.11,
+   72.34,
+   39.11
+  ],
+  "pads": {
+   "2": {
+    "x": 39.4,
+    "y": 0.01,
+    "net": "LED_R_A",
+    "tht": false
+   },
+   "1": {
+    "x": -39.4,
+    "y": 0.01,
+    "net": "LED_R",
+    "tht": false
+   }
+  }
+ },
+ "R6": {
+  "primitiveId": "3a076d48088f5b13",
+  "footprint": "R0805",
+  "device": "0805W8F4701T5E",
+  "bbox": [
+   -72.34,
+   -39.11,
+   72.34,
+   39.11
+  ],
+  "pads": {
+   "2": {
+    "x": 39.4,
+    "y": -0.03,
+    "net": "GND",
+    "tht": false
+   },
+   "1": {
+    "x": -39.4,
+    "y": -0.03,
+    "net": "BTN_RESET",
+    "tht": false
+   }
+  }
+ },
+ "R7": {
+  "primitiveId": "12601a3e7a50d84d",
+  "footprint": "R0805",
+  "device": "0805W8F4701T5E",
+  "bbox": [
+   -72.34,
+   -39.11,
+   72.34,
+   39.11
+  ],
+  "pads": {
+   "2": {
+    "x": 39.34,
+    "y": -0.03,
+    "net": "GND",
+    "tht": false
+   },
+   "1": {
+    "x": -39.36,
+    "y": -0.03,
+    "net": "BTN_START",
+    "tht": false
+   }
+  }
+ },
+ "R8": {
+  "primitiveId": "6c61ea4c393441ef",
+  "footprint": "R2512",
+  "device": "25121WF1000T4E",
+  "bbox": [
+   -157.97,
+   -80.03,
+   157.97,
+   80.03
+  ],
+  "pads": {
+   "2": {
+    "x": 120.68,
+    "y": -0.03,
+    "net": "GND",
+    "tht": false
+   },
+   "1": {
+    "x": -120.72,
+    "y": -0.03,
+    "net": "+5V",
+    "tht": false
+   }
+  }
+ },
+ "R9": {
+  "primitiveId": "9d2129a068e7396b",
+  "footprint": "R2512",
+  "device": "25121WF1000T4E",
+  "bbox": [
+   -157.97,
+   -80.03,
+   157.97,
+   80.03
+  ],
+  "pads": {
+   "2": {
+    "x": 120.72,
+    "y": -0.03,
+    "net": "GND",
+    "tht": false
+   },
+   "1": {
+    "x": -120.68,
+    "y": -0.03,
+    "net": "+5V",
+    "tht": false
+   }
+  }
+ },
+ "S1": {
+  "primitiveId": "ca1880b31a39cf62",
+  "footprint": "KEY-SMD_4P-L6.0-W6.0-P4.50-LS9.5-BL",
+  "device": "K2-1102SP-C4SC-04",
+  "bbox": [
+   -123.11,
+   -211.61,
+   123.11,
+   211.61
+  ],
+  "pads": {
+   "4": {
+    "x": 88.56,
+    "y": 168.27,
+    "net": "BTN_START",
+    "tht": false
+   },
+   "2": {
+    "x": -88.54,
+    "y": 168.27,
+    "net": "+3V3",
+    "tht": false
+   },
+   "3": {
+    "x": 88.56,
+    "y": -168.33,
+    "net": "BTN_START",
+    "tht": false
+   },
+   "1": {
+    "x": -88.54,
+    "y": -168.33,
+    "net": "+3V3",
+    "tht": false
+   }
+  }
+ },
+ "S2": {
+  "primitiveId": "b5d9f80bfd1810fc",
+  "footprint": "KEY-SMD_4P-L6.0-W6.0-P4.50-LS9.5-BL",
+  "device": "K2-1102SP-C4SC-04",
+  "bbox": [
+   -123.11,
+   -211.61,
+   123.11,
+   211.61
+  ],
+  "pads": {
+   "4": {
+    "x": 88.6,
+    "y": 168.27,
+    "net": "BTN_RESET",
+    "tht": false
+   },
+   "2": {
+    "x": -88.6,
+    "y": 168.27,
+    "net": "+3V3",
+    "tht": false
+   },
+   "3": {
+    "x": 88.6,
+    "y": -168.33,
+    "net": "BTN_RESET",
+    "tht": false
+   },
+   "1": {
+    "x": -88.6,
+    "y": -168.33,
+    "net": "+3V3",
+    "tht": false
+   }
+  }
+ },
+ "U1": {
+  "primitiveId": "ba29b0ab9ba14253",
+  "footprint": "HDR-TH_24P-P2.54-V-F-R2-C12-S2.54-2",
+  "device": "2541FV-2x12P",
+  "bbox": [
+   -508.12,
+   -1191.98,
+   508.12,
+   865.2
+  ],
+  "pads": {
+   "1": {
+    "x": 450.0,
+    "y": -550.05,
+    "net": "+5V",
+    "tht": true
+   },
+   "2": {
+    "x": 450.0,
+    "y": -450.05,
+    "net": "GND",
+    "tht": true
+   },
+   "3": {
+    "x": 450.0,
+    "y": -350.05,
+    "net": "LED_G1",
+    "tht": true
+   },
+   "4": {
+    "x": 450.0,
+    "y": -250.05,
+    "net": "LED_G2",
+    "tht": true
+   },
+   "5": {
+    "x": 450.0,
+    "y": -150.05,
+    "net": "LED_Y1",
+    "tht": true
+   },
+   "6": {
+    "x": 450.0,
+    "y": -50.05,
+    "net": "LED_Y2",
+    "tht": true
+   },
+   "7": {
+    "x": 450.0,
+    "y": 49.95,
+    "net": "LED_R",
+    "tht": true
+   },
+   "8": {
+    "x": 450.0,
+    "y": 149.95,
+    "net": "",
+    "tht": true
+   },
+   "9": {
+    "x": 450.0,
+    "y": 249.95,
+    "net": "BTN_START",
+    "tht": true
+   },
+   "10": {
+    "x": 450.0,
+    "y": 349.95,
+    "net": "BTN_RESET",
+    "tht": true
+   },
+   "11": {
+    "x": 450.0,
+    "y": 449.95,
+    "net": "",
+    "tht": true
+   },
+   "12": {
+    "x": 450.0,
+    "y": 549.95,
+    "net": "+3V3",
+    "tht": true
+   },
+   "13": {
+    "x": -450.0,
+    "y": -550.05,
+    "net": "",
+    "tht": true
+   },
+   "14": {
+    "x": -450.0,
+    "y": -450.05,
+    "net": "GND",
+    "tht": true
+   },
+   "15": {
+    "x": -450.0,
+    "y": -350.05,
+    "net": "GND",
+    "tht": true
+   },
+   "16": {
+    "x": -450.0,
+    "y": -250.05,
+    "net": "",
+    "tht": true
+   },
+   "17": {
+    "x": -450.0,
+    "y": -150.05,
+    "net": "SERVO",
+    "tht": true
+   },
+   "18": {
+    "x": -450.0,
+    "y": -50.05,
+    "net": "",
+    "tht": true
+   },
+   "19": {
+    "x": -450.0,
+    "y": 49.95,
+    "net": "",
+    "tht": true
+   },
+   "20": {
+    "x": -450.0,
+    "y": 149.95,
+    "net": "",
+    "tht": true
+   },
+   "21": {
+    "x": -450.0,
+    "y": 249.95,
+    "net": "",
+    "tht": true
+   },
+   "22": {
+    "x": -450.0,
+    "y": 349.95,
+    "net": "",
+    "tht": true
+   },
+   "23": {
+    "x": -450.0,
+    "y": 449.95,
+    "net": "GND",
+    "tht": true
+   },
+   "24": {
+    "x": -450.0,
+    "y": 549.95,
+    "net": "GND",
+    "tht": true
+   }
+  }
+ }
+}

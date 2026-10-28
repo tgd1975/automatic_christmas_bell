@@ -1,0 +1,675 @@
+{
+ "C1": {
+  "primitiveId": "3c3bcde83acfa96a",
+  "footprint": "CAP-TH_BD10.0-P5.00-D0.6-FD",
+  "device": "1000uF 16V",
+  "bbox": [
+   -201.85,
+   -201.85,
+   201.85,
+   201.85
+  ],
+  "pads": {
+   "2": {
+    "x": 98.4,
+    "y": -0.05,
+    "net": "GND",
+    "tht": true
+   },
+   "1": {
+    "x": -98.4,
+    "y": -0.05,
+    "net": "+5V",
+    "tht": true
+   }
+  }
+ },
+ "J1": {
+  "primitiveId": "6d990fe041b41816",
+  "footprint": "HDR-TH_3P-P2.54-V-M_PZ254V-11-03P",
+  "device": "PZ254V-11-03P",
+  "bbox": [
+   -155.0,
+   -54.21,
+   155.0,
+   54.21
+  ],
+  "pads": {
+   "1": {
+    "x": -99.96,
+    "y": -0.05,
+    "net": "GND",
+    "tht": true
+   },
+   "2": {
+    "x": 0.04,
+    "y": -0.05,
+    "net": "+5V",
+    "tht": true
+   },
+   "3": {
+    "x": 100.04,
+    "y": -0.05,
+    "net": "SERVO",
+    "tht": true
+   }
+  }
+ },
+ "LED1": {
+  "primitiveId": "8ac064ebd0bb841a",
+  "footprint": "LED-TH_BD5.9-P2.54-FD-RED",
+  "device": "XL-504SURD",
+  "bbox": [
+   -127.36,
+   -127.34,
+   117.54,
+   127.34
+  ],
+  "pads": {
+   "2": {
+    "x": 49.98,
+    "y": -0.05,
+    "net": "GND",
+    "tht": true
+   },
+   "1": {
+    "x": -50.02,
+    "y": -0.05,
+    "net": "LED_R_A",
+    "tht": true
+   }
+  }
+ },
+ "LED2": {
+  "primitiveId": "9a1f1ea5ae558d6f",
+  "footprint": "LED-TH_BD5.9-P2.54-RD_YELLOW",
+  "device": "XL-504UYD",
+  "bbox": [
+   -105.7,
+   -121.24,
+   121.24,
+   121.24
+  ],
+  "pads": {
+   "1": {
+    "x": -49.98,
+    "y": -0.05,
+    "net": "GND",
+    "tht": true
+   },
+   "2": {
+    "x": 50.02,
+    "y": -0.05,
+    "net": "LED_Y2_A",
+    "tht": true
+   }
+  }
+ },
+ "LED3": {
+  "primitiveId": "31bdeb51bbec858f",
+  "footprint": "LED-TH_BD5.9-P2.54-RD_YELLOW",
+  "device": "XL-504UYD",
+  "bbox": [
+   -105.7,
+   -121.24,
+   121.24,
+   121.24
+  ],
+  "pads": {
+   "1": {
+    "x": -50.04,
+    "y": -0.05,
+    "net": "GND",
+    "tht": true
+   },
+   "2": {
+    "x": 49.96,
+    "y": -0.05,
+    "net": "LED_Y1_A",
+    "tht": true
+   }
+  }
+ },
+ "LED4": {
+  "primitiveId": "23ba8daa6397cb48",
+  "footprint": "LED-TH_BD5.0-P2.54-FD",
+  "device": "XL-504UGD",
+  "bbox": [
+   -130.0,
+   -130.0,
+   105.0,
+   130.0
+  ],
+  "pads": {
+   "1": {
+    "x": -50.0,
+    "y": -0.05,
+    "net": "LED_G2_A",
+    "tht": true
+   },
+   "2": {
+    "x": 50.0,
+    "y": -0.05,
+    "net": "GND",
+    "tht": true
+   }
+  }
+ },
+ "LED5": {
+  "primitiveId": "83fa34de4c88190b",
+  "footprint": "LED-TH_BD5.0-P2.54-FD",
+  "device": "XL-504UGD",
+  "bbox": [
+   -130.0,
+   -130.0,
+   105.0,
+   130.0
+  ],
+  "pads": {
+   "1": {
+    "x": -50.0,
+    "y": 0.01,
+    "net": "LED_G1_A",
+    "tht": true
+   },
+   "2": {
+    "x": 50.0,
+    "y": 0.01,
+    "net": "GND",
+    "tht": true
+   }
+  }
+ },
+ "R1": {
+  "primitiveId": "f5060733072e333a",
+  "footprint": "R0805",
+  "device": "0805W8F3300T5E",
+  "bbox": [
+   -72.34,
+   -39.11,
+   72.34,
+   39.11
+  ],
+  "pads": {
+   "2": {
+    "x": 39.34,
+    "y": 0.01,
+    "net": "LED_Y2_A",
+    "tht": false
+   },
+   "1": {
+    "x": -39.36,
+    "y": 0.01,
+    "net": "LED_Y2",
+    "tht": false
+   }
+  }
+ },
+ "R2": {
+  "primitiveId": "7915bdf0c864aad1",
+  "footprint": "R0805",
+  "device": "0805W8F3300T5E",
+  "bbox": [
+   -72.34,
+   -39.11,
+   72.34,
+   39.11
+  ],
+  "pads": {
+   "2": {
+    "x": 39.38,
+    "y": 0.01,
+    "net": "LED_Y1_A",
+    "tht": false
+   },
+   "1": {
+    "x": -39.32,
+    "y": 0.01,
+    "net": "LED_Y1",
+    "tht": false
+   }
+  }
+ },
+ "R3": {
+  "primitiveId": "586709f7d5ae83aa",
+  "footprint": "R0805",
+  "device": "0805W8F3300T5E",
+  "bbox": [
+   -72.34,
+   -39.11,
+   72.34,
+   39.11
+  ],
+  "pads": {
+   "2": {
+    "x": 39.42,
+    "y": 0.01,
+    "net": "LED_G2_A",
+    "tht": false
+   },
+   "1": {
+    "x": -39.38,
+    "y": 0.01,
+    "net": "LED_G2",
+    "tht": false
+   }
+  }
+ },
+ "R4": {
+  "primitiveId": "65968997d72bce8f",
+  "footprint": "R0805",
+  "device": "0805W8F3300T5E",
+  "bbox": [
+   -72.34,
+   -39.11,
+   72.34,
+   39.11
+  ],
+  "pads": {
+   "2": {
+    "x": 39.36,
+    "y": 0.01,
+    "net": "LED_G1_A",
+    "tht": false
+   },
+   "1": {
+    "x": -39.34,
+    "y": 0.01,
+    "net": "LED_G1",
+    "tht": false
+   }
+  }
+ },
+ "R5": {
+  "primitiveId": "25927064bd082bc9",
+  "footprint": "R0805",
+  "device": "0805W8F3300T5E",
+  "bbox": [
+   -72.34,
+   -39.11,
+   72.34,
+   39.11
+  ],
+  "pads": {
+   "2": {
+    "x": 39.4,
+    "y": 0.01,
+    "net": "LED_R_A",
+    "tht": false
+   },
+   "1": {
+    "x": -39.4,
+    "y": 0.01,
+    "net": "LED_R",
+    "tht": false
+   }
+  }
+ },
+ "R6": {
+  "primitiveId": "c328867a1cf6ea16",
+  "footprint": "R0805",
+  "device": "0805W8F4701T5E",
+  "bbox": [
+   -72.34,
+   -39.11,
+   72.34,
+   39.11
+  ],
+  "pads": {
+   "2": {
+    "x": 39.4,
+    "y": -0.03,
+    "net": "GND",
+    "tht": false
+   },
+   "1": {
+    "x": -39.4,
+    "y": -0.03,
+    "net": "BTN_RESET",
+    "tht": false
+   }
+  }
+ },
+ "R7": {
+  "primitiveId": "f5bf8db5ed058b6e",
+  "footprint": "R0805",
+  "device": "0805W8F4701T5E",
+  "bbox": [
+   -72.34,
+   -39.11,
+   72.34,
+   39.11
+  ],
+  "pads": {
+   "2": {
+    "x": 39.34,
+    "y": -0.03,
+    "net": "GND",
+    "tht": false
+   },
+   "1": {
+    "x": -39.36,
+    "y": -0.03,
+    "net": "BTN_START",
+    "tht": false
+   }
+  }
+ },
+ "S1": {
+  "primitiveId": "0a27f45d1d95377c",
+  "footprint": "KEY-SMD_4P-L6.0-W6.0-P4.50-LS9.5-BL",
+  "device": "K2-1102SP-C4SC-04",
+  "bbox": [
+   -123.11,
+   -211.61,
+   123.11,
+   211.61
+  ],
+  "pads": {
+   "4": {
+    "x": 88.58,
+    "y": 168.27,
+    "net": "BTN_START",
+    "tht": false
+   },
+   "2": {
+    "x": -88.62,
+    "y": 168.27,
+    "net": "+5V",
+    "tht": false
+   },
+   "3": {
+    "x": 88.58,
+    "y": -168.33,
+    "net": "BTN_START",
+    "tht": false
+   },
+   "1": {
+    "x": -88.62,
+    "y": -168.33,
+    "net": "+5V",
+    "tht": false
+   }
+  }
+ },
+ "S2": {
+  "primitiveId": "5213d16a193f9583",
+  "footprint": "KEY-SMD_4P-L6.0-W6.0-P4.50-LS9.5-BL",
+  "device": "K2-1102SP-C4SC-04",
+  "bbox": [
+   -123.11,
+   -211.61,
+   123.11,
+   211.61
+  ],
+  "pads": {
+   "4": {
+    "x": 88.62,
+    "y": 168.27,
+    "net": "BTN_RESET",
+    "tht": false
+   },
+   "2": {
+    "x": -88.58,
+    "y": 168.27,
+    "net": "+5V",
+    "tht": false
+   },
+   "3": {
+    "x": 88.62,
+    "y": -168.33,
+    "net": "BTN_RESET",
+    "tht": false
+   },
+   "1": {
+    "x": -88.58,
+    "y": -168.33,
+    "net": "+5V",
+    "tht": false
+   }
+  }
+ },
+ "U1": {
+  "primitiveId": "bae7a09158e4a413",
+  "footprint": "COMM-TH_L43.2-W17.8-P2.54_ATMEGA328P",
+  "device": "ATMEGA328P USB Mini Micro Typec-C (aka Arduino Nano V3)",
+  "bbox": [
+   -355.0,
+   -912.08,
+   355.0,
+   855.0
+  ],
+  "pads": {
+   "1": {
+    "x": -300.0,
+    "y": 699.95,
+    "net": "",
+    "tht": true
+   },
+   "2": {
+    "x": -300.0,
+    "y": 599.95,
+    "net": "",
+    "tht": true
+   },
+   "3": {
+    "x": -300.0,
+    "y": 499.95,
+    "net": "",
+    "tht": true
+   },
+   "4": {
+    "x": -300.0,
+    "y": 399.95,
+    "net": "GND",
+    "tht": true
+   },
+   "5": {
+    "x": -300.0,
+    "y": 299.95,
+    "net": "LED_Y1",
+    "tht": true
+   },
+   "6": {
+    "x": -300.0,
+    "y": 199.95,
+    "net": "LED_Y2",
+    "tht": true
+   },
+   "7": {
+    "x": -300.0,
+    "y": 99.95,
+    "net": "LED_R",
+    "tht": true
+   },
+   "8": {
+    "x": -300.0,
+    "y": -0.05,
+    "net": "LED_G2",
+    "tht": true
+   },
+   "9": {
+    "x": -300.0,
+    "y": -100.05,
+    "net": "LED_G1",
+    "tht": true
+   },
+   "10": {
+    "x": -300.0,
+    "y": -200.05,
+    "net": "",
+    "tht": true
+   },
+   "11": {
+    "x": -300.0,
+    "y": -300.05,
+    "net": "SERVO",
+    "tht": true
+   },
+   "12": {
+    "x": -300.0,
+    "y": -400.05,
+    "net": "",
+    "tht": true
+   },
+   "13": {
+    "x": -300.0,
+    "y": -500.05,
+    "net": "",
+    "tht": true
+   },
+   "14": {
+    "x": -300.0,
+    "y": -600.05,
+    "net": "BTN_START",
+    "tht": true
+   },
+   "15": {
+    "x": -300.0,
+    "y": -700.05,
+    "net": "BTN_RESET",
+    "tht": true
+   },
+   "16": {
+    "x": 300.0,
+    "y": -700.05,
+    "net": "",
+    "tht": true
+   },
+   "17": {
+    "x": 300.0,
+    "y": -600.05,
+    "net": "",
+    "tht": true
+   },
+   "18": {
+    "x": 300.0,
+    "y": -500.05,
+    "net": "",
+    "tht": true
+   },
+   "19": {
+    "x": 300.0,
+    "y": -400.05,
+    "net": "",
+    "tht": true
+   },
+   "20": {
+    "x": 300.0,
+    "y": -300.05,
+    "net": "",
+    "tht": true
+   },
+   "21": {
+    "x": 300.0,
+    "y": -200.05,
+    "net": "",
+    "tht": true
+   },
+   "22": {
+    "x": 300.0,
+    "y": -100.05,
+    "net": "",
+    "tht": true
+   },
+   "23": {
+    "x": 300.0,
+    "y": -0.05,
+    "net": "",
+    "tht": true
+   },
+   "24": {
+    "x": 300.0,
+    "y": 99.95,
+    "net": "",
+    "tht": true
+   },
+   "25": {
+    "x": 300.0,
+    "y": 199.95,
+    "net": "",
+    "tht": true
+   },
+   "26": {
+    "x": 300.0,
+    "y": 299.95,
+    "net": "",
+    "tht": true
+   },
+   "27": {
+    "x": 300.0,
+    "y": 399.95,
+    "net": "+5V",
+    "tht": true
+   },
+   "28": {
+    "x": 300.0,
+    "y": 499.95,
+    "net": "",
+    "tht": true
+   },
+   "29": {
+    "x": 300.0,
+    "y": 599.95,
+    "net": "GND",
+    "tht": true
+   },
+   "30": {
+    "x": 300.0,
+    "y": 699.95,
+    "net": "",
+    "tht": true
+   }
+  }
+ },
+ "R8": {
+  "primitiveId": "53851d9185e9c31d",
+  "footprint": "R2512",
+  "device": "25121WF1000T4E",
+  "bbox": [
+   -157.97,
+   -80.03,
+   157.97,
+   80.03
+  ],
+  "pads": {
+   "2": {
+    "x": 120.7,
+    "y": -0.05,
+    "net": "GND",
+    "tht": false
+   },
+   "1": {
+    "x": -120.7,
+    "y": -0.05,
+    "net": "+5V",
+    "tht": false
+   }
+  }
+ },
+ "R9": {
+  "primitiveId": "54e5654b3e7ea420",
+  "footprint": "R2512",
+  "device": "25121WF1000T4E",
+  "bbox": [
+   -157.97,
+   -80.03,
+   157.97,
+   80.03
+  ],
+  "pads": {
+   "2": {
+    "x": 120.74,
+    "y": -0.05,
+    "net": "GND",
+    "tht": false
+   },
+   "1": {
+    "x": -120.76,
+    "y": -0.05,
+    "net": "+5V",
+    "tht": false
+   }
+  }
+ }
+}
