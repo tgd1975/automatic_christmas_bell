@@ -26,7 +26,7 @@
       "id": "M-6",
       "phase": "export",
       "scope": "circuit",
-      "text": "Regulatory review: circuit and parts against EU law for the stated purpose (RoHS, REACH, radio, batteries, product safety) – the agent regulatory-reviewer in its own session",
+      "text": "Regulatory review: circuit and parts against EU law for the stated purpose (RoHS, REACH, radio, batteries, product safety) – the agent regulatory-reviewer in its own session; support, not legal advice: no claim to correctness, nothing legally guaranteed",
       "done_by": "agent regulatory-reviewer (Claude, independent session)",
       "date": "2026-10-26",
       "note": "OK for state 36ddd746… and purpose private (D-16): no transmitter, 5 V USB only, no battery, no mains; RoHS and REACH data are not needed for own use. Notes: the firmware never detaches the servo, so a jam at rest stays an overload until unplugged (D-3) – detach it after the rest move; EMVG § 6 applies to own use too (disturb nothing, no formalities) – nothing to do for this board; at its end the bell goes to e-waste collection (ElektroG § 10)."

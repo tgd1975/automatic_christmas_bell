@@ -26,7 +26,7 @@
       "id": "M-6",
       "phase": "export",
       "scope": "circuit",
-      "text": "Regulatory review: circuit and parts against EU law for the stated purpose (RoHS, REACH, radio, batteries, product safety) – the agent regulatory-reviewer in its own session",
+      "text": "Regulatory review: circuit and parts against EU law for the stated purpose (RoHS, REACH, radio, batteries, product safety) – the agent regulatory-reviewer in its own session; support, not legal advice: no claim to correctness, nothing legally guaranteed",
       "done_by": "agent regulatory-reviewer (Claude, independent session)",
       "date": "2026-10-26",
       "note": "OK for state 3f7cec3d… and purpose private (D-17, Wi-Fi in use): station and setup hotspot (WPA2, channel 1) only on channels 1–13 – every Wi-Fi start sets country DE with 802.11d off; the default power limit of 20 dBm with the -4.32 dBi antenna gives about 16 dBm e.i.r.p. against 20 dBm; no Bluetooth, no frames to other WLANs. Notes: the page is open to everyone in the home network (accepted in D-17); the home Wi-Fi password is stored in the module's flash – erase it before the module leaves the house. Before: OK for 6224647f… with the radio off (one round: channel 14)."

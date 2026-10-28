@@ -135,13 +135,14 @@ female headers – the owner's choice, "the smaller variant" (the T-Display-S3 h
   IO37/IO38 configured as plain inputs (no internal pulls exist), debounce as in buttons.ino (H-3), and the servo
   detached once it is at rest with a limited bell phase – a stalled servo loads the module's 1N5819 with 0.87 A of its
   1 A (like D-3 on the Nano), with Wi-Fi up to 1.06 A.
-- **Radio** (requirement from the M-6 review, D-16; Wi-Fi since D-17): Bluetooth is never started – no
-  `BLEDevice::init`, `BluetoothSerial.begin`, `btStart`, `esp_bt_controller_enable`. Wi-Fi only as D-17 says: the
-  ESP32 can also use channel 14 (2484 MHz), outside the EU band 2400–2483.5 MHz, so the firmware sets the country DE
-  with 802.11d off (`esp_wifi_set_country_code("DE", false)` – with 802.11d on, an access point announcing JP would
-  open channel 14): channels 1–13 only. The module's own antenna, the default power limit (at most 20.5 dBm at the
-  chip, antenna −4.32 dBi: about 16 dBm e.i.r.p. against 20 dBm), no custom PHY init data, no frames that disconnect
-  or disturb other WLANs (BNetzA Vfg. 91/2025). Checked at M-4: a phone shows no Bluetooth device of the bell.
+- **Radio** (requirement from the M-6 review, D-16 – support, not legal advice; Wi-Fi since D-17): Bluetooth is never
+  started – no `BLEDevice::init`, `BluetoothSerial.begin`, `btStart`, `esp_bt_controller_enable`. Wi-Fi only as D-17
+  says: the ESP32 can also use channel 14 (2484 MHz), outside the EU band 2400–2483.5 MHz, so the firmware sets the
+  country DE with 802.11d off (`esp_wifi_set_country_code("DE", false)` – with 802.11d on, an access point announcing
+  JP would open channel 14): channels 1–13 only. The module's own antenna, the default power limit (at most 20.5 dBm
+  at the chip, antenna −4.32 dBi: about 16 dBm e.i.r.p. against 20 dBm), no custom PHY init data, no frames that
+  disconnect or disturb other WLANs (BNetzA Vfg. 91/2025). Checked at M-4: a phone shows no Bluetooth device of the
+  bell.
 - **Use:** the module's USB-C socket has a 5.1 kΩ pull-down on one CC line only: from a USB-C source (C-to-C cable)
   it gets power in one plug orientation only – use a USB-A-to-C cable or turn the plug over. The 2 × 12 pin field is
   symmetric: plug the module in with USB-C at the board edge and the display up (silkscreen "5V" at U1.1). No cell at
@@ -169,6 +170,9 @@ market EU, in each graph. The regulatory review M-6 (edakit handbook 15, require
 checks for this purpose; giving boards away or selling them needs a new purpose and a new M-6. The purpose is part of
 the circuit hash: adding it voided M-1 once on all four boards. The main board stays released as ordered
 (hardware/README.md) – M-6 counts for a new order.
+
+**Not legal advice.** M-6 and everything this repository says about law – the purpose, radio, CE, RoHS, REACH,
+e-waste – are support without any claim to correctness; nothing in them is legally guaranteed (edakit handbook 15).
 
 The reviews of 2026-10-26, each by an agent in its own session:
 

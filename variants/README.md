@@ -114,11 +114,11 @@ pio test -e native              # the countdown logic lib/BellTimer on the compu
 The hashes are the ones the reviewers signed. The move to edakit's split config (commit a1a1d80) re-stamped the
 layout hashes without a change of content ("rehashed" in each signoff.json). The purpose `private` in each graph
 (D-16) changed the circuit hashes: M-1 was confirmed again, M-6 – the regulatory review, required for every release
-since edakit ef1183f – signed for the new ones. On esp32 both were renewed for Wi-Fi (D-17): M-6 holds with the radio
-settings of D-13 (channels 1–13, no Bluetooth) and USB power without a cell, M-1 with the module's higher current
-and a USB source of at least 1 A. edakit a8b6011 added the warning P-5 for the Nano (no supplier in its parts
-entry); the Nanos are at hand, so it is accepted (D-19). The offline gate with edakit f6dd9f7 (runs 20261028-094551)
-counts M-1 and M-6. Left:
+since edakit ef1183f, support and not legal advice – signed for the new ones. On esp32 both were renewed for Wi-Fi
+(D-17): M-6 holds with the radio settings of D-13 (channels 1–13, no Bluetooth) and USB power without a cell, M-1
+with the module's higher current and a USB source of at least 1 A. edakit a8b6011 added the warning P-5 for the Nano
+(no supplier in its parts entry); the Nanos are at hand, so it is accepted (D-19). The offline gate with edakit
+f6dd9f7 (runs 20261028-094551) counts M-1 and M-6. Left:
 
 - **M-5** (all four boards): since edakit f6dd9f7 the artwork SVGs count in the layout hash, so the layout hashes are
   new, though the board is not – the SVGs are unchanged since 7667817, older than every review. M-5 is therefore
