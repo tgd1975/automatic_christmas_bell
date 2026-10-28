@@ -106,10 +106,10 @@ pio test -e native              # the countdown logic lib/BellTimer on the compu
 | schematics in EasyEDA = graph | yes | yes | yes |
 | PCB routed | 15 nets, 3 vias | 15 nets, 1 via | 16 nets, 7 vias |
 | M-1 circuit review | OK (1ed944d2…) | OK (5ddc2553…) | OK (3f7cec3d…) |
-| M-5 layout review | OK (67c811e0…), lapsed with f6dd9f7 | OK (d0021b33…), lapsed with f6dd9f7 | OK (4e836f8e…), lapsed with f6dd9f7 |
+| M-5 layout review | OK on run 20261026-123018 (fab 4e79e5c0…) | OK on run 20261026-123036 (fab 441ab22c…) | OK on run 20261026-123051 (fab f2962d76…) |
 | M-6 regulatory review | OK, private (1ed944d2…) | OK, private (5ddc2553…) | OK, private, Wi-Fi (3f7cec3d…) |
 | last gate run with EasyEDA | 20261026-123018 | 20261026-123036 | 20261026-123051 |
-| release gate | L-3 and M-5 open | L-3 and M-5 open | L-3 and M-5 open |
+| release gate | L-3 open; M-5 with the next EasyEDA run | L-3 open; M-5 with the next EasyEDA run | L-3 open; M-5 with the next EasyEDA run |
 
 The hashes are the ones the reviewers signed. The move to edakit's split config (commit a1a1d80) re-stamped the
 layout hashes without a change of content ("rehashed" in each signoff.json). The purpose `private` in each graph
@@ -120,10 +120,10 @@ and a USB source of at least 1 A. edakit a8b6011 added the warning P-5 for the N
 entry); the Nanos are at hand, so it is accepted (D-19). The offline gate with edakit f6dd9f7 (runs 20261028-094551)
 counts M-1 and M-6. Left:
 
-- **M-5** (all four boards): since edakit f6dd9f7 the artwork SVGs count in the layout hash, so the hashes are new
-  and M-5 lapses. The SVGs are unchanged since 7667817, older than every M-5 review – the owner confirms M-5 for the
-  new hashes after the EasyEDA gates, not before: `pcb dump` there may change the footprint geometry, which is in
-  the hash too.
+- **M-5** (all four boards): since edakit f6dd9f7 the artwork SVGs count in the layout hash, so the layout hashes are
+  new, though the board is not – the SVGs are unchanged since 7667817, older than every review. M-5 is therefore
+  bound to the manufacturing files its reviewer checked (scope `fab`, D-20): it counts in the next gate run with
+  EasyEDA if that run exports the same files, and is not checked offline.
 - **L-3** (EasyEDA DRC without findings): EasyEDA reports "Netlist Error – Import Changes" for parts freshly placed in
   a schematic until its import view was opened once in the GUI (edakit handbook 7.3). That needs a person at EasyEDA:
 
@@ -132,10 +132,9 @@ counts M-1 and M-6. Left:
 2. Close all other tabs, then per variant `edakit gate --easyeda --config variants/<v>/edakit.toml`. With several
    boards in one project, EasyEDA's BOM tool lists the parts of every open schematic tab – other boards' tabs make
    F-1 fail. The gate of edakit a8b6011 also runs the newer layout checks L-13 to L-18 – new findings may come.
-3. The reviews hold only for the files they checked: compare each new run's `fab/<v>/gerber/` with the run in the
-   table, ignoring the `G04` header lines, e.g.
-   `for f in <old run>/fab/esp32/gerber/*; do diff -q <(grep -v '^G04' "$f") <(grep -v '^G04' "<new run>/fab/esp32/gerber/${f##*/}"); done`.
-   Any difference – above all at U1's holes on esp32 – needs the reviewer again.
+3. The reviews hold only for the files they checked, and the gate compares them itself: M-5 counts only if the run's
+   fab hash is the reviewed run's (table above, D-20). If not, `edakit fab diff <reviewed run> <new run>` shows where
+   the files differ – above all at U1's holes on esp32 – and the pcb-reviewer reviews the difference.
 4. RELEASED: archive the run folder (`git add -f`), order from it (edakit release skill). At JLCPCB choose "Order
    Number: Specify Position" – each board has `JLCJLCJLCJLC` under the module.
 

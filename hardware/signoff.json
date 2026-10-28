@@ -1,7 +1,8 @@
 {
-  "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, footprint geometry). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
+  "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, artwork, footprint geometry), 'fab' = fab_sha256 (what the manufacturer builds from a gate run: Gerber layers, drill hits, BOM and CPL rows). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
   "state_sha256": "36ddd746a60dc92b54efb64c8eefd81f1cd7c3ae73fba79b2bef6c865b7362c4",
   "layout_sha256": "c874760d934571bac6f3be6f8aeb96da3e2f81ae8530672550f031e45d358417",
+  "fab_sha256": "f314419f1a3adcf4104d4cf6180b5d26c8931bf31606b73b23efa67ee3f16293",
   "manual": [
     {
       "id": "M-1",
@@ -15,11 +16,11 @@
     {
       "id": "M-5",
       "phase": "export",
-      "scope": "layout",
+      "scope": "fab",
       "text": "Layout reviewed independently (manufacturability; mechanics: the Nano's USB at the edge; operation of the buttons; looks of the LED row) on the manufacturing files of a gate run – e.g. by the agent pcb-reviewer",
       "done_by": "agent pcb-reviewer (Claude, independent session)",
       "date": "2026-10-25",
-      "note": "OK for layout hash 519be82b… (gate run 20261025-215346, Nano footprint swap D-7): U1 pads at the old positions with the same nets, holes 1.1 mm with 0.30 mm ring, smallest copper gap 0.206 mm (rule 0.203), capitals ≥ 1.016 mm, copper 1.6 mm from the mounting cutouts. Notes: the top GND pour is more broken up (cosmetic, both pieces on GND); 4 NPTH corner holes of the Nano footprint."
+      "note": "Bound to fab hash f314419f… on 2026-10-28: the manufacturing files of the reviewed gate run 20261025-215346 (the release run 20261025-220549 has the same). Before, M-5 had scope 'layout', and since edakit f6dd9f7 the layout hash counts the artwork SVGs too (unchanged since 7667817), so it changed without a change of the board (D-20). OK for layout hash 519be82b… (gate run 20261025-215346, Nano footprint swap D-7): U1 pads at the old positions with the same nets, holes 1.1 mm with 0.30 mm ring, smallest copper gap 0.206 mm (rule 0.203), capitals ≥ 1.016 mm, copper 1.6 mm from the mounting cutouts. Notes: the top GND pour is more broken up (cosmetic, both pieces on GND); 4 NPTH corner holes of the Nano footprint."
     },
     {
       "id": "M-6",

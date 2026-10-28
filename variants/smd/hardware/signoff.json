@@ -1,7 +1,8 @@
 {
-  "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, footprint geometry). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
+  "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, artwork, footprint geometry), 'fab' = fab_sha256 (what the manufacturer builds from a gate run: Gerber layers, drill hits, BOM and CPL rows). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
   "state_sha256": "1ed944d2acdf7a30ac3515850c7252b2e41dc79077dee3591fe5bfb9e80ed9f0",
   "layout_sha256": "dc785647946b99be7fe5f0023596a2813bd0559c27f9e8ef858dfcbf5f25c1d5",
+  "fab_sha256": "4e79e5c0c839c594b6e5817f1885cf61fb5d8ab7ea96b603af9d3d59bd323bbe",
   "manual": [
     {
       "id": "M-1",
@@ -15,11 +16,11 @@
     {
       "id": "M-5",
       "phase": "export",
-      "scope": "layout",
+      "scope": "fab",
       "text": "Layout reviewed independently (manufacturability; mechanics: USB at the edge; operation of the buttons; looks of the LED row) on the manufacturing files of a gate run – e.g. by the agent pcb-reviewer",
       "done_by": "agent pcb-reviewer (Claude, independent session)",
       "date": "2026-10-26",
-      "note": "OK for layout hash 67c811e0… (gate run 20261026-123018; first review of a0a80809… OK with notes, then keep-outs under the chevrons and the order-number placeholder under the Nano): smallest gap 0.206 mm (rule 0.203), copper 0.50 mm from the edge and 1.60 mm from the M3 cut-outs, tracks ≥ 0.557 mm from the Nano's NPTH holes, mask webs ≥ 0.136 mm, thermal spokes on every GND pad, polarity marks of LEDs/C1/J1 against P-2, silk ≥ 0.15 mm from openings. Notes: a tented GND via at (37.82, 48.00) sits on LED4's silk outline (cosmetic; a keep-out [37.2, 46.6, 38.4, 49.4] would move it); SMD J1 holds less sideways pull (D-11); order with 'Order Number (Specify Position)'."
+      "note": "Bound to fab hash 4e79e5c0… on 2026-10-28: the manufacturing files of the reviewed gate run 20261026-123018. Before, M-5 had scope 'layout', and since edakit f6dd9f7 the layout hash counts the artwork SVGs too (unchanged since 7667817), so it changed without a change of the board (D-20). OK for layout hash 67c811e0… (gate run 20261026-123018; first review of a0a80809… OK with notes, then keep-outs under the chevrons and the order-number placeholder under the Nano): smallest gap 0.206 mm (rule 0.203), copper 0.50 mm from the edge and 1.60 mm from the M3 cut-outs, tracks ≥ 0.557 mm from the Nano's NPTH holes, mask webs ≥ 0.136 mm, thermal spokes on every GND pad, polarity marks of LEDs/C1/J1 against P-2, silk ≥ 0.15 mm from openings. Notes: a tented GND via at (37.82, 48.00) sits on LED4's silk outline (cosmetic; a keep-out [37.2, 46.6, 38.4, 49.4] would move it); SMD J1 holds less sideways pull (D-11); order with 'Order Number (Specify Position)'."
     },
     {
       "id": "M-6",

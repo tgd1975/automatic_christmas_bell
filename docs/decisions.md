@@ -232,3 +232,25 @@ Owner's decision: what the reviewers of D-16 and D-17 suggested for edakit goes 
 Owner's decision: the Arduino Nanos for the boards main, smd and tht are at hand – nothing to order. edakit's warning
 P-5 (supplier per part, since edakit a8b6011) is accepted in the three sign-off files for U1 with C9900187880; the
 acceptance lapses when U1 gets another part. The ESP32 board's T-Display is bought separately (D-13).
+
+## D-20 M-5 bound to the manufacturing files (2026-10-28)
+
+Since edakit f6dd9f7 the artwork SVGs count in the layout hash. The SVGs are unchanged since 7667817, older than every
+M-5 review, so the boards did not change – their layout hashes did, and M-5 lapsed on all four. The plan was that the
+owner confirms M-5 for the new hashes. That adds nothing a comparison of the files cannot show.
+
+M-5 therefore has edakit's default scope `fab` now (edakit handbook 8.2): it is bound to the hash of what the
+manufacturer builds from – Gerber layers rasterised at 0.02 mm, drill hits, BOM and CPL rows – in the gate run its
+reviewer checked.
+
+| Board | Reviewed run | fab_sha256 |
+|---|---|---|
+| main | 20261025-215346 (the release run 20261025-220549 has the same) | f314419f… |
+| smd | 20261026-123018 | 4e79e5c0… |
+| tht | 20261026-123036 | 441ab22c… |
+| esp32 | 20261026-123051 | f2962d76… |
+
+The gate checks it: M-5 counts in a gate run with EasyEDA whose files give the same hash, and is not checked offline.
+When the files differ, `edakit fab diff <reviewed run> <new run>` shows where, and the pcb-reviewer reviews the
+difference. A layout hash that changes without a change of the board – a comment, a new hash method – no longer voids
+M-5.

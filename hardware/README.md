@@ -32,7 +32,7 @@ SMD parts (resistors, buttons); the headers, LEDs, C1 and J1 are hand-soldered.
 | [parts/](parts/) | one entry per LCSC number: pins with roles, ratings, lead sizes, datasheet sign-off |
 | [sim.json](sim.json) | USB at 4.45/4.7/5.05 V × idle, countdown, warning, bell × LED corners; a stalled servo as fault case |
 | [signoff.json](signoff.json) | manual checks M-1, M-5, M-6, M-2, M-4 |
-| [../docs/decisions.md](../docs/decisions.md) | numbered decisions D-1 … D-15 |
+| [../docs/decisions.md](../docs/decisions.md) | numbered decisions D-1 … D-20 |
 | [../variants](../variants/README.md) | three variants of this board: SMD, THT only, ESP32 with display (D-11 … D-15) |
 
 ## Offline
@@ -91,5 +91,5 @@ manufacturer's assembly preview (M-2) and the acceptance test of the delivered b
 For a new order: since 2026-10-26 the graph states the purpose `private` (D-16). M-1 was confirmed again for the new
 circuit hash, and the regulatory review M-6, which edakit now requires for a release, is signed. The Nanos are at
 hand, so edakit's warning P-5 (no supplier) is accepted (D-19). Since edakit f6dd9f7 the artwork counts in the
-layout hash: M-5 is confirmed again for the new hash with the next gate run with EasyEDA, which releases the
-current state.
+layout hash, so M-5 is bound to the manufacturing files of the reviewed run instead (D-20): it counts in the next
+gate run with EasyEDA if that run exports the same files, and that run releases the current state.
