@@ -106,23 +106,24 @@ pio test -e native              # the countdown logic lib/BellTimer on the compu
 | schematics in EasyEDA = graph | yes | yes | yes |
 | PCB routed | 15 nets, 3 vias | 15 nets, 1 via | 16 nets, 7 vias |
 | M-1 circuit review | OK (1ed944d2…) | OK (5ddc2553…) | OK (3f7cec3d…) |
-| M-5 layout review | OK (67c811e0…) | OK (d0021b33…) | OK (4e836f8e…) |
+| M-5 layout review | OK (67c811e0…), lapsed with f6dd9f7 | OK (d0021b33…), lapsed with f6dd9f7 | OK (4e836f8e…), lapsed with f6dd9f7 |
 | M-6 regulatory review | OK, private (1ed944d2…) | OK, private (5ddc2553…) | OK, private, Wi-Fi (3f7cec3d…) |
 | last gate run with EasyEDA | 20261026-123018 | 20261026-123036 | 20261026-123051 |
-| release gate | L-3 and P-5 open | L-3 and P-5 open | L-3 open |
+| release gate | L-3 and M-5 open | L-3 and M-5 open | L-3 and M-5 open |
 
 The hashes are the ones the reviewers signed. The move to edakit's split config (commit a1a1d80) re-stamped the
 layout hashes without a change of content ("rehashed" in each signoff.json). The purpose `private` in each graph
 (D-16) changed the circuit hashes: M-1 was confirmed again, M-6 – the regulatory review, required for every release
 since edakit ef1183f – signed for the new ones. On esp32 both were renewed for Wi-Fi (D-17): M-6 holds with the radio
 settings of D-13 (channels 1–13, no Bluetooth) and USB power without a cell, M-1 with the module's higher current
-and a USB source of at least 1 A. The offline gate with edakit a8b6011 (runs 20261028-085249) keeps the hashes and
-counts M-1, M-5 and M-6. Left:
+and a USB source of at least 1 A. edakit a8b6011 added the warning P-5 for the Nano (no supplier in its parts
+entry); the Nanos are at hand, so it is accepted (D-19). The offline gate with edakit f6dd9f7 (runs 20261028-094551)
+counts M-1 and M-6. Left:
 
-- **P-5** (smd and tht, also the main board): the Nano is bought separately, and its parts entry names no supplier
-  (C9900187880 is an EasyEDA library number). The owner names shop and order code – then `order` in the parts
-  entry, and M-1 and M-6 are confirmed again for the new hash – or, with the Nanos at hand, accepts the warning as
-  a decision.
+- **M-5** (all four boards): since edakit f6dd9f7 the artwork SVGs count in the layout hash, so the hashes are new
+  and M-5 lapses. The SVGs are unchanged since 7667817, older than every M-5 review – the owner confirms M-5 for the
+  new hashes after the EasyEDA gates, not before: `pcb dump` there may change the footprint geometry, which is in
+  the hash too.
 - **L-3** (EasyEDA DRC without findings): EasyEDA reports "Netlist Error – Import Changes" for parts freshly placed in
   a schematic until its import view was opened once in the GUI (edakit handbook 7.3). That needs a person at EasyEDA:
 

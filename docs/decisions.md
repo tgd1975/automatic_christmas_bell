@@ -226,3 +226,9 @@ Owner's decision: what the reviewers of D-16 and D-17 suggested for edakit goes 
 | 4 | a lower bound of a module's current for the minimum-load check | feature | [#25](https://github.com/tgd1975/edakit/issues/25) |
 | 5 | dissipation of a module's on-board LDO | feature | [#26](https://github.com/tgd1975/edakit/issues/26) |
 | 6 | ESP32 firmware fixes the country with 802.11d off | hint (handbook 15) | [#27](https://github.com/tgd1975/edakit/issues/27) |
+
+## D-19 The Nanos are at hand: P-5 accepted (2026-10-28)
+
+Owner's decision: the Arduino Nanos for the boards main, smd and tht are at hand – nothing to order. edakit's warning
+P-5 (supplier per part, since edakit a8b6011) is accepted in the three sign-off files for U1 with C9900187880; the
+acceptance lapses when U1 gets another part. The ESP32 board's T-Display is bought separately (D-13).

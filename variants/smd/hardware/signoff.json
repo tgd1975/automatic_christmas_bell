@@ -49,7 +49,18 @@
       "note": null
     }
   ],
-  "accepted_warnings": [],
+  "accepted_warnings": [
+    {
+      "match": "P-5 U1 *",
+      "scope": "decision",
+      "parts": {
+        "U1": "C9900187880"
+      },
+      "reason": "D-19: the Nanos are at hand – nothing to order",
+      "by": "owner",
+      "date": "2026-10-28"
+    }
+  ],
   "rehashed": [
     {
       "date": "2026-10-26",

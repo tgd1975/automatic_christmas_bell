@@ -89,5 +89,7 @@ One click in the GUI: *Design → Import Changes* once, which showed "no changes
 manufacturer's assembly preview (M-2) and the acceptance test of the delivered boards (M-4).
 
 For a new order: since 2026-10-26 the graph states the purpose `private` (D-16). M-1 was confirmed again for the new
-circuit hash, and the regulatory review M-6, which edakit now requires for a release, is signed. A gate run with
-EasyEDA releases the current state.
+circuit hash, and the regulatory review M-6, which edakit now requires for a release, is signed. The Nanos are at
+hand, so edakit's warning P-5 (no supplier) is accepted (D-19). Since edakit f6dd9f7 the artwork counts in the
+layout hash: M-5 is confirmed again for the new hash with the next gate run with EasyEDA, which releases the
+current state.
