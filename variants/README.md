@@ -98,7 +98,7 @@ pio test -e native              # the countdown logic lib/BellTimer on the compu
   Wi-Fi analyser app shows `Glocke-XXXX` on a channel 1–13 with WPA2 – and that the module is marked T-DISPLAY V1.1
   (M-4).
 
-## Status (2026-10-26)
+## Status (2026-10-28)
 
 | | smd | tht | esp32 |
 |---|---|---|---|
@@ -109,16 +109,20 @@ pio test -e native              # the countdown logic lib/BellTimer on the compu
 | M-5 layout review | OK (67c811e0…) | OK (d0021b33…) | OK (4e836f8e…) |
 | M-6 regulatory review | OK, private (1ed944d2…) | OK, private (5ddc2553…) | OK, private, Wi-Fi (3f7cec3d…) |
 | last gate run with EasyEDA | 20261026-123018 | 20261026-123036 | 20261026-123051 |
-| release gate | L-3 open | L-3 open | L-3 open |
+| release gate | L-3 and P-5 open | L-3 and P-5 open | L-3 open |
 
 The hashes are the ones the reviewers signed. The move to edakit's split config (commit a1a1d80) re-stamped the
 layout hashes without a change of content ("rehashed" in each signoff.json). The purpose `private` in each graph
 (D-16) changed the circuit hashes: M-1 was confirmed again, M-6 – the regulatory review, required for every release
 since edakit ef1183f – signed for the new ones. On esp32 both were renewed for Wi-Fi (D-17): M-6 holds with the radio
 settings of D-13 (channels 1–13, no Bluetooth) and USB power without a cell, M-1 with the module's higher current
-and a USB source of at least 1 A. The offline gate (runs 20261026-145535 of smd and tht, 20261026-172213 of esp32)
-counts M-1, M-5 and M-6. One thing is left:
+and a USB source of at least 1 A. The offline gate with edakit a8b6011 (runs 20261028-085249) keeps the hashes and
+counts M-1, M-5 and M-6. Left:
 
+- **P-5** (smd and tht, also the main board): the Nano is bought separately, and its parts entry names no supplier
+  (C9900187880 is an EasyEDA library number). The owner names shop and order code – then `order` in the parts
+  entry, and M-1 and M-6 are confirmed again for the new hash – or, with the Nanos at hand, accepts the warning as
+  a decision.
 - **L-3** (EasyEDA DRC without findings): EasyEDA reports "Netlist Error – Import Changes" for parts freshly placed in
   a schematic until its import view was opened once in the GUI (edakit handbook 7.3). That needs a person at EasyEDA:
 
@@ -126,7 +130,7 @@ counts M-1, M-5 and M-6. One thing is left:
    changes", close.
 2. Close all other tabs, then per variant `edakit gate --easyeda --config variants/<v>/edakit.toml`. With several
    boards in one project, EasyEDA's BOM tool lists the parts of every open schematic tab – other boards' tabs make
-   F-1 fail.
+   F-1 fail. The gate of edakit a8b6011 also runs the newer layout checks L-13 to L-18 – new findings may come.
 3. The reviews hold only for the files they checked: compare each new run's `fab/<v>/gerber/` with the run in the
    table, ignoring the `G04` header lines, e.g.
    `for f in <old run>/fab/esp32/gerber/*; do diff -q <(grep -v '^G04' "$f") <(grep -v '^G04' "<new run>/fab/esp32/gerber/${f##*/}"); done`.
