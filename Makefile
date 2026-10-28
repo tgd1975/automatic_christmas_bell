@@ -27,7 +27,7 @@ monitor:
 
 # Clean build files
 clean:
-	rm -rf .pio build
+	rm -rf .pio
 
 # Show available boards
 boards:
