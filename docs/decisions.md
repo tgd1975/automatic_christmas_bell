@@ -223,13 +223,30 @@ Owner's decision: what the reviewers of D-16 and D-17 suggested for edakit goes 
 
 | # | Proposal | Kind | edakit |
 |---|---|---|---|
-| 1 | radio power at the RF port and the antenna gain | feature | [#21](https://github.com/tgd1975/edakit/issues/21) |
-| 2a | a transmitter stays in the EU bands, or the graph says how it is used | check | [#22](https://github.com/tgd1975/edakit/issues/22) |
-| 2b | modules and microcontrollers state their radio | check | [#23](https://github.com/tgd1975/edakit/issues/23) |
-| 3 | own use and gifts: EMVG § 6 and REACH Art. 33 | hint (handbook 15) | [#24](https://github.com/tgd1975/edakit/issues/24) |
-| 4 | a lower bound of a module's current for the minimum-load check | feature | [#25](https://github.com/tgd1975/edakit/issues/25) |
-| 5 | dissipation of a module's on-board LDO | feature | [#26](https://github.com/tgd1975/edakit/issues/26) |
-| 6 | ESP32 firmware fixes the country with 802.11d off | hint (handbook 15) | [#27](https://github.com/tgd1975/edakit/issues/27) |
+| 1 | radio power at the RF port and the antenna gain | feature | G-24, built as a check ([#21](https://github.com/tgd1975/edakit/issues/21)) |
+| 2a | a transmitter stays in the EU bands, or the graph says how it is used | check | G-25 ([#22](https://github.com/tgd1975/edakit/issues/22)) |
+| 2b | modules and microcontrollers state their radio | check | P-11 ([#23](https://github.com/tgd1975/edakit/issues/23)) |
+| 3 | own use and gifts: EMVG § 6 and REACH Art. 33 | hint (handbook 15) | handbook 15 and the regulatory reviewer ([#24](https://github.com/tgd1975/edakit/issues/24)) |
+| 4 | a lower bound of a module's current for the minimum-load check | feature | built: `params.i_core_min_a` ([#25](https://github.com/tgd1975/edakit/issues/25)) |
+| 5 | dissipation of a module's on-board LDO | feature | built: `ratings.rth_ja_k_per_w`, `tj_max_c` ([#26](https://github.com/tgd1975/edakit/issues/26)) |
+| 6 | ESP32 firmware fixes the country with 802.11d off | hint (handbook 15) | handbook 15.2 and the regulatory reviewer ([#27](https://github.com/tgd1975/edakit/issues/27)) |
+
+edakit accepted all seven (triaged by hand on 2026-10-29, its Action's token being dead); they are on edakit main since
+bf7450a. The owner's rule for the new checks: edakit reports what the firmware has to keep but does not block on it –
+for `use: "private"` G-25 and P-11 are notes, for a sale warnings to accept. The bell's gate decisions stay as they
+were; `edakit check` and the gate protocol (end of section 2, "Information") show:
+
+- **P-11** on main, smd and tht: the Nano's entry (C9900187880) states no radio.
+- **G-25** on esp32: U1 can transmit in 2412–2484 MHz, beyond the EU band 2400–2483.5 MHz; the firmware keeps to
+  channels 1–13 (D-13 "Radio": country DE, 802.11d off). G-24 passes at 16.2 dBm e.i.r.p.
+
+The entries that clear the notes – `compliance.radio: "none"` in the Nano's entry, `purpose.radio` with the bands
+2412–2472 MHz in esp32's graph – and the keys of #25 and #26 for U1 change the circuit hash, and M-1 and M-6 must then
+be signed again. So they come with each board's next circuit change; on esp32 together with the T-Display's footprint
+as data, if edakit's step 3.6 replaces `tdisplay_device.py`. Tried by edakit on a copy of esp32: with `i_core_min_a`
+0.04 A the minimum load reads at least 0.136 A, so D-8 holds; with 184 K/W and 150 °C the on-board LDO reaches at
+most 122 °C (USB at 5.05 V, warning phase, 30 °C around), 3 K under edakit's limit of 125 °C. As everywhere here:
+support, not legal advice (D-16).
 
 ## D-19 The Nanos are at hand: P-5 accepted (2026-10-28)
 
