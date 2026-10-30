@@ -275,3 +275,23 @@ The gate checks it: M-5 counts in a gate run with EasyEDA whose files give the s
 When the files differ, `edakit fab diff <reviewed run> <new run>` shows where, and the pcb-reviewer reviews the
 difference. A layout hash that changes without a change of the board – a comment, a new hash method – no longer voids
 M-5.
+
+## D-21 Footprint print accepted at the gates with EasyEDA (2026-10-30)
+
+The first gate runs with EasyEDA after the import acknowledgement (edakit b36a6d0) failed only L-17: it tells
+edakit's own print from the footprints' by the silk files `silk apply` keeps before it prints, and the boards had been
+printed by an older edakit. `edakit silk apply` ran again on all four boards; the manufacturing files came out the same
+(fab hashes of D-20), so M-5 still counts. Left were warnings about print that is not edakit's. Owner's decision: all
+four accepted, in `accepted_warnings` of each sign-off file, bound to the parts concerned.
+
+1. **S1/S2** (all four boards): the buttons' footprint print reaches onto their pads' solder-mask openings –
+   0.012 mm², on tht 0.067 mm². JLCPCB clips print on openings.
+2. **C1** (smd, esp32): the same for the capacitor's footprint, 0.051 mm².
+3. **U1, the Nano** (main, smd, tht): its footprint prints 0.4 mm beyond the left board edge, where the USB socket
+   overhangs (1.8 mm²). JLCPCB leaves out print beyond the board; M-5 of main accepted it on 2026-10-25.
+4. **main, top copper:** a copper-free spot of 12 mm diameter at (55, 25) mm between C1 and the buttons, above
+   `[copper] max_bare_mm` (5 mm); 75 % copper on top. Not a manufacturing matter; removing it would mean routing
+   again, new manufacturing files and M-5 again.
+
+Release runs of 2026-10-30, all RELEASED: main 20261030-232729 (supersedes 20261025-220549), smd 20261030-232631,
+tht 20261030-232650, esp32 20261030-232707 – archived in git.

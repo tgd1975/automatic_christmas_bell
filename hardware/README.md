@@ -33,7 +33,7 @@ SMD parts (resistors, buttons); the headers, LEDs, C1 and J1 are hand-soldered.
 | [parts/](parts/) | one entry per LCSC number: pins with roles, ratings, lead sizes, datasheet sign-off |
 | [sim.json](sim.json) | USB at 4.45/4.7/5.05 V × idle, countdown, warning, bell × LED corners; a stalled servo as fault case |
 | [signoff.json](signoff.json) | manual checks M-1, M-5, M-6, M-2, M-4 |
-| [../docs/decisions.md](../docs/decisions.md) | numbered decisions D-1 … D-20 |
+| [../docs/decisions.md](../docs/decisions.md) | numbered decisions D-1 … D-21 |
 | [../variants](../variants/README.md) | three variants of this board: SMD, THT only, ESP32 with display (D-11 … D-15) |
 
 ## Offline
@@ -86,12 +86,13 @@ One click in the GUI: *Design → Import Changes* once, which showed "no changes
   - The layout review (M-5) failed twice before it passed: printed texts below 1 mm, and copper too close to the
     mounting holes. Both were fixed in edakit itself.
 
-**Released** on 2026-10-25, gate run 20261025-220549: every stage passes, M-1 and M-5 are signed. What remains is the
+**Released** on 2026-10-25, gate run 20261025-220549, and for the current state on 2026-10-30, gate run
+20261030-232729, which supersedes the first: every stage passes, M-1, M-5 and M-6 are signed. What remains is the
 manufacturer's assembly preview (M-2) and the acceptance test of the delivered boards (M-4).
 
-For a new order: since 2026-10-26 the graph states the purpose `private` (D-16). M-1 was confirmed again for the new
-circuit hash, and the regulatory review M-6, which edakit now requires for a release, is signed – support, not legal
-advice (D-16). The Nanos are at hand, so edakit's warning P-5 (no supplier) is accepted (D-19). Since edakit f6dd9f7
-the artwork counts in the layout hash, so M-5 is bound to the manufacturing files of the reviewed run instead (D-20):
-it counts in the next gate run with EasyEDA if that run exports the same files, and that run releases the current
-state.
+Since the first release the graph states the purpose `private` (D-16). M-1 was confirmed again for the new circuit
+hash, and the regulatory review M-6, which edakit now requires for a release, is signed – support, not legal advice
+(D-16). The Nanos are at hand, so edakit's warning P-5 (no supplier) is accepted (D-19). M-5 is bound to the
+manufacturing files of the reviewed run (D-20), and the release run exports the same files. The buttons' footprint
+print on their pads, the Nano's print beyond the board edge and a copper-free spot of 12 mm on the top side are
+accepted warnings (D-21).

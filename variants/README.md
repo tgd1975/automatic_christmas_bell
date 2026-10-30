@@ -98,45 +98,42 @@ pio test -e native              # the countdown logic lib/BellTimer on the compu
   Wi-Fi analyser app shows `Glocke-XXXX` on a channel 1–13 with WPA2 – and that the module is marked T-DISPLAY V1.1
   (M-4).
 
-## Status (2026-10-28)
+## Status (2026-10-30)
 
 | | smd | tht | esp32 |
 |---|---|---|---|
-| check, hints, sim | 0 errors, 1186 checks | 0 errors, 1186 checks | 0 errors, 1412 checks |
+| check, hints, sim | 0 errors, 1211 checks | 0 errors, 1211 checks | 0 errors, 1436 checks |
 | schematics in EasyEDA = graph | yes | yes | yes |
 | PCB routed | 15 nets, 3 vias | 15 nets, 1 via | 16 nets, 7 vias |
 | M-1 circuit review | OK (1ed944d2…) | OK (5ddc2553…) | OK (3f7cec3d…) |
 | M-5 layout review | OK on run 20261026-123018 (fab 4e79e5c0…) | OK on run 20261026-123036 (fab 441ab22c…) | OK on run 20261026-123051 (fab f2962d76…) |
 | M-6 regulatory review | OK, private (1ed944d2…) | OK, private (5ddc2553…) | OK, private, Wi-Fi (3f7cec3d…) |
-| last gate run with EasyEDA | 20261026-123018 | 20261026-123036 | 20261026-123051 |
-| release gate | L-3 open; M-5 with the next EasyEDA run | L-3 open; M-5 with the next EasyEDA run | L-3 open; M-5 with the next EasyEDA run |
+| release gate | **RELEASED**, run 20261030-232631 | **RELEASED**, run 20261030-232650 | **RELEASED**, run 20261030-232707 |
 
 The hashes are the ones the reviewers signed. The move to edakit's split config (commit a1a1d80) re-stamped the
 layout hashes without a change of content ("rehashed" in each signoff.json). The purpose `private` in each graph
 (D-16) changed the circuit hashes: M-1 was confirmed again, M-6 – the regulatory review, required for every release
 since edakit ef1183f, support and not legal advice – signed for the new ones. On esp32 both were renewed for Wi-Fi
 (D-17): M-6 holds with the radio settings of D-13 (channels 1–13, no Bluetooth) and USB power without a cell, M-1
-with the module's higher current and a USB source of at least 1 A. edakit a8b6011 added the warning P-5 for the Nano
-(no supplier in its parts entry); the Nanos are at hand, so it is accepted (D-19). The offline gate with edakit
-f6dd9f7 (runs 20261028-094551) counts M-1 and M-6. Left:
+with the module's higher current and a USB source of at least 1 A. The Nanos are at hand, so edakit's warning P-5 (no
+supplier) is accepted (D-19). M-5 is bound to the manufacturing files its reviewer checked (D-20).
 
-- **M-5** (all four boards): since edakit f6dd9f7 the artwork SVGs count in the layout hash, so the layout hashes are
-  new, though the board is not – the SVGs are unchanged since 7667817, older than every review. M-5 is therefore
-  bound to the manufacturing files its reviewer checked (scope `fab`, D-20): it counts in the next gate run with
-  EasyEDA if that run exports the same files, and is not checked offline.
-- **L-3** (EasyEDA DRC without findings): EasyEDA reports "Netlist Error – Import Changes" for parts freshly placed in
-  a schematic until its import view was opened once in the GUI (edakit handbook 7.3). That needs a person at EasyEDA:
+The release, on 2026-10-30 with edakit b36a6d0:
 
-1. In EasyEDA, for each of the PCBs `smd`, `tht` and `esp32`: open the PCB, *Design → Import Changes*, it shows "no
-   changes", close.
-2. Close all other tabs, then per variant `edakit gate --easyeda --config variants/<v>/edakit.toml`. With several
-   boards in one project, EasyEDA's BOM tool lists the parts of every open schematic tab – other boards' tabs make
-   F-1 fail. The gate of edakit a8b6011 also runs the newer layout checks L-13 to L-18 – new findings may come.
-3. The reviews hold only for the files they checked, and the gate compares them itself: M-5 counts only if the run's
-   fab hash is the reviewed run's (table above, D-20). If not, `edakit fab diff <reviewed run> <new run>` shows where
-   the files differ – above all at U1's holes on esp32 – and the pcb-reviewer reviews the difference.
-4. RELEASED: archive the run folder (`git add -f`), order from it (edakit release skill). At JLCPCB choose "Order
-   Number: Specify Position" – each board has `JLCJLCJLCJLC` under the module.
+1. *Design → Import Changes* opened once on each of the PCBs `smd`, `tht` and `esp32` (it showed no changes) – the
+   EasyEDA DRC is clean since (L-3).
+2. Before each `edakit gate --easyeda --config variants/<v>/edakit.toml` all EasyEDA tabs were closed: with several
+   boards in one project, EasyEDA's BOM tool lists the parts of every open schematic tab, and other boards' tabs make
+   F-1 fail.
+3. L-17 tells edakit's print from the footprints' by the silk files `silk apply` keeps, so `edakit silk apply` ran
+   again on every board. The manufacturing files came out the same as the reviewed runs' (fab hashes above), so M-5
+   counts.
+4. The footprints' own print on the buttons' and C1's pads and the Nano's print beyond the board edge are accepted
+   warnings (D-21).
+
+The release runs are archived in git (`build/release/<run>/` of each variant). To order: the edakit release skill,
+`edakit release verify` on the files about to be uploaded. At JLCPCB choose "Order Number: Specify Position" – each
+board has `JLCJLCJLCJLC` under the module. Before ordering the ESP32 board, measure the T-Display (above).
 
 ## Open
 

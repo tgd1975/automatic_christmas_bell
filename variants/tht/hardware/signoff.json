@@ -60,6 +60,27 @@
       "reason": "D-19: the Nanos are at hand – nothing to order",
       "by": "owner",
       "date": "2026-10-28"
+    },
+    {
+      "match": "L-17 tht S[12]: silkscreen on its solder-mask openings*",
+      "scope": "decision",
+      "parts": {
+        "S1": "C110153",
+        "S2": "C110153"
+      },
+      "reason": "D-21 (1): the buttons' own footprint print on their pads' openings – JLCPCB clips it",
+      "by": "owner",
+      "date": "2026-10-30"
+    },
+    {
+      "match": "L-17 tht TOP: silkscreen inside the board outline*",
+      "scope": "decision",
+      "parts": {
+        "U1": "C9900187880"
+      },
+      "reason": "D-21 (3): the Nano footprint's print 0.4 mm beyond the left edge where the USB socket overhangs – JLCPCB leaves it out",
+      "by": "owner",
+      "date": "2026-10-30"
     }
   ],
   "rehashed": [

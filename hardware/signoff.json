@@ -60,6 +60,34 @@
       "reason": "D-19: the Nanos are at hand – nothing to order",
       "by": "owner",
       "date": "2026-10-28"
+    },
+    {
+      "match": "L-17 main S[12]: silkscreen on its solder-mask openings*",
+      "scope": "decision",
+      "parts": {
+        "S1": "C127509",
+        "S2": "C127509"
+      },
+      "reason": "D-21 (1): the buttons' own footprint print on their pads' openings – JLCPCB clips it",
+      "by": "owner",
+      "date": "2026-10-30"
+    },
+    {
+      "match": "L-17 main TOP: silkscreen inside the board outline*",
+      "scope": "decision",
+      "parts": {
+        "U1": "C9900187880"
+      },
+      "reason": "D-21 (3): the Nano footprint's print 0.4 mm beyond the left edge where the USB socket overhangs – JLCPCB leaves it out",
+      "by": "owner",
+      "date": "2026-10-30"
+    },
+    {
+      "match": "L-15 main TOP: no copper-free circle above 5 mm*",
+      "scope": "decision",
+      "reason": "D-21 (4): a 12 mm copper-free spot between C1 and the buttons – looks only; removing it means routing and M-5 again",
+      "by": "owner",
+      "date": "2026-10-30"
     }
   ],
   "rehashed": [
