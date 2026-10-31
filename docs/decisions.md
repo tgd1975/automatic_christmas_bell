@@ -383,3 +383,22 @@ After the reviews of state e4a24024… (M-1 OK, M-6 OK; 2026-10-31):
   M-5 by the agent pcb-reviewer on that run (fab b768d2f5…): no block or important finding; S1/S2's 1.3 mm holes
   (datasheet 1.0 mm) do not hold the snap-in legs – press them flat while soldering (variants/README.md, THT). Gate run
   20261031-160323 on the same files: **RELEASED** (git 0516fc4) – build output, published with the order (D-22).
+
+## D-24 All boards in edakit's current file form (2026-10-31)
+
+Owner's request: "convert this project to an edakit project". It was one already – five boards, all released – but
+main, smd, tht and esp32 were still in the form before edakit's restructuring (D-23), and edakit 8bdb933 no longer
+reads it: `edakit check` and `edakit sim` stopped at the first parts entry ("the form of before the restructuring").
+`edakit convert --write` per board turned graph, parts entries and sign-off file into the new form (values/limits with
+units, `accept` by code instead of `waive`/`accepted_warnings`, P-5 → PARTS.supplier); the content is unchanged.
+
+- **Sign-offs:** M-1 and M-6 (scope circuit) keep counting – edakit moved them to the new circuit hashes and listed
+  both in `rehashed`: main 36ddd746… → 77c5ddc9…, smd 1ed944d2… → f66ebc83…, tht 5ddc2553… → e7abaa97…, esp32
+  3f7cec3d… → 4f36f0b7…. M-5 (scope fab) is bound to the manufacturing files, which the conversion does not touch.
+  D-19's acceptance of the Nano without supplier carries over (accepted in the offline gate).
+- **Releases:** unchanged – `edakit release current` names the same runs (main 20261030-232729, smd -232631,
+  tht -232650, esp32 -232707, esp32tht 20261031-160323), so `make publish` covers all five as before.
+- **Checked** on all five boards with edakit 8bdb933: `check`, `sim` and `docs` exit 0, the offline gate open only
+  in M-5 and the EasyEDA stages S, L and F, as on esp32tht.
+- What waits for a board's next circuit change (D-18, D-23) still waits: the conversion changes the form, not the
+  circuit.

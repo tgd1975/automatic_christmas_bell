@@ -27,13 +27,13 @@
    "role": "pin3"
   }
  },
- "params": {
+ "values": {
   "r_contact_ohm": 0.02,
   "pitch_mm": 2.54
  },
- "ratings": {
+ "limits": {
   "i_max_a": 3.0,
-  "v_max": 250
+  "v_max_v": 250
  },
  "spice": {},
  "sources": [

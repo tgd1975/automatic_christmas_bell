@@ -15,18 +15,18 @@
       "name": "TXD",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "2": {
       "name": "RXD",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "3": {
       "name": "RESET",
       "type": "input",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "4": {
       "name": "GND",
@@ -37,73 +37,73 @@
       "name": "PD2",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "6": {
       "name": "PD3",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "7": {
       "name": "PD4",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "8": {
       "name": "PD5",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "9": {
       "name": "PD6",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "10": {
       "name": "PD7",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "11": {
       "name": "PB0",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "12": {
       "name": "PB1",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "13": {
       "name": "PB2",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "14": {
       "name": "PB4",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "15": {
       "name": "PB3",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "16": {
       "name": "PB5",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "17": {
       "name": "3V3",
@@ -113,55 +113,55 @@
     "18": {
       "name": "AREF",
       "type": "analog",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "19": {
       "name": "PC0",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "20": {
       "name": "PC1",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "21": {
       "name": "PC2",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "22": {
       "name": "PC3",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "23": {
       "name": "PC4",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "24": {
       "name": "PC5",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "25": {
       "name": "ADC6",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "26": {
       "name": "ADC7",
       "type": "bidirectional",
       "role": "gpio",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "27": {
       "name": "5V",
@@ -171,7 +171,7 @@
     "28": {
       "name": "PC6",
       "type": "input",
-      "vmax": 5.5
+      "v_max_v": 5.5
     },
     "29": {
       "name": "GND",
@@ -181,12 +181,12 @@
     "30": {
       "name": "VIN",
       "type": "power_in",
-      "vmax": 12
+      "v_max_v": 12
     }
   },
-  "params": {
+  "values": {
     "behavior": "mcu",
-    "v_io": "vin",
+    "v_io_v": "vin",
     "regulator": "ldo",
     "vout_v": 3.3,
     "dropout_v": 1.0,
@@ -195,10 +195,10 @@
     "vih_ratio": 0.6,
     "vil_ratio": 0.3
   },
-  "ratings": {
-    "vin_min": 3.8,
-    "i_3v3_ext_max_a": 0.01,
-    "i_gpio_max_a": 0.02
+  "limits": {
+    "vin_min_v": 3.8,
+    "i_out_max_a": 0.01,
+    "gpio_i_max_a": 0.02
   },
   "spice": {},
   "sources": [

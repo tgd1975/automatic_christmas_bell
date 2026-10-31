@@ -1,6 +1,6 @@
 {
   "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, artwork, footprint geometry), 'fab' = fab_sha256 (what the manufacturer builds from a gate run: Gerber layers, drill hits, BOM and CPL rows). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
-  "state_sha256": "36ddd746a60dc92b54efb64c8eefd81f1cd7c3ae73fba79b2bef6c865b7362c4",
+  "state_sha256": "77c5ddc907e4221fff9c3cc9ac9e0e0478459b7bf83c9431c6bf00cc7ff007b0",
   "layout_sha256": "c874760d934571bac6f3be6f8aeb96da3e2f81ae8530672550f031e45d358417",
   "fab_sha256": "f314419f1a3adcf4104d4cf6180b5d26c8931bf31606b73b23efa67ee3f16293",
   "manual": [
@@ -50,46 +50,6 @@
       "note": null
     }
   ],
-  "accepted_warnings": [
-    {
-      "match": "P-5 U1 *",
-      "scope": "decision",
-      "parts": {
-        "U1": "C9900187880"
-      },
-      "reason": "D-19: the Nanos are at hand – nothing to order",
-      "by": "owner",
-      "date": "2026-10-28"
-    },
-    {
-      "match": "L-17 main S[12]: silkscreen on its solder-mask openings*",
-      "scope": "decision",
-      "parts": {
-        "S1": "C127509",
-        "S2": "C127509"
-      },
-      "reason": "D-21 (1): the buttons' own footprint print on their pads' openings – JLCPCB clips it",
-      "by": "owner",
-      "date": "2026-10-30"
-    },
-    {
-      "match": "L-17 main TOP: silkscreen inside the board outline*",
-      "scope": "decision",
-      "parts": {
-        "U1": "C9900187880"
-      },
-      "reason": "D-21 (3): the Nano footprint's print 0.4 mm beyond the left edge where the USB socket overhangs – JLCPCB leaves it out",
-      "by": "owner",
-      "date": "2026-10-30"
-    },
-    {
-      "match": "L-15 main TOP: no copper-free circle above 5 mm*",
-      "scope": "decision",
-      "reason": "D-21 (4): a 12 mm copper-free spot between C1 and the buttons – looks only; removing it means routing and M-5 again",
-      "by": "owner",
-      "date": "2026-10-30"
-    }
-  ],
   "rehashed": [
     {
       "date": "2026-10-26",
@@ -103,6 +63,59 @@
         "519be82b07dd6438ee027ca35dab28753f7f242a35174cad40fd512e84a44a30",
         "c874760d934571bac6f3be6f8aeb96da3e2f81ae8530672550f031e45d358417"
       ]
+    },
+    {
+      "date": "2026-10-31",
+      "by": "edakit convert",
+      "why": "graph, parts entries and sign-off file in the form of the restructuring (handbook 14.2): names with their unit, accept by code, locks – every value carried over; the files were the signed ones",
+      "state_sha256": [
+        "36ddd746a60dc92b54efb64c8eefd81f1cd7c3ae73fba79b2bef6c865b7362c4",
+        "77c5ddc907e4221fff9c3cc9ac9e0e0478459b7bf83c9431c6bf00cc7ff007b0"
+      ]
+    }
+  ],
+  "accept": [
+    {
+      "match": "PARTS.supplier U1 *",
+      "scope": "decision",
+      "parts": {
+        "U1": "C9900187880"
+      },
+      "reason": "D-19: the Nanos are at hand – nothing to order",
+      "by": "owner",
+      "date": "2026-10-28",
+      "converted_from": "P-5 U1 *"
+    },
+    {
+      "match": "GEO.silk main S[12]: silkscreen on its solder-mask openings*",
+      "scope": "decision",
+      "parts": {
+        "S1": "C127509",
+        "S2": "C127509"
+      },
+      "reason": "D-21 (1): the buttons' own footprint print on their pads' openings – JLCPCB clips it",
+      "by": "owner",
+      "date": "2026-10-30",
+      "converted_from": "L-17 main S[12]: silkscreen on its solder-mask openings*"
+    },
+    {
+      "match": "GEO.silk main TOP: silkscreen inside the board outline*",
+      "scope": "decision",
+      "parts": {
+        "U1": "C9900187880"
+      },
+      "reason": "D-21 (3): the Nano footprint's print 0.4 mm beyond the left edge where the USB socket overhangs – JLCPCB leaves it out",
+      "by": "owner",
+      "date": "2026-10-30",
+      "converted_from": "L-17 main TOP: silkscreen inside the board outline*"
+    },
+    {
+      "match": "GEO.pour main TOP: no copper-free circle above 5 mm*",
+      "scope": "decision",
+      "reason": "D-21 (4): a 12 mm copper-free spot between C1 and the buttons – looks only; removing it means routing and M-5 again",
+      "by": "owner",
+      "date": "2026-10-30",
+      "converted_from": "L-15 main TOP: no copper-free circle above 5 mm*"
     }
   ]
 }

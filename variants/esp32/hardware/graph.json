@@ -12,12 +12,7 @@
   "conventions": {
    "pin_reference": "'<designator>.<pin>' with the pin numbers of the EasyEDA symbol",
    "v": "per net: [min, max] in V over all operating states",
-   "waive": "per net or component: {check id: reason} accepts a finding on purpose"
-  },
-  "hints": {
-   "H-1": "C1 1000 µF / 16 V electrolytic on +5V, next to J1 (it buffers the module's 5V pin)",
-   "H-3": "to be debounced in the ESP32 firmware like buttons.ino (50 ms); the firmware port is open (D-13)",
-   "H-7": "J1 is the servo's own cable inside the bell's frame, plugged once; no TVS – like the main board"
+   "accept": "per net or component: {code: reason} accepts a finding on purpose (edakit explain <code>)"
   },
   "components": [
    {
@@ -503,8 +498,13 @@
    }
   ],
   "cables": [],
-  "checks": {
-   "pin_locks": {
+  "accept": {
+   "HINT.bulk": "C1 1000 µF / 16 V electrolytic on +5V, next to J1 (it buffers the module's 5V pin)",
+   "HINT.debounce": "to be debounced in the ESP32 firmware like buttons.ino (50 ms); the firmware port is open (D-13)",
+   "HINT.esd": "J1 is the servo's own cable inside the bell's frame, plugged once; no TVS – like the main board"
+  },
+  "locks": {
+   "pins": {
     "U1.3": "LED_G1",
     "U1.4": "LED_G2",
     "U1.5": "LED_Y1",

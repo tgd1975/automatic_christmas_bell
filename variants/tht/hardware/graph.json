@@ -12,12 +12,7 @@
   "conventions": {
    "pin_reference": "'<designator>.<pin>' with the pin numbers of the EasyEDA symbol",
    "v": "per net: [min, max] in V over all operating states",
-   "waive": "per net or component: {check id: reason} accepts a finding on purpose"
-  },
-  "hints": {
-   "H-1": "C1 1000 µF / 16 V electrolytic on +5V, next to J1 (it buffers the Nano's 5V pin)",
-   "H-3": "debounced in firmware: src/firmware/buttons.ino, 50 ms (DEBOUNCE_DELAY)",
-   "H-7": "J1 is the servo's own cable inside the bell's frame, plugged once; no TVS – like the main board"
+   "accept": "per net or component: {code: reason} accepts a finding on purpose (edakit explain <code>)"
   },
   "components": [
    {
@@ -80,10 +75,10 @@
      "28",
      "30"
     ],
-    "waive": {
-     "P-1": "VIN stays free: the Nano runs from its USB socket"
-    },
-    "notes": "Plugs into two 1x15 female headers, pitch 2.54 mm (hand-soldered, not in the graph). Powered through its USB socket; its 5V pin (USB minus a Schottky diode) supplies the servo, C1 and the buttons. Pin names are the library symbol's ATmega port names; its labels of pins 14/15 are swapped (pin 14 = D11 = PB3, pin 15 = D12 = PB4 on the Nano)."
+    "notes": "Plugs into two 1x15 female headers, pitch 2.54 mm (hand-soldered, not in the graph). Powered through its USB socket; its 5V pin (USB minus a Schottky diode) supplies the servo, C1 and the buttons. Pin names are the library symbol's ATmega port names; its labels of pins 14/15 are swapped (pin 14 = D11 = PB3, pin 15 = D12 = PB4 on the Nano).",
+    "accept": {
+     "STRUCT.entry": "VIN stays free: the Nano runs from its USB socket"
+    }
    },
    {
     "designator": "J1",
@@ -515,8 +510,13 @@
    }
   ],
   "cables": [],
-  "checks": {
-   "pin_locks": {
+  "accept": {
+   "HINT.bulk": "C1 1000 µF / 16 V electrolytic on +5V, next to J1 (it buffers the Nano's 5V pin)",
+   "HINT.debounce": "debounced in firmware: src/firmware/buttons.ino, 50 ms (DEBOUNCE_DELAY)",
+   "HINT.esd": "J1 is the servo's own cable inside the bell's frame, plugged once; no TVS – like the main board"
+  },
+  "locks": {
+   "pins": {
     "U1.5": "LED_Y1",
     "U1.6": "LED_Y2",
     "U1.7": "LED_R",

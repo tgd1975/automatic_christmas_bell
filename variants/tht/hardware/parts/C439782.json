@@ -22,12 +22,12 @@
       "role": "minus"
     }
   },
-  "params": {
+  "values": {
     "value_f": 0.001,
     "polarized": true
   },
-  "ratings": {
-    "v_max": 16,
+  "limits": {
+    "v_max_v": 16,
     "i_ripple_a": 0.68
   },
   "spice": {},

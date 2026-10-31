@@ -22,17 +22,17 @@
       "role": "anode"
     }
   },
-  "params": {
+  "values": {
     "color": "green",
-    "vf_typ": 3.0,
-    "vf_min": 2.8,
-    "vf_max": 3.4,
+    "vf_typ_v": 3.0,
+    "vf_min_v": 2.8,
+    "vf_max_v": 3.4,
     "vf_at_a": 0.02,
     "rs_ohm": 15
   },
-  "ratings": {
+  "limits": {
     "if_max_a": 0.02,
-    "vr_max": 5,
+    "vr_max_v": 5,
     "p_max_w": 0.07
   },
   "spice": {},

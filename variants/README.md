@@ -21,8 +21,8 @@ each (decision D-15 in [../docs/decisions.md](../docs/decisions.md)).
 
 Board 85 × 56 mm with four M3 holes for all of them, like the main board. The circuit of smd and tht is the main
 board's; esp32 replaces the Nano and follows from 3.3 V logic: the buttons switch 3V3, the LEDs are driven from
-3.3 V outputs. esp32tht is esp32's circuit with tht's parts; its files are in the form of edakit's restructuring
-(edakit main 5196c6f and later, D-23), the other four in the form before it (edakit b36a6d0) until their next change.
+3.3 V outputs. esp32tht is esp32's circuit with tht's parts. All five are in the form of edakit's restructuring
+(edakit main 5196c6f and later): esp32tht from the start (D-23), the other four by `edakit convert` (D-24).
 
 ## Commands
 
