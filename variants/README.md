@@ -109,54 +109,37 @@ pio test -e native              # the countdown logic lib/BellTimer on the compu
   Wi-Fi analyser app shows `Glocke-XXXX` on a channel 1–13 with WPA2 – and that the module is marked T-DISPLAY V1.1
   (M-4).
 
-## Status (2026-10-31)
+## Status (2026-11-01)
 
-| | smd | tht | esp32 | esp32tht |
-|---|---|---|---|---|
-| check, hints, sim | 0 errors, 1211 checks | 0 errors, 1211 checks | 0 errors, 1436 checks | 0 errors, 1461 checks |
-| schematics in EasyEDA = graph | yes | yes | yes | yes |
-| PCB routed | 15 nets, 3 vias | 15 nets, 1 via | 16 nets, 7 vias | 16 nets, 0 vias |
-| M-1 circuit review | OK (1ed944d2…) | OK (5ddc2553…) | OK (3f7cec3d…) | OK (bcb27b87…) |
-| M-5 layout review | OK on run 20261026-123018 (fab 4e79e5c0…) | OK on run 20261026-123036 (fab 441ab22c…) | OK on run 20261026-123051 (fab f2962d76…) | OK on run 20261031-154618 (fab b768d2f5…) |
-| M-6 regulatory review | OK, private (1ed944d2…) | OK, private (5ddc2553…) | OK, private, Wi-Fi (3f7cec3d…) | OK, private, Wi-Fi (bcb27b87…) |
-| release gate | **RELEASED**, run 20261030-232631 | **RELEASED**, run 20261030-232650 | **RELEASED**, run 20261030-232707 | **RELEASED**, run 20261031-160323 |
+All five boards are on edakit main (bc44fa7) and released again (D-25 to D-36): graph as TOML, requirements files,
+the T-Display's footprint as data, the order form as keys, no order-number placeholder.
 
-The hashes are the ones the reviewers signed. The move to edakit's split config (commit a1a1d80) re-stamped the
-layout hashes without a change of content ("rehashed" in each signoff.json). The purpose `private` in each graph
-(D-16) changed the circuit hashes: M-1 was confirmed again, M-6 – the regulatory review, required for every release
-since edakit ef1183f, support and not legal advice – signed for the new ones. On esp32 both were renewed for Wi-Fi
-(D-17): M-6 holds with the radio settings of D-13 (channels 1–13, no Bluetooth) and USB power without a cell, M-1
-with the module's higher current and a USB source of at least 1 A. The Nanos are at hand, so edakit's warning P-5 (no
-supplier) is accepted (D-19). M-5 is bound to the manufacturing files its reviewer checked (D-20).
+| | main | smd | tht | esp32 | esp32tht |
+|---|---|---|---|---|---|
+| check, sim, graph json, scripts | green | green | green | green (LIM.p accepted, D-26) | green |
+| requirements | 7 needs, 14 requirements | as main | as main | 8 needs, 19 requirements | as esp32 |
+| M-1 circuit review (state) | OK (861f9237…) | OK (a8a4db48…) | OK (79642329…) | OK (6ca3b2e3…) | OK (0bd61e5f…) |
+| M-6 regulatory review (electrical) | OK, private (1a518dc3…) | OK, private (4024ed6b…) | OK, private (db32b8ea…) | OK, private, Wi-Fi, D-36 (1beca6c8…) | OK, private, Wi-Fi, D-36 (668320d8…) |
+| M-5 layout review (fab) | OK on run 20261101-004618 (a9b42ee5…) | OK on run 20261101-003727 (d1875bf7…) | OK on run 20261101-003912 (197fe082…) | OK on run 20261101-004304 (fe891ad5…) | OK on run 20261101-004536 (02441da3…) |
+| release gate | **RELEASED**, run 20261101-005804 | **RELEASED**, run 20261101-005512 | **RELEASED**, run 20261101-005606 | **RELEASED**, run 20261101-005656 | **RELEASED**, run 20261101-005734 |
 
-The release, on 2026-10-30 with edakit b36a6d0:
+The hashes are the ones the reviewers signed; M-1, M-6 and M-5 by edakit's agents electrical-reviewer,
+regulatory-reviewer and pcb-reviewer in their own sessions. Against the releases of 2026-10-30/31 the manufacturing
+files differ only by the removed `JLCJLCJLCJLC` on smd, tht and esp32 and by the new order form `order.json`
+(`edakit fab diff`). M-6 is support, not legal advice: no claim to correctness, nothing legally guaranteed.
 
-1. *Design → Import Changes* opened once on each of the PCBs `smd`, `tht` and `esp32` (it showed no changes) – the
-   EasyEDA DRC is clean since (L-3).
-2. Before each `edakit gate --easyeda --config variants/<v>/edakit.toml` all EasyEDA tabs were closed: with several
-   boards in one project, EasyEDA's BOM tool lists the parts of every open schematic tab, and other boards' tabs make
-   F-1 fail.
-3. L-17 tells edakit's print from the footprints' by the silk files `silk apply` keeps, so `edakit silk apply` ran
-   again on every board. The manufacturing files came out the same as the reviewed runs' (fab hashes above), so M-5
-   counts.
-4. The footprints' own print on the buttons' and C1's pads and the Nano's print beyond the board edge are accepted
-   warnings (D-21).
+How it went: `silk apply` took the placeholder off by itself (it was in its memo of what it printed); on esp32 and
+esp32tht `pcb dump` measured U1's pads anew and SYNC.footprint passed, so nothing was rebuilt – `pcb apply` and
+`route save/reload/drc` put the dumped parts back (DRC 0). Before each `edakit gate --easyeda` every EasyEDA tab was
+closed (the BOM tool lists the parts of every open schematic tab). The footprints' own print and main's copper-free
+spot stay accepted warnings (D-21).
 
-esp32tht followed on 2026-10-31 with edakit 8bdb933 (D-23): Import Changes opened once, tabs closed before the gate,
-M-5 on gate run 20261031-154618, the buttons' own print accepted as D-21 (1), released by run 20261031-160323 on the
-same manufacturing files.
-
-The release runs are build output and stay out of git (`build/release/<run>/` of each variant; `edakit release
-current --config …` names the current one, D-22). To order: `make publish` – it lets `edakit release verify` check the
-order files of every board's current release, puts them into `build/publish/<tag>/` and publishes them as a
-pre-release on GitHub, tag = the date. Upload `gerber_<b>.zip`, `bom_<b>.csv` and `cpl_<b>.csv` from that folder at
-JLCPCB and choose "Mark on PCB: Remove Mark" for every board – no order number and no 2D barcode (D-27); the form
-has offered no order number since 2026-10-31. The current releases of smd, tht and esp32 still carry the old
-placeholder `JLCJLCJLCJLC` under the module, which JLCPCB would print as text. It comes off with the next gate run
-(D-25). Check the preview (M-2). Once a board of
-that state has been built and works: `make publish-built TAG=<tag>`. Before ordering the ESP32 board, measure the
-T-Display (above). `make publish` needs the GitHub CLI, logged in (`gh auth login`), and edakit – on the PATH, in
-`$EDAKIT`, or as a clone `../edakit` with its `.venv`.
+The release runs are build output and stay out of git (D-22); `edakit release current --config …` names the current
+one. **To order:** the skill cart puts each board into JLCPCB's cart from the keys of its edakit.toml (`[order]`
+mark "Remove Mark", `[cart]` Austria, DHL Express) and stops at the cart – `edakit cart prepare --config …` accepts
+all five releases. `make publish` publishes the order files as a GitHub pre-release first (`edakit release publish`,
+D-29); once a board of that state has been built and works, `make publish-built TAG=<tag>`. Before ordering an ESP32
+board, measure the T-Display and look for its CE mark (above, D-36). Check JLCPCB's preview (M-2).
 
 ## Open
 
