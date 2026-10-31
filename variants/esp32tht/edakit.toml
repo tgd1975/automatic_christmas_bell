@@ -1,0 +1,25 @@
+# edakit project file of the Christmas bell, variant ESP32 THT – reference: edakit/handbook/10-reference.md
+#
+# The circuit of the variant ESP32 (../esp32/edakit.toml) – a LILYGO T-Display V1.1 in two 1x12 female headers, 3.3 V
+# logic, yellow-green LEDs (D-13, D-14) – with the through-hole parts of the variant THT (../tht/edakit.toml) and no
+# assembly: a bare board, every part soldered by hand (D-23). Board 85 x 56 mm like the main board; its own board
+# "esp32tht" in the EasyEDA project christmas-bell. The module's symbol and footprint are the project-library copies
+# the board esp32 rebuilt (../esp32/hardware/lib/tdisplay_device.py).
+
+[project]
+name = "christmas-bell"           # the EasyEDA project of the main board; this variant is its board "esp32tht"
+graph = "hardware/graph.json"
+parts = "hardware/parts"
+artifacts = "build/edakit"
+reports = "build/release"
+company = "Christmas bell"
+quantity = 5
+
+[boards.esp32tht]
+title = "Christmas bell ESP32 THT"
+template = "generated_esp32tht"
+schematic = "layout_esp32tht"
+pcb = "esp32tht"
+
+[release]
+assembly = { sides = [] }        # no assembly: the BOM is empty, everything is hand-soldered (D-23)

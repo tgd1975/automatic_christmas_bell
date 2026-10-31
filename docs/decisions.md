@@ -323,3 +323,26 @@ again from the graph and the board file – routed anew, so M-5 anew: agent time
 Owner (2026-10-31): this is the desired behaviour and should be edakit's default – no archive in git, and
 `edakit release publish` doing what the script does. Handed to edakit as a prompt for an edakit session, not as an
 issue. Once edakit has it, `make publish` calls it and tools/publish_release.py goes.
+
+## D-23 Variant ESP32 THT: the T-Display board with through-hole parts, no assembly (2026-10-31)
+
+Owner's wish: "eine Version mit ESP32 und Pins zum selber Löten" – a fifth board `esp32tht` next to `esp32`, the
+circuit of the variant ESP32 (D-13, D-14, D-17) with the through-hole parts of the variant THT (D-12): a bare board,
+everything hand-soldered, the BOM empty (`[release] assembly = { sides = [] }`), no tooling holes. Folder
+variants/esp32tht/, board `esp32tht` in the EasyEDA project christmas-bell (D-15).
+
+- **Same circuit, same pins** as the variant ESP32: the firmware variants/esp32/firmware runs unchanged (pin locks
+  copied), Wi-Fi as in D-17.
+- **Parts of the variant THT:** buttons C110153, pull-downs 4.7 kΩ ¼ W (C57204), base load 2 × 100 Ω 1 W (C119469),
+  C1 1000 µF / 16 V radial (C439782), servo header C2937625, red XL-504SURD (C2895493) and yellow XL-504UYD
+  (C2895495).
+- **New parts:** the series resistors 100 Ω ¼ W metal film, MFR0W4F1000A50 (C57438, the sibling of the THT board's
+  330 Ω, 25 084 at LCSC on 2026-10-31); the two green LEDs yellow-green as in D-14 – the 3 V green XL-504UGD of the
+  THT board would shine unevenly from 3.3 V outputs: XL-504SYGD (C2895551, same series, diffused, 562–575 nm,
+  VF 2.0–2.6 V at 20 mA, 6 592 at LCSC). 7.2–11.2 mA (yellow-green) and 8.6–12.6 mA (red, yellow) in the simulation.
+- **Radio:** `purpose.radio` states channels 1–13 (2412–2472 MHz) for U1 right away – on esp32 that entry waits
+  for its next circuit change (D-18).
+- **Tooling:** the board's files are in the form of edakit's restructuring ("rules at scale", edakit main 5196c6f,
+  `edakit convert`); the four released boards stay as they are (edakit b36a6d0) until their next change.
+- Alternative: the variant ESP32 with the SMD parts hand-soldered – 0805 parts and the SMD servo header are harder
+  to solder by hand and hold less.

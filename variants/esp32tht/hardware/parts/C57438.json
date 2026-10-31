@@ -1,0 +1,59 @@
+{
+ "lcsc": "C57438",
+ "mpn": "MFR0W4F1000A50",
+ "manufacturer": "UNI-ROYAL",
+ "kind": "resistor",
+ "package": "THT axial Ø2.2 × 6.5 mm, pitch 10.5 mm",
+ "footprint": "RES-TH_BD2.2-L6.5-P10.50-D0.6",
+ "jlc_class": "Extended Part",
+ "datasheet": {
+  "url": "https://datasheet.lcsc.com/datasheet/pdf/d64f229a8d7408b8f346128da3329b41.pdf",
+  "pinout_page": null
+ },
+ "pins": {
+  "1": {
+   "name": "1",
+   "type": "passive",
+   "role": "1"
+  },
+  "2": {
+   "name": "2",
+   "type": "passive",
+   "role": "2"
+  }
+ },
+ "values": {
+  "value_ohm": 100.0,
+  "tolerance": 0.01
+ },
+ "limits": {
+  "p_max_w": 0.25,
+  "v_max_v": 250
+ },
+ "spice": {},
+ "lead": {
+  "*": {
+   "shape": "round",
+   "a_mm": 0.54,
+   "tol_mm": 0.05,
+   "hole_rec_mm": null,
+   "source": "UNI-ROYAL MFR series spec, 2.1 normal size, MF 1/4W: lead d 0.54 ± 0.05 mm"
+  }
+ },
+ "sources": [
+  "UNI-ROYAL MFR series spec (LCSC datasheet of C57438, 13 pages): MF 1/4W, D 2.2 ± 0.3 mm, L 6.5 ± 1.0 mm, lead 0.54 mm, 250 V working, 500 V overload",
+  "mpn, footprint, pin numbers and names: EasyEDA library data of C57438 (edakit part import, 2026-10-31); the sibling of C58608 (330 Ω) and C57204 (4.7 kΩ) of the variant THT",
+  "stock 25 084 at LCSC on 2026-10-31 (edakit part search)"
+ ],
+ "notes": null,
+ "verified": {
+  "by": "Claude Opus 5.5 (datasheet check)",
+  "date": "2026-10-31",
+  "datasheet": "UNI-ROYAL MFR series spec (LCSC)",
+  "datasheet_sha256": "a4c17c09acd8577cfa500444646d11501862b27ace1ee0f9aea16d72fac6c8b4",
+  "checked": [
+   "0.25 W, 250 V, lead 0.54 mm, body Ø2.2 × 6.5 mm against the footprint's 10.5 mm pitch and 0.6 mm holes"
+  ],
+  "open": []
+ }
+}
