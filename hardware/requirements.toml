@@ -1,0 +1,176 @@
+# What the circuit of the Christmas bell must do – all five boards (edakit handbook 3.6, 10.4).
+# Read by every configuration; the Nano boards (main, smd, tht) also read hardware/requirements_nano.toml, the ESP32
+# boards (esp32, esp32tht) variants/esp32/hardware/requirements.toml. Only the circuit: the countdown, the servo's
+# moves and the Wi-Fi behaviour are the firmware's (src/firmware, variants/esp32/firmware), the mounting is the
+# README's. Accepted by the owner on 2026-10-31 (D-32); from the inventory of 2026-10-31 by the agent requirements-engineer.
+
+[[need]]
+id = "N-1"
+text = "Press start, the LEDs count down, and after the countdown the bell rings by itself."
+who = "the parents, at Christmas"
+source = "README.md, Anwendung 3–5; docs/IMPLEMENTIERUNG.md, Ablauf"
+status = "accepted"
+
+[[need]]
+id = "N-2"
+text = "The LEDs show how much time is left, visible to the parents."
+who = "the parents"
+source = "README.md, Anwendung 3; docs/IMPLEMENTIERUNG.md §3"
+status = "accepted"
+
+[[need]]
+id = "N-3"
+text = "Everything runs from the module's USB socket and is switched on and off by plugging in the power bank."
+who = "the owner"
+source = "D-3, D-10, purpose.notes of every graph"
+status = "accepted"
+
+[[need]]
+id = "N-4"
+text = "The power bank does not switch itself off in the middle of the countdown."
+who = "the owner"
+source = "D-8"
+status = "accepted"
+
+[[need]]
+id = "N-5"
+text = "A jammed servo does no harm to the board or the module."
+who = "the owner"
+source = "D-3, D-13, M-1 note of main"
+status = "accepted"
+
+[[need]]
+id = "N-6"
+text = "Built and used by the owner at home – not sold or given away; no battery, no mains."
+who = "the owner"
+source = "D-16, purpose of every graph"
+status = "accepted"
+
+[[need]]
+id = "N-11"
+text = "The servo gets a separate 5 V, 1 A supply of its own."
+who = "the first design"
+source = "README.md, Schnellstart 2 and Troubleshooting; docs/IMPLEMENTIERUNG.md, Schaltplan-Architektur"
+status = "dropped"
+reason = "D-32: D-3 puts the servo on the module's 5V pin, every board is built so – the owner kept it (2026-10-31)"
+
+[[requirement]]
+id = "R-1"
+text = "In every operating state (idle, countdown, warning, bell) at USB 4.75–5.25 V, U1's supply stays at or above the module's minimum input voltage (Nano 3.8 V, T-Display 3.6 V)."
+source = "sim.json supplies; limits.vin_min_v of U1"
+from = ["N-3", "USB 2.0: 4.75–5.25 V at the port"]
+binding = "must"
+verify = [{ rows = "LIM.range usb-* U1 supply voltage*" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-2"
+text = "In every operating state at USB 4.75–5.25 V the board draws at least 100 mA from USB (open: 100 mA is the upper end of the 50–100 mA power banks switch off at, D-8 – not measured on the owner's bank)."
+source = "D-8; sim.json i_min_a"
+from = ["N-4", "D-8"]
+binding = "must"
+verify = [{ rows = "LIM.i usb-* U1 current keeps the supply on*" },
+          { accept = "on the power bank used at Christmas: 10 min idle, then a countdown – the bank stays on and the bell rings" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-3"
+text = "A countdown LED that is on carries 2–16 mA, one that is off at most 10 µA, at USB 4.75–5.25 V over the forward-voltage spread."
+source = "sim.json criteria; the LEDs' limits"
+from = ["N-2"]
+binding = "must"
+verify = [{ rows = "SIM.state usb-* LED? LED on*" }, { rows = "SIM.state usb-* LED? LED dark*" },
+          { accept = "every LED lights in its countdown step" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-4"
+text = "No output pin of U1 sources more than 16 mA (80 % of the 20 mA the module's datasheet allows)."
+source = "parts entry of U1: gpio_i_max_a; sim.json derating"
+from = ["ATmega328P and ESP32 datasheets"]
+binding = "must"
+verify = [{ rows = "LIM.i usb-* U1* GPIO output current*" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-5"
+text = "A pressed button drives its input of U1 above VIH, a released one keeps it below VIL, at USB 4.75–5.25 V."
+source = "D-4, D-13"
+from = ["N-1", "D-4"]
+binding = "must"
+verify = [{ rows = "LVL.threshold usb-* U1* input level*" }, { accept = "both buttons: start starts, reset stops" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-6"
+text = "In every operating state each part stays within sim.json's derating: power at most 50 %, current at most 80 %, a capacitor's and a diode's voltage at most 67 % of its rating."
+source = "sim.json derating; D-5 (C1 at 16 V)"
+from = ["the parts' datasheets", "D-26"]
+binding = "must"
+verify = [{ rows = "LIM.p usb-* * power dissipation*" }, { rows = "LIM.v usb-* * *" },
+          { rows = "LIM.i usb-* * forward current*" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-7"
+text = "With the servo stalled (0.7 A) at USB 4.75–5.25 V, neither the board nor U1's 5V path (the Nano's MBR0520 and polyfuse, the T-Display's 1N5819) is damaged by one bell phase plus its settle time, at most 6 s."
+source = "D-3, D-13; M-1 of esp32: 0.48 W stalled for at most 5.8 s against 550 mW"
+from = ["N-5", "D-3"]
+binding = "must"
+verify = [{ rows = "LIM.i usb-nom/servo-stalled U1 current from the supply*" }, { signoff = "M-1" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-8"
+text = "From 2 s after the bell phase on, J1 draws at most 10 mA (an analog servo, detached at rest)."
+source = "D-3; variants/README.md, Servo; 3596f3f (the Nano firmware detaches the servo)"
+from = ["N-5"]
+binding = "must"
+verify = [{ accept = "USB meter: 2 s after the bell the current is back at the idle value" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-9"
+text = "When the servo starts, U1 does not reset: +5V stays at or above U1's minimum input voltage during the servo's start-up peak (open: a transient scenario of the servo's step in sim.json, the circuit designer's)."
+source = "the C1 notes of every graph"
+from = ["N-1"]
+binding = "must"
+verify = [{ accept = "ring now (start held, then reset) 5 times in a row: no restart – Nano: no setup line in the serial log, ESP32: the display does not start anew" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-10"
+text = "The board is powered only from U1's USB socket: no second supply input, no battery, no mains."
+source = "D-3, D-13, D-16; purpose.notes"
+from = ["N-3", "N-6", "M-6"]
+binding = "must"
+verify = [{ signoff = "M-6" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-11"
+text = "R8 and R9 each dissipate at most 0.25 W, and their surface stays below 60 °C at 30 °C ambient after 30 min powered."
+source = "D-8; variants/README.md, Building and using ('get warm')"
+from = ["N-6", "D-8"]
+binding = "should"
+verify = [{ rows = "LIM.p usb-* R[89] power dissipation*" },
+          { accept = "after 30 min powered: R8 and R9 below 60 °C (touch or IR thermometer)" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-12"
+text = "LEDs, servo and buttons are wired to the pins of U1 in the graph's locks.pins, the ones the firmware uses."
+source = "locks.pins of every graph; the M-1 notes"
+from = ["the firmware: src/firmware/buttons.ino, variants/esp32/firmware/src/main.cpp"]
+binding = "must"
+verify = [{ signoff = "M-1" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-40"
+text = "The five countdown LEDs look about equally bright at 1–2 m in room light (open: a number – the datasheets' luminous intensity at the simulated current differs by up to 5× on smd)."
+source = "D-14, D-23 (Brightness); M-1 of smd"
+from = ["N-2"]
+binding = "should"
+verify = [{ accept = "all five LEDs on (warning): judged by eye at 1–2 m in room light – none stands out" }]
+status = "accepted"

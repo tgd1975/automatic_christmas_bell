@@ -1,5 +1,7 @@
 # Weihnachtsglocke (Christkind-Klingel)
 
+> **Historie (D-32):** Stand der Fritzing-Zeit, vor edakit. Es gelten [hardware/README.md](../../hardware/README.md), [variants/README.md](../../variants/README.md), [docs/decisions.md](../decisions.md) und die Anforderungen in [hardware/requirements.toml](../../hardware/requirements.toml) – insbesondere hängt das Servo am 5V-Pin des Moduls (D-3), es gibt keine getrennte Versorgung.
+
 ## Uebersicht
 
 Automatische mechanische Weihnachtsglocke fuer den traditionellen Christkind-Brauch an Heiligabend.

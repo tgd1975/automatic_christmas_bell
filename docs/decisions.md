@@ -480,3 +480,26 @@ and tht, taken by pin number from edakit's library entry A000005 (Arduino's pino
 (D-7) – the print is the module's. It changes the circuit hash of the three Nano boards, so it comes in the same
 renewal of M-1 and M-6 as the requirements file. The T-Display gets no `print`: no written source of its silkscreen
 text is at hand (the pin map is a picture) – open until the module is measured (TODO.md), then with that as source.
+
+## D-32 The bell's requirements file (2026-10-31)
+
+Plan 4.1 of edakit: the inventory of the agent requirements-engineer (2026-10-31), drafts by the skill requirements,
+the owner's round of the same day (items 11 to 16). **All drafts accepted as written**: N-1 to N-7, R-1 to R-12 and
+R-40 for all five boards (`hardware/requirements.toml`), R-20 for the Nano boards (`hardware/requirements_nano.toml`,
+read by main, smd and tht), R-30 to R-35 for the ESP32 boards (`variants/esp32/hardware/requirements.toml`, read by
+esp32 and esp32tht) – three files, so that no Nano value binds the ESP32 boards (decided by Claude, confirmed).
+
+- **Servo supply** (item 11): the separate 5 V, 1 A supply of README.md and IMPLEMENTIERUNG.md stays dropped – D-3
+  holds, N-11 is `dropped`; README.md corrected.
+- **docs/IMPLEMENTIERUNG.md** (item 12): history of the Fritzing time, moved to docs/old/ with a note on top; its
+  values (220 Ω–1 kΩ, 10 kΩ, the separate servo supply, the size) are not the boards'.
+- **Running time** (item 13): no requirement – the user picks the power bank; R-2 keeps it on.
+- **Brightness** (item 14): R-40 `should`, judged by eye at the acceptance test M-4 (all five on at 1–2 m in room
+  light) – no number, no change to the boards now.
+- **Decided by Claude, confirmed** (item 16): a transient scenario of the servo's start in every sim.json as the
+  evidence of R-9 beside its acceptance step (D-33); esp32's U1 gets the regulator's thermal values of esp32tht so that
+  R-32 has its evidence there (D-34); mounting, firmware times and Wi-Fi behaviour stay in the README and the
+  firmware.
+
+The files are in the circuit hash of every board: M-1 and M-6 anew on all five, whose notes name the requirements
+they find met.

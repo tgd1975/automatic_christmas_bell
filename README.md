@@ -44,8 +44,8 @@ automatic_christmas_bell/
 │       └── silkscreen_top.png  # Bestückungsplan (Silkscreen)
 ├── variants/              # Platinen smd, tht, esp32, esp32tht; Bestellen: variants/README.md
 ├── docs/
-│   ├── IMPLEMENTIERUNG.md # Detaillierte Umsetzung
-│   └── old/
+│   ├── decisions.md       # Entscheidungen D-1 …
+│   └── old/               # Historie: IMPLEMENTIERUNG.md, Fritzing
 │       ├── weihnachtsglocke.fzz
 │       ├── weihnachtsglocke_Schaltplan.png
 │       └── weihnachtsglocke_Schaltplan.svg
@@ -57,7 +57,7 @@ automatic_christmas_bell/
 
 ## 🔧 Hardware (Übersicht)
 
-- **Arduino Nano/Uno** – Mikrocontroller
+- **Arduino Nano** (oder LILYGO T-Display auf den ESP32-Platinen) – Mikrocontroller
 - **Servo 9g** – Betätigt die Glocke mechanisch
 - **5 LEDs** – Visueller Countdown (2× Grün, 2× Gelb, 1× Rot)
 - **2 Taster** – Start und Reset
@@ -87,7 +87,7 @@ automatic_christmas_bell/
 
 ### 2. Hardware aufbauen
 - Schaltplan: Siehe `docs/old/weihnachtsglocke_Schaltplan.png`
-- Stromversorgung: Arduino per USB, Servo separat (5V, 1A)
+- Stromversorgung: alles über die USB-Buchse des Moduls (Powerbank oder USB-Netzteil); das Servo hängt am 5V-Pin des Moduls (D-3)
 - Platinen: Fertigungsdateien (Gerber, BOM, CPL) unter [Releases](https://github.com/tgd1975/automatic_christmas_bell/releases);
   Aufbau in [hardware/README.md](hardware/README.md) und [variants/README.md](variants/README.md)
 
@@ -155,8 +155,10 @@ eine Webseite: Status, Zeit bis zum Läuten, Start, Pause, Stopp und Timer.
 
 ## 📖 Detaillierte Dokumentation
 
-Die komplette Implementierung (Schaltplan, Code-Erklärung, Mechanik, Anpassungen) findest du in:
-→ **[docs/IMPLEMENTIERUNG.md](docs/IMPLEMENTIERUNG.md)**
+Die Platinen und ihre Umsetzung: **[hardware/README.md](hardware/README.md)**, die Varianten in
+**[variants/README.md](variants/README.md)**, die Entscheidungen in **[docs/decisions.md](docs/decisions.md)** und was
+die Schaltung können muss in **[hardware/requirements.toml](hardware/requirements.toml)**. Die erste Umsetzung aus der
+Fritzing-Zeit liegt als Historie in [docs/old/IMPLEMENTIERUNG.md](docs/old/IMPLEMENTIERUNG.md).
 
 ---
 
@@ -168,7 +170,7 @@ Die komplette Implementierung (Schaltplan, Code-Erklärung, Mechanik, Anpassunge
 |------------|-------------|------------|
 | **Board nicht erkannt** | Falscher Port | `ls /dev/tty*` (Mac/Linux) oder Gerätemanager (Windows) prüfen |
 | **Upload fehlgeschlagen** | Falsches Board | Richtiges Board in IDE/PlatformIO/Makefile auswählen |
-| **Servo zuckt nur** | Strommangel | Servo mit externer 5V/1A-Stromversorgung betreiben |
+| **Servo zuckt nur** | Strommangel | Stärkere USB-Quelle (Nano: USB-Port mit 500 mA, ESP32: Netzteil oder Powerbank mit mindestens 1 A) und ein kurzes Kabel; eine getrennte Servo-Versorgung sieht die Platine nicht vor (D-3) |
 | **LEDs leuchten nicht** | Falsche Pin-Belegung | Pin-Definitionen in `buttons.ino` prüfen |
 | **Serial Monitor zeigt nichts** | Falsche Baudrate | 115200 Baud einstellen |
 | **Code kompiliert nicht** | Fehlende Bibliothek | `arduino-cli lib install Servo` |

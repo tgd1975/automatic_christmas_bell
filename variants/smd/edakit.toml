@@ -7,6 +7,7 @@
 [project]
 name = "christmas-bell"           # the EasyEDA project of the main board; this variant is its board "smd"
 graph = "hardware/graph.toml"
+requirements = ["../../hardware/requirements.toml", "../../hardware/requirements_nano.toml"]   # what the circuit must do: shared, then per module (D-32)
 parts = "hardware/parts"
 artifacts = "build/edakit"
 reports = "build/release"

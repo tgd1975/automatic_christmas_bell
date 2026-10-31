@@ -55,16 +55,19 @@
 automatic_christmas_bell/
 ├── AGENTS.md           # Diese Konfiguration
 ├── README.md           # Anwendung
-├── buttons.ino         # Arduino-Sketch
-├── weihnachtsglocke.fzz
-├── weihnachtsglocke_Schaltplan.png
-├── weihnachtsglocke_Schaltplan.svg
+├── edakit.toml         # edakit-Projekt der Hauptplatine (main)
+├── src/firmware/       # Nano-Firmware (buttons.ino)
+├── hardware/           # Graph (graph.toml), Bauteile, Anforderungen, Platine, Freigaben
+├── variants/           # smd, tht, esp32, esp32tht – je ein edakit-Projekt
+├── tools/edakit        # findet edakit für Hook und Makefile
+├── .githooks/          # pre-commit: edakit check, sim, graph json --check
 ├── LIZENZ
 ├── .gitignore
 └── docs/
-    └── IMPLEMENTIERUNG.md  # Umsetzung
+    ├── decisions.md    # Entscheidungen D-1 …
+    └── old/            # Historie: IMPLEMENTIERUNG.md, Fritzing
 ```
 
 ---
 
-*Letzte Aktualisierung: 25. Oktober 2025*
+*Letzte Aktualisierung: 31. Oktober 2026*

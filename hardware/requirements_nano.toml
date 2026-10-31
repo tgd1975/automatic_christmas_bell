@@ -1,0 +1,12 @@
+# What the circuit must do on the Nano boards main, smd and tht – beside hardware/requirements.toml (edakit handbook
+# 3.6, 10.4). Accepted by the owner on 2026-10-31 (D-32).
+
+[[requirement]]
+id = "R-20"
+text = "With the bell swinging (servo 0.3 A) at USB 4.75–5.25 V, the board draws at most 500 mA from USB (open: 0.3 A is assumed – the real servo is measured at the acceptance test)."
+source = "D-3; sim.json i_max_a 0.5"
+from = ["N-3", "USB 2.0: 500 mA per port", "the Nano's polyfuse MF-MSMF050"]
+binding = "must"
+verify = [{ rows = "LIM.i usb-* U1 current from the supply*" },
+          { accept = "USB meter during the bell: at most 500 mA" }]
+status = "accepted"

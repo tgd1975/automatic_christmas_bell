@@ -1,0 +1,65 @@
+# What the circuit must do on the ESP32 boards esp32 and esp32tht – beside ../../../hardware/requirements.toml (edakit
+# handbook 3.6, 10.4); esp32tht reads this file too. Accepted by the owner on 2026-10-31 (D-32). Radio: an assessment, not
+# legal advice.
+
+[[need]]
+id = "N-7"
+text = "A simple web page – status, time to ding, start, stop, pause and the timer – on the home Wi-Fi or the module's hotspot."
+who = "the owner"
+source = "D-17"
+status = "accepted"
+
+[[requirement]]
+id = "R-30"
+text = "With the bell swinging and Wi-Fi transmitting (module 0.27 A) at USB 4.75–5.25 V, the board draws at most 1 A from USB."
+source = "D-13, D-17; sim.json i_max_a 1.0"
+from = ["N-7", "the module's 1N5819", "D-17: a USB source of at least 1 A"]
+binding = "must"
+verify = [{ rows = "LIM.i usb-* U1 current from the supply*" },
+          { accept = "on a USB charger or power bank of at least 1 A: USB meter during the bell at most 1 A" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-31"
+text = "No ESP32 pin sees more than 3.4 V (absolute maximum 3.6 V): the buttons switch 3V3."
+source = "D-13: 3.3 V logic"
+from = ["the ESP32 datasheet"]
+binding = "must"
+verify = [{ rows = "LIM.declared usb-* BTN_* *" }, { rows = "LIM.declared usb-* SERVO *" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-32"
+text = "The module's AP2112K carries at most 200 mA, and its junction stays at or below 125 °C at 30 °C ambient."
+source = "D-18, D-23"
+from = ["the AP2112K datasheet (Diodes)"]
+binding = "must"
+verify = [{ rows = "LIM.i usb-* U1 load on the on-board regulator*" }, { rows = "LIM.t usb-* U1 junction temperature*" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-33"
+text = "U1 transmits only within 2400–2483.5 MHz, at most 20 dBm e.i.r.p. (an assessment, not legal advice)."
+source = "D-13 (Radio), M-6, BNetzA Vfg. 91/2025"
+from = ["N-7", "M-6"]
+binding = "must"
+verify = [{ signoff = "M-6" }, { accept = "Wi-Fi analyser app: the hotspot on a channel 1–13, WPA2" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-34"
+text = "The board leaves the strapping pins IO0, IO2, IO12 and IO15 of U1 unconnected."
+source = "D-13 (Pins)"
+from = ["the ESP32 datasheet: strapping pins"]
+binding = "must"
+verify = [{ signoff = "M-1" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-35"
+text = "J1's signal is 0/3.3 V from IO13, and the servo used moves with it."
+source = "D-13: hobby servos accept 3.3 V"
+from = ["N-1"]
+binding = "should"
+verify = [{ accept = "the servo swings on the bell" }]
+status = "accepted"
