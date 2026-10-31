@@ -92,6 +92,14 @@ layer = "BOTTOM"
 width_mil = 12
 points = [[36.85, 13.07], [40.2, 9.7], [54.75, 9.75]]
 
+# LED_G1 around the module's USB end, all on the bottom: Freerouting's route of the round after M-5 with its last
+# 6 mm moved down from the top – it changed layers there through the board's only via ([looks] max_vias = 0).
+[[routing.fixed_wires]]
+net = "LED_G1"
+layer = "BOTTOM"
+width_mil = 12
+points = [[21.61, 13.07], [20.11, 11.57], [15.64, 11.57], [15.22, 11.99], [15.22, 36.98], [18.24, 40.0], [24.75, 40.0]]
+
 # No vias under the chevrons between the LEDs: a tented via shows through the print (M-5 on esp32).
 [[routing.keepouts]]
 layer = ["TOP", "BOTTOM"]
