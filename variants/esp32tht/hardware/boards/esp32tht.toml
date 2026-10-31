@@ -197,6 +197,12 @@ x = 6
 y = 9
 width_mm = 3
 
+# R8 has no free spot between the module and its body: both base-load resistors carry their name inside their body
+# outline, standing (silk apply found none for R8)
+[silk.place]
+R8 = { x = 55.5, y = 28.5, rot = 90 }
+R9 = { x = 61, y = 28.5, rot = 90 }
+
 # Labels: orientation of the module, the buttons and the servo pins (J1: pin 1 = GND at the square pad)
 
 [[silk.texts]]

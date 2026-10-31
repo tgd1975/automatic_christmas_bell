@@ -1,6 +1,6 @@
 {
  "C1": {
-  "primitiveId": "fb24df84d9adee00",
+  "primitiveId": "41897288141c5e0c",
   "footprint": "CAP-TH_BD10.0-P5.00-D0.6-FD",
   "device": "1000uF 16V",
   "bbox": [
@@ -14,18 +14,28 @@
     "x": 98.4,
     "y": -0.05,
     "net": "GND",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
    },
    "1": {
     "x": -98.4,
     "y": -0.05,
     "net": "+5V",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
    }
   }
  },
  "J1": {
-  "primitiveId": "bb25f18cae2d6142",
+  "primitiveId": "d713ac0b86088fac",
   "footprint": "HDR-TH_3P-P2.54-V-M_PZ254V-11-03P",
   "device": "PZ254V-11-03P",
   "bbox": [
@@ -39,24 +49,39 @@
     "x": -99.96,
     "y": -0.05,
     "net": "GND",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.102,
+     0.102
+    ],
+    "plated": true
    },
    "2": {
     "x": 0.04,
     "y": -0.05,
     "net": "+5V",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.102,
+     0.102
+    ],
+    "plated": true
    },
    "3": {
     "x": 100.04,
     "y": -0.05,
     "net": "SERVO",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.102,
+     0.102
+    ],
+    "plated": true
    }
   }
  },
  "LED1": {
-  "primitiveId": "8247ce77a88e4e6d",
+  "primitiveId": "577289e3397e4800",
   "footprint": "LED-TH_BD5.9-P2.54-FD-RED",
   "device": "XL-504SURD",
   "bbox": [
@@ -70,18 +95,28 @@
     "x": 49.98,
     "y": -0.05,
     "net": "GND",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.091,
+     0.091
+    ],
+    "plated": true
    },
    "1": {
     "x": -50.02,
     "y": -0.05,
     "net": "LED_R_A",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.091,
+     0.091
+    ],
+    "plated": true
    }
   }
  },
  "LED2": {
-  "primitiveId": "2a936503fa3eb183",
+  "primitiveId": "0c9517e67f15ccd7",
   "footprint": "LED-TH_BD5.9-P2.54-RD_YELLOW",
   "device": "XL-504UYD",
   "bbox": [
@@ -95,18 +130,28 @@
     "x": -49.98,
     "y": -0.05,
     "net": "GND",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
    },
    "2": {
     "x": 50.02,
     "y": -0.05,
     "net": "LED_Y2_A",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
    }
   }
  },
  "LED3": {
-  "primitiveId": "910bd276d531a5e7",
+  "primitiveId": "d5d24570c719c9f5",
   "footprint": "LED-TH_BD5.9-P2.54-RD_YELLOW",
   "device": "XL-504UYD",
   "bbox": [
@@ -120,142 +165,273 @@
     "x": -50.04,
     "y": -0.05,
     "net": "GND",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
    },
    "2": {
     "x": 49.96,
     "y": -0.05,
     "net": "LED_Y1_A",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
    }
   }
  },
- "R8": {
-  "primitiveId": "2c5573a546ed236e",
-  "footprint": "RES-TH_BD4.0-L11.5-P15.50-D0.7",
-  "device": "MF1W-100\u03a9\u00b11% T",
+ "LED4": {
+  "primitiveId": "b69778b5f0e0dd37",
+  "footprint": "LED-TH_BD5.9-P2.54-RD_GREEN",
+  "device": "XL-504SYGD",
   "bbox": [
-   -335.12,
-   -83.74,
-   335.11,
-   83.74
+   -105.1,
+   -120.05,
+   120.99,
+   119.97
   ],
   "pads": {
    "1": {
-    "x": -305.12,
-    "y": -0.03,
-    "net": "+5V",
-    "tht": true
-   },
-   "2": {
-    "x": 305.08,
-    "y": -0.03,
+    "x": -50.0,
+    "y": -0.05,
     "net": "GND",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
+   },
+   "2": {
+    "x": 50.0,
+    "y": -0.05,
+    "net": "LED_G2_A",
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
    }
   }
  },
- "R9": {
-  "primitiveId": "8b4f2c480529cfdd",
-  "footprint": "RES-TH_BD4.0-L11.5-P15.50-D0.7",
-  "device": "MF1W-100\u03a9\u00b11% T",
+ "LED5": {
+  "primitiveId": "27967ddcd939a6ed",
+  "footprint": "LED-TH_BD5.9-P2.54-RD_GREEN",
+  "device": "XL-504SYGD",
   "bbox": [
-   -335.11,
-   -83.74,
-   335.11,
-   83.74
+   -105.1,
+   -120.05,
+   120.99,
+   119.97
   ],
   "pads": {
    "1": {
-    "x": -305.08,
-    "y": -0.03,
-    "net": "+5V",
-    "tht": true
-   },
-   "2": {
-    "x": 305.12,
-    "y": -0.03,
+    "x": -50.0,
+    "y": 0.01,
     "net": "GND",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
+   },
+   "2": {
+    "x": 50.0,
+    "y": 0.01,
+    "net": "LED_G1_A",
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
    }
   }
  },
- "S1": {
-  "primitiveId": "8dfba7cf15e11503",
-  "footprint": "KEY-TH_4P-L6.0-W6.0-P4.50-LS6.50",
-  "device": "K2-1102DP-C4SW-04",
+ "R1": {
+  "primitiveId": "b2fac2af9f611fdc",
+  "footprint": "RES-TH_BD2.5-L6.5-P10.50-D0.6",
+  "device": "MFR0W4F3300A50",
   "bbox": [
-   -167.32,
-   -127.95,
-   167.32,
-   127.95
+   -243.69,
+   -54.21,
+   243.69,
+   54.21
   ],
   "pads": {
-   "4": {
-    "x": 127.96,
-    "y": -88.63,
-    "net": "BTN_START",
-    "tht": true
+   "1": {
+    "x": -206.66,
+    "y": 0.01,
+    "net": "LED_Y2",
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
    },
    "2": {
-    "x": 127.96,
-    "y": 88.57,
-    "net": "+5V",
-    "tht": true
-   },
-   "1": {
-    "x": -127.94,
-    "y": 88.57,
-    "net": "+5V",
-    "tht": true
-   },
-   "3": {
-    "x": -127.94,
-    "y": -88.63,
-    "net": "BTN_START",
-    "tht": true
+    "x": 206.74,
+    "y": 0.01,
+    "net": "LED_Y2_A",
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
    }
   }
  },
- "S2": {
-  "primitiveId": "3a770df4de5ef922",
-  "footprint": "KEY-TH_4P-L6.0-W6.0-P4.50-LS6.50",
-  "device": "K2-1102DP-C4SW-04",
+ "R2": {
+  "primitiveId": "9a288028f2efeed1",
+  "footprint": "RES-TH_BD2.5-L6.5-P10.50-D0.6",
+  "device": "MFR0W4F3300A50",
   "bbox": [
-   -167.32,
-   -127.95,
-   167.32,
-   127.95
+   -243.69,
+   -54.21,
+   243.69,
+   54.21
   ],
   "pads": {
-   "4": {
-    "x": 128.0,
-    "y": -88.63,
-    "net": "BTN_RESET",
-    "tht": true
+   "1": {
+    "x": -206.72,
+    "y": 0.01,
+    "net": "LED_Y1",
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
    },
    "2": {
-    "x": 128.0,
-    "y": 88.57,
-    "net": "+5V",
-    "tht": true
-   },
+    "x": 206.68,
+    "y": 0.01,
+    "net": "LED_Y1_A",
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
+   }
+  }
+ },
+ "R3": {
+  "primitiveId": "4c978bdbd9a7e906",
+  "footprint": "RES-TH_BD2.2-L6.5-P10.50-D0.6",
+  "device": "MFR0W4F1000A50",
+  "bbox": [
+   -238.19,
+   -50.0,
+   238.19,
+   50.0
+  ],
+  "pads": {
    "1": {
-    "x": -127.9,
-    "y": 88.57,
-    "net": "+5V",
-    "tht": true
+    "x": -206.68,
+    "y": 0.01,
+    "net": "LED_G2",
+    "tht": true,
+    "hole": [
+     0.091,
+     0.091
+    ],
+    "plated": true
    },
-   "3": {
-    "x": -127.9,
-    "y": -88.63,
-    "net": "BTN_RESET",
-    "tht": true
+   "2": {
+    "x": 206.72,
+    "y": 0.01,
+    "net": "LED_G2_A",
+    "tht": true,
+    "hole": [
+     0.091,
+     0.091
+    ],
+    "plated": true
+   }
+  }
+ },
+ "R4": {
+  "primitiveId": "db452257824caa1f",
+  "footprint": "RES-TH_BD2.2-L6.5-P10.50-D0.6",
+  "device": "MFR0W4F1000A50",
+  "bbox": [
+   -238.19,
+   -50.0,
+   238.19,
+   50.0
+  ],
+  "pads": {
+   "1": {
+    "x": -206.74,
+    "y": 0.01,
+    "net": "LED_G1",
+    "tht": true,
+    "hole": [
+     0.091,
+     0.091
+    ],
+    "plated": true
+   },
+   "2": {
+    "x": 206.66,
+    "y": 0.01,
+    "net": "LED_G1_A",
+    "tht": true,
+    "hole": [
+     0.091,
+     0.091
+    ],
+    "plated": true
+   }
+  }
+ },
+ "R5": {
+  "primitiveId": "bc11af252b9a4929",
+  "footprint": "RES-TH_BD2.5-L6.5-P10.50-D0.6",
+  "device": "MFR0W4F3300A50",
+  "bbox": [
+   -243.69,
+   -54.21,
+   243.69,
+   54.21
+  ],
+  "pads": {
+   "1": {
+    "x": -206.7,
+    "y": 0.01,
+    "net": "LED_R",
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
+   },
+   "2": {
+    "x": 206.7,
+    "y": 0.01,
+    "net": "LED_R_A",
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
    }
   }
  },
  "R6": {
-  "primitiveId": "e65d1318207c2a73",
+  "primitiveId": "facea05806dbc8be",
   "footprint": "RES-TH_BD2.2-L6.5-P10.50-D0.6",
   "device": "MFR0W4F4701A50",
   "bbox": [
@@ -269,18 +445,28 @@
     "x": -206.7,
     "y": -0.03,
     "net": "BTN_RESET",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.091,
+     0.091
+    ],
+    "plated": true
    },
    "2": {
     "x": 206.7,
     "y": -0.03,
     "net": "GND",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.091,
+     0.091
+    ],
+    "plated": true
    }
   }
  },
  "R7": {
-  "primitiveId": "e6b31369e12f3518",
+  "primitiveId": "1209c464493be034",
   "footprint": "RES-TH_BD2.2-L6.5-P10.50-D0.6",
   "device": "MFR0W4F4701A50",
   "bbox": [
@@ -294,18 +480,212 @@
     "x": -206.66,
     "y": -0.03,
     "net": "BTN_START",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.091,
+     0.091
+    ],
+    "plated": true
    },
    "2": {
     "x": 206.74,
     "y": -0.03,
     "net": "GND",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.091,
+     0.091
+    ],
+    "plated": true
+   }
+  }
+ },
+ "R8": {
+  "primitiveId": "745151a9b6e342ae",
+  "footprint": "RES-TH_BD4.0-L11.5-P15.50-D0.7",
+  "device": "MF1W-100Ω±1% T",
+  "bbox": [
+   -335.12,
+   -83.74,
+   335.11,
+   83.74
+  ],
+  "pads": {
+   "1": {
+    "x": -305.12,
+    "y": -0.03,
+    "net": "+5V",
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
+   },
+   "2": {
+    "x": 305.08,
+    "y": -0.03,
+    "net": "GND",
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
+   }
+  }
+ },
+ "R9": {
+  "primitiveId": "b08fa28c20d73e97",
+  "footprint": "RES-TH_BD4.0-L11.5-P15.50-D0.7",
+  "device": "MF1W-100Ω±1% T",
+  "bbox": [
+   -335.11,
+   -83.74,
+   335.11,
+   83.74
+  ],
+  "pads": {
+   "1": {
+    "x": -305.08,
+    "y": -0.03,
+    "net": "+5V",
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
+   },
+   "2": {
+    "x": 305.12,
+    "y": -0.03,
+    "net": "GND",
+    "tht": true,
+    "hole": [
+     0.1,
+     0.1
+    ],
+    "plated": true
+   }
+  }
+ },
+ "S1": {
+  "primitiveId": "46c289c8dfe72e8a",
+  "footprint": "KEY-TH_4P-L6.0-W6.0-P4.50-LS6.50",
+  "device": "K2-1102DP-C4SW-04",
+  "bbox": [
+   -167.32,
+   -127.95,
+   167.32,
+   127.95
+  ],
+  "pads": {
+   "4": {
+    "x": 127.96,
+    "y": -88.63,
+    "net": "BTN_START",
+    "tht": true,
+    "hole": [
+     0.13,
+     0.13
+    ],
+    "plated": true
+   },
+   "2": {
+    "x": 127.96,
+    "y": 88.57,
+    "net": "+3V3",
+    "tht": true,
+    "hole": [
+     0.13,
+     0.13
+    ],
+    "plated": true
+   },
+   "1": {
+    "x": -127.94,
+    "y": 88.57,
+    "net": "+3V3",
+    "tht": true,
+    "hole": [
+     0.13,
+     0.13
+    ],
+    "plated": true
+   },
+   "3": {
+    "x": -127.94,
+    "y": -88.63,
+    "net": "BTN_START",
+    "tht": true,
+    "hole": [
+     0.13,
+     0.13
+    ],
+    "plated": true
+   }
+  }
+ },
+ "S2": {
+  "primitiveId": "52aea4fae4445553",
+  "footprint": "KEY-TH_4P-L6.0-W6.0-P4.50-LS6.50",
+  "device": "K2-1102DP-C4SW-04",
+  "bbox": [
+   -167.32,
+   -127.95,
+   167.32,
+   127.95
+  ],
+  "pads": {
+   "4": {
+    "x": 128.0,
+    "y": -88.63,
+    "net": "BTN_RESET",
+    "tht": true,
+    "hole": [
+     0.13,
+     0.13
+    ],
+    "plated": true
+   },
+   "2": {
+    "x": 128.0,
+    "y": 88.57,
+    "net": "+3V3",
+    "tht": true,
+    "hole": [
+     0.13,
+     0.13
+    ],
+    "plated": true
+   },
+   "1": {
+    "x": -127.9,
+    "y": 88.57,
+    "net": "+3V3",
+    "tht": true,
+    "hole": [
+     0.13,
+     0.13
+    ],
+    "plated": true
+   },
+   "3": {
+    "x": -127.9,
+    "y": -88.63,
+    "net": "BTN_RESET",
+    "tht": true,
+    "hole": [
+     0.13,
+     0.13
+    ],
+    "plated": true
    }
   }
  },
  "U1": {
-  "primitiveId": "ba29b0ab9ba14253",
+  "primitiveId": "d49fe87e07b27bd0",
   "footprint": "HDR-TH_24P-P2.54-V-F-R2-C12-S2.54-2",
   "device": "2541FV-2x12P",
   "bbox": [
@@ -317,147 +697,267 @@
   "pads": {
    "1": {
     "x": 450.0,
-    "y": -550.05,
+    "y": -549.97,
     "net": "+5V",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "2": {
     "x": 450.0,
-    "y": -450.05,
+    "y": -449.97,
     "net": "GND",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "3": {
     "x": 450.0,
-    "y": -350.05,
+    "y": -349.97,
     "net": "LED_G1",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "4": {
     "x": 450.0,
-    "y": -250.05,
+    "y": -249.97,
     "net": "LED_G2",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "5": {
     "x": 450.0,
-    "y": -150.05,
+    "y": -149.97,
     "net": "LED_Y1",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "6": {
     "x": 450.0,
-    "y": -50.05,
+    "y": -49.97,
     "net": "LED_Y2",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "7": {
     "x": 450.0,
-    "y": 49.95,
+    "y": 50.03,
     "net": "LED_R",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "8": {
     "x": 450.0,
-    "y": 149.95,
+    "y": 150.03,
     "net": "",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "9": {
     "x": 450.0,
-    "y": 249.95,
+    "y": 250.03,
     "net": "BTN_START",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "10": {
     "x": 450.0,
-    "y": 349.95,
+    "y": 350.03,
     "net": "BTN_RESET",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "11": {
     "x": 450.0,
-    "y": 449.95,
+    "y": 450.03,
     "net": "",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "12": {
     "x": 450.0,
-    "y": 549.95,
+    "y": 550.03,
     "net": "+3V3",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "13": {
     "x": -450.0,
-    "y": -550.05,
+    "y": -549.97,
     "net": "",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "14": {
     "x": -450.0,
-    "y": -450.05,
+    "y": -449.97,
     "net": "GND",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "15": {
     "x": -450.0,
-    "y": -350.05,
+    "y": -349.97,
     "net": "GND",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "16": {
     "x": -450.0,
-    "y": -250.05,
+    "y": -249.97,
     "net": "",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "17": {
     "x": -450.0,
-    "y": -150.05,
+    "y": -149.97,
     "net": "SERVO",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "18": {
     "x": -450.0,
-    "y": -50.05,
+    "y": -49.97,
     "net": "",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "19": {
     "x": -450.0,
-    "y": 49.95,
+    "y": 50.03,
     "net": "",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "20": {
     "x": -450.0,
-    "y": 149.95,
+    "y": 150.03,
     "net": "",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "21": {
     "x": -450.0,
-    "y": 249.95,
+    "y": 250.03,
     "net": "",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "22": {
     "x": -450.0,
-    "y": 349.95,
+    "y": 350.03,
     "net": "",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "23": {
     "x": -450.0,
-    "y": 449.95,
+    "y": 450.03,
     "net": "GND",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    },
    "24": {
     "x": -450.0,
-    "y": 549.95,
+    "y": 550.03,
     "net": "GND",
-    "tht": true
+    "tht": true,
+    "hole": [
+     0.11,
+     0.11
+    ],
+    "plated": true
    }
   }
  }
