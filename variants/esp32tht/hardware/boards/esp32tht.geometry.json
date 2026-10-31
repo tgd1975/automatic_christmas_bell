@@ -704,7 +704,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "RECT",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "2": {
     "x": 450.01,
@@ -715,7 +720,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "3": {
     "x": 450.01,
@@ -726,7 +736,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "4": {
     "x": 450.01,
@@ -737,7 +752,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "5": {
     "x": 450.01,
@@ -748,7 +768,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "6": {
     "x": 450.01,
@@ -759,7 +784,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "7": {
     "x": 450.01,
@@ -770,7 +800,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "8": {
     "x": 450.01,
@@ -781,7 +816,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "9": {
     "x": 450.01,
@@ -792,7 +832,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "10": {
     "x": 450.01,
@@ -803,7 +848,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "11": {
     "x": 450.01,
@@ -814,7 +864,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "12": {
     "x": 450.01,
@@ -825,7 +880,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "13": {
     "x": -449.99,
@@ -836,7 +896,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "RECT",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "14": {
     "x": -449.99,
@@ -847,7 +912,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "15": {
     "x": -449.99,
@@ -858,7 +928,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "16": {
     "x": -449.99,
@@ -869,7 +944,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "17": {
     "x": -449.99,
@@ -880,7 +960,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "18": {
     "x": -449.99,
@@ -891,7 +976,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "19": {
     "x": -449.99,
@@ -902,7 +992,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "20": {
     "x": -449.99,
@@ -913,7 +1008,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "21": {
     "x": -449.99,
@@ -924,7 +1024,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "22": {
     "x": -449.99,
@@ -935,7 +1040,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "23": {
     "x": -449.99,
@@ -946,7 +1056,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    },
    "24": {
     "x": -449.99,
@@ -957,7 +1072,12 @@
      1.1,
      1.1
     ],
-    "plated": true
+    "plated": true,
+    "shape": "ELLIPSE",
+    "w": 66.9,
+    "h": 66.9,
+    "rot": 0,
+    "layer": "MULTI"
    }
   }
  }
