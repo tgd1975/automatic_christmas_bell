@@ -437,10 +437,14 @@ brightness stays. Alternative: R1–R5 120 Ω (about 18 mW, about 15 % darker).
 
 Owner's decisions (items 3, 4, 8):
 
-- **Order number** (`[order] mark`): `"specify"` on smd, tht and esp32 – their `JLCJLCJLCJLC` lies under the module
-  –, `"remove"` on main and esp32tht, which have no placeholder (main never had one: the TODO's "Specify Position" for
-  every board was wrong there). edakit's JLCPCB profile notes that JLCPCB reports the order number gone since May 2026;
-  the skill cart reads the form before it fills it in. `[order]` changes the fab hash of every board: M-5 anew.
+- **Order number** (`[order] mark`): `"remove"` on all five boards, and nothing instead – no 2D barcode, no serial
+  number. The `JLCJLCJLCJLC` placeholder comes off the silkscreen of smd, tht and esp32. main and esp32tht never had
+  one. Changed by the owner on 2026-10-31 ("I don't need the order number, nothing instead"); the first answer of the
+  round was `"specify"` on smd, tht and esp32. Reason: on 2026-10-31 edakit-c9's ordering step 0 found that JLCPCB's
+  form no longer offers an order number. "Mark on PCB" has only "Remove Mark" and "2D barcode (Serial Number)", and
+  with a placeholder and `"specify"` edakit's updated JLCPCB profile reports FILES.order. Taking the placeholder off
+  changes the layout hash of the three boards; `[order]` changes the fab hash of every board. Both fall into the one
+  M-5 round D-25 plans.
 - **Delivery** (`[cart]`): Austria, DHL Express.
 - **Cost** (`[cost]`): no budget, the estimate in EUR.
 

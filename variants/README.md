@@ -148,9 +148,10 @@ The release runs are build output and stay out of git (`build/release/<run>/` of
 current --config …` names the current one, D-22). To order: `make publish` – it lets `edakit release verify` check the
 order files of every board's current release, puts them into `build/publish/<tag>/` and publishes them as a
 pre-release on GitHub, tag = the date. Upload `gerber_<b>.zip`, `bom_<b>.csv` and `cpl_<b>.csv` from that folder at
-JLCPCB and choose "Order Number: Specify Position" – each board has `JLCJLCJLCJLC` under the module, except esp32tht: it has
-no placeholder (edakit FILES.order: JLCPCB no longer prints at it since May 2026) – if the form still offers an order
-number, choose none and check the preview (M-2). Once a board of
+JLCPCB and choose "Mark on PCB: Remove Mark" for every board – no order number and no 2D barcode (D-27); the form
+has offered no order number since 2026-10-31. The current releases of smd, tht and esp32 still carry the old
+placeholder `JLCJLCJLCJLC` under the module, which JLCPCB would print as text. It comes off with the next gate run
+(D-25). Check the preview (M-2). Once a board of
 that state has been built and works: `make publish-built TAG=<tag>`. Before ordering the ESP32 board, measure the
 T-Display (above). `make publish` needs the GitHub CLI, logged in (`gh auth login`), and edakit – on the PATH, in
 `$EDAKIT`, or as a clone `../edakit` with its `.venv`.

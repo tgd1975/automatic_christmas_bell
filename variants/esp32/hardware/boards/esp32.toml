@@ -231,12 +231,6 @@ width_mm = 3
 # Labels: the buttons and the servo pins (J1: pin 1 = GND)
 
 [[silk.texts]]
-text = "JLCJLCJLCJLC"              # JLCPCB's order number goes here (order with "Specify a location"), under the module
-x = 30.5
-y = 28
-h_mm = 1.0
-
-[[silk.texts]]
 text = "5V"                        # orientation of the plugged-in module: its 5V pin (U1.1) at the USB end (M-5)
 x = 13.6
 y = 16.57

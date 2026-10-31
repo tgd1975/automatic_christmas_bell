@@ -221,12 +221,6 @@ width_mm = 3
 # Labels: the buttons and the servo pins (J1: pin 1 = GND)
 
 [[silk.texts]]
-text = "JLCJLCJLCJLC"              # JLCPCB's order number goes here (order with "Specify a location"), hidden under the module
-x = 22.6
-y = 28
-h_mm = 1.0
-
-[[silk.texts]]
 text = "START"
 x = 58
 y = 4.6
