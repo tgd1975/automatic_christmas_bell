@@ -320,4 +320,6 @@ again from the graph and the board file – routed anew, so M-5 anew: agent time
    its `.venv`; the first test from a terminal without edakit on the PATH would have failed).
 4. The firmware is not published; whoever wants it builds it (`pio run`).
 
-A candidate for edakit itself (`edakit release publish`), proposed only if the owner wants it.
+Owner (2026-10-31): this is the desired behaviour and should be edakit's default – no archive in git, and
+`edakit release publish` doing what the script does. Handed to edakit as a prompt for an edakit session, not as an
+issue. Once edakit has it, `make publish` calls it and tools/publish_release.py goes.
