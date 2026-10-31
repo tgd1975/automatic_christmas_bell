@@ -361,3 +361,9 @@ After the reviews of state e4a24024… (M-1 OK, M-6 OK; 2026-10-31):
 - With the same renewal: the hand-over to the layout in the graph (`layout`), U1's least current 0.04 A and its LDO
   AP2112K at 184 K/W, 150 °C (D-18's values, θJA from the Diodes datasheet; at most 117 °C simulated against 125 °C),
   C2895551 colour "green" (edakit's list), the R8/R9 notes (at least 0.136 A with the base load).
+- M-1 and M-6 renewed for state bcb27b87… (2026-10-31). The 330 Ω bring red and yellow *towards* the yellow-green,
+  not to it: 79–257 mcd against 20–124 mcd by the datasheets' Iv–IF curve (the ranges overlap; about 2.5× in
+  luminous intensity, to the eye about 1.5×) – before 6–7×. Judged by eye at M-4 on the first board; 470 Ω (C58592,
+  about 2×) is the next step, 680 Ω (C58599, 1.3–1.5×) would need a lower LED-on limit in the simulation. The R1/R2/R5
+  notes in the graph say "dimmed to" – corrected with the next circuit change, as are Tinytronics' SKU 002649 in U1's
+  `order` and a hint on the module's single CC pull-down (USB-A-to-C cable).
