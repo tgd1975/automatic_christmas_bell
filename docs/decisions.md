@@ -374,3 +374,9 @@ After the reviews of state e4a24024… (M-1 OK, M-6 OK; 2026-10-31):
   antenna end stays as on esp32 (86–93 % copper there, 8.5 mm below the module; a cut-out would leave a bare
   7 × 26 mm field) – the open hardware test of esp32 answers it for both. The buttons' own corner circles reach into
   their pad openings (0.14 mm²): JLCPCB clips them, as D-21 (1) accepted for the same button C110153 on tht.
+- **Gate round** (e7f3f24): the geometry dumped again with edakit's hole fix (`pcb dump` read the holes ten times too
+  small; fixed on edakit main 8bdb933), routed again with the layout notes – one via was left on LED_G1, which changed
+  to the top for its last 6 mm, so its route is a bottom fixed wire now: 16 nets, 0 vias, top 0.27 m, DRC 0. Gate run
+  20261031-154618 (edakit 8bdb933): everything passed except M-5, open, and GEO.silk at S1/S2 – the buttons' own print,
+  0.067 mm² each. Owner's decision 2026-10-31: D-21 (1) holds for esp32tht too, accepted in its sign-off file, bound
+  to S1/S2 = C110153.

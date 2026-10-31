@@ -1,6 +1,7 @@
 {
   "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, artwork, footprint geometry), 'fab' = fab_sha256 (what the manufacturer builds from a gate run: Gerber layers, drill hits, BOM and CPL rows). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
   "state_sha256": "bcb27b87878ff0333f8d73a4e17fe575608ac0804acc579e0f37c8b56d8abfc3",
+  "fab_sha256": "b768d2f5156bc767c7ed43302188f134cd773ebb3225bdbb3c7907730b44052c",
   "manual": [
     {
       "id": "M-1",
@@ -16,9 +17,9 @@
       "phase": "export",
       "scope": "fab",
       "text": "Layout reviewed independently (manufacturability; hand soldering; mechanics: USB at the edge; operation of the buttons; looks of the LED row) on the manufacturing files of a gate run – e.g. by the agent pcb-reviewer",
-      "done_by": null,
-      "date": null,
-      "note": null
+      "done_by": "agent pcb-reviewer (Claude, independent session)",
+      "date": "2026-10-31",
+      "note": "OK for fab hash b768d2f5156bc767c7ed43302188f134cd773ebb3225bdbb3c7907730b44052c (gate run 20261031-154618, git e7f3f24), judged on the run's Gerber and drill files: no via, DRC 0, GND pour 91 % top / 90 % bottom without islands, copper 0.5 mm from the edge and 1.6 mm from the M3 holes, rings >= 0.26 mm, thermal spokes on every GND joint and only masked copper within 0.3 mm of the hand-soldered joints. The T-Display's USB-C end sits 0.6 mm inside the left edge, J1's servo plug keeps 2 mm to C1, START and RESET are labelled at the front right, and the LED row shows all anodes left with a '+' at each and no signal track or via; the visible top carries 0.27 m of track, mostly under the module, C1 and R8/R9. GND under the antenna end stays as decided in D-23, and the buttons' own print on their openings is D-21 (1). Notes: S1/S2's 1.3 mm holes (datasheet 1.0 mm) do not hold the snap-in legs - press the buttons flat while soldering; the stale via drill file in build/edakit/gerber_esp32tht/ was not part of the run and has been deleted."
     },
     {
       "id": "M-6",
@@ -48,5 +49,17 @@
       "note": null
     }
   ],
-  "accept": []
+  "accept": [
+    {
+      "match": "GEO.silk esp32tht S[12]: silkscreen on its solder-mask openings*",
+      "scope": "decision",
+      "parts": {
+        "S1": "C110153",
+        "S2": "C110153"
+      },
+      "reason": "D-21 (1), extended to esp32tht by the owner on 2026-10-31 (D-23): the buttons' own footprint print on their pads' openings, 0.067 mm² each – JLCPCB clips it",
+      "by": "owner",
+      "date": "2026-10-31"
+    }
+  ]
 }
