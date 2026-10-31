@@ -1,7 +1,8 @@
 # Board decisions
 
-Numbered, with reason and date. Source of the circuit: `weihnachtsglocke.fzz`. The hardware graph
-`hardware/graph.json` reproduces it 1:1, with the Fritzing designators (Bauteil1 = U1, Servo = J1).
+Numbered, with reason and date. Source of the circuit: `weihnachtsglocke.fzz` (docs/old/). The hardware graph
+`hardware/graph.toml` reproduces it 1:1, with the Fritzing designators (Bauteil1 = U1, Servo = J1); `hardware/graph.json`
+beside it is the generated file (`edakit graph json --write`, D-25).
 
 ## D-1 Assembly: JLCPCB places only the SMD parts (2026-10-25, open until the quote)
 
@@ -130,8 +131,8 @@ female headers – the owner's choice, "the smaller variant" (the T-Display-S3 h
   with Wi-Fi (D-17) up to 0.66 A and 1.06 A.
 - **Placement:** the module where the Nano was, USB-C at the left edge; R8/R9 move to the right (the module covers
   their place).
-- **Firmware:** variants/esp32/firmware (D-17), the port of src/firmware with the pins above (`checks.pin_locks` in
-  variants/esp32/hardware/graph.json), the servo on an LEDC channel at 50 Hz. Requirements from the M-1 review:
+- **Firmware:** variants/esp32/firmware (D-17), the port of src/firmware with the pins above (`locks.pins` in
+  variants/esp32/hardware/graph.toml), the servo on an LEDC channel at 50 Hz. Requirements from the M-1 review:
   IO37/IO38 configured as plain inputs (no internal pulls exist), debounce as in buttons.ino (H-3), and the servo
   detached once it is at rest with a limited bell phase – a stalled servo loads the module's 1N5819 with 0.87 A of its
   1 A (like D-3 on the Nano), with Wi-Fi up to 1.06 A.

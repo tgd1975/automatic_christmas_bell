@@ -8,7 +8,7 @@
 
 [project]
 name = "christmas-bell"           # the EasyEDA project of the main board; this variant is its board "esp32tht"
-graph = "hardware/graph.json"
+graph = "hardware/graph.toml"
 parts = "hardware/parts"
 artifacts = "build/edakit"
 reports = "build/release"

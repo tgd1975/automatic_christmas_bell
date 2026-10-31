@@ -4,6 +4,7 @@
   "version": "0.1",
   "date": "2026-10-31",
   "description": "Automatic Christmas bell, variant ESP32 THT (D-23): the circuit of the variant ESP32 – a LILYGO T-Display V1.1 (ESP32, 1.14 inch TFT) instead of the Nano, 3.3 V logic, yellow-green LEDs (D-13, D-14) – with through-hole parts only and no assembly, like the variant THT (D-12): a bare board to solder by hand.",
+  "cables": [],
   "purpose": {
    "use": "private",
    "market": "EU",
@@ -21,7 +22,7 @@
    }
   },
   "conventions": {
-   "pin_reference": "'<designator>.<pin>' with the pin numbers of the EasyEDA symbol",
+   "pin_reference": "'<designator>.<pin>' with the pin's name or role, else its symbol number – the parts entry says which pin that is",
    "v": "per net: [min, max] in V over all operating states",
    "accept": "per net or component: {code: reason} accepts a finding on purpose (edakit explain <code>)"
   },
@@ -78,13 +79,13 @@
     "label": "Servo (GND, +5 V, signal)",
     "part": "PZ254V-11-03P",
     "lcsc": "C2937625",
+    "notes": "Standard servo plug: brown = GND (1), red = +5 V (2), orange = signal (3). THT header as on the variant THT (D-12).",
+    "bom": false,
     "pins": {
      "1": "1",
      "2": "2",
      "3": "3"
-    },
-    "notes": "Standard servo plug: brown = GND (1), red = +5 V (2), orange = signal (3). THT header as on the variant THT (D-12).",
-    "bom": false
+    }
    },
    {
     "designator": "C1",
@@ -92,12 +93,12 @@
     "label": "Buffer capacitor for the servo",
     "part": "1000uF 16V",
     "lcsc": "C439782",
+    "notes": "Absorbs the servo's start-up peaks so the ESP32 does not reset. THT radial Ø10 × 13 mm as on the variant THT (D-12).",
+    "bom": false,
     "pins": {
      "1": "1",
      "2": "2"
-    },
-    "notes": "Absorbs the servo's start-up peaks so the ESP32 does not reset. THT radial Ø10 × 13 mm as on the variant THT (D-12).",
-    "bom": false
+    }
    },
    {
     "designator": "LED5",
@@ -105,12 +106,12 @@
     "label": "5 mm LED, yellow-green, countdown step 1",
     "part": "XL-504SYGD",
     "lcsc": "C2895551",
+    "notes": "D-23: yellow-green as on the variant ESP32 (D-14) – the 3.3 V outputs do not drive a 3 V green evenly; XL-504SYGD, VF 2.0–2.6 V at 20 mA",
+    "bom": false,
     "pins": {
      "1": "K",
      "2": "A"
-    },
-    "notes": "D-23: yellow-green as on the variant ESP32 (D-14) – the 3.3 V outputs do not drive a 3 V green evenly; XL-504SYGD, VF 2.0–2.6 V at 20 mA",
-    "bom": false
+    }
    },
    {
     "designator": "R4",
@@ -119,12 +120,12 @@
     "part": "100 Ω 1/4 W metal film, THT",
     "lcsc": "C57438",
     "value": "100Ω",
+    "notes": "D-23: 100 Ω as on the variant ESP32 (D-14) – the yellow-green XL-504SYGD at full current",
+    "bom": false,
     "pins": {
      "1": "1",
      "2": "2"
-    },
-    "notes": "D-23: 100 Ω as on the variant ESP32 (D-14) – the yellow-green XL-504SYGD at full current",
-    "bom": false
+    }
    },
    {
     "designator": "LED4",
@@ -132,12 +133,12 @@
     "label": "5 mm LED, yellow-green, countdown step 2",
     "part": "XL-504SYGD",
     "lcsc": "C2895551",
+    "notes": "D-23: yellow-green as on the variant ESP32 (D-14) – the 3.3 V outputs do not drive a 3 V green evenly; XL-504SYGD, VF 2.0–2.6 V at 20 mA",
+    "bom": false,
     "pins": {
      "1": "K",
      "2": "A"
-    },
-    "notes": "D-23: yellow-green as on the variant ESP32 (D-14) – the 3.3 V outputs do not drive a 3 V green evenly; XL-504SYGD, VF 2.0–2.6 V at 20 mA",
-    "bom": false
+    }
    },
    {
     "designator": "R3",
@@ -146,12 +147,12 @@
     "part": "100 Ω 1/4 W metal film, THT",
     "lcsc": "C57438",
     "value": "100Ω",
+    "notes": "D-23: 100 Ω as on the variant ESP32 (D-14) – the yellow-green XL-504SYGD at full current",
+    "bom": false,
     "pins": {
      "1": "1",
      "2": "2"
-    },
-    "notes": "D-23: 100 Ω as on the variant ESP32 (D-14) – the yellow-green XL-504SYGD at full current",
-    "bom": false
+    }
    },
    {
     "designator": "LED3",
@@ -159,12 +160,12 @@
     "label": "5 mm LED, yellow, countdown step 3",
     "part": "XL-504UYD",
     "lcsc": "C2895495",
+    "notes": "As on the variant THT: pin 2 = anode, the footprint's \"+\" at pad 2",
+    "bom": false,
     "pins": {
      "2": "+",
      "1": "-"
-    },
-    "notes": "As on the variant THT: pin 2 = anode, the footprint's \"+\" at pad 2",
-    "bom": false
+    }
    },
    {
     "designator": "R2",
@@ -173,12 +174,12 @@
     "part": "330 Ω 1/4 W metal film, THT",
     "lcsc": "C58608",
     "value": "330Ω",
+    "notes": "D-23: 330 Ω – red and yellow dimmed to the yellow-green's brightness (owner's decision): XL-504SURD/UYD give 400–900 mcd at 20 mA, the XL-504SYGD 50–200 mcd",
+    "bom": false,
     "pins": {
      "1": "1",
      "2": "2"
-    },
-    "notes": "D-23: 330 Ω – red and yellow dimmed to the yellow-green's brightness (owner's decision): XL-504SURD/UYD give 400–900 mcd at 20 mA, the XL-504SYGD 50–200 mcd",
-    "bom": false
+    }
    },
    {
     "designator": "LED2",
@@ -186,12 +187,12 @@
     "label": "5 mm LED, yellow, countdown step 4",
     "part": "XL-504UYD",
     "lcsc": "C2895495",
+    "notes": "As on the variant THT: pin 2 = anode, the footprint's \"+\" at pad 2",
+    "bom": false,
     "pins": {
      "2": "+",
      "1": "-"
-    },
-    "notes": "As on the variant THT: pin 2 = anode, the footprint's \"+\" at pad 2",
-    "bom": false
+    }
    },
    {
     "designator": "R1",
@@ -200,12 +201,12 @@
     "part": "330 Ω 1/4 W metal film, THT",
     "lcsc": "C58608",
     "value": "330Ω",
+    "notes": "D-23: 330 Ω – red and yellow dimmed to the yellow-green's brightness (owner's decision): XL-504SURD/UYD give 400–900 mcd at 20 mA, the XL-504SYGD 50–200 mcd",
+    "bom": false,
     "pins": {
      "1": "1",
      "2": "2"
-    },
-    "notes": "D-23: 330 Ω – red and yellow dimmed to the yellow-green's brightness (owner's decision): XL-504SURD/UYD give 400–900 mcd at 20 mA, the XL-504SYGD 50–200 mcd",
-    "bom": false
+    }
    },
    {
     "designator": "LED1",
@@ -213,12 +214,12 @@
     "label": "5 mm LED, red, countdown step 5",
     "part": "XL-504SURD",
     "lcsc": "C2895493",
+    "notes": "As on the variant THT: the footprint marks pad 1 as anode (+) – symbol name K, role anode (parts entry)",
+    "bom": false,
     "pins": {
      "1": "K",
      "2": "A"
-    },
-    "notes": "As on the variant THT: the footprint marks pad 1 as anode (+) – symbol name K, role anode (parts entry)",
-    "bom": false
+    }
    },
    {
     "designator": "R5",
@@ -227,12 +228,12 @@
     "part": "330 Ω 1/4 W metal film, THT",
     "lcsc": "C58608",
     "value": "330Ω",
+    "notes": "D-23: 330 Ω – red and yellow dimmed to the yellow-green's brightness (owner's decision): XL-504SURD/UYD give 400–900 mcd at 20 mA, the XL-504SYGD 50–200 mcd",
+    "bom": false,
     "pins": {
      "1": "1",
      "2": "2"
-    },
-    "notes": "D-23: 330 Ω – red and yellow dimmed to the yellow-green's brightness (owner's decision): XL-504SURD/UYD give 400–900 mcd at 20 mA, the XL-504SYGD 50–200 mcd",
-    "bom": false
+    }
    },
    {
     "designator": "S1",
@@ -240,14 +241,14 @@
     "label": "Start button",
     "part": "K2-1102DP-C4SW-04",
     "lcsc": "C110153",
+    "notes": "1/2 and 3/4 are connected inside the button.",
+    "bom": false,
     "pins": {
      "1": "1",
      "2": "2",
      "3": "3",
      "4": "4"
-    },
-    "notes": "1/2 and 3/4 are connected inside the button.",
-    "bom": false
+    }
    },
    {
     "designator": "R7",
@@ -256,11 +257,11 @@
     "part": "4.7 kΩ 1/4 W metal film, THT",
     "lcsc": "C57204",
     "value": "4.7kΩ",
+    "bom": false,
     "pins": {
      "1": "1",
      "2": "2"
-    },
-    "bom": false
+    }
    },
    {
     "designator": "S2",
@@ -268,14 +269,14 @@
     "label": "Reset button",
     "part": "K2-1102DP-C4SW-04",
     "lcsc": "C110153",
+    "notes": "1/2 and 3/4 are connected inside the button.",
+    "bom": false,
     "pins": {
      "1": "1",
      "2": "2",
      "3": "3",
      "4": "4"
-    },
-    "notes": "1/2 and 3/4 are connected inside the button.",
-    "bom": false
+    }
    },
    {
     "designator": "R6",
@@ -284,11 +285,11 @@
     "part": "4.7 kΩ 1/4 W metal film, THT",
     "lcsc": "C57204",
     "value": "4.7kΩ",
+    "bom": false,
     "pins": {
      "1": "1",
      "2": "2"
-    },
-    "bom": false
+    }
    },
    {
     "designator": "R8",
@@ -297,12 +298,12 @@
     "part": "100 Ω 1 W metal film, THT",
     "lcsc": "C119469",
     "value": "100Ω",
+    "notes": "Keeps a power bank from switching off (D-8): the module alone draws at least 0.04 A (i_core_min_a), with the base load R8 ∥ R9 the board at least about 0.14 A (simulated).",
+    "bom": false,
     "pins": {
      "1": "1",
      "2": "2"
-    },
-    "notes": "Keeps a power bank from switching off (D-8): the module alone draws at least 0.04 A (i_core_min_a), with the base load R8 ∥ R9 the board at least about 0.14 A (simulated).",
-    "bom": false
+    }
    },
    {
     "designator": "R9",
@@ -311,12 +312,12 @@
     "part": "100 Ω 1 W metal film, THT",
     "lcsc": "C119469",
     "value": "100Ω",
+    "notes": "Keeps a power bank from switching off (D-8): the module alone draws at least 0.04 A (i_core_min_a), with the base load R8 ∥ R9 the board at least about 0.14 A (simulated).",
+    "bom": false,
     "pins": {
      "1": "1",
      "2": "2"
-    },
-    "notes": "Keeps a power bank from switching off (D-8): the module alone draws at least 0.04 A (i_core_min_a), with the base load R8 ∥ R9 the board at least about 0.14 A (simulated).",
-    "bom": false
+    }
    }
   ],
   "nets": [
@@ -526,7 +527,6 @@
     ]
    }
   ],
-  "cables": [],
   "accept": {
    "HINT.bulk": "C1 1000 µF / 16 V electrolytic on +5V, next to J1 (it buffers the module's 5V pin)",
    "HINT.debounce": "debounced in the ESP32 firmware variants/esp32/firmware like buttons.ino (50 ms, D-17) – the same firmware runs on this board",
@@ -559,15 +559,15 @@
    "edge": [
     "U1"
    ],
-   "near": {
-    "C1": "J1"
-   },
    "notes": [
     "LED5, LED4, LED3, LED2, LED1 form the countdown row, in this order from left to right, as on every board; their anodes on one side (the footprints differ: LED1's \"+\" at pad 1, LED2-LED5's anode at pad 2).",
     "U1 plugs into two 1x12 female headers 22.86 mm apart, display up, USB-C at the board edge; mark its 5V pin (U1.1) on the silkscreen – the pin field is symmetric.",
     "R8 and R9 dissipate 0.25 W each: apart from each other and from C1; the builder lets them stand 1-2 mm above the board.",
     "LED4 and LED5 (footprint LED-TH_BD5.9-P2.54-RD_GREEN) show only the flat at the cathode, no \"+\" and no square pad."
-   ]
+   ],
+   "near": {
+    "C1": "J1"
+   }
   }
  }
 }

@@ -2,7 +2,7 @@
 // The countdown of src/firmware/buttons.ino, plus the module's display and a web page: status, time to ding, start,
 // pause, stop and the timer. The countdown logic is lib/BellTimer, Wi-Fi and the web pages are net.cpp.
 //
-// Pins: checks.pin_locks in variants/esp32/hardware/graph.json. Buttons as on the Nano – start (while paused: go on),
+// Pins: locks.pins in variants/esp32/hardware/graph.toml (graph.json beside it is the generated file). Buttons as on the Nano – start (while paused: go on),
 // reset = stop, start held and reset = ring now – and for Wi-Fi: reset held 3 s and released = Wi-Fi on/off, held
 // 10 s = forget the home network and open the setup hotspot. While reset is held, display and LEDs show what
 // releasing it does: green = on/off, red = forget.
@@ -14,7 +14,7 @@
 #include "BellTimer.h"
 #include "net.h"
 
-// ========== PIN DEFINITIONS (graph checks.pin_locks) ==========
+// ========== PIN DEFINITIONS (graph locks.pins) ==========
 const int buttonPinStart = 38;  // input only, no internal pull: R7 pulls down, the button switches 3V3
 const int buttonPinReset = 37;  // input only, R6 pulls down
 const int ledPins[BellTimer::NUM_LEDS] = {27, 26, 25, 33, 32};  // green 1, green 2, yellow 1, yellow 2, red

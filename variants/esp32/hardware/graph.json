@@ -4,13 +4,14 @@
   "version": "0.1",
   "date": "2026-10-26",
   "description": "Automatic Christmas bell, variant ESP32 (D-13): like the SMD variant, with a LILYGO T-Display V1.1 (ESP32, 1.14 inch TFT) instead of the Nano. 3.3 V logic: the buttons switch 3V3, the LEDs run from 3.3 V outputs (yellow-green instead of emerald green, D-14).",
+  "cables": [],
   "purpose": {
    "use": "private",
    "market": "EU",
    "notes": "Automatic Christmas bell, ESP32 variant, for the owner's home, built and used by the owner – not sold or given away (D-16). Powered through the T-Display's USB-C only – no cell at the module's battery input, no mains. The T-Display's ESP32 uses Wi-Fi (2.4 GHz, channels 1-13): a web page in the owner's home network – status and control of the countdown, no internet service – and a setup hotspot (WPA2) until the home network is set (D-17); Bluetooth stays off."
   },
   "conventions": {
-   "pin_reference": "'<designator>.<pin>' with the pin numbers of the EasyEDA symbol",
+   "pin_reference": "'<designator>.<pin>' with the pin's name or role, else its symbol number – the parts entry says which pin that is",
    "v": "per net: [min, max] in V over all operating states",
    "accept": "per net or component: {code: reason} accepts a finding on purpose (edakit explain <code>)"
   },
@@ -497,7 +498,6 @@
     ]
    }
   ],
-  "cables": [],
   "accept": {
    "HINT.bulk": "C1 1000 µF / 16 V electrolytic on +5V, next to J1 (it buffers the module's 5V pin)",
    "HINT.debounce": "to be debounced in the ESP32 firmware like buttons.ino (50 ms); the firmware port is open (D-13)",

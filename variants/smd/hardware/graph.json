@@ -4,13 +4,14 @@
   "version": "0.1",
   "date": "2026-10-26",
   "description": "Automatic Christmas bell, variant SMD (D-11): the circuit of the main board with 0805 LEDs, an SMD servo header and an SMD buffer capacitor; JLCPCB's Economic assembly places everything but the Nano's female headers.",
+  "cables": [],
   "purpose": {
    "use": "private",
    "market": "EU",
    "notes": "Automatic Christmas bell, SMD variant, for the owner's home, built and used by the owner – not sold or given away (D-16). Powered from a USB port or power bank through the Nano's USB; no battery holder, no mains, no radio."
   },
   "conventions": {
-   "pin_reference": "'<designator>.<pin>' with the pin numbers of the EasyEDA symbol",
+   "pin_reference": "'<designator>.<pin>' with the pin's name or role, else its symbol number – the parts entry says which pin that is",
    "v": "per net: [min, max] in V over all operating states",
    "accept": "per net or component: {code: reason} accepts a finding on purpose (edakit explain <code>)"
   },
@@ -496,7 +497,6 @@
     ]
    }
   ],
-  "cables": [],
   "accept": {
    "HINT.bulk": "C1 1000 µF / 16 V electrolytic on +5V, next to J1 (it buffers the Nano's 5V pin)",
    "HINT.debounce": "debounced in firmware: src/firmware/buttons.ino, 50 ms (DEBOUNCE_DELAY)",

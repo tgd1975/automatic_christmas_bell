@@ -29,7 +29,8 @@ SMD parts (resistors, buttons); the headers, LEDs, C1 and J1 are hand-soldered.
 | [boards/main.toml](boards/main.toml) | the board: 85 × 56 mm, holes, tooling holes, placement plan, routing rules, pours, silkscreen and artwork |
 | [boards/main.geometry.json](boards/main.geometry.json) | the footprint geometry, measured by `edakit pcb dump`: pads and holes of every part, relative to its origin |
 | [schematic.toml](schematic.toml) | the blocks, notes and pin table of the schematic |
-| [graph.json](graph.json) | the hardware graph: 17 parts, 15 nets with voltage ranges, the pin locks for the firmware – the only source of the circuit |
+| [graph.toml](graph.toml) | the hardware graph: 19 parts, 15 nets with voltage ranges, the pin locks for the firmware – the only source of the circuit |
+| [graph.json](graph.json) | the generated file: the resolved graph with pin numbers (`edakit graph json --write`), never edited – the pre-commit hook checks that it is current |
 | [parts/](parts/) | one entry per LCSC number: pins with roles, ratings, lead sizes, datasheet sign-off |
 | [sim.json](sim.json) | USB at 4.45/4.7/5.05 V × idle, countdown, warning, bell × LED corners; a stalled servo as fault case |
 | [signoff.json](signoff.json) | manual checks M-1, M-5, M-6, M-2, M-4 |

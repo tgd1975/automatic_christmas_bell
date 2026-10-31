@@ -1,6 +1,6 @@
 {
   "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, artwork, footprint geometry), 'fab' = fab_sha256 (what the manufacturer builds from a gate run: Gerber layers, drill hits, BOM and CPL rows). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
-  "state_sha256": "f66ebc833bb15fef1d3a18fd65772da0632b04b87365e32f8e82de0404f901af",
+  "state_sha256": "2b9da3b423e32f68e94b198ad912b2e95b76ff8490fb69e577e19cbc851e2883",
   "layout_sha256": "dc785647946b99be7fe5f0023596a2813bd0559c27f9e8ef858dfcbf5f25c1d5",
   "fab_sha256": "4e79e5c0c839c594b6e5817f1885cf61fb5d8ab7ea96b603af9d3d59bd323bbe",
   "manual": [
@@ -71,6 +71,15 @@
       "state_sha256": [
         "1ed944d2acdf7a30ac3515850c7252b2e41dc79077dee3591fe5bfb9e80ed9f0",
         "f66ebc833bb15fef1d3a18fd65772da0632b04b87365e32f8e82de0404f901af"
+      ]
+    },
+    {
+      "date": "2026-10-31",
+      "by": "edakit graph convert",
+      "why": "the graph moved to hardware/graph.toml (edakit graph convert): the circuit hash takes its data, every value and connection carried over; the files were the signed ones",
+      "state_sha256": [
+        "f66ebc833bb15fef1d3a18fd65772da0632b04b87365e32f8e82de0404f901af",
+        "2b9da3b423e32f68e94b198ad912b2e95b76ff8490fb69e577e19cbc851e2883"
       ]
     }
   ],

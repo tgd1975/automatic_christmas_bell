@@ -6,7 +6,7 @@
 
 [project]
 name = "christmas-bell"           # EasyEDA project, created by hand once
-graph = "hardware/graph.json"
+graph = "hardware/graph.toml"
 parts = "hardware/parts"
 artifacts = "build/edakit"
 reports = "build/release"

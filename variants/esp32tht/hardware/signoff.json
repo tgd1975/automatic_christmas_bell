@@ -1,6 +1,6 @@
 {
   "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, artwork, footprint geometry), 'fab' = fab_sha256 (what the manufacturer builds from a gate run: Gerber layers, drill hits, BOM and CPL rows). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
-  "state_sha256": "bcb27b87878ff0333f8d73a4e17fe575608ac0804acc579e0f37c8b56d8abfc3",
+  "state_sha256": "c299961daa8d3db5961fedab0d938fedf2215b3d1eaf062c55fcc8f54d66ec0b",
   "fab_sha256": "b768d2f5156bc767c7ed43302188f134cd773ebb3225bdbb3c7907730b44052c",
   "manual": [
     {
@@ -60,6 +60,17 @@
       "reason": "D-21 (1), extended to esp32tht by the owner on 2026-10-31 (D-23): the buttons' own footprint print on their pads' openings, 0.067 mm² each – JLCPCB clips it",
       "by": "owner",
       "date": "2026-10-31"
+    }
+  ],
+  "rehashed": [
+    {
+      "date": "2026-10-31",
+      "by": "edakit graph convert",
+      "why": "the graph moved to hardware/graph.toml (edakit graph convert): the circuit hash takes its data, every value and connection carried over; the files were the signed ones",
+      "state_sha256": [
+        "bcb27b87878ff0333f8d73a4e17fe575608ac0804acc579e0f37c8b56d8abfc3",
+        "c299961daa8d3db5961fedab0d938fedf2215b3d1eaf062c55fcc8f54d66ec0b"
+      ]
     }
   ]
 }

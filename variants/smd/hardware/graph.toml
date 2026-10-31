@@ -1,0 +1,246 @@
+# The hardware graph (handbook 3.1): components, nets and cables keyed by designator and name, pins by name
+# or role through the parts entries. edakit graph json writes the resolved graph beside it (graph.json).
+name = "christmas-bell-smd"
+version = "0.1"
+date = "2026-10-26"
+description = """\
+  Automatic Christmas bell, variant SMD (D-11): the circuit of the main board with 0805 LEDs, an SMD servo header \
+  and an SMD buffer capacitor; JLCPCB's Economic assembly places everything but the Nano's female headers."""
+cables = []
+
+[purpose]
+use = "private"
+market = "EU"
+notes = """\
+  Automatic Christmas bell, SMD variant, for the owner's home, built and used by the owner – not sold or given away \
+  (D-16). Powered from a USB port or power bank through the Nano's USB; no battery holder, no mains, no radio."""
+
+[conventions]
+pin_reference = """\
+  '<designator>.<pin>' with the pin's name or role, else its symbol number – the parts entry says which pin that is"""
+v = "per net: [min, max] in V over all operating states"
+accept = "per net or component: {code: reason} accepts a finding on purpose (edakit explain <code>)"
+
+[components.U1]
+type = "module"
+label = "Arduino Nano 3 (plugged in)"
+part = "Arduino Nano V3"
+lcsc = "C9900187880"
+bom = false
+nc = ["TXD", "RXD", "RESET", "PD7", "PB1", "PB2", "PB5", "3V3", "AREF", "PC0", "PC1", "PC2", "PC3", "PC4", "PC5",
+      "ADC6", "ADC7", "PC6", "VIN"]
+notes = """\
+  Plugs into two 1x15 female headers, pitch 2.54 mm (hand-soldered, not in the graph). Powered through its USB \
+  socket; its 5V pin (USB minus a Schottky diode) supplies the servo, C1 and the buttons. Pin names are the library \
+  symbol's ATmega port names; its labels of pins 14/15 are swapped (pin 14 = D11 = PB3, pin 15 = D12 = PB4 on the \
+  Nano)."""
+accept."STRUCT.entry" = "VIN stays free: the Nano runs from its USB socket"
+
+[components.J1]
+type = "connector"
+label = "Servo (GND, +5 V, signal), SMD header"
+part = "HX PZ2.54-1x3P TP-YQ"
+lcsc = "C41417360"
+notes = """\
+  Standard servo plug: brown = GND (1), red = +5 V (2), orange = signal (3). SMD header, placed by JLCPCB (D-11)."""
+
+[components.C1]
+type = "capacitor"
+label = "Buffer capacitor for the servo (SMD)"
+part = "RVT1C102M1010 1000uF 16V SMD"
+lcsc = "C3359"
+notes = """\
+  Absorbs the servo's start-up peaks so the Nano does not reset. SMD can: the Economic assembly places it (D-11)."""
+
+[components.LED5]
+type = "led"
+label = "0805 LED, green, countdown step 1"
+part = "KT-0805G"
+lcsc = "C2297"
+notes = "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)"
+
+[components.R4]
+type = "resistor"
+label = "Series resistor LED5"
+part = "330 Ω 0805"
+lcsc = "C17630"
+value = "330Ω"
+
+[components.LED4]
+type = "led"
+label = "0805 LED, green, countdown step 2"
+part = "KT-0805G"
+lcsc = "C2297"
+notes = "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)"
+
+[components.R3]
+type = "resistor"
+label = "Series resistor LED4"
+part = "330 Ω 0805"
+lcsc = "C17630"
+value = "330Ω"
+
+[components.LED3]
+type = "led"
+label = "0805 LED, yellow, countdown step 3"
+part = "KT-0805Y"
+lcsc = "C2296"
+notes = "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)"
+
+[components.R2]
+type = "resistor"
+label = "Series resistor LED3"
+part = "330 Ω 0805"
+lcsc = "C17630"
+value = "330Ω"
+
+[components.LED2]
+type = "led"
+label = "0805 LED, yellow, countdown step 4"
+part = "KT-0805Y"
+lcsc = "C2296"
+notes = "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)"
+
+[components.R1]
+type = "resistor"
+label = "Series resistor LED2"
+part = "330 Ω 0805"
+lcsc = "C17630"
+value = "330Ω"
+
+[components.LED1]
+type = "led"
+label = "0805 LED, red, countdown step 5"
+part = "KT-0805R"
+lcsc = "C2295"
+notes = "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)"
+
+[components.R5]
+type = "resistor"
+label = "Series resistor LED1"
+part = "330 Ω 0805"
+lcsc = "C17630"
+value = "330Ω"
+
+[components.S1]
+type = "button"
+label = "Start button"
+part = "K2-1102SP-C4SC-04"
+lcsc = "C127509"
+notes = "1/2 and 3/4 are connected inside the button."
+
+[components.R7]
+type = "resistor"
+label = "Pull-down, start button"
+part = "4.7 kΩ 0805"
+lcsc = "C17673"
+value = "4.7kΩ"
+
+[components.S2]
+type = "button"
+label = "Reset button"
+part = "K2-1102SP-C4SC-04"
+lcsc = "C127509"
+notes = "1/2 and 3/4 are connected inside the button."
+
+[components.R6]
+type = "resistor"
+label = "Pull-down, reset button"
+part = "4.7 kΩ 0805"
+lcsc = "C17673"
+value = "4.7kΩ"
+
+[components.R8]
+type = "resistor"
+label = "Base load for USB power banks (R8 ∥ R9 = 50 Ω, 100 mA)"
+part = "100 Ω 2512 1 W"
+lcsc = "C35218"
+value = "100Ω"
+notes = "Keeps a power bank from switching off: the circuit alone draws 35–75 mA (D-8)."
+
+[components.R9]
+type = "resistor"
+label = "Base load for USB power banks (R8 ∥ R9 = 50 Ω, 100 mA)"
+part = "100 Ω 2512 1 W"
+lcsc = "C35218"
+value = "100Ω"
+notes = "Keeps a power bank from switching off: the circuit alone draws 35–75 mA (D-8)."
+
+[nets."+5V"]
+pins = ["U1.5V", "C1.plus", "J1.2", "S1.a", "S2.a", "R8.1", "R9.1"]
+v = [0, 5.5]
+notes = "5V pin of the Nano: USB minus its Schottky diode; supplies the servo and the buttons."
+
+[nets.GND]
+pins = ["U1.GND", "C1.minus", "J1.1", "R6.2", "R7.2", "R8.2", "R9.2", "LED5.cathode", "LED4.cathode", "LED3.cathode",
+        "LED2.cathode", "LED1.cathode"]
+v = [0, 0]
+
+[nets.SERVO]
+pins = ["U1.PB0", "J1.3"]
+v = [0, 5.5]
+
+[nets.BTN_START]
+pins = ["U1.PB4", "S1.b", "R7.1"]
+v = [0, 5.5]
+notes = "Pressed = 5 V at D11, else R7 pulls to GND (D-4)."
+
+[nets.BTN_RESET]
+pins = ["U1.PB3", "S2.b", "R6.1"]
+v = [0, 5.5]
+notes = "Pressed = 5 V at D12, else R6 pulls to GND (D-4)."
+
+[nets.LED_G1]
+pins = ["U1.PD6", "R4.1"]
+v = [0, 5.5]
+
+[nets.LED_G1_A]
+pins = ["R4.2", "LED5.anode"]
+v = [0, 5.5]
+
+[nets.LED_G2]
+pins = ["U1.PD5", "R3.1"]
+v = [0, 5.5]
+
+[nets.LED_G2_A]
+pins = ["R3.2", "LED4.anode"]
+v = [0, 5.5]
+
+[nets.LED_Y1]
+pins = ["U1.PD2", "R2.1"]
+v = [0, 5.5]
+
+[nets.LED_Y1_A]
+pins = ["R2.2", "LED3.anode"]
+v = [0, 5.5]
+
+[nets.LED_Y2]
+pins = ["U1.PD3", "R1.1"]
+v = [0, 5.5]
+
+[nets.LED_Y2_A]
+pins = ["R1.2", "LED2.anode"]
+v = [0, 5.5]
+
+[nets.LED_R]
+pins = ["U1.PD4", "R5.1"]
+v = [0, 5.5]
+
+[nets.LED_R_A]
+pins = ["R5.2", "LED1.anode"]
+v = [0, 5.5]
+
+[accept]
+"HINT.bulk" = "C1 1000 µF / 16 V electrolytic on +5V, next to J1 (it buffers the Nano's 5V pin)"
+"HINT.debounce" = "debounced in firmware: src/firmware/buttons.ino, 50 ms (DEBOUNCE_DELAY)"
+"HINT.esd" = "J1 is the servo's own cable inside the bell's frame, plugged once; no TVS – like the main board"
+
+[locks.pins]
+"U1.PD2" = "LED_Y1"
+"U1.PD3" = "LED_Y2"
+"U1.PD4" = "LED_R"
+"U1.PD5" = "LED_G2"
+"U1.PD6" = "LED_G1"
+"U1.PB0" = "SERVO"
+"U1.PB4" = "BTN_START"
+"U1.PB3" = "BTN_RESET"
