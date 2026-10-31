@@ -455,3 +455,15 @@ Owner's decision (item 6), replacing D-22's own script: `make publish`, `publish
 `edakit release publish` (`--draft`, `--built TAG`), with `[release] publish = { variants = true, decisions =
 "docs/decisions.md" }` in the main configuration; tools/publish_release.py goes. Nothing was published yet, so no
 history breaks. D-22's rule stays: gate runs are build output (`archive = "none"`), what is ordered is a GitHub release.
+
+## D-30 The T-Display's footprint as data (2026-10-31)
+
+Plan 3.6 of edakit, its live run of 2026-10-31: the footprint goes to the data path, the symbol stays the script's.
+`edakit part footprint C18722937 --board esp32` (and `--board esp32tht`) took the pad places from the dump – they
+agree with tdisplay_device.py to 0.001 mm –; shape, size, hole, outline, the USB box and the texts came from the same
+script, as edakit's dry run took them; no `"symbol"` in the data, so `part build` leaves the symbol to
+`tdisplay_device.py symbol` (`[scripts.tdisplay]`, D-25). PARTS.footprint passes on both entries; SYNC.footprint
+compares the places now and shape, size and hole after the next `pcb dump` (esp32's dump has no holes yet). The copy in
+EasyEDA is the script's, built from the same values, so nothing is rebuilt. The entry changes the circuit hash of esp32
+and esp32tht (M-1 anew; M-6 too, until edakit binds it to its hash 'electrical' without footprint data – the owner's
+decision of 2026-10-31 in edakit) and their layout hash.

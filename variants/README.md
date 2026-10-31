@@ -44,12 +44,16 @@ Through EasyEDA the order is the one of the main board (../hardware/README.md), 
 ## The T-Display in EasyEDA
 
 The T-Display is neither in EasyEDA's library nor at LCSC, and a device created through EasyEDA's API cannot be placed
-in the local client. The EasyEDA device of U1 is therefore a stand-in, the 2×12 female header C18722937, whose symbol
-and footprint copies in the project are rebuilt into the T-Display's by
-[esp32/hardware/lib/tdisplay_device.py](esp32/hardware/lib/tdisplay_device.py) (D-13). Order on a fresh EasyEDA
-project: `schematic create` (places the header, the copies appear in the project), the script, `schematic create`
-again (now with the T-Display's pins), then as usual. The parts entry
-[esp32/hardware/parts/C18722937.json](esp32/hardware/parts/C18722937.json) describes the T-Display, not the header.
+in the local client. The EasyEDA device of U1 is therefore a stand-in, the 2×12 female header C18722937, whose project
+copies become the T-Display's (D-13). The **footprint** is data in the parts entry since D-30 – `footprint_data` in
+[esp32/hardware/parts/C18722937.json](esp32/hardware/parts/C18722937.json) and the same in esp32tht's entry: 24 pads,
+their shape, size and hole, the outline, the USB box and the two texts, checked by PARTS.footprint and against the
+dump by SYNC.footprint; `edakit part build C18722937 --config variants/esp32/edakit.toml --write` builds the copy from
+it. The **symbol** stays the script's: `edakit run tdisplay --config variants/esp32/edakit.toml` runs
+[esp32/hardware/lib/tdisplay_device.py](esp32/hardware/lib/tdisplay_device.py) `symbol` under the EasyEDA claim.
+Order on a fresh EasyEDA project: `schematic create` (places the header, the copies appear in the project),
+`part build --write` and `run tdisplay`, `schematic create` and `schematic layout` again (now with the T-Display's
+pins and pads), then as usual. The parts entry describes the T-Display, not the header.
 
 **Before ordering an ESP32 board (esp32, esp32tht), measure the module:** two rows of 12 pins, pitch 2.54 mm, rows 22.86 mm apart,
 pin 1 (5V) and pin 13 (3V3) at the USB end.

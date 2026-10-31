@@ -256,7 +256,8 @@
   "EasyEDA: a device created through the API cannot be placed in the local client (GET_DEVICE: 'Device details data does not exist'); the stand-in C18722937 (2541FV-2x12P, symbol pins 1-24, prefix U) is placed, and its project copies are rebuilt – like pytree's RP2350-Zero (2026-10-26)",
   "i_core_min_a 0.04 A: assumption – a lower bound of the module's own current (ESP32 without Wi-Fi traffic, display backlight dimmed), as edakit tried it on a copy of esp32 (D-18); it holds the base load of D-8 to its minimum",
   "rth_ja_k_per_w 184, tj_max_c 150: the module's on-board LDO AP2112K-3.3 (SOT-25), Diodes Inc. datasheet (LCSC C51118, sha256 ef8d376f2ec3…): θJA 184 °C/W without heatsink, operating junction temperature up to +150 °C",
-  "order: the T-Display is sold by neither LCSC nor Berrybase/Reichelt (2026-10-31); Tinytronics (NL) lists the V1.1 – https://www.tinytronics.nl/shop/en/development-boards/microcontroller-boards/with-wi-fi/lilygo-ttgo-t-display-v1.1-esp32-with-1.14-inch-tft-display"
+  "order: the T-Display is sold by neither LCSC nor Berrybase/Reichelt (2026-10-31); Tinytronics (NL) lists the V1.1 – https://www.tinytronics.nl/shop/en/development-boards/microcontroller-boards/with-wi-fi/lilygo-ttgo-t-display-v1.1-esp32-with-1.14-inch-tft-display",
+  "footprint_data: pad places from the pcb dump of U1 on board esp32tht (edakit part footprint, 2026-10-31), agreeing with variants/esp32/hardware/lib/tdisplay_device.py to 0.001 mm and set to its values; pad shape (square 1 and 13 at the USB end, round the rest), 1.7 mm pads, 1.1 mm holes, the outline 25.66 x 52.1 mm, the USB box, the texts USB and T-Display and the 6 mil lines from the same script (D-13) – as edakit's dry run of plan 3.6; the symbol stays the script's (tdisplay_device.py symbol, D-25)"
  ],
  "notes": "Plugged into two 1x12 female headers (hand-soldered). The LCSC number is a stand-in: the 2x12 female header C18722937 gives the EasyEDA device; variants/esp32/hardware/lib/tdisplay_device.py rebuilds its symbol and footprint copies in the project into the T-Display's (pins below, 2 x 12 pads 22.86 mm apart). The footprint keeps the header's name (D-13).",
  "verified": {
@@ -276,5 +277,363 @@
   "tinytronics": {
    "code": "LILYGO TTGO T-Display V1.1 ESP32 with 1.14 inch TFT display"
   }
+ },
+ "footprint_data": {
+  "origin": [
+   0,
+   0
+  ],
+  "pads": {
+   "1": {
+    "x": 11.43,
+    "y": -13.97,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "RECT",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "2": {
+    "x": 11.43,
+    "y": -11.43,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "3": {
+    "x": 11.43,
+    "y": -8.89,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "4": {
+    "x": 11.43,
+    "y": -6.35,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "5": {
+    "x": 11.43,
+    "y": -3.81,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "6": {
+    "x": 11.43,
+    "y": -1.27,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "7": {
+    "x": 11.43,
+    "y": 1.27,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "8": {
+    "x": 11.43,
+    "y": 3.81,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "9": {
+    "x": 11.43,
+    "y": 6.35,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "10": {
+    "x": 11.43,
+    "y": 8.89,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "11": {
+    "x": 11.43,
+    "y": 11.43,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "12": {
+    "x": 11.43,
+    "y": 13.97,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "13": {
+    "x": -11.43,
+    "y": -13.97,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "RECT",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "14": {
+    "x": -11.43,
+    "y": -11.43,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "15": {
+    "x": -11.43,
+    "y": -8.89,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "16": {
+    "x": -11.43,
+    "y": -6.35,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "17": {
+    "x": -11.43,
+    "y": -3.81,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "18": {
+    "x": -11.43,
+    "y": -1.27,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "19": {
+    "x": -11.43,
+    "y": 1.27,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "20": {
+    "x": -11.43,
+    "y": 3.81,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "21": {
+    "x": -11.43,
+    "y": 6.35,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "22": {
+    "x": -11.43,
+    "y": 8.89,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "23": {
+    "x": -11.43,
+    "y": 11.43,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   },
+   "24": {
+    "x": -11.43,
+    "y": 13.97,
+    "hole": [
+     1.1,
+     1.1
+    ],
+    "shape": "ELLIPSE",
+    "w": 1.7,
+    "h": 1.7
+   }
+  },
+  "lines": [
+   {
+    "points": [
+     [
+      -12.83,
+      -30.2
+     ],
+     [
+      12.83,
+      -30.2
+     ],
+     [
+      12.83,
+      21.9
+     ],
+     [
+      -12.83,
+      21.9
+     ],
+     [
+      -12.83,
+      -30.2
+     ]
+    ],
+    "width": 0.1524
+   },
+   {
+    "points": [
+     [
+      -4.6,
+      -29.9
+     ],
+     [
+      4.6,
+      -29.9
+     ],
+     [
+      4.6,
+      -27.9
+     ],
+     [
+      -4.6,
+      -27.9
+     ],
+     [
+      -4.6,
+      -29.9
+     ]
+    ],
+    "width": 0.1524
+   }
+  ],
+  "texts": [
+   {
+    "text": "USB",
+    "x": 0,
+    "y": -25.8,
+    "size": 1.5,
+    "width": 0.1524
+   },
+   {
+    "text": "T-Display",
+    "x": 0,
+    "y": 18.3,
+    "size": 1.5,
+    "width": 0.1524
+   }
+  ],
+  "outline": [
+   [
+    -12.83,
+    -30.2
+   ],
+   [
+    12.83,
+    -30.2
+   ],
+   [
+    12.83,
+    21.9
+   ],
+   [
+    -12.83,
+    21.9
+   ]
+  ]
  }
 }
