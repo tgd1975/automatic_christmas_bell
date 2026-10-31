@@ -402,3 +402,55 @@ units, `accept` by code instead of `waive`/`accepted_warnings`, P-5 → PARTS.su
   in M-5 and the EasyEDA stages S, L and F, as on esp32tht.
 - What waits for a board's next circuit change (D-18, D-23) still waits: the conversion changes the form, not the
   circuit.
+
+## D-25 The whole bell on today's edakit: migrate first, then release all five and order (2026-10-31)
+
+Owner's goal: everything the skill new-project writes today, nothing only in EasyEDA or in a head – all five boards,
+edakit 868e942. Owner's decision (round of 2026-10-31, item 1): **migrate now**, then each board once M-1 and M-6, an
+EasyEDA gate for all five, and the order through the skill cart. Reason: the skill cart refuses today's releases
+already (D-24 rehashed the circuit, `cart prepare` compares the run's circuit hash), the requirements file changes the
+circuit hash of all five boards and `[order]` their fab hash – one round of reviews and gates instead of two. The
+alternatives, steps 1–3 now and ordering by hand with `make publish`, or ordering first, would have meant a second
+round before the next order.
+
+Further answers of the round:
+
+- **No CI** (item 7): one author on one machine; the pre-commit hook runs the same checks on every commit.
+- **Decided by Claude, confirmed by the owner** (item 9): `[scripts.kunst]` in all five configurations, first
+  recorded with `edakit scripts stamp` (the SVGs stay byte for byte); `[scripts.tdisplay]` only in esp32 with the step
+  `symbol` (the footprint goes to `footprint_data`); `distributors = ["lcsc", "reichelt", "rs"]` after the owner's
+  supplier rule (Berrybase, Bürklin and Tinytronics are not edakit distributors – a gap for edakit); `[firmware]` for
+  esp32 and esp32tht, not for the Nano boards (their pin names are ATmega ports, no regex gives Arduino numbers – a gap
+  for edakit); `[docs]` with hardware/README.md; `[[extra]]` for the female headers of every board; `spare_pct`,
+  `datasheets` and `domains` at edakit's defaults (the graph suggests radio on esp32 and esp32tht, so it is on); the
+  circuit items waiting since D-18 and D-23 come now, as M-1 and M-6 are drawn anew anyway; stale documents fixed.
+
+## D-26 esp32: the 0805 LEDs at 52 % of their rating accepted (2026-10-31)
+
+edakit 868e942 holds LEDs to LIM.p: on esp32 LED1–LED5 (KENTO KT-0805R/Y/YG, Pd 40 mW by the datasheet) take
+20.7 mW at the forward-voltage minimum against the 20 mW of edakit's 50 % derating – 18 × LIM.p, stage E red.
+Owner's decision (item 2): accepted in the sign-off file – 52 % of the datasheet's rating at the worst corner, the
+brightness stays. Alternative: R1–R5 120 Ω (about 18 mW, about 15 % darker).
+
+## D-27 The order form as keys: order number, delivery, cost (2026-10-31)
+
+Owner's decisions (items 3, 4, 8):
+
+- **Order number** (`[order] mark`): `"specify"` on smd, tht and esp32 – their `JLCJLCJLCJLC` lies under the module
+  –, `"remove"` on main and esp32tht, which have no placeholder (main never had one: the TODO's "Specify Position" for
+  every board was wrong there). edakit's JLCPCB profile notes that JLCPCB reports the order number gone since May 2026;
+  the skill cart reads the form before it fills it in. `[order]` changes the fab hash of every board: M-5 anew.
+- **Delivery** (`[cart]`): Austria, DHL Express.
+- **Cost** (`[cost]`): no budget, the estimate in EUR.
+
+## D-28 Schematic drawings with wires (2026-10-31)
+
+Owner's decision (item 5): `style = "wires"` for all five boards – every connection a wire, as the bell's first
+drawing had it (docs/old/). Only the SVGs of `edakit schematic draw`; EasyEDA's schematics keep their labels; no hash.
+
+## D-29 Publishing with edakit itself (2026-10-31)
+
+Owner's decision (item 6), replacing D-22's own script: `make publish`, `publish-draft` and `publish-built` call
+`edakit release publish` (`--draft`, `--built TAG`), with `[release] publish = { variants = true, decisions =
+"docs/decisions.md" }` in the main configuration; tools/publish_release.py goes. Nothing was published yet, so no
+history breaks. D-22's rule stays: gate runs are build output (`archive = "none"`), what is ordered is a GitHub release.
