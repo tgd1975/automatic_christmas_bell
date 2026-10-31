@@ -1,5 +1,6 @@
 # Schematic of christmas-bell: blocks, notes, pin table (edakit handbook 10.3)
 
+style = "wires"                   # every connection a wire, as the first drawing (D-28)
 stub = 10
 
 [layout]

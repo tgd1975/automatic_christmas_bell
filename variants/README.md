@@ -34,8 +34,10 @@ edakit sim --config variants/esp32/edakit.toml         # ngspice over all scenar
 edakit schematic draw --config variants/esp32/edakit.toml   # the schematic as SVG, no EasyEDA
 ```
 
-The drawn schematics are committed next to each config: [smd/schematic_smd.svg](smd/schematic_smd.svg),
-[tht/schematic_tht.svg](tht/schematic_tht.svg), [esp32/schematic_esp32.svg](esp32/schematic_esp32.svg).
+The drawn schematics – every connection a wire (D-28) – are committed next to each config:
+[smd/schematic_smd.svg](smd/schematic_smd.svg), [tht/schematic_tht.svg](tht/schematic_tht.svg),
+[esp32/schematic_esp32.svg](esp32/schematic_esp32.svg), [esp32tht/schematic_esp32tht.svg](esp32tht/schematic_esp32tht.svg);
+the main board's is [../hardware/schematic_main.svg](../hardware/schematic_main.svg).
 
 Through EasyEDA the order is the one of the main board (../hardware/README.md), each with `--config`:
 `schematic create --save`, `schematic layout --save`, `pcb parts --write`, `pcb dump`, `pcb plan`, `pcb apply`,

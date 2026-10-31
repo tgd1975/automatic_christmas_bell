@@ -28,7 +28,8 @@ SMD parts (resistors, buttons); the headers, LEDs, C1 and J1 are hand-soldered.
 | [../edakit.toml](../edakit.toml) | the table of contents: EasyEDA project `christmas-bell`, the board `main`, where the files are, release |
 | [boards/main.toml](boards/main.toml) | the board: 85 × 56 mm, holes, tooling holes, placement plan, routing rules, pours, silkscreen and artwork |
 | [boards/main.geometry.json](boards/main.geometry.json) | the footprint geometry, measured by `edakit pcb dump`: pads and holes of every part, relative to its origin |
-| [schematic.toml](schematic.toml) | the blocks, notes and pin table of the schematic |
+| [schematic.toml](schematic.toml) | the blocks, notes and pin table of the schematic; `style = "wires"` (D-28) |
+| [schematic_main.svg](schematic_main.svg) | the schematic, drawn by `edakit schematic draw` – every connection a wire |
 | [graph.toml](graph.toml) | the hardware graph: 19 parts, 15 nets with voltage ranges, the pin locks for the firmware – the only source of the circuit |
 | [graph.json](graph.json) | the generated file: the resolved graph with pin numbers (`edakit graph json --write`), never edited – the pre-commit hook checks that it is current |
 | [parts/](parts/) | one entry per LCSC number: pins with roles, ratings, lead sizes, datasheet sign-off |
