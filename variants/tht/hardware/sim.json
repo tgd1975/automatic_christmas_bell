@@ -26,7 +26,7 @@
   },
   "loads": {
     "idle": {
-      "about": "countdown off, servo holds the middle",
+      "about": "countdown off, servo at rest (detached by the firmware, 3596f3f / D-17)",
       "gpio": {},
       "leds_on": [],
       "external": {
@@ -153,5 +153,40 @@
       "info": true,
       "note": "fault case: about 810 mA through the 5V pin (with the base load), the Nano's polyfuse (500 mA hold) is not guaranteed to trip – decision D-3"
     }
-  ]
+  ],
+  "transients": {
+    "servo-start": {
+      "supply": {
+        "U1": 4.45
+      },
+      "load": "idle",
+      "stop_s": 0.05,
+      "step_s": 1e-05,
+      "steps": {
+        "J1": [
+          [
+            0,
+            0.01
+          ],
+          [
+            0.005,
+            0.01
+          ],
+          [
+            0.00501,
+            0.7
+          ],
+          [
+            0.025,
+            0.7
+          ],
+          [
+            0.02501,
+            0.3
+          ]
+        ]
+      },
+      "note": "R-9 (D-33): the servo starts at the low end of USB – 20 ms at its stall current 0.7 A (a servo's start current is its stall current), then 0.3 A swinging; U1 must not brown out (LIM.range on its minimum input voltage)"
+    }
+  }
 }

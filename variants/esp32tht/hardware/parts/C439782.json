@@ -34,7 +34,7 @@
   "sources": [
     "EasyEDA library and LCSC parameter table (2026-10-25): 1000 µF, 16 V, 680 mA ripple @ 120 Hz, Ø10 × 13 mm, pitch 5 mm, 2000 h @ 105 °C",
     "LCSC stock 2026-10-25: 18 720 pcs",
-    "pin names and polarity: assumption until compared with the EasyEDA symbol (schematic create)",
+    "pin names and polarity: compared with the EasyEDA symbol at schematic create (2026-10-25) and the footprint's '+' print in M-1 (2026-10-26)",
     "lead Ø0.6 mm from the footprint name (D0.6) – assumption"
   ],
   "lead": {

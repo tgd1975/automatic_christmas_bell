@@ -19,6 +19,11 @@ notes = """\
   control of the countdown, no internet service – and a setup hotspot (WPA2) until the home network is set (D-17); \
   Bluetooth stays off."""
 
+[purpose.radio]
+U1 = {bands_mhz = [[2412, 2472]], notes = """\
+  Wi-Fi channels 1-13 only: the firmware variants/esp32/firmware sets country DE with 802.11d off at every Wi-Fi \
+  start (D-13, D-17); Bluetooth is never started; the default power limit"""}
+
 [conventions]
 pin_reference = """\
   '<designator>.<pin>' with the pin's name or role, else its symbol number – the parts entry says which pin that is"""
@@ -172,8 +177,8 @@ part = "100 Ω 2512 1 W"
 lcsc = "C35218"
 value = "100Ω"
 notes = """\
-  Keeps a power bank from switching off (D-8): without the base load the board draws about 90–150 mA (simulated; \
-  the module's own current is an assumption), with it at least 176 mA."""
+  Keeps a power bank from switching off (D-8): with the module's least current (0.04 A, i_core_min_a – D-18) the \
+  board draws at least 0.136 A with the base load (simulated, LIM.i … current keeps the supply on)."""
 
 [components.R9]
 type = "resistor"
@@ -182,8 +187,8 @@ part = "100 Ω 2512 1 W"
 lcsc = "C35218"
 value = "100Ω"
 notes = """\
-  Keeps a power bank from switching off (D-8): without the base load the board draws about 90–150 mA (simulated; \
-  the module's own current is an assumption), with it at least 176 mA."""
+  Keeps a power bank from switching off (D-8): with the module's least current (0.04 A, i_core_min_a – D-18) the \
+  board draws at least 0.136 A with the base load (simulated, LIM.i … current keeps the supply on)."""
 
 [nets."+5V"]
 pins = ["C1.plus", "J1.2", "R8.1", "R9.1", "U1.5V"]
@@ -257,7 +262,7 @@ v = [0, 3.4]
 
 [accept]
 "HINT.bulk" = "C1 1000 µF / 16 V electrolytic on +5V, next to J1 (it buffers the module's 5V pin)"
-"HINT.debounce" = "to be debounced in the ESP32 firmware like buttons.ino (50 ms); the firmware port is open (D-13)"
+"HINT.debounce" = "debounced in the ESP32 firmware variants/esp32/firmware like buttons.ino (50 ms, D-17)"
 "HINT.esd" = "J1 is the servo's own cable inside the bell's frame, plugged once; no TVS – like the main board"
 
 [locks.pins]

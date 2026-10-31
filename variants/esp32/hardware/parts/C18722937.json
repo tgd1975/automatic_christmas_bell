@@ -200,12 +200,15 @@
   "i_core_a": 0.27,
   "gpio_r_out_ohm": 30,
   "vih_ratio": 0.75,
-  "vil_ratio": 0.25
+  "vil_ratio": 0.25,
+  "i_core_min_a": 0.04
  },
  "limits": {
   "vin_min_v": 3.6,
   "i_out_max_a": 0.2,
-  "gpio_i_max_a": 0.02
+  "gpio_i_max_a": 0.02,
+  "rth_ja_k_per_w": 184,
+  "tj_max_c": 150
  },
  "spice": {},
  "lead": {
@@ -251,9 +254,13 @@
   "gpio_r_out_ohm 30 Ω and gpio_i_max_a 20 mA (default drive strength): assumption from the ESP32 datasheet (40 mA at the strongest setting)",
   "vin_min 3.6 V: AP2112K needs about 3.3 V + dropout; assumption",
   "EasyEDA: a device created through the API cannot be placed in the local client (GET_DEVICE: 'Device details data does not exist'); the stand-in C18722937 (2541FV-2x12P, symbol pins 1-24, prefix U) is placed, and its project copies are rebuilt – like pytree's RP2350-Zero (2026-10-26)",
-  "footprint_data: pad places from the pcb dump of U1 on board esp32 (edakit part footprint, 2026-10-31), agreeing with variants/esp32/hardware/lib/tdisplay_device.py to 0.001 mm and set to its values; pad shape (square 1 and 13 at the USB end, round the rest), 1.7 mm pads, 1.1 mm holes, the outline 25.66 x 52.1 mm, the USB box, the texts USB and T-Display and the 6 mil lines from the same script (D-13) – as edakit's dry run of plan 3.6; the symbol stays the script's (tdisplay_device.py symbol, D-25)"
+  "footprint_data: pad places from the pcb dump of U1 on board esp32 (edakit part footprint, 2026-10-31), agreeing with variants/esp32/hardware/lib/tdisplay_device.py to 0.001 mm and set to its values; pad shape (square 1 and 13 at the USB end, round the rest), 1.7 mm pads, 1.1 mm holes, the outline 25.66 x 52.1 mm, the USB box, the texts USB and T-Display and the 6 mil lines from the same script (D-13) – as edakit's dry run of plan 3.6; the symbol stays the script's (tdisplay_device.py symbol, D-25)",
+  "i_core_min_a 0.04 A: assumption – a lower bound of the module's own current (ESP32 without Wi-Fi traffic, display backlight dimmed), as edakit tried it on a copy of esp32 (D-18); it holds the base load of D-8 to its minimum",
+  "rth_ja_k_per_w 184, tj_max_c 150: the module's on-board LDO AP2112K-3.3 (SOT-25), Diodes Inc. datasheet (LCSC C51118, sha256 ef8d376f2ec3…): θJA 184 °C/W without heatsink, operating junction temperature up to +150 °C",
+  "order: the T-Display is sold by neither LCSC nor Berrybase/Reichelt (2026-10-31); Tinytronics (NL) lists the V1.1 – https://www.tinytronics.nl/shop/en/development-boards/microcontroller-boards/with-wi-fi/lilygo-ttgo-t-display-v1.1-esp32-with-1.14-inch-tft-display",
+  "order: Tinytronics SKU 002649, 'LILYGO TTGO T-Display V1.1 ESP32 with 1.14 inch TFT display' (D-23) – neither LCSC nor Berrybase or Reichelt sell it"
  ],
- "notes": "Plugged into two 1x12 female headers (hand-soldered). The LCSC number is a stand-in: the 2x12 female header C18722937 gives the EasyEDA device; variants/esp32/hardware/lib/tdisplay_device.py rebuilds its symbol and footprint copies in the project into the T-Display's (pins below, 2 x 12 pads 22.86 mm apart). The footprint keeps the header's name (D-13).",
+ "notes": "Plugged into two 1x12 female headers (hand-soldered). The LCSC number is a stand-in: the 2x12 female header C18722937 gives the EasyEDA device; variants/esp32/hardware/lib/tdisplay_device.py rebuilds its symbol and footprint copies in the project into the T-Display's (pins below, 2 x 12 pads 22.86 mm apart). The footprint keeps the header's name (D-13). The module's USB-C has a CC pull-down on one line only: power it with a USB-A-to-C cable, or turn a C-to-C plug over if it stays dark (D-13, Use).",
  "verified": {
   "by": "Claude Opus 5.5 (datasheet check)",
   "date": "2026-10-26",
@@ -648,5 +655,10 @@
     21.9
    ]
   ]
+ },
+ "order": {
+  "tinytronics": {
+   "code": "002649"
+  }
  }
 }

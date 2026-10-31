@@ -131,11 +131,12 @@ status = "accepted"
 
 [[requirement]]
 id = "R-9"
-text = "When the servo starts, U1 does not reset: +5V stays at or above U1's minimum input voltage during the servo's start-up peak (open: a transient scenario of the servo's step in sim.json, the circuit designer's)."
-source = "the C1 notes of every graph"
+text = "When the servo starts, U1 does not reset: +5V stays at or above U1's minimum input voltage during the servo's start-up peak (0.7 A for 20 ms at the low end of USB)."
+source = "the C1 notes of every graph; sim.json transient servo-start (D-33)"
 from = ["N-1"]
 binding = "must"
-verify = [{ accept = "ring now (start held, then reset) 5 times in a row: no restart – Nano: no setup line in the serial log, ESP32: the display does not start anew" }]
+verify = [{ rows = "LIM.range servo-start U1 lowest supply voltage once started*" },
+          { accept = "ring now (start held, then reset) 5 times in a row: no restart – Nano: no setup line in the serial log, ESP32: the display does not start anew" }]
 status = "accepted"
 
 [[requirement]]

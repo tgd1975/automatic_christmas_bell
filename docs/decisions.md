@@ -503,3 +503,27 @@ esp32 and esp32tht) – three files, so that no Nano value binds the ESP32 board
 
 The files are in the circuit hash of every board: M-1 and M-6 anew on all five, whose notes name the requirements
 they find met.
+
+## D-33 The servo's start as a transient run (2026-10-31)
+
+Evidence of R-9 (D-32, item 16 b): every sim.json has the transient run `servo-start` – USB at the low end of the
+supply (4.45 V at the Nano's 5V pin, 4.35 V at the T-Display's), the servo jumping from 10 mA to its stall current
+0.7 A for 20 ms, then 0.3 A swinging. +5V falls to 4.05 V on the Nano boards (minimum 3.8 V) and to 3.93 V on the
+ESP32 boards (minimum 3.6 V); the ESP32 boards' peak is 1.05 A for those 20 ms. R-9 names the row (LIM.range
+servo-start U1 lowest supply voltage once started) beside its acceptance step; its text says the step instead of the
+open question – a sharper condition, the ID stays (skill requirements, 7). The idle load's note says the servo is
+detached at rest (3596f3f, D-17), the stalled case's note no longer that the ESP32 firmware should detach it.
+
+## D-34 The circuit items waiting since D-18 and D-23 (2026-10-31)
+
+They come with this renewal of M-1 and M-6 (D-25, item 9 h):
+
+- Nano C9900187880 (main, smd, tht): `compliance.radio = "none"` – P-11 clears.
+- esp32: `purpose.radio` with channels 1–13 (2412–2472 MHz), as on esp32tht – G-25 clears; U1's `i_core_min_a`
+  0.04 A, `rth_ja_k_per_w` 184 and `tj_max_c` 150 of the AP2112K (Diodes datasheet), so that R-32 has its rows; R8/R9's
+  notes say the simulated least current, 0.136 A; HINT.debounce names the firmware that debounces.
+- esp32 and esp32tht: U1's `order` is Tinytronics SKU 002649, so the stand-in header no longer lands in an LCSC cart;
+  U1's notes say the module's single CC pull-down (an A-to-C cable).
+- esp32tht: R1/R2/R5's notes say "dimmed towards" the yellow-green (D-23).
+- C439782 (main, tht, esp32tht): the polarity source no longer says "assumption" – compared at schematic create and in
+  M-1.

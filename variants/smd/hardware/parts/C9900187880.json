@@ -240,7 +240,8 @@
     "20 mA per GPIO recommended (40 mA absolute maximum)",
     "footprint COMM-TH_L43.2-W17.8-P2.54_ATMEGA328P (2026-10-25): 30 pads Ø1.7 mm, holes 1.1 mm – replaces COMM-TH_ARDUINO_NANO (0.9 mm holes, L-9 failed, D-7); same pad numbering, turned by 90°",
     "pin names as in the EasyEDA symbol (ATmega port names). The symbol labels pin 14 'PB4' and pin 15 'PB3'; on the Nano pin 14 is D11 = PB3 and pin 15 is D12 = PB4. Only the labels are swapped: the footprint's pad 15 sits at the end of the row, where the Nano has D12 (checked after placing). Connections go by pin number, so U1.14 = D11, U1.15 = D12 as the firmware expects.",
-    "print per pin: the labels of Arduino's pinout page (A000005-full-pinout.pdf, last update 30/06/2021, https://docs.arduino.cc/resources/pinouts/A000005-full-pinout.pdf) – ~ marks a PWM pin – taken from edakit's library entry A000005 by pin number (D-31); pin 14 prints ~D11 and pin 15 D12 although the EasyEDA symbol names them PB4/PB3 (D-7)"
+    "print per pin: the labels of Arduino's pinout page (A000005-full-pinout.pdf, last update 30/06/2021, https://docs.arduino.cc/resources/pinouts/A000005-full-pinout.pdf) – ~ marks a PWM pin – taken from edakit's library entry A000005 by pin number (D-31); pin 14 prints ~D11 and pin 15 D12 although the EasyEDA symbol names them PB4/PB3 (D-7)",
+    "compliance.radio none: the Nano has no transmitter (ATmega328P, USB-serial chip) – D-18, P-11"
   ],
   "lead": {
     "*": {
@@ -262,5 +263,8 @@
       "symbol labels of pins 14/15 swapped (library error), pad numbering correct"
     ],
     "open": []
+  },
+  "compliance": {
+    "radio": "none"
   }
 }

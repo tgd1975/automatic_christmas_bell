@@ -4,7 +4,7 @@
 # edakit firmware --check, with [docs] edakit docs. A failing check blocks the commit; never bypass it with --no-verify.
 # Activate once per clone: git config core.hooksPath .githooks
 cd "$(git rev-parse --show-toplevel)" || exit 1
-EDAKIT=tools/edakit
+EK=tools/edakit
 staged=$(git diff --cached --name-only)
 fail=0
 
@@ -24,11 +24,11 @@ for cfg in edakit.toml variants/*/edakit.toml; do
   # this board's files, or the main configuration's hardware/ that every variant reads (art, requirements)
   if ! echo "$staged" | grep -qE "^(${prefix}edakit\.toml|${prefix}hardware/|hardware/)"; then continue; fi
   name=$([ "$dir" = . ] && echo main || basename "$dir")
-  run "$name: edakit check" $EDAKIT check --config "$cfg"
-  run "$name: edakit sim" $EDAKIT sim --config "$cfg"
-  run "$name: edakit graph json --check" $EDAKIT graph json --check --config "$cfg"
-  if grep -q '^\[firmware\]' "$cfg"; then run "$name: edakit firmware --check" $EDAKIT firmware --check --config "$cfg"; fi
-  if grep -q '^\[docs\]' "$cfg"; then run "$name: edakit docs" $EDAKIT docs --config "$cfg"; fi
+  run "$name: edakit check" $EK check --config "$cfg"
+  run "$name: edakit sim" $EK sim --config "$cfg"
+  run "$name: edakit graph json --check" $EK graph json --check --config "$cfg"
+  if grep -q '^\[firmware\]' "$cfg"; then run "$name: edakit firmware --check" $EK firmware --check --config "$cfg"; fi
+  if grep -q '^\[docs\]' "$cfg"; then run "$name: edakit docs" $EK docs --config "$cfg"; fi
 done
 
 [ $fail -eq 0 ] || echo "pre-commit: commit blocked – fix the findings (edakit explain <code>), stage again"
