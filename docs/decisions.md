@@ -380,3 +380,6 @@ After the reviews of state e4a24024… (M-1 OK, M-6 OK; 2026-10-31):
   20261031-154618 (edakit 8bdb933): everything passed except M-5, open, and GEO.silk at S1/S2 – the buttons' own print,
   0.067 mm² each. Owner's decision 2026-10-31: D-21 (1) holds for esp32tht too, accepted in its sign-off file, bound
   to S1/S2 = C110153.
+  M-5 by the agent pcb-reviewer on that run (fab b768d2f5…): no block or important finding; S1/S2's 1.3 mm holes
+  (datasheet 1.0 mm) do not hold the snap-in legs – press them flat while soldering (variants/README.md, THT). Gate run
+  20261031-160323 on the same files: **RELEASED** (git 0516fc4) – build output, published with the order (D-22).

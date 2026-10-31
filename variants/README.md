@@ -103,17 +103,17 @@ pio test -e native              # the countdown logic lib/BellTimer on the compu
   Wi-Fi analyser app shows `Glocke-XXXX` on a channel 1–13 with WPA2 – and that the module is marked T-DISPLAY V1.1
   (M-4).
 
-## Status (2026-10-30)
+## Status (2026-10-31)
 
-| | smd | tht | esp32 |
-|---|---|---|---|
-| check, hints, sim | 0 errors, 1211 checks | 0 errors, 1211 checks | 0 errors, 1436 checks |
-| schematics in EasyEDA = graph | yes | yes | yes |
-| PCB routed | 15 nets, 3 vias | 15 nets, 1 via | 16 nets, 7 vias |
-| M-1 circuit review | OK (1ed944d2…) | OK (5ddc2553…) | OK (3f7cec3d…) |
-| M-5 layout review | OK on run 20261026-123018 (fab 4e79e5c0…) | OK on run 20261026-123036 (fab 441ab22c…) | OK on run 20261026-123051 (fab f2962d76…) |
-| M-6 regulatory review | OK, private (1ed944d2…) | OK, private (5ddc2553…) | OK, private, Wi-Fi (3f7cec3d…) |
-| release gate | **RELEASED**, run 20261030-232631 | **RELEASED**, run 20261030-232650 | **RELEASED**, run 20261030-232707 |
+| | smd | tht | esp32 | esp32tht |
+|---|---|---|---|---|
+| check, hints, sim | 0 errors, 1211 checks | 0 errors, 1211 checks | 0 errors, 1436 checks | 0 errors, 1461 checks |
+| schematics in EasyEDA = graph | yes | yes | yes | yes |
+| PCB routed | 15 nets, 3 vias | 15 nets, 1 via | 16 nets, 7 vias | 16 nets, 0 vias |
+| M-1 circuit review | OK (1ed944d2…) | OK (5ddc2553…) | OK (3f7cec3d…) | OK (bcb27b87…) |
+| M-5 layout review | OK on run 20261026-123018 (fab 4e79e5c0…) | OK on run 20261026-123036 (fab 441ab22c…) | OK on run 20261026-123051 (fab f2962d76…) | OK on run 20261031-154618 (fab b768d2f5…) |
+| M-6 regulatory review | OK, private (1ed944d2…) | OK, private (5ddc2553…) | OK, private, Wi-Fi (3f7cec3d…) | OK, private, Wi-Fi (bcb27b87…) |
+| release gate | **RELEASED**, run 20261030-232631 | **RELEASED**, run 20261030-232650 | **RELEASED**, run 20261030-232707 | **RELEASED**, run 20261031-160323 |
 
 The hashes are the ones the reviewers signed. The move to edakit's split config (commit a1a1d80) re-stamped the
 layout hashes without a change of content ("rehashed" in each signoff.json). The purpose `private` in each graph
@@ -136,11 +136,17 @@ The release, on 2026-10-30 with edakit b36a6d0:
 4. The footprints' own print on the buttons' and C1's pads and the Nano's print beyond the board edge are accepted
    warnings (D-21).
 
+esp32tht followed on 2026-10-31 with edakit 8bdb933 (D-23): Import Changes opened once, tabs closed before the gate,
+M-5 on gate run 20261031-154618, the buttons' own print accepted as D-21 (1), released by run 20261031-160323 on the
+same manufacturing files.
+
 The release runs are build output and stay out of git (`build/release/<run>/` of each variant; `edakit release
 current --config …` names the current one, D-22). To order: `make publish` – it lets `edakit release verify` check the
 order files of every board's current release, puts them into `build/publish/<tag>/` and publishes them as a
 pre-release on GitHub, tag = the date. Upload `gerber_<b>.zip`, `bom_<b>.csv` and `cpl_<b>.csv` from that folder at
-JLCPCB and choose "Order Number: Specify Position" – each board has `JLCJLCJLCJLC` under the module. Once a board of
+JLCPCB and choose "Order Number: Specify Position" – each board has `JLCJLCJLCJLC` under the module, except esp32tht: it has
+no placeholder (edakit FILES.order: JLCPCB no longer prints at it since May 2026) – if the form still offers an order
+number, choose none and check the preview (M-2). Once a board of
 that state has been built and works: `make publish-built TAG=<tag>`. Before ordering the ESP32 board, measure the
 T-Display (above). `make publish` needs the GitHub CLI, logged in (`gh auth login`), and edakit – on the PATH, in
 `$EDAKIT`, or as a clone `../edakit` with its `.venv`.
