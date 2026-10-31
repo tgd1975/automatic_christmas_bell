@@ -97,7 +97,10 @@
      "1": "A",
      "2": "K"
     },
-    "notes": "D-14: yellow-green (VF 1.8-2.4 V) instead of emerald green (2.6-3.1 V) – the ESP32's 3.3 V outputs do not drive the emerald green reliably"
+    "notes": "D-14: yellow-green (VF 1.8-2.4 V) instead of emerald green (2.6-3.1 V) – the ESP32's 3.3 V outputs do not drive the emerald green reliably",
+    "accept": {
+     "LIM.p": "D-26 (owner, 2026-10-31): 20.7 mW at the forward-voltage minimum, 52 % of the datasheet's 40 mW – accepted, the brightness stays"
+    }
    },
    {
     "designator": "R4",
@@ -122,7 +125,10 @@
      "1": "A",
      "2": "K"
     },
-    "notes": "D-14: yellow-green (VF 1.8-2.4 V) instead of emerald green (2.6-3.1 V) – the ESP32's 3.3 V outputs do not drive the emerald green reliably"
+    "notes": "D-14: yellow-green (VF 1.8-2.4 V) instead of emerald green (2.6-3.1 V) – the ESP32's 3.3 V outputs do not drive the emerald green reliably",
+    "accept": {
+     "LIM.p": "D-26 (owner, 2026-10-31): 20.7 mW at the forward-voltage minimum, 52 % of the datasheet's 40 mW – accepted, the brightness stays"
+    }
    },
    {
     "designator": "R3",
@@ -147,7 +153,10 @@
      "1": "+",
      "2": "-"
     },
-    "notes": "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)"
+    "notes": "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)",
+    "accept": {
+     "LIM.p": "D-26 (owner, 2026-10-31): 20.7 mW at the forward-voltage minimum, 52 % of the datasheet's 40 mW – accepted, the brightness stays"
+    }
    },
    {
     "designator": "R2",
@@ -172,7 +181,10 @@
      "1": "+",
      "2": "-"
     },
-    "notes": "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)"
+    "notes": "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)",
+    "accept": {
+     "LIM.p": "D-26 (owner, 2026-10-31): 20.7 mW at the forward-voltage minimum, 52 % of the datasheet's 40 mW – accepted, the brightness stays"
+    }
    },
    {
     "designator": "R1",
@@ -197,7 +209,10 @@
      "1": "A",
      "2": "K"
     },
-    "notes": "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)"
+    "notes": "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)",
+    "accept": {
+     "LIM.p": "D-26 (owner, 2026-10-31): 20.7 mW at the forward-voltage minimum, 52 % of the datasheet's 40 mW – accepted, the brightness stays"
+    }
    },
    {
     "designator": "R5",

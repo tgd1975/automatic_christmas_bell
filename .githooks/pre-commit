@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Pre-commit hook of the Christmas bell (edakit handbook 2.7, new-project section 4; D-25): when a board's files are
+# staged, its configuration runs edakit check, edakit sim and edakit graph json --check – with [firmware] also
+# edakit firmware --check, with [docs] edakit docs. A failing check blocks the commit; never bypass it with --no-verify.
+# Activate once per clone: git config core.hooksPath .githooks
+cd "$(git rev-parse --show-toplevel)" || exit 1
+EDAKIT=tools/edakit
+staged=$(git diff --cached --name-only)
+fail=0
+
+run() {  # label, command … – the output through cat (uv from snap prints nothing into a file), exit code kept
+  local label=$1; shift
+  out=$("$@" 2>&1 | cat; exit "${PIPESTATUS[0]}"); rc=$?
+  if [ $rc -ne 0 ]; then
+    echo "pre-commit: $label failed (exit $rc)"; echo "$out" | tail -25; fail=1
+  else
+    echo "pre-commit: $label ok"
+  fi
+}
+
+for cfg in edakit.toml variants/*/edakit.toml; do
+  dir=$(dirname "$cfg")
+  prefix=$([ "$dir" = . ] && echo "" || echo "$dir/")
+  # this board's files, or the main configuration's hardware/ that every variant reads (art, requirements)
+  if ! echo "$staged" | grep -qE "^(${prefix}edakit\.toml|${prefix}hardware/|hardware/)"; then continue; fi
+  name=$([ "$dir" = . ] && echo main || basename "$dir")
+  run "$name: edakit check" $EDAKIT check --config "$cfg"
+  run "$name: edakit sim" $EDAKIT sim --config "$cfg"
+  run "$name: edakit graph json --check" $EDAKIT graph json --check --config "$cfg"
+  if grep -q '^\[firmware\]' "$cfg"; then run "$name: edakit firmware --check" $EDAKIT firmware --check --config "$cfg"; fi
+  if grep -q '^\[docs\]' "$cfg"; then run "$name: edakit docs" $EDAKIT docs --config "$cfg"; fi
+done
+
+[ $fail -eq 0 ] || echo "pre-commit: commit blocked – fix the findings (edakit explain <code>), stage again"
+exit $fail

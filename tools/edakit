@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# edakit for the hook and the Makefile (D-25): $EDAKIT, else edakit on the PATH, else the installed Claude Code plugin
+# (its install path in ~/.claude/plugins/installed_plugins.json – it follows the plugin's updates).
+if [ -n "$EDAKIT" ]; then exec "$EDAKIT" "$@"; fi
+if command -v edakit >/dev/null 2>&1; then exec edakit "$@"; fi
+plugin=$(python3 -c 'import json, os, sys
+d = json.load(open(os.path.expanduser("~/.claude/plugins/installed_plugins.json")))
+print(d.get("plugins", d)["edakit@edakit"][0]["installPath"])' 2>/dev/null)
+if [ -n "$plugin" ] && [ -x "$plugin/bin/edakit" ]; then exec "$plugin/bin/edakit" "$@"; fi
+echo "tools/edakit: edakit not found – set EDAKIT=/path/to/edakit, put it on the PATH or install the Claude Code plugin" >&2
+exit 1

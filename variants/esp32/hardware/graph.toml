@@ -61,6 +61,7 @@ lcsc = "C2292"
 notes = """\
   D-14: yellow-green (VF 1.8-2.4 V) instead of emerald green (2.6-3.1 V) – the ESP32's 3.3 V outputs do not drive \
   the emerald green reliably"""
+accept."LIM.p" = "D-26 (owner, 2026-10-31): 20.7 mW at the forward-voltage minimum, 52 % of the datasheet's 40 mW – accepted, the brightness stays"
 
 [components.R4]
 type = "resistor"
@@ -78,6 +79,7 @@ lcsc = "C2292"
 notes = """\
   D-14: yellow-green (VF 1.8-2.4 V) instead of emerald green (2.6-3.1 V) – the ESP32's 3.3 V outputs do not drive \
   the emerald green reliably"""
+accept."LIM.p" = "D-26 (owner, 2026-10-31): 20.7 mW at the forward-voltage minimum, 52 % of the datasheet's 40 mW – accepted, the brightness stays"
 
 [components.R3]
 type = "resistor"
@@ -93,6 +95,7 @@ label = "0805 LED, yellow, countdown step 3"
 part = "KT-0805Y"
 lcsc = "C2296"
 notes = "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)"
+accept."LIM.p" = "D-26 (owner, 2026-10-31): 20.7 mW at the forward-voltage minimum, 52 % of the datasheet's 40 mW – accepted, the brightness stays"
 
 [components.R2]
 type = "resistor"
@@ -108,6 +111,7 @@ label = "0805 LED, yellow, countdown step 4"
 part = "KT-0805Y"
 lcsc = "C2296"
 notes = "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)"
+accept."LIM.p" = "D-26 (owner, 2026-10-31): 20.7 mW at the forward-voltage minimum, 52 % of the datasheet's 40 mW – accepted, the brightness stays"
 
 [components.R1]
 type = "resistor"
@@ -123,6 +127,7 @@ label = "0805 LED, red, countdown step 5"
 part = "KT-0805R"
 lcsc = "C2295"
 notes = "D-11: KT-0805 series, pin 1 = anode, pin 2 = cathode (footprint mark at pad 2)"
+accept."LIM.p" = "D-26 (owner, 2026-10-31): 20.7 mW at the forward-voltage minimum, 52 % of the datasheet's 40 mW – accepted, the brightness stays"
 
 [components.R5]
 type = "resistor"
