@@ -560,3 +560,21 @@ Left at edakit's default, with the reason:
   numbers – a gap for edakit (a pin map to the firmware's names); `locks.pins` holds the pins meanwhile.
 - `[docs]` in the variants: their values are in variants/README.md, one file for four configurations – a block has no
   configuration of its own, so every variant would check it against its own graph (a gap for edakit).
+
+## D-36 The ESP32 boards' radio in Austria: the CE-marked module is the radio equipment (2026-11-01)
+
+M-6 of esp32 and esp32tht (agent regulatory-reviewer, 2026-11-01), finding E1: Austria's FMaG 2016 § 24 lets radio
+equipment be put into service – the end user's first use, also privately and also when brought in from the
+Netherlands (Tinytronics) – only with the CE marking. For the T-Display a lab's RED attestation exists (BACL
+SZ1210507-15661E-RF); whether the module bears the mark is not known; whether a self-built host with a plugged-in
+module needs a marking of its own only the Fernmeldebüro or a lawyer could say. Owner's decision (item 17): **the
+radio equipment in service is the unmodified, CE-marked T-Display** – channels 1–13, its default power, its own
+antenna (R-33) –, and the remaining legal question is accepted (very unlikely to matter for a bell at home; if it
+does, a fine). The owner checks the module for the CE mark when it arrives; without it Wi-Fi stays off (reset held
+3 s, kept over a power cut) – the bell works without it. Alternatives: Wi-Fi off for good; ask the Fernmeldebüro
+first. Support, not legal advice: no claim to correctness, nothing legally guaranteed.
+
+The review's notes for the Nano boards, too: the jurisdiction is Austria (EMC in substance by EMVV 2015, the bell's
+end at the municipal e-waste collection), the earlier notes cited German law; the firmware detaches the servo now.
+Candidates for edakit: a country in `purpose` beside `market`, Austrian sources in handbook 15; `antenna.keepout_mm`
+for the T-Display (GEO.keepout, finding E3).
