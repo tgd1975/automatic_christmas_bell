@@ -58,7 +58,8 @@ Order on a fresh EasyEDA project: `schematic create` (places the header, the cop
 pins and pads), then as usual. The parts entry describes the T-Display, not the header.
 
 **Before ordering an ESP32 board (esp32, esp32tht), measure the module:** two rows of 12 pins, pitch 2.54 mm, rows 22.86 mm apart,
-pin 1 (5V) and pin 13 (3V3) at the USB end.
+pin 1 (5V) and pin 13 (3V3) at the USB end. Look for the CE mark on the module or its packaging: without it Wi-Fi stays
+off (D-36).
 
 ## Building and using
 
