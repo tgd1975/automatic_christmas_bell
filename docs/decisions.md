@@ -527,3 +527,36 @@ They come with this renewal of M-1 and M-6 (D-25, item 9 h):
 - esp32tht: R1/R2/R5's notes say "dimmed towards" the yellow-green (D-23).
 - C439782 (main, tht, esp32tht): the polarity source no longer says "assumption" – compared at schematic create and in
   M-1.
+
+## D-35 The rest of edakit.toml – every key of handbook 10.1 set or left with its reason (2026-10-31)
+
+Set in this round, in all five configurations unless named: `distributors = ["lcsc", "reichelt", "rs"]` (D-25);
+`[order] mark = "remove"` (D-27 as amended in 50bc248); `[cart] ship_to = "Austria"`, `shipping = { jlcpcb = "DHL
+Express" }`; `[cost] currency = "EUR"`, `rates = { USD = 0.8951 }` (ECB reference rate of 2026-10-30, 1 EUR =
+1.1172 USD), `vat_pct = 20`; `[[extra]]` for the sockets – 2 × 1×15 C25503121 (HanElectricity 2541FV-15P-B, the
+agent part-selector: its datasheet recommends 1.1 mm holes, 8025 at LCSC; Kinghelm's 1×15 of the ESP32 boards' series
+has none) on main, smd and tht, 2 × 1×12 C2905419 on esp32 as on esp32tht; `[firmware]` on esp32 and esp32tht
+(`hardware/firmware.json`, U1's IO numbers – checked by the hook); `[docs] files = ["hardware/README.md"]` on main,
+whose stalled-servo current and least supply current are now quoted from the simulation; `[release] archive = "none"`
+and `publish` on main (D-29); `requirements` (D-32); `[scripts]` (D-25).
+
+Left at edakit's default, with the reason:
+
+- `lock` (auto), `agreements` (true), `toolchain` (easyeda), `artifacts`, `reports`: what the project does.
+- `sim_plugin`: the shipped models cover every part.
+- `domains`: the graph suggests radio on esp32 and esp32tht and nothing else; nothing to switch off.
+- `datasheets` (build/edakit/datasheets): build output, fetched again on demand (D-22).
+- `stock` (hardware/stock.json): `edakit stock` writes it before each gate; `stock_margin_pct` 0 and
+  `stock_max_age_days` 14 – JLCPCB's stock of the assembled parts is far above five sets.
+- `spare_pct` 0: the owner's answer of item 9 g.
+- `[boards.<b>]` `file`, `bought`, `wired`: every board is a made PCB with its board file.
+- `[release]` `layout_files`, `state_files`, `[[stages]]`: nothing beyond edakit's files; `hash_ignore` empty – setting
+  it rehashes every sign-off for no gain; `assembly.pcba` follows from the sides (Economic, D-1, D-11).
+- `[cost]` `budget` (none, the owner's answer of item 8), `shipping` and `coupon` 0 until `edakit cart actual` writes
+  the real cost of the first order, `pcb_price` from the checked quote.
+- `[cart]` `maker`/`makers` (JLCPCB alone), `tolerance` (0.10), `profiles` (edakit's JLCPCB profile).
+- `[agents]`: the project has no agents of its own; edakit's reviewers sign.
+- `[firmware]` on the Nano boards: their pin names are ATmega ports (PD2 …), no regex gives the firmware's Arduino
+  numbers – a gap for edakit (a pin map to the firmware's names); `locks.pins` holds the pins meanwhile.
+- `[docs]` in the variants: their values are in variants/README.md, one file for four configurations – a block has no
+  configuration of its own, so every variant would check it against its own graph (a gap for edakit).

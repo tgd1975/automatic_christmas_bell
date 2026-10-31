@@ -1,0 +1,151 @@
+{
+ "about": "Firmware contract of christmas-bell, written by edakit firmware from the graph and the parts entries – do not edit: change the graph and run edakit firmware again (edakit handbook 3.5).",
+ "graph_version": "0.1",
+ "graph_date": "2026-10-26",
+ "state_sha256": "6ca3b2e38d53aabacc82c6871e965059ea7b8e1b1f2abc7099bec0e0a9ea485b",
+ "mcu": "U1",
+ "pins": {
+  "SERVO": {
+   "pin": "U1.17",
+   "name": "IO13",
+   "gpio": 13,
+   "dir": null,
+   "pull": null,
+   "idle": null,
+   "active": null
+  },
+  "LED_Y1": {
+   "pin": "U1.5",
+   "name": "IO25",
+   "gpio": 25,
+   "dir": "out",
+   "pull": null,
+   "idle": null,
+   "active": 1,
+   "leds": [
+    {
+     "des": "LED3",
+     "color": "yellow",
+     "side": "anode"
+    }
+   ]
+  },
+  "LED_G2": {
+   "pin": "U1.4",
+   "name": "IO26",
+   "gpio": 26,
+   "dir": "out",
+   "pull": null,
+   "idle": null,
+   "active": 1,
+   "leds": [
+    {
+     "des": "LED4",
+     "color": "yellow-green",
+     "side": "anode"
+    }
+   ]
+  },
+  "LED_G1": {
+   "pin": "U1.3",
+   "name": "IO27",
+   "gpio": 27,
+   "dir": "out",
+   "pull": null,
+   "idle": null,
+   "active": 1,
+   "leds": [
+    {
+     "des": "LED5",
+     "color": "yellow-green",
+     "side": "anode"
+    }
+   ]
+  },
+  "LED_R": {
+   "pin": "U1.7",
+   "name": "IO32",
+   "gpio": 32,
+   "dir": "out",
+   "pull": null,
+   "idle": null,
+   "active": 1,
+   "leds": [
+    {
+     "des": "LED1",
+     "color": "red",
+     "side": "anode"
+    }
+   ]
+  },
+  "LED_Y2": {
+   "pin": "U1.6",
+   "name": "IO33",
+   "gpio": 33,
+   "dir": "out",
+   "pull": null,
+   "idle": null,
+   "active": 1,
+   "leds": [
+    {
+     "des": "LED2",
+     "color": "yellow",
+     "side": "anode"
+    }
+   ]
+  },
+  "BTN_RESET": {
+   "pin": "U1.10",
+   "name": "IO37",
+   "gpio": 37,
+   "dir": "in",
+   "pull": {
+    "dir": "down",
+    "by": [
+     "R6"
+    ],
+    "ohm": 4700.0
+   },
+   "idle": 0,
+   "active": 1
+  },
+  "BTN_START": {
+   "pin": "U1.9",
+   "name": "IO38",
+   "gpio": 38,
+   "dir": "in",
+   "pull": {
+    "dir": "down",
+    "by": [
+     "R7"
+    ],
+    "ohm": 4700.0
+   },
+   "idle": 0,
+   "active": 1
+  }
+ },
+ "pwm": {},
+ "inputs": [
+  {
+   "part": "S1",
+   "kind": "button",
+   "net": "BTN_START",
+   "gpio": 38,
+   "active": 1
+  },
+  {
+   "part": "S2",
+   "kind": "button",
+   "net": "BTN_RESET",
+   "gpio": 37,
+   "active": 1
+  }
+ ],
+ "buses": {},
+ "analog": {},
+ "devices": {},
+ "bus_speed": {},
+ "chains": [],
+ "channels": []
+}

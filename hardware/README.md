@@ -33,16 +33,18 @@ SMD parts (resistors, buttons); the headers, LEDs, C1 and J1 are hand-soldered.
 | [graph.toml](graph.toml) | the hardware graph: 19 parts, 15 nets with voltage ranges, the pin locks for the firmware – the only source of the circuit |
 | [graph.json](graph.json) | the generated file: the resolved graph with pin numbers (`edakit graph json --write`), never edited – the pre-commit hook checks that it is current |
 | [parts/](parts/) | one entry per LCSC number: pins with roles, ratings, lead sizes, datasheet sign-off |
-| [sim.json](sim.json) | USB at 4.45/4.7/5.05 V × idle, countdown, warning, bell × LED corners; a stalled servo as fault case |
+| [sim.json](sim.json) | USB at 4.45/4.7/5.05 V × idle, countdown, warning, bell × LED corners; a stalled servo as fault case; the servo's start as a transient run (D-33) |
+| [requirements.toml](requirements.toml), [requirements_nano.toml](requirements_nano.toml) | what the circuit must do – needs and requirements with their evidence, the second file for the Nano boards only (D-32) |
 | [signoff.json](signoff.json) | manual checks M-1, M-5, M-6, M-2, M-4 |
-| [../docs/decisions.md](../docs/decisions.md) | numbered decisions D-1 … D-21 |
-| [../variants](../variants/README.md) | three variants of this board: SMD, THT only, ESP32 with display (D-11 … D-15) |
+| [../docs/decisions.md](../docs/decisions.md) | numbered decisions D-1 … |
+| [../variants](../variants/README.md) | four variants of this board: SMD, THT only, ESP32 with display, ESP32 with THT parts (D-11 … D-15, D-23) |
 
 ## Offline
 
 ```bash
-uvx --from git+https://github.com/tgd1975/edakit edakit check   # 0 errors, 1 waived (VIN unused)
-uvx --from git+https://github.com/tgd1975/edakit edakit sim     # 1112 checks, 1 information (stalled servo)
+uvx --from git+https://github.com/tgd1975/edakit edakit check   # 0 errors; STRUCT.entry accepted (VIN unused)
+uvx --from git+https://github.com/tgd1975/edakit edakit sim     # every scenario passes; the stalled servo is information
+uvx --from git+https://github.com/tgd1975/edakit edakit docs    # the values quoted below are current ([docs], D-35)
 ```
 
 ## Through EasyEDA
@@ -70,8 +72,9 @@ One click in the GUI: *Design → Import Changes* once, which showed "no changes
 ## What the checks found
 
 - **Simulation:**
-  - A stalled servo draws about 810 mA, more than the Nano's polyfuse is sure to stop (D-3, fault case).
-  - The circuit alone draws too little for USB power banks, so R8 ∥ R9 add a permanent 100 mA (D-8).
+  - A stalled servo draws about <!--edakit sim:one LIM.i usb-nom/servo-stalled U1 current from the supply* %.0f mA-->811 mA<!--/edakit-->, more than the Nano's polyfuse is sure to stop (D-3, fault case).
+  - The circuit alone draws too little for USB power banks, so R8 ∥ R9 add a permanent 100 mA: the board draws at
+    least <!--edakit sim:min LIM.i usb-* U1 current keeps the supply on* %.0f mA-->123 mA<!--/edakit--> (D-8, R-2).
   - The buttons first switched 3.3 V into the 5 V ATmega, only 0.28 V above its input threshold. They now switch 5 V
     (D-4).
 - **Pin names:**

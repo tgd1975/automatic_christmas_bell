@@ -15,6 +15,7 @@ artifacts = "build/edakit"
 reports = "build/release"
 company = "Christmas bell"
 quantity = 5
+distributors = ["lcsc", "reichelt", "rs"]   # the owner's suppliers edakit knows (D-25); Berrybase, Bürklin, Tinytronics it does not
 
 [boards.esp32]
 title = "Christmas bell ESP32"
@@ -24,6 +25,26 @@ pcb = "esp32"
 
 [release]
 assembly = { sides = ["top"], smd_only = true }
+
+[order]                          # the order form's keys (D-27): edakit's defaults otherwise – 1.6 mm, green, white, HASL
+mark = "remove"                  # no order number: JLCPCB's form offers none since May 2026 (D-27)
+
+[cart]                           # the skill cart puts the board into JLCPCB's cart (D-27)
+ship_to = "Austria"
+shipping = { jlcpcb = "DHL Express" }
+
+[cost]                           # the estimate of edakit cost, no budget (D-27)
+currency = "EUR"
+rates = { USD = 0.8951 }         # ECB reference rate of 2026-10-30: 1 EUR = 1.1172 USD
+vat_pct = 20                     # Austrian VAT on the order (JLCPCB collects it at checkout or it is due on import)
+
+[[extra]]                        # the T-Display's sockets – hand-soldered, not in the graph (D-25, as esp32tht)
+item = "female header 1x12, 2.54 mm, 8.5 mm high (KH-2.54FH-1X12P-H8.5)"
+supplier = "lcsc"
+code = "C2905419"
+per_set = 2
+
+[firmware]                       # the firmware contract of variants/esp32/firmware: U1's IO numbers (D-25)
 
 [scripts.kunst]                  # the silkscreen artwork of every board (D-25)
 kind = "input"
