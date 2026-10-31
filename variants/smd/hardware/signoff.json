@@ -3,7 +3,7 @@
   "state_sha256": "a8a4db484ef6b55fefc82ecc46b13b556b1cf453da05d4dda0c76a07eeb4afb3",
   "electrical_sha256": "4024ed6b5d036229a049cb91c6018d1a86e7c987219f1f187079f823357cdb1e",
   "layout_sha256": "dc785647946b99be7fe5f0023596a2813bd0559c27f9e8ef858dfcbf5f25c1d5",
-  "fab_sha256": "4e79e5c0c839c594b6e5817f1885cf61fb5d8ab7ea96b603af9d3d59bd323bbe",
+  "fab_sha256": "d1875bf708c0c9cfb8ea2608c44bae629e9a9cc5d584833ae430a86831b60b86",
   "manual": [
     {
       "id": "M-1",
@@ -20,8 +20,8 @@
       "scope": "fab",
       "text": "Layout reviewed independently (manufacturability; mechanics: USB at the edge; operation of the buttons; looks of the LED row) on the manufacturing files of a gate run – e.g. by the agent pcb-reviewer",
       "done_by": "agent pcb-reviewer (Claude, independent session)",
-      "date": "2026-10-26",
-      "note": "Bound to fab hash 4e79e5c0… on 2026-10-28: the manufacturing files of the reviewed gate run 20261026-123018. Before, M-5 had scope 'layout', and since edakit f6dd9f7 the layout hash counts the artwork SVGs too (unchanged since 7667817), so it changed without a change of the board (D-20). OK for layout hash 67c811e0… (gate run 20261026-123018; first review of a0a80809… OK with notes, then keep-outs under the chevrons and the order-number placeholder under the Nano): smallest gap 0.206 mm (rule 0.203), copper 0.50 mm from the edge and 1.60 mm from the M3 cut-outs, tracks ≥ 0.557 mm from the Nano's NPTH holes, mask webs ≥ 0.136 mm, thermal spokes on every GND pad, polarity marks of LEDs/C1/J1 against P-2, silk ≥ 0.15 mm from openings. Notes: a tented GND via at (37.82, 48.00) sits on LED4's silk outline (cosmetic; a keep-out [37.2, 46.6, 38.4, 49.4] would move it); SMD J1 holds less sideways pull (D-11); order with 'Order Number (Specify Position)'."
+      "date": "2026-11-01",
+      "note": "M-5: OK for fab hash d1875bf7… (gate run 20261101-003727, edakit bc44fa7). Against the reviewed 4e79e5c0… (20261030-232631), edakit fab diff shows only the top silkscreen without the JLCJLCJLCJLC placeholder under U1 (−3.416 mm², y 27.5–28.6 mm, D-27) and the new order.json; copper, mask, paste, outline, drills, BOM and CPL are equal. Order: JLCPCB, 2 layers, 1.6 mm, green/white, LeadFree HASL, Remove Mark, Economic PCBA top with the 2 × Ø1.152 mm tooling holes at (3.5, 45)/(81.5, 20), mask open and copper-free. Stage L warnings only D-21 (C1, S1, S2, U1 print 0.4 mm beyond the left edge). Notes for the next layout change: hand_solder_keep_mm 0.5 and [looks] as on esp32tht."
     },
     {
       "id": "M-6",

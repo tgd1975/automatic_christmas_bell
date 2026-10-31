@@ -3,7 +3,7 @@
   "state_sha256": "861f9237632f1750f5c3abaff1dcdc066aa85541abba020b6062f87b01397048",
   "electrical_sha256": "1a518dc3da03ac52ca0f1f4db55d1afc5dc8ca07ccaf5709e887b96168e6a937",
   "layout_sha256": "c874760d934571bac6f3be6f8aeb96da3e2f81ae8530672550f031e45d358417",
-  "fab_sha256": "f314419f1a3adcf4104d4cf6180b5d26c8931bf31606b73b23efa67ee3f16293",
+  "fab_sha256": "a9b42ee5457972e8fb32a03788c820d810cc44d239122453869c1123e3e09303",
   "manual": [
     {
       "id": "M-1",
@@ -20,8 +20,8 @@
       "scope": "fab",
       "text": "Layout reviewed independently (manufacturability; mechanics: the Nano's USB at the edge; operation of the buttons; looks of the LED row) on the manufacturing files of a gate run – e.g. by the agent pcb-reviewer",
       "done_by": "agent pcb-reviewer (Claude, independent session)",
-      "date": "2026-10-25",
-      "note": "Bound to fab hash f314419f… on 2026-10-28: the manufacturing files of the reviewed gate run 20261025-215346 (the release run 20261025-220549 has the same). Before, M-5 had scope 'layout', and since edakit f6dd9f7 the layout hash counts the artwork SVGs too (unchanged since 7667817), so it changed without a change of the board (D-20). OK for layout hash 519be82b… (gate run 20261025-215346, Nano footprint swap D-7): U1 pads at the old positions with the same nets, holes 1.1 mm with 0.30 mm ring, smallest copper gap 0.206 mm (rule 0.203), capitals ≥ 1.016 mm, copper 1.6 mm from the mounting cutouts. Notes: the top GND pour is more broken up (cosmetic, both pieces on GND); 4 NPTH corner holes of the Nano footprint."
+      "date": "2026-11-01",
+      "note": "M-5: OK for fab hash a9b42ee5… (gate run 20261101-004618, edakit bc44fa7). Against the reviewed f314419f… (release 20261030-232729), edakit fab diff shows only the new order.json; every Gerber layer, the drills, BOM and CPL are equal, and the board never had an order-number placeholder. Order: JLCPCB, 2 layers, 1.6 mm, green/white, LeadFree HASL, Remove Mark, Economic PCBA top with the 2 × Ø1.152 mm tooling holes at (3.5, 45)/(81.5, 20), mask open and copper-free. Stage L warnings only D-21 (S1, S2, U1 print beyond the left edge, the 12 mm copper-free circle at (55, 25) on top). Notes for the next layout change: hand_solder_keep_mm 0.5 and [looks] as on esp32tht."
     },
     {
       "id": "M-6",

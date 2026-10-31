@@ -3,7 +3,7 @@
   "state_sha256": "6ca3b2e38d53aabacc82c6871e965059ea7b8e1b1f2abc7099bec0e0a9ea485b",
   "electrical_sha256": "1beca6c88829a5343b22ffdc0adf0af3b66b0c32c0b8d939653dcfe90b0b05c7",
   "layout_sha256": "02d457776038c5d6a733139cb7469529821303ce5c7837753ebed610c3db0fd9",
-  "fab_sha256": "f2962d767843bcb177a157fd49b0592e0c97fab204f1fa5c438daca77b519271",
+  "fab_sha256": "fe891ad5302807f057b4247b3e775b33dd7dccca287f7bc2a02bd78e65359765",
   "manual": [
     {
       "id": "M-1",
@@ -20,8 +20,8 @@
       "scope": "fab",
       "text": "Layout reviewed independently (manufacturability; mechanics: USB at the edge; operation of the buttons; looks of the LED row) on the manufacturing files of a gate run – e.g. by the agent pcb-reviewer",
       "done_by": "agent pcb-reviewer (Claude, independent session)",
-      "date": "2026-10-26",
-      "note": "Bound to fab hash f2962d76… on 2026-10-28: the manufacturing files of the reviewed gate run 20261026-123051. Before, M-5 had scope 'layout', and since edakit f6dd9f7 the layout hash counts the artwork SVGs too (unchanged since 7667817), so it changed without a change of the board (D-20). OK for layout hash 4e836f8e… (gate run 20261026-123051, gerber_esp32.zip 830878448e1e…; the first review of e65f87a7… was NOT OK: LED-row detours with six vias and no order-number placeholder – fixed with fixed anode tracks, chevron keep-outs, JLCJLCJLCJLC under the module, U1 texts 1.5 mm, USB box inside the board, '5V' at U1.1): smallest gap 0.205 mm, copper 0.5 mm from the edge, header rings 0.30 mm, vias tented, paste on all 41 SMD pads and none on U1, U1 = LILYGO's KiCad footprint (rows 22.86 mm, pin 1 15.93 mm from the USB end), no silk outside the board, footprint name not printed. Notes: +5V through one 0.3 mm via (0.47 A in operation, the stall case is information only, D-3/D-13); three tented vias and a pour gap near R7/S1 (functional area). Condition: after the Import Changes click the release run's Gerber and drill files must equal this run's (apart from G04 headers), otherwise check again."
+      "date": "2026-11-01",
+      "note": "M-5: OK for fab hash fe891ad5… (gate run 20261101-004304, edakit bc44fa7). Against the reviewed f2962d76… (20261030-232707), edakit fab diff shows only the top silkscreen without the JLCJLCJLCJLC placeholder under the T-Display (−3.416 mm², x 27–36, y 27.5–28.6 mm, D-27) and the new order.json; copper, mask, paste, outline, drills, BOM and CPL are equal. Order: JLCPCB, 2 layers, 1.6 mm, green/white, LeadFree HASL, Remove Mark, Economic PCBA top with the 2 × Ø1.152 mm tooling holes at (3.5, 45)/(81.5, 20), mask open and copper-free. Stage L warnings only D-21 (C1, S1, S2)."
     },
     {
       "id": "M-6",

@@ -3,7 +3,7 @@
   "state_sha256": "79642329a8cc23eaabbeb0d885ff8184f94e73c32d62eaf0676b2d8dfee9ae96",
   "electrical_sha256": "db32b8eaa4704279f82a6cb8a3581513a6e88abaec218dbc04e01bf734df9e25",
   "layout_sha256": "72508987cd839ab506f9eee8549040b5dd2e5882c47a4729f8b2799b257da397",
-  "fab_sha256": "441ab22c374c7a005be2d5ad0e4d27590f2aa728ed7203fd35bdaf9ac3fa13ca",
+  "fab_sha256": "197fe0823b350717ee6c19290d51c9b5f04c69e08018daeac0b1d4c503a066b6",
   "manual": [
     {
       "id": "M-1",
@@ -20,8 +20,8 @@
       "scope": "fab",
       "text": "Layout reviewed independently (manufacturability; mechanics: USB at the edge; operation of the buttons; looks of the LED row) on the manufacturing files of a gate run – e.g. by the agent pcb-reviewer",
       "done_by": "agent pcb-reviewer (Claude, independent session)",
-      "date": "2026-10-26",
-      "note": "Bound to fab hash 441ab22c… on 2026-10-28: the manufacturing files of the reviewed gate run 20261026-123036. Before, M-5 had scope 'layout', and since edakit f6dd9f7 the layout hash counts the artwork SVGs too (unchanged since 7667817), so it changed without a change of the board (D-20). OK for layout hash d0021b33… (gate run 20261026-123036; first review of 660dee04… OK with notes, then 12 mil clearance, bottom-preferred layer cost and the order-number placeholder): smallest track-to-pad gap 0.310 mm, mask webs ≥ 0.184 mm, one tented via under the Nano, rings ≥ 0.26 mm, L-9 for all 71 holes, spokes on every GND pad. Notes: S1/S2 holes 1.3 mm (press flat while soldering); the top carries about 0.36 m of track (like the main board); order with 'Order Number (Specify Position)'."
+      "date": "2026-11-01",
+      "note": "M-5: OK for fab hash 197fe082… (gate run 20261101-003912, edakit bc44fa7). Against the reviewed 441ab22c… (20261030-232650), edakit fab diff shows only the top silkscreen without the JLCJLCJLCJLC placeholder under U1 (−3.416 mm², D-27) and the new order.json; copper, mask, outline, drills, BOM and CPL are equal. Order: JLCPCB, 2 layers, 1.6 mm, green/white, LeadFree HASL, Remove Mark, PCB only (no assembly, empty BOM, no tooling holes needed). Stage L warnings only D-21 (S1, S2, U1 print beyond the left edge); S1/S2 are still pressed flat while soldering (1.3 mm holes)."
     },
     {
       "id": "M-6",

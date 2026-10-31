@@ -2,7 +2,7 @@
   "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, artwork, footprint geometry), 'fab' = fab_sha256 (what the manufacturer builds from a gate run: Gerber layers, drill hits, BOM and CPL rows). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
   "state_sha256": "0bd61e5f2b877eb228097ebac104a443e76eca0702b391cd61d5242a0652710a",
   "electrical_sha256": "668320d08d3acd60b65a3d8f3e0e3a696f80d36e43a49794f4464e8e1c6f48b1",
-  "fab_sha256": "b768d2f5156bc767c7ed43302188f134cd773ebb3225bdbb3c7907730b44052c",
+  "fab_sha256": "02441da33273f51fa93d4ce7d17a6dec1082298e6d8a5cf9f8419ff1c5785c7b",
   "manual": [
     {
       "id": "M-1",
@@ -19,8 +19,8 @@
       "scope": "fab",
       "text": "Layout reviewed independently (manufacturability; hand soldering; mechanics: USB at the edge; operation of the buttons; looks of the LED row) on the manufacturing files of a gate run – e.g. by the agent pcb-reviewer",
       "done_by": "agent pcb-reviewer (Claude, independent session)",
-      "date": "2026-10-31",
-      "note": "OK for fab hash b768d2f5156bc767c7ed43302188f134cd773ebb3225bdbb3c7907730b44052c (gate run 20261031-154618, git e7f3f24), judged on the run's Gerber and drill files: no via, DRC 0, GND pour 91 % top / 90 % bottom without islands, copper 0.5 mm from the edge and 1.6 mm from the M3 holes, rings >= 0.26 mm, thermal spokes on every GND joint and only masked copper within 0.3 mm of the hand-soldered joints. The T-Display's USB-C end sits 0.6 mm inside the left edge, J1's servo plug keeps 2 mm to C1, START and RESET are labelled at the front right, and the LED row shows all anodes left with a '+' at each and no signal track or via; the visible top carries 0.27 m of track, mostly under the module, C1 and R8/R9. GND under the antenna end stays as decided in D-23, and the buttons' own print on their openings is D-21 (1). Notes: S1/S2's 1.3 mm holes (datasheet 1.0 mm) do not hold the snap-in legs - press the buttons flat while soldering; the stale via drill file in build/edakit/gerber_esp32tht/ was not part of the run and has been deleted."
+      "date": "2026-11-01",
+      "note": "M-5: OK for fab hash 02441da3… (gate run 20261101-004536, edakit bc44fa7). Against the reviewed b768d2f5… (20261031-154618/-160323), edakit fab diff shows only the new order.json; every Gerber layer, the drill file, BOM and CPL are equal, and the board never had an order-number placeholder. Order: JLCPCB, 2 layers, 1.6 mm, green/white, LeadFree HASL, Remove Mark, PCB only (no assembly, no tooling holes). Stage L warnings only D-21 (1) on S1/S2 as extended by D-23."
     },
     {
       "id": "M-6",
