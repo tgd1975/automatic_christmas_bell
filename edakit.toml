@@ -21,3 +21,17 @@ pcb = "main"
 
 [release]
 assembly = { sides = ["top"], smd_only = true }
+archive = "none"                 # gate runs are build output (D-22)
+publish = { variants = true, decisions = "docs/decisions.md" }   # edakit release publish of all five boards (D-29)
+
+[scripts.kunst]                  # the silkscreen artwork of every board (D-25)
+kind = "input"
+cmd = ["python", "hardware/art/make_art.py"]
+reads = ["/usr/share/fonts/opentype/urw-base35/Z003-MediumItalic.otf"]
+writes = ["hardware/art/bell.svg",
+          "hardware/art/small_bell.svg",
+          "hardware/art/greeting.svg",
+          "hardware/art/chevron.svg",
+          "hardware/art/star.svg",
+          "hardware/art/snowflake.svg"]
+about = "Bell, greeting, chevrons, stars and snowflakes as filled shapes for the silkscreen of all five boards – in the layout hash since D-20, registered by D-25"

@@ -23,3 +23,21 @@ pcb = "esp32"
 
 [release]
 assembly = { sides = ["top"], smd_only = true }
+
+[scripts.kunst]                  # the silkscreen artwork of every board (D-25)
+kind = "input"
+cmd = ["python", "../../hardware/art/make_art.py"]
+reads = ["/usr/share/fonts/opentype/urw-base35/Z003-MediumItalic.otf"]
+writes = ["../../hardware/art/bell.svg",
+          "../../hardware/art/small_bell.svg",
+          "../../hardware/art/greeting.svg",
+          "../../hardware/art/chevron.svg",
+          "../../hardware/art/star.svg",
+          "../../hardware/art/snowflake.svg"]
+about = "Bell, greeting, chevrons, stars and snowflakes as filled shapes for the silkscreen of all five boards – in the layout hash since D-20, registered by D-25"
+
+[scripts.tdisplay]               # the T-Display's symbol in the project library (D-13, D-25)
+kind = "easyeda"
+cmd = ["python", "hardware/lib/tdisplay_device.py", "symbol"]
+writes = ["project-library:esp32"]
+about = "Rebuilds the symbol of the stand-in C18722937's project copy into the LILYGO T-Display's (D-13); its footprint comes from footprint_data in the parts entry (D-25)"

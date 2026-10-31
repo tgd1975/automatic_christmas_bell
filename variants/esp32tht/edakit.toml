@@ -29,3 +29,15 @@ item = "female header 1x12, 2.54 mm, 8.5 mm high (KH-2.54FH-1X12P-H8.5)"
 supplier = "lcsc"
 code = "C2905419"
 per_set = 2
+
+[scripts.kunst]                  # the silkscreen artwork of every board (D-25)
+kind = "input"
+cmd = ["python", "../../hardware/art/make_art.py"]
+reads = ["/usr/share/fonts/opentype/urw-base35/Z003-MediumItalic.otf"]
+writes = ["../../hardware/art/bell.svg",
+          "../../hardware/art/small_bell.svg",
+          "../../hardware/art/greeting.svg",
+          "../../hardware/art/chevron.svg",
+          "../../hardware/art/star.svg",
+          "../../hardware/art/snowflake.svg"]
+about = "Bell, greeting, chevrons, stars and snowflakes as filled shapes for the silkscreen of all five boards – in the layout hash since D-20, registered by D-25"

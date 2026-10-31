@@ -37,11 +37,12 @@ automatic_christmas_bell/
 ├── platformio.ini         # PlatformIO-Konfiguration
 ├── Makefile               # Arduino CLI; make publish = Fertigungsdateien veröffentlichen
 ├── tools/
-│   └── publish_release.py # make publish: prüft und veröffentlicht die Platinen als GitHub-Release
-├── hardware/              # Hauptplatine (edakit): Graph, Bauteile, Freigaben
+│   └── edakit             # findet edakit für Hook und Makefile; make publish = edakit release publish
+├── .githooks/pre-commit   # edakit check, sim, graph json --check je Platine (git config core.hooksPath .githooks)
+├── hardware/              # Hauptplatine (edakit): Graph (graph.toml), Bauteile, Freigaben
 │   └── img/
 │       └── silkscreen_top.png  # Bestückungsplan (Silkscreen)
-├── variants/              # Platinen smd, tht, esp32; Bestellen: variants/README.md
+├── variants/              # Platinen smd, tht, esp32, esp32tht; Bestellen: variants/README.md
 ├── docs/
 │   ├── IMPLEMENTIERUNG.md # Detaillierte Umsetzung
 │   └── old/

@@ -1,0 +1,18 @@
+{
+ "about": "The stamps of the project scripts ([scripts.<name>] of edakit.toml): per script, at its last run, its cmd, the script itself and the hash of everything it reads; after an easyeda script ran, what it changed in EasyEDA and what is from before it (changed). edakit run and edakit scripts stamp write it, edakit check and the gate compare it (handbook 8.6). Commit it with what the scripts wrote.",
+ "scripts": {
+  "kunst": {
+   "stamped": "2026-10-31T23:33:21+01:00",
+   "by": "tobias",
+   "cmd": [
+    "python",
+    "hardware/art/make_art.py"
+   ],
+   "script": "hardware/art/make_art.py",
+   "hashes": {
+    "/usr/share/fonts/opentype/urw-base35/Z003-MediumItalic.otf": "a04947e59fc9339ea3c4b34c31fd46764f22af7512afc2c074ce190e79ed7a09",
+    "hardware/art/make_art.py": "69b850e41b854c7ce45f741204e0ef48735224cfb3a82fb67c4e760113dab9da"
+   }
+  }
+ }
+}

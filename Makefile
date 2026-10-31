@@ -29,19 +29,20 @@ monitor:
 clean:
 	rm -rf .pio
 
-# Publish the manufacturing files of every board's current release as a GitHub pre-release (docs/decisions.md D-22):
-# edakit release verify on the order files, build/publish/<tag>/, tag = the date
+# Publish the order files of every board's current release as a GitHub pre-release (docs/decisions.md D-22, D-29):
+# edakit release publish checks them against the release (edakit release verify), stages build/publish/<tag>/ with
+# SHA256SUMS, notes from the decisions since the previous release, the polarity sheets and order forms; tag = the date
 publish:
-	python3 tools/publish_release.py
+	tools/edakit release publish
 
-# The same as a draft release only the account sees – a test; delete it afterwards (the script says how)
+# The same as a draft release only the account sees – a test; delete it afterwards on GitHub
 publish-draft:
-	python3 tools/publish_release.py --draft
+	tools/edakit release publish --draft
 
-# A board of release TAG has been built and works: drop the pre-release mark
+# A board of release TAG has been built and works (M-4): drop the pre-release mark
 publish-built:
 	@test -n "$(TAG)" || { echo "usage: make publish-built TAG=<tag>"; exit 1; }
-	gh release edit $(TAG) --prerelease=false
+	tools/edakit release publish --built $(TAG)
 
 # Show available boards
 boards:
