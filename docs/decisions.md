@@ -467,3 +467,12 @@ compares the places now and shape, size and hole after the next `pcb dump` (esp3
 EasyEDA is the script's, built from the same values, so nothing is rebuilt. The entry changes the circuit hash of esp32
 and esp32tht (M-1 anew; M-6 too, until edakit binds it to its hash 'electrical' without footprint data – the owner's
 decision of 2026-10-31 in edakit) and their layout hash.
+
+## D-31 The Nano's pin print in its parts entry (2026-10-31)
+
+edakit W.5: `print` per pin – what the module's own silkscreen says – in the Nano's entry C9900187880 of main, smd
+and tht, taken by pin number from edakit's library entry A000005 (Arduino's pinout page A000005-full-pinout.pdf of
+30/06/2021; ~ marks a PWM pin). Pin 14 prints ~D11 and pin 15 D12, although the EasyEDA symbol names them PB4/PB3
+(D-7) – the print is the module's. It changes the circuit hash of the three Nano boards, so it comes in the same
+renewal of M-1 and M-6 as the requirements file. The T-Display gets no `print`: no written source of its silkscreen
+text is at hand (the pin map is a picture) – open until the module is measured (TODO.md), then with that as source.

@@ -13,173 +13,203 @@
   "pins": {
     "1": {
       "name": "TXD",
+      "print": "D1/TX",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "2": {
       "name": "RXD",
+      "print": "D0/RX",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "3": {
       "name": "RESET",
+      "print": "RESET",
       "type": "input",
       "v_max_v": 5.5
     },
     "4": {
       "name": "GND",
+      "print": "GND",
       "type": "ground",
       "role": "gnd"
     },
     "5": {
       "name": "PD2",
+      "print": "D2",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "6": {
       "name": "PD3",
+      "print": "~D3",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "7": {
       "name": "PD4",
+      "print": "D4",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "8": {
       "name": "PD5",
+      "print": "~D5",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "9": {
       "name": "PD6",
+      "print": "~D6",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "10": {
       "name": "PD7",
+      "print": "D7",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "11": {
       "name": "PB0",
+      "print": "D8",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "12": {
       "name": "PB1",
+      "print": "~D9",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "13": {
       "name": "PB2",
+      "print": "~D10",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "14": {
       "name": "PB4",
+      "print": "~D11",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "15": {
       "name": "PB3",
+      "print": "D12",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "16": {
       "name": "PB5",
+      "print": "D13",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "17": {
       "name": "3V3",
+      "print": "+3V3",
       "type": "power_output",
       "role": "3v3"
     },
     "18": {
       "name": "AREF",
+      "print": "AREF",
       "type": "analog",
       "v_max_v": 5.5
     },
     "19": {
       "name": "PC0",
+      "print": "A0",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "20": {
       "name": "PC1",
+      "print": "A1",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "21": {
       "name": "PC2",
+      "print": "A2",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "22": {
       "name": "PC3",
+      "print": "A3",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "23": {
       "name": "PC4",
+      "print": "A4",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "24": {
       "name": "PC5",
+      "print": "A5",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "25": {
       "name": "ADC6",
+      "print": "A6",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "26": {
       "name": "ADC7",
+      "print": "A7",
       "type": "bidirectional",
       "role": "gpio",
       "v_max_v": 5.5
     },
     "27": {
       "name": "5V",
+      "print": "+5V",
       "type": "power_output",
       "role": "vsys"
     },
     "28": {
       "name": "PC6",
+      "print": "RESET",
       "type": "input",
       "v_max_v": 5.5
     },
     "29": {
       "name": "GND",
+      "print": "GND",
       "type": "ground",
       "role": "gnd"
     },
     "30": {
       "name": "VIN",
+      "print": "VIN",
       "type": "power_in",
       "v_max_v": 12
     }
@@ -209,7 +239,8 @@
     "3V3 pin: from the FT232RL on the original (max. 50 mA), from the CH340's V3 on clones – load not specified, 10 mA assumed; unused here (D-4)",
     "20 mA per GPIO recommended (40 mA absolute maximum)",
     "footprint COMM-TH_L43.2-W17.8-P2.54_ATMEGA328P (2026-10-25): 30 pads Ø1.7 mm, holes 1.1 mm – replaces COMM-TH_ARDUINO_NANO (0.9 mm holes, L-9 failed, D-7); same pad numbering, turned by 90°",
-    "pin names as in the EasyEDA symbol (ATmega port names). The symbol labels pin 14 'PB4' and pin 15 'PB3'; on the Nano pin 14 is D11 = PB3 and pin 15 is D12 = PB4. Only the labels are swapped: the footprint's pad 15 sits at the end of the row, where the Nano has D12 (checked after placing). Connections go by pin number, so U1.14 = D11, U1.15 = D12 as the firmware expects."
+    "pin names as in the EasyEDA symbol (ATmega port names). The symbol labels pin 14 'PB4' and pin 15 'PB3'; on the Nano pin 14 is D11 = PB3 and pin 15 is D12 = PB4. Only the labels are swapped: the footprint's pad 15 sits at the end of the row, where the Nano has D12 (checked after placing). Connections go by pin number, so U1.14 = D11, U1.15 = D12 as the firmware expects.",
+    "print per pin: the labels of Arduino's pinout page (A000005-full-pinout.pdf, last update 30/06/2021, https://docs.arduino.cc/resources/pinouts/A000005-full-pinout.pdf) – ~ marks a PWM pin – taken from edakit's library entry A000005 by pin number (D-31); pin 14 prints ~D11 and pin 15 D12 although the EasyEDA symbol names them PB4/PB3 (D-7)"
   ],
   "lead": {
     "*": {
