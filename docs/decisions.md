@@ -294,4 +294,30 @@ four accepted, in `accepted_warnings` of each sign-off file, bound to the parts 
    again, new manufacturing files and M-5 again.
 
 Release runs of 2026-10-30, all RELEASED: main 20261030-232729 (supersedes 20261025-220549), smd 20261030-232631,
-tht 20261030-232650, esp32 20261030-232707 – archived in git.
+tht 20261030-232650, esp32 20261030-232707 – build output, kept out of git (D-22).
+
+## D-22 Manufacturing files: build output, published with the order (2026-10-31)
+
+Owner's view after the release of D-21: the gate runs archived in git are build output, not repository content –
+but important states should be kept now and then. What holds a release is in the repository already: the sign-offs
+with their hashes (M-5 names the manufacturing files it reviewed, D-20). The files themselves need no archive: as long
+as the PCB in EasyEDA is untouched the gate exports the same files with the same hash (seen on 2026-10-30, four days
+after the review), and once ordered JLCPCB keeps them for a reorder. If the EasyEDA state is lost, the board is made
+again from the graph and the board file – routed anew, so M-5 anew: agent time, none of the owner's.
+
+1. Gate runs stay in `build/release/` (ignored by git). The archive of the release commit was undone before the
+   push; nothing else is archived. This deviates from edakit's release skill (step 6, `git add -f`).
+2. Important states are published, not archived: a GitHub release per order, tag = the date, the current release
+   of all four boards each time (`gerber_<b>.zip`, `bom_<b>.csv`, `cpl_<b>.csv`, `polarity_<b>.png`,
+   `manifest_<b>.json`, `SHA256SUMS`), marked pre-release until a board of that state has been built and works.
+   The notes name the gate runs, the fab hashes, which boards changed since the previous release, the decisions
+   since then, and the purpose: private use (D-16) – the regulatory review is support, not legal advice.
+3. One command, `make publish` ([tools/publish_release.py](../tools/publish_release.py)): clean tree and HEAD
+   pushed, `edakit release current` per board, `edakit release verify` on the order files (it refuses otherwise),
+   staging in `build/publish/<tag>/`, `gh release create --prerelease`. `make publish-draft` runs the same as a draft
+   only the account sees – tested on 2026-10-31, 21 files, deleted again. `make publish-built TAG=<tag>` drops the
+   pre-release mark. It needs `gh`, logged in, and edakit (on the PATH, `$EDAKIT`, or a clone `../edakit` with
+   its `.venv`; the first test from a terminal without edakit on the PATH would have failed).
+4. The firmware is not published; whoever wants it builds it (`pio run`).
+
+A candidate for edakit itself (`edakit release publish`), proposed only if the owner wants it.

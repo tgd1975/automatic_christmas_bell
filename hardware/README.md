@@ -90,6 +90,10 @@ One click in the GUI: *Design → Import Changes* once, which showed "no changes
 20261030-232729, which supersedes the first: every stage passes, M-1, M-5 and M-6 are signed. What remains is the
 manufacturer's assembly preview (M-2) and the acceptance test of the delivered boards (M-4).
 
+The gate runs are build output and stay out of git. With an order, `make publish` verifies the current release's
+files of every board and publishes them as a GitHub pre-release, tag = the date (D-22). The order steps, for all
+four boards: [../variants/README.md](../variants/README.md), end of "Status".
+
 Since the first release the graph states the purpose `private` (D-16). M-1 was confirmed again for the new circuit
 hash, and the regulatory review M-6, which edakit now requires for a release, is signed – support, not legal advice
 (D-16). The Nanos are at hand, so edakit's warning P-5 (no supplier) is accepted (D-19). M-5 is bound to the

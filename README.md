@@ -35,10 +35,13 @@ automatic_christmas_bell/
 │   └── firmware/
 │       └── buttons.ino     # Arduino-Sketch
 ├── platformio.ini         # PlatformIO-Konfiguration
-├── Makefile               # Makefile für Arduino CLI
-├── hardware/
+├── Makefile               # Arduino CLI; make publish = Fertigungsdateien veröffentlichen
+├── tools/
+│   └── publish_release.py # make publish: prüft und veröffentlicht die Platinen als GitHub-Release
+├── hardware/              # Hauptplatine (edakit): Graph, Bauteile, Freigaben
 │   └── img/
 │       └── silkscreen_top.png  # Bestückungsplan (Silkscreen)
+├── variants/              # Platinen smd, tht, esp32; Bestellen: variants/README.md
 ├── docs/
 │   ├── IMPLEMENTIERUNG.md # Detaillierte Umsetzung
 │   └── old/
@@ -84,6 +87,8 @@ automatic_christmas_bell/
 ### 2. Hardware aufbauen
 - Schaltplan: Siehe `docs/old/weihnachtsglocke_Schaltplan.png`
 - Stromversorgung: Arduino per USB, Servo separat (5V, 1A)
+- Platinen: Fertigungsdateien (Gerber, BOM, CPL) unter [Releases](https://github.com/tgd1975/automatic_christmas_bell/releases);
+  Aufbau in [hardware/README.md](hardware/README.md) und [variants/README.md](variants/README.md)
 
 ### 3. Software hochladen (3 Optionen)
 

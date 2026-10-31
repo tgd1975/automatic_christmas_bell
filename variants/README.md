@@ -131,9 +131,14 @@ The release, on 2026-10-30 with edakit b36a6d0:
 4. The footprints' own print on the buttons' and C1's pads and the Nano's print beyond the board edge are accepted
    warnings (D-21).
 
-The release runs are archived in git (`build/release/<run>/` of each variant). To order: the edakit release skill,
-`edakit release verify` on the files about to be uploaded. At JLCPCB choose "Order Number: Specify Position" – each
-board has `JLCJLCJLCJLC` under the module. Before ordering the ESP32 board, measure the T-Display (above).
+The release runs are build output and stay out of git (`build/release/<run>/` of each variant; `edakit release
+current --config …` names the current one, D-22). To order: `make publish` – it lets `edakit release verify` check the
+order files of every board's current release, puts them into `build/publish/<tag>/` and publishes them as a
+pre-release on GitHub, tag = the date. Upload `gerber_<b>.zip`, `bom_<b>.csv` and `cpl_<b>.csv` from that folder at
+JLCPCB and choose "Order Number: Specify Position" – each board has `JLCJLCJLCJLC` under the module. Once a board of
+that state has been built and works: `make publish-built TAG=<tag>`. Before ordering the ESP32 board, measure the
+T-Display (above). `make publish` needs the GitHub CLI, logged in (`gh auth login`), and edakit – on the PATH, in
+`$EDAKIT`, or as a clone `../edakit` with its `.venv`.
 
 ## Open
 
