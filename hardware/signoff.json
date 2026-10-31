@@ -1,6 +1,7 @@
 {
   "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, artwork, footprint geometry), 'fab' = fab_sha256 (what the manufacturer builds from a gate run: Gerber layers, drill hits, BOM and CPL rows). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
-  "state_sha256": "19470253cd095eb8280888ce0c6a427ed3f153fddab1197a8a9a76a24774ea0b",
+  "state_sha256": "861f9237632f1750f5c3abaff1dcdc066aa85541abba020b6062f87b01397048",
+  "electrical_sha256": "1a518dc3da03ac52ca0f1f4db55d1afc5dc8ca07ccaf5709e887b96168e6a937",
   "layout_sha256": "c874760d934571bac6f3be6f8aeb96da3e2f81ae8530672550f031e45d358417",
   "fab_sha256": "f314419f1a3adcf4104d4cf6180b5d26c8931bf31606b73b23efa67ee3f16293",
   "manual": [
@@ -10,8 +11,8 @@
       "scope": "circuit",
       "text": "Critical parts (U1 Nano pinout, C1 polarity, the LEDs, J1 servo pinout) checked a second time independently against datasheet and footprint – e.g. by the agent electrical-reviewer",
       "done_by": "agent electrical-reviewer (Claude, independent session)",
-      "date": "2026-10-26",
-      "note": "Confirmed for state 36ddd746… on 2026-10-26: commit 0e95428 (D-16) adds only the purpose; check, sim and hints unchanged. OK for state 24059d28… (Nano footprint swap, D-7): every U1 pad checked by position against the standard Nano header order and the firmware pins (D2–D6 LEDs, D8 servo, pad 14 = D11 BTN_START, pad 15 = D12 BTN_RESET, 27 = 5V, 4/29 = GND); holes 1.10 mm. The U1 'verified' entry was written before this review and is backed by it. Open for the next circuit change: two stale source lines (C439782 polarity note, C9900187880 symbol-name note)."
+      "date": "2026-11-01",
+      "note": "M-1: OK for state 861f9237…; requirements met: R-7, R-12. Second check on 2026-11-01 (edakit bc44fa7, offline gate 20261101-001257). U1's 30 pads match Arduino's Nano pinout by position (rows 15.24 mm; pad 15 = D12 and 16 = D13 at the USB end; 27 = 5V; 4/29 = GND); the pins match buttons.ino: D2–D6 LEDs, D8 servo, U1.14 = D11 start, U1.15 = D12 reset. C1 C439782: pad 1 with '+' on +5V, lead Ø0.6 mm (datasheet p. 6). LEDs XL-504SURD/UYD/UGD: flat and '+' agree with datasheet p. 7 (long lead = anode), every cathode on GND. J1: 1 GND / 2 +5V / 3 SERVO, pin 0.64 mm. R-7: a stalled servo draws 0.81 A for at most about 5.8 s – about 0.36 W in the MBR0520, its junction well below 125 °C; the polyfuse can at most trip. Notes (no block): C1's inrush on plug-in (~9 A for ~0.5 ms, 0.022 A²s against the MBR0520's 0.126 A²s); repeated 'ring now' with a jammed bell exceeds R-7's 6 s; open items in parts entries this check closes; main lacks the variants' HINT accepts – all for the next circuit change."
     },
     {
       "id": "M-5",
@@ -25,11 +26,11 @@
     {
       "id": "M-6",
       "phase": "export",
-      "scope": "circuit",
+      "scope": "electrical",
       "text": "Regulatory review: circuit and parts against EU law for the stated purpose (RoHS, REACH, radio, batteries, product safety) – the agent regulatory-reviewer in its own session; support, not legal advice: no claim to correctness, nothing legally guaranteed",
       "done_by": "agent regulatory-reviewer (Claude, independent session)",
-      "date": "2026-10-26",
-      "note": "OK for state 36ddd746… and purpose private (D-16): no transmitter, 5 V USB only, no battery, no mains; RoHS and REACH data are not needed for own use. Notes: the firmware never detaches the servo, so a jam at rest stays an overload until unplugged (D-3) – detach it after the rest move; EMVG § 6 applies to own use too (disturb nothing, no formalities) – nothing to do for this board; at its end the bell goes to e-waste collection (ElektroG § 10)."
+      "date": "2026-11-01",
+      "note": "M-6: OK for state 1a518dc3… (electrical) and purpose private; requirements met: R-10. The board has no transmitter (the Nano's entry: compliance.radio none) and is powered only through the Nano's USB socket: VIN free, J1 a servo output, no battery, no mains, every net at most 5.5 V. RoHS, REACH, CE, WEEE and the battery rules do not apply to own use. Notes: the firmware detaches the servo 1 s after the rest move (the earlier note that it never does is obsolete); the jurisdiction is Austria – EMC in substance by EMVV 2015, at its end the bell goes to the municipal e-waste collection (D-36). Support, not legal advice: no claim to correctness, nothing legally guaranteed."
     },
     {
       "id": "M-2",
