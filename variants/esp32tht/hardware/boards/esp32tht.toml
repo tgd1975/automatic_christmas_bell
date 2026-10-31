@@ -76,6 +76,21 @@ edge_clearance_um = 400
 passes = 40
 attempts = 5
 layer_cost = { TOP = [2.5, 3.5], BOTTOM = [1.0, 1.5] }  # tracks preferably on the bottom: the top is the visible side (M-5)
+hand_solder_keep_mm = 0.5        # every joint is hand-soldered: vias and pads of other nets keep 0.5 mm (GEO.spacing)
+
+# Two signal tracks off the visible top (M-5 of the first round): the anode link of LED2, the only signal track in the
+# LED row, mirrors LED_G2_A's bottom route; BTN_START runs below the greeting instead of 0.6 mm above its letters.
+[[routing.fixed_wires]]
+net = "LED_Y2_A"
+layer = "BOTTOM"
+width_mil = 12
+points = [[65.25, 43], [63.75, 43], [58.73, 48]]
+
+[[routing.fixed_wires]]
+net = "BTN_START"
+layer = "BOTTOM"
+width_mil = 12
+points = [[36.85, 13.07], [40.2, 9.7], [54.75, 9.75]]
 
 # No vias under the chevrons between the LEDs: a tented via shows through the print (M-5 on esp32).
 [[routing.keepouts]]
@@ -110,8 +125,14 @@ layers = ["TOP", "BOTTOM"]
 designators = "top"
 label_h_mm = 1.0
 board_label = "Weihnachtsglocke ESP32 THT rev {revision}"   # bottom left, German like the greeting
+board_label_region = [[8, 1.0], [52, 1.0], [52, 4.4], [8, 4.4]]  # clear of the milled edge (M-5: the "g" was 0.22 mm from it)
 
 # Artwork: ../../hardware/art (the main board's), positions in plan mm (centre), width scales the motif
+
+[looks]                          # the top is what people see: a later reroute must not put more track or any via there
+visible = "top"
+max_track_m = 0.35
+max_vias = 0
 
 [[silk.art]]
 svg = "../../hardware/art/bell.svg"
@@ -210,6 +231,18 @@ text = "5V"                        # orientation of the plugged-in module: its 5
 x = 13.6
 y = 13.07
 h_mm = 1.0
+
+[[silk.texts]]
+text = "+"                         # LED4/LED5's footprint shows only the flat: a "+" at the anode as LED2/LED3's has (M-5)
+x = 38.7
+y = 46.4
+h_mm = 1.2
+
+[[silk.texts]]
+text = "+"
+x = 28.7
+y = 46.4
+h_mm = 1.2
 
 [[silk.texts]]
 text = "START"

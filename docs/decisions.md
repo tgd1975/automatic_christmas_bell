@@ -367,3 +367,10 @@ After the reviews of state e4a24024… (M-1 OK, M-6 OK; 2026-10-31):
   about 2×) is the next step, 680 Ω (C58599, 1.3–1.5×) would need a lower LED-on limit in the simulation. The R1/R2/R5
   notes in the graph say "dimmed to" – corrected with the next circuit change, as are Tinytronics' SKU 002649 in U1's
   `order` and a hint on the module's single CC pull-down (USB-A-to-C cable).
+- **Layout** (first round 53c1139, M-5 reviewed offline: would sign on equal files): the T-Display 3.5 mm nearer the
+  front than on esp32 so that tht's staggered resistors fit; 0 vias. From the review: a "+" at LED4/LED5 (their
+  footprint shows only the flat), the board label 1 mm above the milled edge, LED2's anode link and BTN_START on the
+  bottom (fixed wires), `[looks]` top ≤ 0.35 m track and no via, `hand_solder_keep_mm` 0.5. GND under the module's
+  antenna end stays as on esp32 (86–93 % copper there, 8.5 mm below the module; a cut-out would leave a bare
+  7 × 26 mm field) – the open hardware test of esp32 answers it for both. The buttons' own corner circles reach into
+  their pad openings (0.14 mm²): JLCPCB clips them, as D-21 (1) accepted for the same button C110153 on tht.
