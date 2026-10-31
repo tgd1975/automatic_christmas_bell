@@ -1,5 +1,6 @@
 {
   "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'layout' = layout_sha256 (layout files, artwork, footprint geometry), 'fab' = fab_sha256 (what the manufacturer builds from a gate run: Gerber layers, drill hits, BOM and CPL rows). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
+  "state_sha256": "e4a24024e27520d7d8165cbfd00b8047d47b398ca20bcf945f471b8504934ac9",
   "manual": [
     {
       "id": "M-1",
@@ -24,9 +25,9 @@
       "phase": "export",
       "scope": "circuit",
       "text": "Regulatory review: circuit and parts against EU law for the stated purpose (RoHS, REACH, radio, batteries, product safety) – the agent regulatory-reviewer in its own session; support, not legal advice: no claim to correctness, nothing legally guaranteed",
-      "done_by": null,
-      "date": null,
-      "note": null
+      "done_by": "agent regulatory-reviewer (Claude, independent session)",
+      "date": "2026-10-31",
+      "note": "OK for state e4a24024… and purpose private (D-23: esp32's circuit with the THT parts, hand-soldered; Wi-Fi as D-17): purpose.radio keeps U1 to 2412–2472 MHz – the firmware variants/esp32/firmware sets country DE with 802.11d off at every Wi-Fi start (net.cpp radio(), radio off if it fails; Arduino-ESP32 2.0.17 deinitialises the driver on WIFI_OFF), the PHY cap of 20 dBm (datasheet maximum 20.5 dBm) with the −4.32 dBi antenna gives at most about 16 dBm e.i.r.p. against 20 dBm (BNetzA Vfg. 91/2025 D57c), LIM.band and LIM.eirp pass; no Bluetooth, no frames to other WLANs; USB 5 V only, no cell, no mains. No part states RoHS or REACH – not needed for own use (the XL-504SYGD datasheet says RoHS, the UNI-ROYAL MFR spec lead-free); a gift needs the suppliers' SVHC statements and a new M-6. Notes: hand assembly – C1's '+' and the module's orientation (5V mark), a reversed C1 can vent; the home Wi-Fi password stays in the module's flash – erase it before the module leaves the house; the page is open to everyone in the home network (D-17); copper under the module's antenna end is a question for M-5. Support, not legal advice."
     },
     {
       "id": "M-2",
@@ -47,5 +48,5 @@
       "note": null
     }
   ],
-  "accepted_warnings": []
+  "accept": []
 }

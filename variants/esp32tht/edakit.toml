@@ -23,3 +23,9 @@ pcb = "esp32tht"
 
 [release]
 assembly = { sides = [] }        # no assembly: the BOM is empty, everything is hand-soldered (D-23)
+
+[[extra]]                        # the T-Display's sockets – hand-soldered, not in the graph (M-1 finding 1)
+item = "female header 1x12, 2.54 mm, 8.5 mm high (KH-2.54FH-1X12P-H8.5)"
+supplier = "lcsc"
+code = "C2905419"
+per_set = 2

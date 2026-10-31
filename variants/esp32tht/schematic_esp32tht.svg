@@ -295,20 +295,20 @@
 <text x="231.5" y="597" dy="0.35em" font-size="5" text-anchor="start" fill="#555555" xml:space="preserve">1</text>
 <text x="110" y="474" dy="0.35em" font-size="7" text-anchor="start" fill="#000000" xml:space="preserve">U1</text>
 <text x="110" y="616" dy="0.35em" font-size="6" text-anchor="start" fill="#000000" xml:space="preserve">LILYGO TTGO T-Display V1.1</text>
-<polyline points="97,513 103,507" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
-<polyline points="97,507 103,513" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
-<polyline points="237,533 243,527" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
-<polyline points="237,527 243,533" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
-<polyline points="97,523 103,517" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
-<polyline points="97,517 103,523" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
-<polyline points="237,503 243,497" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
-<polyline points="237,497 243,503" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
-<polyline points="97,553 103,547" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
-<polyline points="97,547 103,553" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polyline points="97,543 103,537" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polyline points="97,537 103,543" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="237,503 243,497" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="237,497 243,503" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polyline points="97,603 103,597" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polyline points="97,597 103,603" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="97,523 103,517" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="97,517 103,523" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="97,513 103,507" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="97,507 103,513" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="97,553 103,547" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="97,547 103,553" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="237,533 243,527" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
+<polyline points="237,527 243,533" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polyline points="97,533 103,527" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polyline points="97,527 103,533" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polyline points="97,573 103,567" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
@@ -361,7 +361,7 @@
 <polyline points="380,610 370,610" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polygon points="350,614 370,614 370,606 350,606" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
 <text x="360" y="599" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">R2</text>
-<text x="360" y="621" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">100Ω</text>
+<text x="360" y="621" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">330Ω</text>
 <polyline points="430,610 440,610" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polyline points="470,610 460,610" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polyline points="440,610 445,610" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
@@ -378,7 +378,7 @@
 <polyline points="380,560 370,560" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polygon points="350,564 370,564 370,556 350,556" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
 <text x="360" y="549" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">R1</text>
-<text x="360" y="571" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">100Ω</text>
+<text x="360" y="571" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">330Ω</text>
 <polyline points="430,560 440,560" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polyline points="470,560 460,560" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polyline points="440,560 445,560" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
@@ -395,7 +395,7 @@
 <polyline points="380,510 370,510" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polygon points="350,514 370,514 370,506 350,506" fill="#ffffff" stroke="#8b1a1a" stroke-width="1.2"/>
 <text x="360" y="499" dy="0.35em" font-size="7" text-anchor="middle" fill="#000000" xml:space="preserve">R5</text>
-<text x="360" y="521" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">100Ω</text>
+<text x="360" y="521" dy="0.35em" font-size="6" text-anchor="middle" fill="#000000" xml:space="preserve">330Ω</text>
 <polyline points="430,510 440,510" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polyline points="470,510 460,510" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>
 <polyline points="440,510 445,510" fill="none" stroke="#8b1a1a" stroke-width="1.2"/>

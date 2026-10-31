@@ -23,7 +23,7 @@
   }
  },
  "values": {
-  "color": "yellow-green",
+  "color": "green",
   "vf_typ_v": 2.2,
   "vf_min_v": 2.0,
   "vf_max_v": 2.6,
@@ -44,7 +44,7 @@
   "pin names as in the EasyEDA symbol (1 = K, 2 = A) – they agree with the datasheet; footprint LED-TH_BD5.9-P2.54-RD_GREEN (EasyEDA library data, 2026-10-31): pads 1/2 at −1.27/+1.27 mm, holes 1.0 mm, the outline's flat on the pad-1 side = cathode",
   "stock 6 592 at LCSC on 2026-10-31 (edakit part search)"
  ],
- "notes": "D-23: yellow-green as on the variant ESP32 (D-14) – the 3.3 V outputs drive it evenly; same series as the red and yellow 5 mm LEDs.",
+ "notes": "Yellow-green (λd 562–575 nm, λp 570 nm) – 'green' is the nearest colour of edakit's list. D-23: as on the variant ESP32 (D-14) – the 3.3 V outputs drive it evenly; same series as the red and yellow 5 mm LEDs.",
  "verified": {
   "by": "Claude Opus 5.5 (datasheet check)",
   "date": "2026-10-31",

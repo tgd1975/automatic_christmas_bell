@@ -70,7 +70,7 @@
      "21",
      "22"
     ],
-    "notes": "Plugs into two 1x12 female headers, pitch 2.54 mm, rows 22.86 mm apart (hand-soldered, not in the graph). Powered through its USB-C socket; its 5V pin (VBUS behind the module's 1N5819) supplies the servo and C1, its 3V3 pin (AP2112K) the buttons. Strapping pins IO12/IO15/IO2 and the second 3V3 pin stay free. LCSC C18722937 is a stand-in for the EasyEDA device: its symbol and footprint are rebuilt in the project (D-13)."
+    "notes": "Plugs into two 1x12 female headers KH-2.54FH-1X12P-H8.5 (C2905419), pitch 2.54 mm, rows 22.86 mm apart (hand-soldered, [[extra]] in edakit.toml). Powered through its USB-C socket; its 5V pin (VBUS behind the module's 1N5819) supplies the servo and C1, its 3V3 pin (AP2112K) the buttons. Strapping pins IO12/IO15/IO2 and the second 3V3 pin stay free. LCSC C18722937 is a stand-in for the EasyEDA device: its symbol and footprint are rebuilt in the project (D-13)."
    },
    {
     "designator": "J1",
@@ -123,7 +123,7 @@
      "1": "1",
      "2": "2"
     },
-    "notes": "D-23: 100 Ω as on the variant ESP32 (D-14); 7.2–11.2 mA (yellow-green) and 8.6–12.6 mA (red, yellow) over all corners in the simulation",
+    "notes": "D-23: 100 Ω as on the variant ESP32 (D-14) – the yellow-green XL-504SYGD at full current",
     "bom": false
    },
    {
@@ -150,7 +150,7 @@
      "1": "1",
      "2": "2"
     },
-    "notes": "D-23: 100 Ω as on the variant ESP32 (D-14); 7.2–11.2 mA (yellow-green) and 8.6–12.6 mA (red, yellow) over all corners in the simulation",
+    "notes": "D-23: 100 Ω as on the variant ESP32 (D-14) – the yellow-green XL-504SYGD at full current",
     "bom": false
    },
    {
@@ -170,14 +170,14 @@
     "designator": "R2",
     "type": "resistor",
     "label": "Series resistor LED3",
-    "part": "100 Ω 1/4 W metal film, THT",
-    "lcsc": "C57438",
-    "value": "100Ω",
+    "part": "330 Ω 1/4 W metal film, THT",
+    "lcsc": "C58608",
+    "value": "330Ω",
     "pins": {
      "1": "1",
      "2": "2"
     },
-    "notes": "D-23: 100 Ω as on the variant ESP32 (D-14); 7.2–11.2 mA (yellow-green) and 8.6–12.6 mA (red, yellow) over all corners in the simulation",
+    "notes": "D-23: 330 Ω – red and yellow dimmed to the yellow-green's brightness (owner's decision): XL-504SURD/UYD give 400–900 mcd at 20 mA, the XL-504SYGD 50–200 mcd",
     "bom": false
    },
    {
@@ -197,14 +197,14 @@
     "designator": "R1",
     "type": "resistor",
     "label": "Series resistor LED2",
-    "part": "100 Ω 1/4 W metal film, THT",
-    "lcsc": "C57438",
-    "value": "100Ω",
+    "part": "330 Ω 1/4 W metal film, THT",
+    "lcsc": "C58608",
+    "value": "330Ω",
     "pins": {
      "1": "1",
      "2": "2"
     },
-    "notes": "D-23: 100 Ω as on the variant ESP32 (D-14); 7.2–11.2 mA (yellow-green) and 8.6–12.6 mA (red, yellow) over all corners in the simulation",
+    "notes": "D-23: 330 Ω – red and yellow dimmed to the yellow-green's brightness (owner's decision): XL-504SURD/UYD give 400–900 mcd at 20 mA, the XL-504SYGD 50–200 mcd",
     "bom": false
    },
    {
@@ -224,14 +224,14 @@
     "designator": "R5",
     "type": "resistor",
     "label": "Series resistor LED1",
-    "part": "100 Ω 1/4 W metal film, THT",
-    "lcsc": "C57438",
-    "value": "100Ω",
+    "part": "330 Ω 1/4 W metal film, THT",
+    "lcsc": "C58608",
+    "value": "330Ω",
     "pins": {
      "1": "1",
      "2": "2"
     },
-    "notes": "D-23: 100 Ω as on the variant ESP32 (D-14); 7.2–11.2 mA (yellow-green) and 8.6–12.6 mA (red, yellow) over all corners in the simulation",
+    "notes": "D-23: 330 Ω – red and yellow dimmed to the yellow-green's brightness (owner's decision): XL-504SURD/UYD give 400–900 mcd at 20 mA, the XL-504SYGD 50–200 mcd",
     "bom": false
    },
    {
@@ -301,7 +301,7 @@
      "1": "1",
      "2": "2"
     },
-    "notes": "Keeps a power bank from switching off (D-8): without the base load the board draws about 90–150 mA (simulated; the module's own current is an assumption), with it at least 176 mA.",
+    "notes": "Keeps a power bank from switching off (D-8): the module alone draws at least 0.04 A (i_core_min_a), with the base load R8 ∥ R9 the board at least about 0.14 A (simulated).",
     "bom": false
    },
    {
@@ -315,7 +315,7 @@
      "1": "1",
      "2": "2"
     },
-    "notes": "Keeps a power bank from switching off (D-8): without the base load the board draws about 90–150 mA (simulated; the module's own current is an assumption), with it at least 176 mA.",
+    "notes": "Keeps a power bank from switching off (D-8): the module alone draws at least 0.04 A (i_core_min_a), with the base load R8 ∥ R9 the board at least about 0.14 A (simulated).",
     "bom": false
    }
   ],
@@ -543,6 +543,32 @@
     "U1.9": "BTN_START",
     "U1.10": "BTN_RESET"
    }
+  },
+  "layout": {
+   "fixed": [
+    "U1",
+    "LED1",
+    "LED2",
+    "LED3",
+    "LED4",
+    "LED5",
+    "S1",
+    "S2",
+    "J1"
+   ],
+   "edge": [
+    "U1",
+    "J1"
+   ],
+   "near": {
+    "C1": "J1"
+   },
+   "notes": [
+    "LED5, LED4, LED3, LED2, LED1 form the countdown row, in this order from left to right, as on every board; their anodes on one side (the footprints differ: LED1's \"+\" at pad 1, LED2-LED5's anode at pad 2).",
+    "U1 plugs into two 1x12 female headers 22.86 mm apart, display up, USB-C at the board edge; mark its 5V pin (U1.1) on the silkscreen – the pin field is symmetric.",
+    "R8 and R9 dissipate 0.25 W each: apart from each other and from C1; the builder lets them stand 1-2 mm above the board.",
+    "LED4 and LED5 (footprint LED-TH_BD5.9-P2.54-RD_GREEN) show only the flat at the cathode, no \"+\" and no square pad."
+   ]
   }
  }
 }

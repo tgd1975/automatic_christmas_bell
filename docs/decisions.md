@@ -346,3 +346,18 @@ variants/esp32tht/, board `esp32tht` in the EasyEDA project christmas-bell (D-15
   `edakit convert`); the four released boards stay as they are (edakit b36a6d0) until their next change.
 - Alternative: the variant ESP32 with the SMD parts hand-soldered – 0805 parts and the SMD servo header are harder
   to solder by hand and hold less.
+
+After the reviews of state e4a24024… (M-1 OK, M-6 OK; 2026-10-31):
+
+- **Brightness** (owner's decision): the yellow-green LEDs give 50–200 mcd at 20 mA, the red and yellow ones
+  400–900 mcd – every 5 mm yellow-green at LCSC is as dim (Everlight 333-2SYGD 40–80, TONYU DY-333UYGD 120,
+  TOGIALED 30–60 mcd). R1, R2 and R5 (red and yellow) are 330 Ω (C58608, as on the THT board): 3.4–5.0 mA there,
+  7.2–11.2 mA in the yellow-green ones. The SMD board esp32 has the same gap, smaller (24–70 against 70–210 mcd); it
+  stays as released.
+- **Order:** a bare board is bought part by part (`edakit order`). U1's entry now names its supplier (Tinytronics,
+  the V1.1 – neither LCSC nor Berrybase or Reichelt sell it), so the stand-in C18722937 no longer lands in the LCSC
+  cart; the two 1×12 female headers KH-2.54FH-1X12P-H8.5 (C2905419, pin 0.64 × 0.4 mm, recommended hole 1.02 mm,
+  ours 1.1 mm) are an `[[extra]]` of edakit.toml.
+- With the same renewal: the hand-over to the layout in the graph (`layout`), U1's least current 0.04 A and its LDO
+  AP2112K at 184 K/W, 150 °C (D-18's values, θJA from the Diodes datasheet; at most 117 °C simulated against 125 °C),
+  C2895551 colour "green" (edakit's list), the R8/R9 notes (at least 0.136 A with the base load).

@@ -1,26 +1,28 @@
 # Board variants
 
-Three variants of the Christmas bell's carrier board, next to the released main board ([../hardware](../hardware)). Each
+Four variants of the Christmas bell's carrier board, next to the released main board ([../hardware](../hardware)). Each
 one is an edakit project of its own: a folder here with its own edakit.toml, board and schematic file, hardware graph,
-parts database, simulation config and sign-offs. All four share the EasyEDA project `christmas-bell`, one EasyEDA board
+parts database, simulation config and sign-offs. All five share the EasyEDA project `christmas-bell`, one EasyEDA board
 each (decision D-15 in [../docs/decisions.md](../docs/decisions.md)).
 
-| | [smd](smd) | [tht](tht) | [esp32](esp32) |
-|---|---|---|---|
-| Decision | D-11 | D-12 | D-13, D-14 |
-| Controller | Arduino Nano on 2 × 1×15 female headers | Arduino Nano on 2 × 1×15 female headers | LILYGO T-Display V1.1 (ESP32, 1.14″ TFT) on 2 × 1×12 female headers |
-| LEDs | 0805: red, 2 × yellow, 2 × emerald green | 5 mm THT, as on the main board | 0805: red, 2 × yellow, 2 × yellow-green |
-| Series resistors | 330 Ω 0805 | 330 Ω ¼ W THT | 100 Ω 0805 |
-| Buttons | 6 × 6 SMD | 6 × 6 THT | 6 × 6 SMD, switching 3V3 |
-| C1 1000 µF / 16 V | SMD can | THT radial | SMD can |
-| Servo header J1 | SMD 1×3 | THT 1×3 | SMD 1×3 |
-| Base load R8 ∥ R9 | 2 × 100 Ω 2512 | 2 × 100 Ω 1 W THT | 2 × 100 Ω 2512 |
-| Assembly | JLCPCB Economic, top side: everything but the female headers | none – a bare board, everything hand-soldered | JLCPCB Economic, top side: everything but the female headers |
-| EasyEDA board | `smd` | `tht` | `esp32` |
+| | [smd](smd) | [tht](tht) | [esp32](esp32) | [esp32tht](esp32tht) |
+|---|---|---|---|---|
+| Decision | D-11 | D-12 | D-13, D-14 | D-23 |
+| Controller | Arduino Nano on 2 × 1×15 female headers | Arduino Nano on 2 × 1×15 female headers | LILYGO T-Display V1.1 (ESP32, 1.14″ TFT) on 2 × 1×12 female headers | as esp32 |
+| LEDs | 0805: red, 2 × yellow, 2 × emerald green | 5 mm THT, as on the main board | 0805: red, 2 × yellow, 2 × yellow-green | 5 mm THT: red, 2 × yellow, 2 × yellow-green |
+| Series resistors | 330 Ω 0805 | 330 Ω ¼ W THT | 100 Ω 0805 | 100 Ω ¼ W THT |
+| Buttons | 6 × 6 SMD | 6 × 6 THT | 6 × 6 SMD, switching 3V3 | 6 × 6 THT, switching 3V3 |
+| C1 1000 µF / 16 V | SMD can | THT radial | SMD can | THT radial |
+| Servo header J1 | SMD 1×3 | THT 1×3 | SMD 1×3 | THT 1×3 |
+| Base load R8 ∥ R9 | 2 × 100 Ω 2512 | 2 × 100 Ω 1 W THT | 2 × 100 Ω 2512 | 2 × 100 Ω 1 W THT |
+| Assembly | JLCPCB Economic, top side: everything but the female headers | none – a bare board, everything hand-soldered | JLCPCB Economic, top side: everything but the female headers | none – a bare board, everything hand-soldered |
+| Firmware | [../src/firmware](../src/firmware) | [../src/firmware](../src/firmware) | [esp32/firmware](esp32/firmware) | [esp32/firmware](esp32/firmware), unchanged |
+| EasyEDA board | `smd` | `tht` | `esp32` | `esp32tht` |
 
 Board 85 × 56 mm with four M3 holes for all of them, like the main board. The circuit of smd and tht is the main
 board's; esp32 replaces the Nano and follows from 3.3 V logic: the buttons switch 3V3, the LEDs are driven from
-3.3 V outputs.
+3.3 V outputs. esp32tht is esp32's circuit with tht's parts; its files are in the form of edakit's restructuring
+(edakit main 5196c6f and later, D-23), the other four in the form before it (edakit b36a6d0) until their next change.
 
 ## Commands
 
@@ -49,7 +51,7 @@ project: `schematic create` (places the header, the copies appear in the project
 again (now with the T-Display's pins), then as usual. The parts entry
 [esp32/hardware/parts/C18722937.json](esp32/hardware/parts/C18722937.json) describes the T-Display, not the header.
 
-**Before ordering the ESP32 board, measure the module:** two rows of 12 pins, pitch 2.54 mm, rows 22.86 mm apart,
+**Before ordering an ESP32 board (esp32, esp32tht), measure the module:** two rows of 12 pins, pitch 2.54 mm, rows 22.86 mm apart,
 pin 1 (5V) and pin 13 (3V3) at the USB end.
 
 ## Building and using
@@ -63,6 +65,9 @@ pin 1 (5V) and pin 13 (3V3) at the USB end.
   straight and tie its cable to the frame.
 - **THT:** the button holes are 1.3 mm (library footprint) – press each button flat while soldering its first leg.
   5 mm LEDs: flat side and short leg to the right.
+- **ESP32 THT:** as ESP32 and THT together. Low parts first – the resistors lying flat, then LEDs (flat side and short
+  leg to the right), buttons, J1, C1 ("+" to the left), the two female headers last with the T-Display plugged in.
+  R8 and R9 get warm (0.25 W each): let them stand 1–2 mm above the board. The firmware is esp32's.
 
 ## The ESP32 firmware
 

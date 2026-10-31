@@ -1,0 +1,236 @@
+# Board esp32tht of christmas-bell: outline, holes, placement, routing, pours, silk – the PCB designer's file,
+# in the layout hash (edakit handbook 10.2)
+
+revision = "1.0"                 # board revision: printed bottom left with the title (edakit silk)
+view = "top"
+edge_ok = ["U1", "J1"]           # the T-Display's USB-C socket at the edge, the servo plug
+
+[outline]
+rect = [85, 56]
+corner_radius = 2
+
+[[holes]]
+x = 3.5
+y = 3.5
+d = 3.2
+keep = 3.2
+
+[[holes]]
+x = 81.5
+y = 3.5
+d = 3.2
+keep = 3.2
+
+[[holes]]
+x = 3.5
+y = 52.5
+d = 3.2
+keep = 3.2
+
+[[holes]]
+x = 81.5
+y = 52.5
+d = 3.2
+keep = 3.2
+
+# No tooling holes and no order-number placeholder: a bare board (D-23), and JLCPCB reports its order number at the
+# placeholder gone since May 2026 (edakit FILES.order).
+
+[place]                          # LEDs, buttons, J1 as on every board; the T-Display 3.5 mm nearer the front than on
+                                 # esp32, so that the staggered THT resistors of the board tht fit between it and the LEDs
+U1 = { x = 30.5, y = 24.5, rot = 270, side = "top" }  # footprint drawn upright (USB at -y): 270 puts the USB end left
+LED5 = { x = 30, y = 48, rot = 180, side = "top" }  # yellow-green: anode at pad 2 – turned so that every anode is left
+LED4 = { x = 40, y = 48, rot = 180, side = "top" }
+LED3 = { x = 50, y = 48, rot = 180, side = "top" }  # yellow: "+" at pad 2
+LED2 = { x = 60, y = 48, rot = 180, side = "top" }
+LED1 = { x = 70, y = 48, rot = 0, side = "top" }    # red: its footprint marks pad 1 as "+"
+J1 = { x = 80, y = 30, rot = 90, side = "top" }
+C1 = { x = 70.5, y = 30, rot = 0, side = "top" }  # next to J1 (near_mm 6), 2.5 mm from the warm R9
+S1 = { x = 58, y = 12, rot = 0, side = "top" }
+S2 = { x = 72, y = 12, rot = 0, side = "top" }
+R4 = { x = 30, y = 40, rot = 0, side = "top" }    # series resistors (10.5 mm pitch) below their LEDs, staggered as on tht
+R3 = { x = 40, y = 43, rot = 0, side = "top" }
+R2 = { x = 50, y = 40, rot = 0, side = "top" }
+R1 = { x = 60, y = 43, rot = 0, side = "top" }
+R5 = { x = 70, y = 40, rot = 0, side = "top" }
+R7 = { x = 59, y = 17.7, rot = 0, side = "top" }  # pull-downs right above their buttons (the module covers R7's place
+R6 = { x = 72, y = 17.7, rot = 0, side = "top" }  # left of S1 on the boards tht and esp32)
+R8 = { x = 55.5, y = 28.5, rot = 90, side = "top" }  # base load 1 W THT (15.5 mm pitch) between the module and C1,
+R9 = { x = 61, y = 28.5, rot = 90, side = "top" }  # 0.25 W each, 5.5 mm apart
+
+[near]
+R4 = "LED5"
+R3 = "LED4"
+R2 = "LED3"
+R1 = "LED2"
+R5 = "LED1"
+R7 = "S1"
+R6 = "S2"
+C1 = "J1"
+
+[routing]
+clearance_mil = 12               # hand-soldered: more room between track and pad, as on tht (M-5)
+signal_mil = 12
+via = [24, 12]
+edge_clearance_um = 400
+passes = 40
+attempts = 5
+layer_cost = { TOP = [2.5, 3.5], BOTTOM = [1.0, 1.5] }  # tracks preferably on the bottom: the top is the visible side (M-5)
+
+# No vias under the chevrons between the LEDs: a tented via shows through the print (M-5 on esp32).
+[[routing.keepouts]]
+layer = ["TOP", "BOTTOM"]
+what = "all"
+rect = [34.2, 47.2, 35.8, 48.8]
+
+[[routing.keepouts]]
+layer = ["TOP", "BOTTOM"]
+what = "all"
+rect = [44.2, 47.2, 45.8, 48.8]
+
+[[routing.keepouts]]
+layer = ["TOP", "BOTTOM"]
+what = "all"
+rect = [54.2, 47.2, 55.8, 48.8]
+
+[[routing.keepouts]]
+layer = ["TOP", "BOTTOM"]
+what = "all"
+rect = [64.2, 47.2, 65.8, 48.8]
+
+[routing.classes]
+POWER = { width_mil = 30, nets = ["+5V"] }
+GND = { width_mil = 30, nets = ["GND"] }
+
+[[pours]]
+net = "GND"
+layers = ["TOP", "BOTTOM"]
+
+[silk]
+designators = "top"
+label_h_mm = 1.0
+board_label = "Weihnachtsglocke ESP32 THT rev {revision}"   # bottom left, German like the greeting
+
+# Artwork: ../../hardware/art (the main board's), positions in plan mm (centre), width scales the motif
+
+[[silk.art]]
+svg = "../../hardware/art/bell.svg"
+x = 15.5
+y = 47.2
+width_mm = 13
+
+[[silk.art]]
+svg = "../../hardware/art/greeting.svg"
+x = 28
+y = 7
+width_mm = 34
+
+[[silk.art]]
+svg = "../../hardware/art/small_bell.svg"
+x = 76.5
+y = 46.5
+width_mm = 4
+
+[[silk.art]]
+svg = "../../hardware/art/chevron.svg"
+x = 35
+y = 48
+width_mm = 1.4
+
+[[silk.art]]
+svg = "../../hardware/art/chevron.svg"
+x = 45
+y = 48
+width_mm = 1.4
+
+[[silk.art]]
+svg = "../../hardware/art/chevron.svg"
+x = 55
+y = 48
+width_mm = 1.4
+
+[[silk.art]]
+svg = "../../hardware/art/chevron.svg"
+x = 65
+y = 48
+width_mm = 1.4
+
+[[silk.art]]
+svg = "../../hardware/art/star.svg"
+x = 35
+y = 53.8
+width_mm = 1.6
+
+[[silk.art]]
+svg = "../../hardware/art/star.svg"
+x = 45
+y = 53.8
+width_mm = 1.6
+
+[[silk.art]]
+svg = "../../hardware/art/star.svg"
+x = 55
+y = 53.8
+width_mm = 1.6
+
+[[silk.art]]
+svg = "../../hardware/art/star.svg"
+x = 65
+y = 53.8
+width_mm = 1.6
+
+[[silk.art]]
+svg = "../../hardware/art/snowflake.svg"
+x = 65
+y = 4.5
+width_mm = 3
+
+[[silk.art]]
+svg = "../../hardware/art/snowflake.svg"
+x = 79
+y = 39.5
+width_mm = 3
+
+[[silk.art]]
+svg = "../../hardware/art/snowflake.svg"
+x = 6
+y = 9
+width_mm = 3
+
+# Labels: orientation of the module, the buttons and the servo pins (J1: pin 1 = GND at the square pad)
+
+[[silk.texts]]
+text = "5V"                        # orientation of the plugged-in module: its 5V pin (U1.1) at the USB end (M-5 on esp32)
+x = 13.6
+y = 13.07
+h_mm = 1.0
+
+[[silk.texts]]
+text = "START"
+x = 58
+y = 4.6
+h_mm = 1.2
+
+[[silk.texts]]
+text = "RESET"
+x = 72
+y = 4.6
+h_mm = 1.2
+
+[[silk.texts]]
+text = "GND"
+x = 76.6
+y = 27.46
+h_mm = 1.0
+
+[[silk.texts]]
+text = "5V"
+x = 76.6
+y = 30
+h_mm = 1.0
+
+[[silk.texts]]
+text = "SIG"
+x = 76.6
+y = 32.54
+h_mm = 1.0

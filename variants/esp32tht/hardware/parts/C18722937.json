@@ -200,12 +200,15 @@
   "i_core_a": 0.27,
   "gpio_r_out_ohm": 30,
   "vih_ratio": 0.75,
-  "vil_ratio": 0.25
+  "vil_ratio": 0.25,
+  "i_core_min_a": 0.04
  },
  "limits": {
   "vin_min_v": 3.6,
   "i_out_max_a": 0.2,
-  "gpio_i_max_a": 0.02
+  "gpio_i_max_a": 0.02,
+  "rth_ja_k_per_w": 184,
+  "tj_max_c": 150
  },
  "spice": {},
  "lead": {
@@ -250,7 +253,10 @@
   "i_core_a 0.27 A with Wi-Fi (D-17): ESP32 datasheet v5.3 table 5-4 – transmitting 802.11b at +19.5 dBm 240 mA (50 % duty cycle), receiving 95-100 mA – plus about 0.03 A display backlight (assumption); an upper bound, the web page transmits little. Without Wi-Fi about 0.08 A (assumption)",
   "gpio_r_out_ohm 30 Ω and gpio_i_max_a 20 mA (default drive strength): assumption from the ESP32 datasheet (40 mA at the strongest setting)",
   "vin_min 3.6 V: AP2112K needs about 3.3 V + dropout; assumption",
-  "EasyEDA: a device created through the API cannot be placed in the local client (GET_DEVICE: 'Device details data does not exist'); the stand-in C18722937 (2541FV-2x12P, symbol pins 1-24, prefix U) is placed, and its project copies are rebuilt – like pytree's RP2350-Zero (2026-10-26)"
+  "EasyEDA: a device created through the API cannot be placed in the local client (GET_DEVICE: 'Device details data does not exist'); the stand-in C18722937 (2541FV-2x12P, symbol pins 1-24, prefix U) is placed, and its project copies are rebuilt – like pytree's RP2350-Zero (2026-10-26)",
+  "i_core_min_a 0.04 A: assumption – a lower bound of the module's own current (ESP32 without Wi-Fi traffic, display backlight dimmed), as edakit tried it on a copy of esp32 (D-18); it holds the base load of D-8 to its minimum",
+  "rth_ja_k_per_w 184, tj_max_c 150: the module's on-board LDO AP2112K-3.3 (SOT-25), Diodes Inc. datasheet (LCSC C51118, sha256 ef8d376f2ec3…): θJA 184 °C/W without heatsink, operating junction temperature up to +150 °C",
+  "order: the T-Display is sold by neither LCSC nor Berrybase/Reichelt (2026-10-31); Tinytronics (NL) lists the V1.1 – https://www.tinytronics.nl/shop/en/development-boards/microcontroller-boards/with-wi-fi/lilygo-ttgo-t-display-v1.1-esp32-with-1.14-inch-tft-display"
  ],
  "notes": "Plugged into two 1x12 female headers (hand-soldered). The LCSC number is a stand-in: the 2x12 female header C18722937 gives the EasyEDA device; variants/esp32/hardware/lib/tdisplay_device.py rebuilds its symbol and footprint copies in the project into the T-Display's (pins below, 2 x 12 pads 22.86 mm apart). The footprint keeps the header's name (D-13).",
  "verified": {
@@ -265,5 +271,10 @@
   "open": [
    "measure the module before ordering: rows 22.86 mm apart (D-13)"
   ]
+ },
+ "order": {
+  "tinytronics": {
+   "code": "LILYGO TTGO T-Display V1.1 ESP32 with 1.14 inch TFT display"
+  }
  }
 }
