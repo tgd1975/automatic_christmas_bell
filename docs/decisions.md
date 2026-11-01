@@ -698,3 +698,16 @@ accept the four on main, smd and esp32 with D-39's reason, until the requirement
 the order; tht and esp32tht get the same entry at their next gate. Release runs of 2026-11-01, all RELEASED with the
 fab hashes M-5 reviewed: main 20261101-142527, smd 20261101-142626, esp32 20261101-142730 (superseding -005804,
 -005512, -005656); tht -005606 and esp32tht -005734 unchanged.
+
+## D-42 Every release should carry the ODB++ file – proposed to edakit (2026-11-01)
+
+To compare prices at the four makers edakit knows (JLCPCB, PCBWay, Eurocircuits, AISLER), the released boards had to
+be quoted at AISLER as well, which assembles only from ODB++. The releases hold no `odb_<b>.zip`: edakit writes it
+only when a maker that takes ODB++ is in `[cart] makers`, which names JLCPCB alone here. `cart prepare --maker
+aisler` refuses with "add it there; its checks and files are then in the next gate run". The export needs EasyEDA,
+and EasyEDA was held by another project's gate at the time. Eurocircuits and PCBWay are in the same position for
+`bom_<b>_mpn.csv`.
+
+Owner's decision: the ODB++ file belongs in every release; propose it to edakit, with the MPN BOM as the related
+point. Neither file is in the fab hash, so the sign-offs would stay. edakit: #153
+(https://github.com/tgd1975/edakit/issues/153).
