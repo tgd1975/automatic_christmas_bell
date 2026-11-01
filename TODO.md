@@ -13,7 +13,7 @@ abgehakte Zeilen beim nächsten Lesen.
   und am Rechner getestet. *(automatic-christmas-bell-41)*
 - [ ] **Nano-Firmware ausprobieren:** `pio run -e nano -t upload` im Repo; nach dem Läuten fährt das Servo in die
   Ruhestellung und ist 1 s später abgeschaltet. Warum: bisher nur übersetzt. *(automatic-christmas-bell-41)*
-- [ ] **T-Display vermessen, bevor die ESP32-Platine bestellt wird:** Reihenabstand 22,86 mm, Raster 2,54 mm. Warum:
+- [x] **T-Display vermessen, bevor die ESP32-Platine bestellt wird:** Reihenabstand 22,86 mm, Raster 2,54 mm. Warum:
   das Footprint beruht auf LILYGOs Zeichnungen (D-13). *(automatic-christmas-bell-41)*
 - [ ] **Bestellen mit dem Skill cart:** in Claude Code im Repo „bestell die Platinen“ – füllt JLCPCBs Formular je Board
   aus den Schlüsseln (Remove Mark, Österreich, DHL Express) und hält am Warenkorb; Vorschau ansehen (M-2), bei
