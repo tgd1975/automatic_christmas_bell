@@ -670,4 +670,5 @@ Owner's decisions:
   islands, puts a via into each where the other side pours, and fills again – no new routing. esp32 gets one entry per
   side, since `stitch` takes one layer. This ends D-21 (4)'s acceptance on main, whose reason was that closing the spot
   meant routing again. Gate and M-5 anew for the three boards; tht and esp32tht stay as released.
-- **GEO.pour should measure the bare area too**, not only the largest circle – proposed to edakit. edakit: open
+- **GEO.pour should measure the bare area too**, not only the largest circle – proposed to edakit. edakit: #103
+  (https://github.com/tgd1975/edakit/issues/103)
