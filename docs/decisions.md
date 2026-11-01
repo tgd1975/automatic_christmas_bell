@@ -641,4 +641,7 @@ the board as made, top and bottom, and every layer and drill file on its own int
 publish` takes them along – 13 pictures for main, drawn by edakit 702a4f4 on a copy of run 20261101-005804. The bell's
 current runs have none; they come with the next gate after the plugin update. Missing is only the editor's view, all
 layers over each other. Owner's decision: propose that one picture to edakit. edakit: #99
-(https://github.com/tgd1975/edakit/issues/99)
+(https://github.com/tgd1975/edakit/issues/99), accepted, built in 166b847 on features/proposals as
+`board_<b>_layers`, carried by pull request #101. Checked on a copy of run 20261101-005804: 14 pictures for main, the
+new one as D-40's view, 45 grey pads – the one via is tented and stays dark. After the merge and the plugin update:
+`edakit: #99 built`, the pictures come with the bell's next gate run.
