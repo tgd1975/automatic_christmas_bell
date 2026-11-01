@@ -34,6 +34,7 @@ per_set = 2
 
 [order]                          # the order form's keys (D-27): edakit's defaults otherwise – 1.6 mm, green, white, HASL
 mark = "remove"                  # no order number: JLCPCB's form offers none since May 2026 (D-27)
+customs = { category = "DIY", hs_code = "902300" }   # the shipment for customs: a hobby project – the owner, 2026-11-01
 
 [cart]                           # the skill cart puts the board into JLCPCB's cart (D-27)
 ship_to = "Austria"
