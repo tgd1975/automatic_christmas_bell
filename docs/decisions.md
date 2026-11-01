@@ -617,5 +617,7 @@ The owner's answers to the open points of D-38:
   (main shared + nano; smd shared + nano + smd; tht shared + nano + tht; esp32 shared + esp32 + smd; esp32tht shared +
   esp32 + tht), the 17 derived entries of D-32 and N-4 as `dropped` with the reasons at the end of the proposal, and
   M-1 and M-6 signed anew on all five boards. Until then the files of D-32 stay as released.
-- **To edakit:** the proposals A to G of docs/requirements-review.md go to edakit as a feature proposal (skill
-  propose-feature).
+- **To edakit:** the proposals A to G of docs/requirements-review.md go to edakit – A, B, C, F, G and D's list
+  "already checked by edakit" as one feature proposal, E as a rule proposal; D's protocol line is not proposed,
+  section 1 of the protocol shows the stages' counts already. edakit: #97
+  (https://github.com/tgd1975/edakit/issues/97), #98 (https://github.com/tgd1975/edakit/issues/98).

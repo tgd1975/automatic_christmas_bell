@@ -44,4 +44,5 @@ and D-30.
     requirements; 17 are derived – catalog checks (R-1 supply voltage, R-6 derating, …), M-6, or the maker's wishes
     rewritten as circuit values – while the README's inputs (5 LEDs, 2 green, 2 yellow, 1 red; two buttons; a servo
     that strikes the bell) and the variants' wishes are missing. The owner's principle: requirements steer the
-    pipeline, nothing edakit generates can be one. Causes and proposals A to G: docs/requirements-review.md.
+    pipeline, nothing edakit generates can be one. Causes and proposals A to G: docs/requirements-review.md;
+    sent as edakit #97 (feature) and #98 (rule DOCS.derived).
