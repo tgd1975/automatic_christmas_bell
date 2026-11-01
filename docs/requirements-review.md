@@ -12,8 +12,10 @@ generates or the circuit designer derives can be a requirement. That rules out a
 derating, a part's limit, and a choice the graph made on its own. Requirements come from the customer-experience view:
 "5 LEDs, two green, two yellow, one red, in a row in this order", "a servo must be driven". They need not be high
 level: a maker's own detailed rule ("pin X never more than Y") is a requirement too. What makes one is who said it, not
-how detailed it is. In projects that were designed before their file (the bell, the tree), the requirements must be
-reverse-engineered from what people said.
+how detailed it is. That holds in its strict form when a maker says from the start what they want. In projects that
+were designed before their file (the bell, the tree), or where only a circuit exists (a Fritzing file), the
+requirements must be reverse-engineered: from the circuit to what the thing is that is being built. That is harder,
+and the result needs the owner's confirmation (proposal C).
 
 ## What happened
 
@@ -111,19 +113,31 @@ bell and the tree have one, so the bell's file becomes the example that others c
   0.7 A, 3.8 V) belong to the designer, in sim.json and the graph's notes with the requirement's ID. They reach the
   requirement as evidence (`rows`). The example in 10.4 changes with it: led-bar's R-1 becomes "runs from a laptop's
   USB port with all eight LEDs on".
-- **C (reverse engineering).** For a project designed before its file, the agent reconstructs the inputs. Its
-  sources are what people said: the README (what the device is and does), the lines of the decision log where the
-  owner decided or wished something, the user's words. A decision Claude took is design, unless the owner made it
-  theirs. sim.json, the parts, the graph, the protocols and `edakit sim --json` are sources of evidence only, read
-  after the candidates exist. Each candidate shows its words and who said them, and the owner confirms what is only
-  implied (the LED order, "a jam must do no harm").
+- **C (forward and reverse).** Two cases, which the agent names at the start of its inventory:
+  - **Forward:** a maker says from the start what they want. The requirements are what they state, and nothing else.
+  - **Reverse:** only a design exists, a Fritzing file, an older board, a finished project like the bell. Then the
+    agent has to infer from the circuit what the thing is. It reads what people said first: the README, the lines of
+    the decision log where the owner decided or wished something, the user's words. A decision Claude took is design,
+    unless the owner made it theirs. Then it reads the circuit and lifts its parts to their purpose at the device's
+    boundary: what a person sees, presses, plugs in and hears. Five LEDs with their colours become "a countdown on
+    5 LEDs, 2 green, 2 yellow, 1 red"; a three-pin header with a PWM pin becomes "a servo is driven".
+  - **The filter in the reverse case:** would the user or the maker notice if it were different? The LED colours,
+    yes. A series resistor's 330 Ω only through the brightness, so the candidate is the brightness, not the value.
+    The derating, never. Where the answer is unclear, the candidate goes to the owner as a question.
+  - **Marked as inferred:** each such candidate says where in the circuit it was found ("inferred from the graph:
+    LED1–LED5, colours from their parts") and stays a draft until the owner confirms or corrects it. Its `source` then
+    names the owner and the date. The LED order and "a jam must do no harm" are such candidates in the bell.
+  - **Excluded in both cases:** what edakit's catalog checks on every board, and what the pipeline computes
+    (simulated values, check results). sim.json, the protocols and `edakit sim --json` are sources of evidence only,
+    read after the candidates exist.
 - **D (baseline visible).** The agent lists what edakit checks on every board as "already checked by edakit", not as
   candidates. Section 11 of the protocol starts with one line for it: the catalog checks of stages G and E, passed or
   failed. That answers "what do I have edakit for?" in the protocol itself.
 - **E (a check for derived entries).** DOCS.derived, a warning that also fires on drafts: a requirement whose
   `source` and `from` name only edakit's data (sim.json, parts entries, the graph, a protocol, a datasheet) and no
-  person, document, need or chosen standard is derived, not stated. The fields exist today, so the check needs nothing
-  new from the simulation.
+  person, document, need or chosen standard is derived, not stated. An inferred candidate (C, reverse) names the graph
+  too, but it is a draft, and a draft only warns; once the owner confirms it, its `source` names the owner. The fields
+  exist today, so the check needs nothing new from the simulation.
 - **F (the round).** No bulk yes over more than three drafts. Each draft comes with who said it, in their words; a
   draft nobody said is not proposed. The second opinion runs after every first file, and its checklist gets "derived,
   not stated" and "restates the catalog, M-6 or the firmware contract".
