@@ -1,0 +1,211 @@
+# Proposal for the bell's requirements as the pipeline's inputs (docs/requirements-review.md, the owner's principle of
+# 2026-11-01). For review only: edakit does not read this file, so it voids no sign-off. Nothing edakit generates or
+# derives is a requirement here; derived values (100 mA, 0.7 A, 3.8 V) appear only as evidence (`rows`).
+# "inferred" in a source: read from the circuit or the first design, said by nobody – the owner confirms or corrects it.
+# The "→" lines say which file a block would go to. On adoption the old entries become `dropped` (list at the end),
+# and M-1 and M-6 are signed again.
+
+# ─── → hardware/requirements.toml (all five boards) ─────────────────────────────────────────────────────────────────
+
+[[need]]
+id = "N-1"
+text = "Press start, the LEDs count down, and after the countdown the bell rings by itself."
+who = "the parents, at Christmas"
+source = "README.md, Anwendung 3–5"
+status = "accepted"
+
+[[need]]
+id = "N-2"
+text = "The LEDs show how much time is left, visible to the parents."
+who = "the parents"
+source = "README.md, Anwendung 3"
+status = "accepted"
+
+[[need]]
+id = "N-3"
+text = "Everything runs from the module's USB socket and is switched on and off by plugging in the power bank."
+who = "the owner"
+source = "README.md, Stromversorgung; D-3, kept by the owner in D-32 (item 11)"
+status = "accepted"
+
+[[need]]
+id = "N-5"
+text = "A jammed servo does no harm to the board or the module."
+who = "the owner"
+source = "D-3 – inferred from the design's reasoning, to confirm"
+status = "draft"
+
+[[need]]
+id = "N-6"
+text = "Built and used by the owner at home – not sold or given away; no battery, no mains."
+who = "the owner"
+source = "D-16 (owner's decision)"
+status = "accepted"
+
+[[need]]
+id = "N-10"
+text = "A real bell, struck mechanically – no electronic sound."
+who = "the owner"
+source = "README.md, Anwendung (Wichtig); docs/old/IMPLEMENTIERUNG.md"
+status = "draft"
+
+[[requirement]]
+id = "R-13"
+text = "A countdown of five LEDs in one row along the back edge, one per step: green, green, yellow, yellow, red, in this order – on the ESP32 boards yellow-green instead of green."
+source = "README.md, Hardware (2× Grün, 2× Gelb, 1× Rot); docs/old/IMPLEMENTIERUNG.md, phases 1–5; D-9 and D-14 (owner's decisions); the order along the row inferred from the boards – to confirm"
+from = ["N-2"]
+binding = "must"
+verify = [{ signoff = "M-1" }, { signoff = "M-5" }, { rows = "SIM.state usb-* LED? LED on*" },
+          { accept = "each countdown step lights its own LED: green, green, yellow, yellow, red along the row" }]
+status = "draft"
+
+[[requirement]]
+id = "R-40"
+text = "The five countdown LEDs look about equally bright at 1–2 m in room light (open: a number – the datasheets' luminous intensity at the simulated current differs by up to 5× on smd)."
+source = "D-14, D-23 (Brightness); M-1 of smd"
+from = ["N-2"]
+binding = "should"
+verify = [{ accept = "all five LEDs on (warning): judged by eye at 1–2 m in room light – none stands out" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-14"
+text = "Two push buttons: start and reset."
+source = "README.md, Hardware; docs/old/IMPLEMENTIERUNG.md"
+from = ["N-1"]
+binding = "must"
+verify = [{ signoff = "M-1" }, { accept = "start starts the countdown, reset stops it" }]
+status = "draft"
+
+[[requirement]]
+id = "R-15"
+text = "A 9 g hobby servo, plugged into the board, is driven so that it strikes the bell; the bell is the only sound – no buzzer, no speaker."
+source = "README.md, Hardware (Servo 9g) and Anwendung (kein elektronischer Ton); docs/old/IMPLEMENTIERUNG.md (Dagu DG Servo 9g)"
+from = ["N-1", "N-10"]
+binding = "must"
+verify = [{ signoff = "M-1" }, { rows = "LIM.range servo-start U1 lowest supply voltage once started*" },
+          { accept = "ring now 5 times in a row: the servo swings and strikes the bell each time, nothing restarts" }]
+status = "draft"
+
+[[requirement]]
+id = "R-16"
+text = "Runs from a USB power bank or charger through the module's USB socket: from start until the bell has rung, the power bank stays on and copes with the ringing."
+source = "README.md, Stromversorgung; D-3, kept by the owner in D-32 (item 11)"
+from = ["N-1", "N-3"]
+binding = "must"
+verify = [{ rows = "LIM.i usb-* U1 current keeps the supply on*" }, { rows = "LIM.i usb-* U1 current from the supply*" },
+          { accept = "on the power bank used at Christmas: plug in, wait 10 min, press start – the bank stays on and the bell rings" }]
+status = "draft"
+
+[[requirement]]
+id = "R-10"
+text = "Nothing but USB: no second supply, no battery, no mains."
+source = "D-16 (owner's decision); D-32 (item 11)"
+from = ["N-3", "N-6"]
+binding = "must"
+verify = [{ signoff = "M-6" }]
+status = "draft"
+
+[[requirement]]
+id = "R-17"
+text = "If the bell jams, nothing on the board or the module is damaged."
+source = "D-3 – inferred, to confirm (N-5)"
+from = ["N-5"]
+binding = "must"
+verify = [{ signoff = "M-1" }, { rows = "LIM.i usb-nom/servo-stalled U1 current from the supply*" }]
+status = "draft"
+
+# ─── → hardware/requirements_nano.toml (main, smd, tht) ─────────────────────────────────────────────────────────────
+
+[[requirement]]
+id = "R-21"
+text = "An Arduino Nano plugs in on two female headers."
+source = "README.md, Hardware; docs/old/IMPLEMENTIERUNG.md; D-11 (owner: the microcontroller on headers)"
+from = ["N-1"]
+binding = "must"
+verify = [{ signoff = "M-1" }, { accept = "the Nano plugs in and runs the countdown" }]
+status = "draft"
+
+# ─── → variants/esp32/hardware/requirements.toml (esp32, esp32tht) ──────────────────────────────────────────────────
+
+[[need]]
+id = "N-7"
+text = "A simple web page – status, time to ding, start, stop, pause and the timer – on the home Wi-Fi or the module's hotspot."
+who = "the owner"
+source = "D-17 (owner's decision)"
+status = "accepted"
+
+[[requirement]]
+id = "R-36"
+text = "A LILYGO T-Display V1.1 – the smaller variant, 1.14 inch display – plugs in on two female headers."
+source = "D-13 (owner's choice)"
+from = ["N-7"]
+binding = "must"
+verify = [{ signoff = "M-1" }, { accept = "the T-Display plugs in; its web page answers on the home Wi-Fi or its hotspot" }]
+status = "draft"
+
+# ─── → a file of each variant's own (new; esp32's needs one apart from the file esp32tht shares) ────────────────────
+
+[[need]]
+id = "N-8"
+text = "smd LEDs, the pins as SMD if possible, the microcontroller on headers to solder yourself, the capacitor only if it does not force the more expensive assembly."
+who = "the owner (board smd)"
+source = "D-11 (owner's wish)"
+status = "draft"
+
+[[requirement]]
+id = "R-50"
+text = "smd: every part SMD and placed by JLCPCB's Economic assembly, except the Nano's two female headers, which the owner solders."
+source = "D-11 (owner's wish)"
+from = ["N-8"]
+binding = "must"
+verify = [{ signoff = "M-2" }]
+status = "draft"
+
+[[requirement]]
+id = "R-51"
+text = "tht: through-hole parts only, nothing assembled – a bare board to solder by hand."
+source = "D-12 – who wished it is inferred, to confirm"
+from = ["D-12"]
+binding = "must"
+verify = [{ signoff = "M-1" }]
+status = "draft"
+
+[[requirement]]
+id = "R-53"
+text = "esp32: assembled like smd – every part SMD and placed by Economic assembly, except the T-Display's two female headers."
+source = "D-13 ('like the variant SMD') – inferred, to confirm"
+from = ["D-13"]
+binding = "must"
+verify = [{ signoff = "M-2" }]
+status = "draft"
+
+[[need]]
+id = "N-9"
+text = "Eine Version mit ESP32 und Pins zum selber Löten."
+who = "the owner (board esp32tht)"
+source = "D-23 (owner's wish)"
+status = "draft"
+
+[[requirement]]
+id = "R-52"
+text = "esp32tht: the ESP32 board with through-hole parts only, nothing assembled – a bare board to solder by hand."
+source = "D-23 (owner's wish)"
+from = ["N-9"]
+binding = "must"
+verify = [{ signoff = "M-1" }]
+status = "draft"
+
+# ─── Dropped on adoption – they stay in the files with status "dropped", their numbers are not used again ───────────
+#   N-4                  implied by N-1 and N-3 – now R-16
+#   R-1, R-4, R-5, R-6,  derived: edakit's catalog checks them on every board
+#   R-12, R-31, R-32,
+#   R-34
+#   R-33                 the law: M-6 checks it from purpose.radio
+#   R-2, R-20, R-30      derived from the power source – now R-16, their rows its evidence
+#   R-3                  derived from N-2 – now R-13, its rows R-13's evidence
+#   R-7, R-8             derived from N-5 – now R-17 (R-8's detach is the firmware's)
+#   R-9                  derived from N-1 – its transient run is R-15's evidence
+#   R-11                 derived – heat is edakit's baseline (LIM.p, LIM.t)
+#   R-35                 R-15 on the ESP32 boards
+#   R-10 is rephrased, the same statement – it keeps its ID.
