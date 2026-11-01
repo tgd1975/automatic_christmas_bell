@@ -131,28 +131,13 @@ bell and the tree have one, so the bell's file becomes the example that others c
 - **G (pilot first).** Plan step 4.5 (the file required for every project) waits for A to F and the bell's rewritten
   file.
 
-## The bell's file under the principle (sketch)
+## The bell's file under the principle
 
-Every entry is an input with its source; "to confirm" marks what the documents only imply.
+The proposal is docs/requirements-proposal.toml: 10 needs, 11 requirements, every one an input with its source. The
+owner reviewed it on 2026-11-01 (D-38): the level fits, the inferred points are confirmed, and the variants are one
+requirement per assembly (SMD, THT) for both modules. The 17 derived entries of D-32 are dropped there with their
+reason, and their numbers stay in sim.json and the graph's notes, where the designer keeps them.
 
-| For | Text | Source | Evidence |
-| --- | --- | --- | --- |
-| all | A countdown of 5 LEDs in a row: 2 green, 2 yellow, 1 red, in this order (the order to confirm). | README.md "Hardware" | M-1 (colours, count), M-5 (row); acceptance |
-| esp32, esp32tht | Yellow-green instead of green. | D-14, owner | M-1 |
-| all | The LED row at the back edge, the board seen from above. | D-9, owner | M-5 |
-| all | The LEDs look about equally bright (R-40). | D-23, owner | acceptance |
-| all | Two buttons: start and reset. | README.md "Hardware" | acceptance |
-| all | A 9 g hobby servo is driven and strikes a real bell, no electronic sound (R-35's signal on the ESP32). | README.md | acceptance |
-| all | Powered from the module's USB socket by a power bank, switched by plugging it in; no battery, no mains (R-10). | D-3, D-10, D-16 | M-6; acceptance on the Christmas power bank |
-| all | A jammed bell does no harm (to confirm). | N-5 | scenario servo-stalled, M-1 |
-| Nano boards | An Arduino Nano plugs in on headers. | README.md, D-11 | acceptance |
-| smd | smd LEDs, pins as SMD where possible, the microcontroller on headers to solder yourself, the capacitor only if it does not force the more expensive assembly. | D-11, owner | M-2 (assembly) |
-| tht | Through-hole only, nothing assembled. | D-12 | M-2 |
-| esp32, esp32tht | The T-Display, "the smaller variant", on headers. | D-13, owner | acceptance |
-| esp32tht | "Eine Version mit ESP32 und Pins zum selber Löten". | D-23, owner | M-2 |
-| esp32, esp32tht | The web page on the home Wi-Fi or the module's hotspot. | D-17, owner | M-6; acceptance |
-
-R-1 to R-9, R-11, R-12, R-20, R-30 to R-34 are dropped with the reason "derived – edakit checks it" or "M-6". Their
-numbers stay in sim.json's and the graph's notes, where the designer keeps them. A changed file before the order
-means: `cart prepare` compares the release's circuit hash with today's (docs/edakit-gaps.md, 1), so all five boards
-would need new gate runs, and M-1 and M-6 would have to be signed again. The boards themselves do not change.
+A changed file before the order means: `cart prepare` compares the release's circuit hash with today's
+(docs/edakit-gaps.md, 1), so all five boards would need new gate runs, and M-1 and M-6 would have to be signed again.
+The boards themselves do not change.

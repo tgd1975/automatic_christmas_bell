@@ -2,8 +2,10 @@
 # 2026-11-01). For review only: edakit does not read this file, so it voids no sign-off. Nothing edakit generates or
 # derives is a requirement here; derived values (100 mA, 0.7 A, 3.8 V) appear only as evidence (`rows`).
 # "inferred" in a source: read from the circuit or the first design, said by nobody – the owner confirms or corrects it.
-# The "→" lines say which file a block would go to. On adoption the old entries become `dropped` (list at the end),
-# and M-1 and M-6 are signed again.
+# The "→" lines say which file a block would go to. Each board would read the shared file, its module's file and its
+# assembly's file: main shared + nano; smd shared + nano + smd; tht shared + nano + tht; esp32 shared + esp32 + smd;
+# esp32tht shared + esp32 + tht. On adoption the old entries become `dropped` (list at the end), and M-1 and M-6 are
+# signed again. Reviewed by the owner on 2026-11-01 (D-38): the level fits, the inferred points confirmed.
 
 # ─── → hardware/requirements.toml (all five boards) ─────────────────────────────────────────────────────────────────
 
@@ -32,8 +34,8 @@ status = "accepted"
 id = "N-5"
 text = "A jammed servo does no harm to the board or the module."
 who = "the owner"
-source = "D-3 – inferred from the design's reasoning, to confirm"
-status = "draft"
+source = "D-3; confirmed by the owner (D-38)"
+status = "accepted"
 
 [[need]]
 id = "N-6"
@@ -52,12 +54,12 @@ status = "draft"
 [[requirement]]
 id = "R-13"
 text = "A countdown of five LEDs in one row along the back edge, one per step: green, green, yellow, yellow, red, in this order – on the ESP32 boards yellow-green instead of green."
-source = "README.md, Hardware (2× Grün, 2× Gelb, 1× Rot); docs/old/IMPLEMENTIERUNG.md, phases 1–5; D-9 and D-14 (owner's decisions); the order along the row inferred from the boards – to confirm"
+source = "README.md, Hardware (2× Grün, 2× Gelb, 1× Rot); docs/old/IMPLEMENTIERUNG.md, phases 1–5; D-9 and D-14 (owner's decisions); the order along the row confirmed by the owner (D-38)"
 from = ["N-2"]
 binding = "must"
 verify = [{ signoff = "M-1" }, { signoff = "M-5" }, { rows = "SIM.state usb-* LED? LED on*" },
           { accept = "each countdown step lights its own LED: green, green, yellow, yellow, red along the row" }]
-status = "draft"
+status = "accepted"
 
 [[requirement]]
 id = "R-40"
@@ -109,11 +111,11 @@ status = "draft"
 [[requirement]]
 id = "R-17"
 text = "If the bell jams, nothing on the board or the module is damaged."
-source = "D-3 – inferred, to confirm (N-5)"
+source = "D-3; confirmed by the owner (D-38)"
 from = ["N-5"]
 binding = "must"
 verify = [{ signoff = "M-1" }, { rows = "LIM.i usb-nom/servo-stalled U1 current from the supply*" }]
-status = "draft"
+status = "accepted"
 
 # ─── → hardware/requirements_nano.toml (main, smd, tht) ─────────────────────────────────────────────────────────────
 
@@ -144,7 +146,14 @@ binding = "must"
 verify = [{ signoff = "M-1" }, { accept = "the T-Display plugs in; its web page answers on the home Wi-Fi or its hotspot" }]
 status = "draft"
 
-# ─── → a file of each variant's own (new; esp32's needs one apart from the file esp32tht shares) ────────────────────
+# ─── → hardware/requirements_smd.toml (new: smd, esp32) ──────────────────────────────────────────────────────────────
+
+[[need]]
+id = "N-12"
+text = "Both modules, the Arduino and the ESP32, once as SMD and once as THT."
+who = "the owner"
+source = "the owner, 2026-11-01 (D-38)"
+status = "accepted"
 
 [[need]]
 id = "N-8"
@@ -155,30 +164,14 @@ status = "draft"
 
 [[requirement]]
 id = "R-50"
-text = "smd: every part SMD and placed by JLCPCB's Economic assembly, except the Nano's two female headers, which the owner solders."
-source = "D-11 (owner's wish)"
-from = ["N-8"]
+text = "The SMD boards (smd, esp32): every part SMD and placed by JLCPCB's Economic assembly, except the module's two female headers, which the owner solders."
+source = "D-11 (owner's wish), D-13, D-38"
+from = ["N-8", "N-12"]
 binding = "must"
 verify = [{ signoff = "M-2" }]
-status = "draft"
+status = "accepted"
 
-[[requirement]]
-id = "R-51"
-text = "tht: through-hole parts only, nothing assembled – a bare board to solder by hand."
-source = "D-12 – who wished it is inferred, to confirm"
-from = ["D-12"]
-binding = "must"
-verify = [{ signoff = "M-1" }]
-status = "draft"
-
-[[requirement]]
-id = "R-53"
-text = "esp32: assembled like smd – every part SMD and placed by Economic assembly, except the T-Display's two female headers."
-source = "D-13 ('like the variant SMD') – inferred, to confirm"
-from = ["D-13"]
-binding = "must"
-verify = [{ signoff = "M-2" }]
-status = "draft"
+# ─── → hardware/requirements_tht.toml (new: tht, esp32tht) ──────────────────────────────────────────────────────────
 
 [[need]]
 id = "N-9"
@@ -188,13 +181,13 @@ source = "D-23 (owner's wish)"
 status = "draft"
 
 [[requirement]]
-id = "R-52"
-text = "esp32tht: the ESP32 board with through-hole parts only, nothing assembled – a bare board to solder by hand."
-source = "D-23 (owner's wish)"
-from = ["N-9"]
+id = "R-51"
+text = "The THT boards (tht, esp32tht): through-hole parts only, nothing assembled – a bare board to solder by hand."
+source = "D-12, D-23 (owner's wish), D-38"
+from = ["N-9", "N-12"]
 binding = "must"
 verify = [{ signoff = "M-1" }]
-status = "draft"
+status = "accepted"
 
 # ─── Dropped on adoption – they stay in the files with status "dropped", their numbers are not used again ───────────
 #   N-4                  implied by N-1 and N-3 – now R-16

@@ -588,3 +588,19 @@ D-31 is dropped: LILYGO's pin map, its schematic and its KiCad and Eagle footpri
 and esp32tht and would void M-1, M-6 and the releases of 2026-11-01: the open item "measure the module" in
 C18722937's `verified.open` and the T-Display's `print` (D-31). Both come with the next circuit change of the two
 boards – the open item goes, `print` from LILYGO's pin map.
+
+## D-38 Requirements as the pipeline's inputs: the proposal reviewed (2026-11-01)
+
+The owner's principle (docs/requirements-review.md): requirements steer what the pipeline builds, so nothing edakit
+generates or derives is one – they come from the customer's view, at the level of detail the maker gives; in a project
+designed before its file they are inferred from the circuit and confirmed by the owner. Of the 20 requirements of D-32,
+17 are derived. The proposal docs/requirements-proposal.toml (edakit does not read it yet), the owner's review of the
+same day:
+
+- the level fits;
+- the order of the LEDs along the row (R-13) and "a jammed bell damages nothing" (N-5, R-17): confirmed;
+- the variants: both modules, the Arduino and the ESP32, once as SMD and once as THT (N-12) – one requirement per
+  assembly, R-50 SMD (smd, esp32) and R-51 THT (tht, esp32tht), each in a file of its own beside the module's.
+
+Open: when the proposal replaces the files of D-32 – after the order is recommended, because the circuit hash changes
+(five gate runs, M-1 and M-6 anew) –, and whether the proposals A to G of docs/requirements-review.md go to edakit.
