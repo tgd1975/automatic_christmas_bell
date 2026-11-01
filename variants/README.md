@@ -57,9 +57,8 @@ Order on a fresh EasyEDA project: `schematic create` (places the header, the cop
 `part build --write` and `run tdisplay`, `schematic create` and `schematic layout` again (now with the T-Display's
 pins and pads), then as usual. The parts entry describes the T-Display, not the header.
 
-**Before ordering an ESP32 board (esp32, esp32tht), measure the module:** two rows of 12 pins, pitch 2.54 mm, rows 22.86 mm apart,
-pin 1 (5V) and pin 13 (3V3) at the USB end. Look for the CE mark on the module or its packaging: without it Wi-Fi stays
-off (D-36).
+The module: two rows of 12 pins, pitch 2.54 mm, rows 22.86 mm apart, pin 1 (5V) and pin 13 (3V3) at the USB end. It
+bears the CE mark, so Wi-Fi stays on (D-36, D-37).
 
 ## Building and using
 
@@ -139,8 +138,8 @@ The release runs are build output and stay out of git (D-22); `edakit release cu
 one. **To order:** the skill cart puts each board into JLCPCB's cart from the keys of its edakit.toml (`[order]`
 mark "Remove Mark", `[cart]` Austria, DHL Express) and stops at the cart – `edakit cart prepare --config …` accepts
 all five releases. `make publish` publishes the order files as a GitHub pre-release first (`edakit release publish`,
-D-29); once a board of that state has been built and works, `make publish-built TAG=<tag>`. Before ordering an ESP32
-board, measure the T-Display and look for its CE mark (above, D-36). Check JLCPCB's preview (M-2).
+D-29); once a board of that state has been built and works, `make publish-built TAG=<tag>`. Check JLCPCB's preview
+(M-2).
 
 ## Open
 

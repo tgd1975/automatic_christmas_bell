@@ -33,6 +33,9 @@ the project does meanwhile.
     diode's or module's entry.
 11. **`verified.open` items the entry already holds** (M-1 note 3): a check that names an open point whose fact the
     entry has meanwhile (a lead diameter, a pad assignment).
+12. **A settled `verified.open` item voids the sign-offs.** The open item "measure the module" of the T-Display's entry
+    is settled by the owner (D-37), but removing it changes the circuit hash and voids M-1, M-6 and the release of
+    esp32 and esp32tht. A way to close an open item without a new review – a note the gate shows – would fit.
 
 Not gaps, for edakit's own documents: its README says the circuit as TOML has no real project yet and "the Christmas
 bell keeps its JSON graph", and that own footprints as data are "built offline only" – the bell has both since D-25

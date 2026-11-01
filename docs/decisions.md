@@ -120,8 +120,8 @@ female headers – the owner's choice, "the smaller variant" (the T-Display-S3 h
   T-Display's – pin names from LILYGO's pin map, its schematic (headers P4/P5) and the KiCad and Eagle libraries of its
   repository (all four agree), 2 × 12 pads 22.86 mm apart, holes 1.1 mm and pads 1.7 mm as on the Nano footprint
   (D-7), module outline and USB end on the silkscreen. The same way the pytree project builds its RP2350-Zero from the
-  RP2040-Zero. Only the board esp32 uses C18722937; the footprint keeps the header's name. **Measure the module before
-  ordering:** rows 22.86 mm apart, pitch 2.54 mm.
+  RP2040-Zero. Only the board esp32 uses C18722937; the footprint keeps the header's name. Rows 22.86 mm apart, pitch
+  2.54 mm – the module's standard, not measured (D-37).
 - **Pins:** LEDs on IO27, IO26, IO25, IO33, IO32 (one row, in countdown order), servo on IO13, buttons on IO38/IO37
   (input only, no internal pulls – R7/R6 pull down). The strapping pins IO12, IO15 and IO2 stay free.
 - **3.3 V logic:** the buttons switch the module's 3V3 (AP2112K) instead of 5 V – the ESP32's inputs take at most
@@ -578,3 +578,13 @@ The review's notes for the Nano boards, too: the jurisdiction is Austria (EMC in
 end at the municipal e-waste collection), the earlier notes cited German law; the firmware detaches the servo now.
 Candidates for edakit: a country in `purpose` beside `market`, Austrian sources in handbook 15; `antenna.keepout_mm`
 for the T-Display (GEO.keepout, finding E3).
+
+## D-37 The T-Display: CE mark present, no measuring (2026-11-01)
+
+The owner, 2026-11-01: the module bears the CE mark, and its rows are the module's standard spacing – nothing to
+measure. So D-36's condition is met (Wi-Fi may stay on), and the "measure the module before ordering" of D-13 and
+D-31 is dropped: LILYGO's pin map, its schematic and its KiCad and Eagle footprints (D-13) and M-1 of 2026-11-01
+(rows 22.860 mm, agreeing with the dump) are the source. Not changed now, because both are in the circuit hash of esp32
+and esp32tht and would void M-1, M-6 and the releases of 2026-11-01: the open item "measure the module" in
+C18722937's `verified.open` and the T-Display's `print` (D-31). Both come with the next circuit change of the two
+boards – the open item goes, `print` from LILYGO's pin map.
