@@ -13,7 +13,7 @@ Datum ans Ende, nach „## Erledigt“ am Ende verschieben, neueste zuerst – d
 die Zeile schrieb. Keine Zeile wird gelöscht. Überschriften gruppieren offene Todos; ist unter einer keines mehr offen,
 gehen Überschrift und Text, bis das nächste dazukommt.
 
-Nächste Kennung: TD-7
+Nächste Kennung: TD-8
 
 ## Für dich
 
@@ -30,6 +30,11 @@ Nächste Kennung: TD-7
   Bestückungsvorschau, Stückliste ohne Lücken, Preis) ansehen, dann bezahlen. Warum: alle fünf Platinen sind
   freigegeben, ihre Bestellaufträge lassen sich mit neuerem edakit erzeugen (geprüft am 1.11.).
   *(automatic-christmas-bell-b3, automatic-christmas-bell-41, automatic-christmas-bell-fe)*
+- [ ] TD-7 - **edakit-Plugin auf 0.4.13 heben:** im Claude-Code-Chat `/plugin` → Marketplace edakit aktualisieren →
+  Plugin edakit aktualisieren, dann `/reload-plugins`; in EasyEDA Pro die alte Bridge-Erweiterung deinstallieren,
+  `~/.easyeda-mcp-pro/easyeda-bridge-extension-1.6.0.eext` importieren, „External Interactions“ erlauben, EasyEDA neu
+  starten. Warum: installiert ist 8c6652c; ab 0.4.0 verweigert der Server 1.6.0 jedes Schreiben und Exportieren, wenn
+  die Erweiterung eine andere Version hat. *(automatic-christmas-bell, Recheck 1.11.)*
 
 ## Erledigt
 
