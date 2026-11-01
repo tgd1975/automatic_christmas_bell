@@ -30,13 +30,11 @@ Nächste Kennung: TD-7
   Bestückungsvorschau, Stückliste ohne Lücken, Preis) ansehen, dann bezahlen. Warum: alle fünf Platinen sind
   freigegeben, ihre Bestellaufträge lassen sich mit neuerem edakit erzeugen (geprüft am 1.11.).
   *(automatic-christmas-bell-b3, automatic-christmas-bell-41, automatic-christmas-bell-fe)*
-- [ ] TD-6 - **Vier Warnungen DOCS.derived (Anforderung nennt, wer sie aufgestellt hat) akzeptieren:** R-1, R-3, R-4
-  und R-12 nennen Entwurfsdaten statt einer Person oder Entscheidung – bis der Anforderungsvorschlag nach der
-  Bestellung die Dateien ersetzt (D-39). Warum: ohne Akzeptanz bleiben main, smd und esp32 nach D-41 NOT RELEASED, und
-  TD-4 kann nicht bestellen. *(Chat Kupferflächen)*
 
 ## Erledigt
 
+- [x] TD-6 - **Vier Warnungen DOCS.derived akzeptiert** (R-1, R-3, R-4, R-12, Grund D-39) auf main, smd und esp32 –
+  alle drei RELEASED (D-41, COMMIT). [2026-11-01]
 - [x] TD-5 - **Blanke Stellen im GND-Kupfer schließen:** ja – main, smd und esp32 mit Stitching-Vias gefüllt, M-5 neu
   (D-41, 67f0b44). [2026-11-01]
 - [x] TD-3 - **T-Display vermessen, bevor die ESP32-Platine bestellt wird:** verworfen – D-37: CE-Zeichen vorhanden,

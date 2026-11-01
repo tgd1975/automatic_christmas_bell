@@ -691,3 +691,10 @@ so the vias are tented. D-21 (4)'s acceptance is gone from main's sign-off file.
 hashes by the agent pcb-reviewer, OK with notes on looks only: a lone via dot in the open field at (55.25, 25.00) on
 main (one under the Nano would be hidden), seven vias within 8 mm around START on esp32 (three new) – both replace
 bare patches that showed more.
+
+The gate runs stayed NOT RELEASED on DOCS.derived (requirement names who stated it), which the plugin update brought:
+R-1, R-3, R-4 and R-12 of D-32's files name design data as their source, as D-39 expected. Owner's decision (TD-6):
+accept the four on main, smd and esp32 with D-39's reason, until the requirements proposal replaces those files after
+the order; tht and esp32tht get the same entry at their next gate. Release runs of 2026-11-01, all RELEASED with the
+fab hashes M-5 reviewed: main 20261101-142527, smd 20261101-142626, esp32 20261101-142730 (superseding -005804,
+-005512, -005656); tht -005606 and esp32tht -005734 unchanged.

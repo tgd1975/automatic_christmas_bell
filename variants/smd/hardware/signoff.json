@@ -129,6 +129,13 @@
       "by": "owner",
       "date": "2026-10-30",
       "converted_from": "L-17 smd TOP: silkscreen inside the board outline*"
+    },
+    {
+      "match": "DOCS.derived R-*: names nobody who stated it*",
+      "scope": "decision",
+      "reason": "D-39: R-1, R-3, R-4 and R-12 of D-32's files name design data as their source – the accepted requirements proposal replaces those files after the order",
+      "by": "owner",
+      "date": "2026-11-01"
     }
   ]
 }
