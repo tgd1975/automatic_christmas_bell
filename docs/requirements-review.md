@@ -113,23 +113,12 @@ bell and the tree have one, so the bell's file becomes the example that others c
   0.7 A, 3.8 V) belong to the designer, in sim.json and the graph's notes with the requirement's ID. They reach the
   requirement as evidence (`rows`). The example in 10.4 changes with it: led-bar's R-1 becomes "runs from a laptop's
   USB port with all eight LEDs on".
-- **C (forward and reverse).** Two cases, which the agent names at the start of its inventory:
-  - **Forward:** a maker says from the start what they want. The requirements are what they state, and nothing else.
-  - **Reverse:** only a design exists, a Fritzing file, an older board, a finished project like the bell. Then the
-    agent has to infer from the circuit what the thing is. It reads what people said first: the README, the lines of
-    the decision log where the owner decided or wished something, the user's words. A decision Claude took is design,
-    unless the owner made it theirs. Then it reads the circuit and lifts its parts to their purpose at the device's
-    boundary: what a person sees, presses, plugs in and hears. Five LEDs with their colours become "a countdown on
-    5 LEDs, 2 green, 2 yellow, 1 red"; a three-pin header with a PWM pin becomes "a servo is driven".
-  - **The filter in the reverse case:** would the user or the maker notice if it were different? The LED colours,
-    yes. A series resistor's 330 Ω only through the brightness, so the candidate is the brightness, not the value.
-    The derating, never. Where the answer is unclear, the candidate goes to the owner as a question.
-  - **Marked as inferred:** each such candidate says where in the circuit it was found ("inferred from the graph:
-    LED1–LED5, colours from their parts") and stays a draft until the owner confirms or corrects it. Its `source` then
-    names the owner and the date. The LED order and "a jam must do no harm" are such candidates in the bell.
-  - **Excluded in both cases:** what edakit's catalog checks on every board, and what the pipeline computes
-    (simulated values, check results). sim.json, the protocols and `edakit sim --json` are sources of evidence only,
-    read after the candidates exist.
+- **C (forward and reverse).** Forward, a maker says from the start what they want: the requirements are what they
+  state. Reverse, only a circuit exists (a Fritzing file, a finished project like the bell): the agent reads first
+  what people said (README, the owner's decisions), then infers from the circuit what the thing is – what a person
+  sees, presses, plugs in, hears. The test: would anyone notice if it were different? LED colours yes, the 330 Ω of a
+  series resistor no, the derating never. An inferred candidate says so and waits for the owner's yes. In both cases
+  the design data serve only as evidence.
 - **D (baseline visible).** The agent lists what edakit checks on every board as "already checked by edakit", not as
   candidates. Section 11 of the protocol starts with one line for it: the catalog checks of stages G and E, passed or
   failed. That answers "what do I have edakit for?" in the protocol itself.
@@ -138,9 +127,7 @@ bell and the tree have one, so the bell's file becomes the example that others c
   person, document, need or chosen standard is derived, not stated. An inferred candidate (C, reverse) names the graph
   too, but it is a draft, and a draft only warns; once the owner confirms it, its `source` names the owner. The fields
   exist today, so the check needs nothing new from the simulation.
-- **F (the round).** No bulk yes over more than three drafts. Each draft comes with who said it, in their words; a
-  draft nobody said is not proposed. The second opinion runs after every first file, and its checklist gets "derived,
-  not stated" and "restates the catalog, M-6 or the firmware contract".
+- **F (the round).** As today; each draft only names its source in a word (README, D-9, inferred).
 - **G (pilot first).** Plan step 4.5 (the file required for every project) waits for A to F and the bell's rewritten
   file.
 
