@@ -30,14 +30,12 @@ Nächste Kennung: TD-8
   Bestückungsvorschau, Stückliste ohne Lücken, Preis) ansehen, dann bezahlen. Warum: alle fünf Platinen sind
   freigegeben, ihre Bestellaufträge lassen sich mit neuerem edakit erzeugen (geprüft am 1.11.).
   *(automatic-christmas-bell-b3, automatic-christmas-bell-41, automatic-christmas-bell-fe)*
-- [ ] TD-7 - **edakit-Plugin auf 0.4.13 heben:** im Claude-Code-Chat `/plugin` → Marketplace edakit aktualisieren →
-  Plugin edakit aktualisieren, dann `/reload-plugins`; in EasyEDA Pro die alte Bridge-Erweiterung deinstallieren,
-  `~/.easyeda-mcp-pro/easyeda-bridge-extension-1.6.0.eext` importieren, „External Interactions“ erlauben, EasyEDA neu
-  starten. Warum: installiert ist 8c6652c; ab 0.4.0 verweigert der Server 1.6.0 jedes Schreiben und Exportieren, wenn
-  die Erweiterung eine andere Version hat. *(automatic-christmas-bell, Recheck 1.11.)*
 
 ## Erledigt
 
+- [x] TD-7 - **edakit-Plugin auf 0.4.14 gehoben:** user- und Projekt-Eintrag 0.4.14, Bridge-Erweiterung 1.6.0 =
+  Server 1.6.0 (edakit doctor); der Klon über SSH ging nicht (kein GitHub-Schlüssel) – git leitet
+  `git@github.com:tgd1975/` jetzt auf HTTPS um. [2026-11-01]
 - [x] TD-6 - **Vier Warnungen DOCS.derived akzeptiert** (R-1, R-3, R-4, R-12, Grund D-39) auf main, smd und esp32 –
   alle drei RELEASED (D-41, 1fa3ba8). [2026-11-01]
 - [x] TD-5 - **Blanke Stellen im GND-Kupfer schließen:** ja – main, smd und esp32 mit Stitching-Vias gefüllt, M-5 neu
