@@ -40,3 +40,7 @@ the project does meanwhile.
 Not gaps, for edakit's own documents: its README says the circuit as TOML has no real project yet and "the Christmas
 bell keeps its JSON graph", and that own footprints as data are "built offline only" – the bell has both since D-25
 and D-30.
+10. **Requirements restate the catalog.** The bell's file (D-32) has 20 requirements; eight and a half only say that
+    catalog checks pass (R-1 supply voltage, R-6 derating, …), one restates M-6, and most of the rest are the maker's
+    wishes written as circuit values. Causes and proposals A to F (baseline, the maker's words, wish before evidence,
+    a check DOCS.baseline, the round, pilot before plan step 4.5): docs/requirements-review.md.
