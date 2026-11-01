@@ -34,7 +34,7 @@ Nächste Kennung: TD-7
 ## Erledigt
 
 - [x] TD-6 - **Vier Warnungen DOCS.derived akzeptiert** (R-1, R-3, R-4, R-12, Grund D-39) auf main, smd und esp32 –
-  alle drei RELEASED (D-41, COMMIT). [2026-11-01]
+  alle drei RELEASED (D-41, 1fa3ba8). [2026-11-01]
 - [x] TD-5 - **Blanke Stellen im GND-Kupfer schließen:** ja – main, smd und esp32 mit Stitching-Vias gefüllt, M-5 neu
   (D-41, 67f0b44). [2026-11-01]
 - [x] TD-3 - **T-Display vermessen, bevor die ESP32-Platine bestellt wird:** verworfen – D-37: CE-Zeichen vorhanden,
