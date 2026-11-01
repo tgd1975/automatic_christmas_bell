@@ -45,6 +45,7 @@ automatic_christmas_bell/
 ├── variants/              # Platinen smd, tht, esp32, esp32tht; Bestellen: variants/README.md
 ├── docs/
 │   ├── decisions.md       # Entscheidungen D-1 …
+│   ├── organisation.md    # Was wo liegt und wer es pflegt
 │   └── old/               # Historie: IMPLEMENTIERUNG.md, Fritzing
 │       ├── weihnachtsglocke.fzz
 │       ├── weihnachtsglocke_Schaltplan.png

@@ -46,6 +46,8 @@
 - `README.md` – Anwendung im Fokus (kurz, prägnant)
 - `docs/` – Detaillierte Implementierung
 - `LIZENZ` – Lizenzinformationen
+- Was Dokumentation ist, was Quelle, was erzeugt – und was ein Review der Dokumentation ändern darf:
+  `docs/organisation.md`
 
 ---
 
@@ -65,9 +67,10 @@ automatic_christmas_bell/
 ├── .gitignore
 └── docs/
     ├── decisions.md    # Entscheidungen D-1 …
+    ├── organisation.md # was wo liegt, wer es pflegt, was ein Doku-Review ändern darf
     └── old/            # Historie: IMPLEMENTIERUNG.md, Fritzing
 ```
 
 ---
 
-*Letzte Aktualisierung: 31. Oktober 2026*
+*Letzte Aktualisierung: 1. November 2026*
