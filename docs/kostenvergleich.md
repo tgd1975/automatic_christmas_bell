@@ -2,8 +2,8 @@
 
 Was die fünf Platinen bei JLCPCB, Eurocircuits, AISLER und PCBWay kosten: je 5 Stück, die unbestückten THT-Platinen
 (tht, esp32tht) und die bestückten SMD-Platinen (main, smd, esp32) samt den Teilen, die von Hand gelötet werden.
-Die Preise wurden am 1.11.2026 zwischen 19:15 und 20:00 Uhr in den Angebotsformularen der Hersteller abgelesen, mit
-den Fertigungsdateien der aktuellen Releases. Nichts wurde in einen Warenkorb gelegt oder bestellt.
+Die Preise wurden am 1.11.2026 zwischen 19:15 und 20:00 Uhr (PCBWay danach) in den Angebotsformularen der Hersteller
+abgelesen, mit den Fertigungsdateien der aktuellen Releases. Nichts wurde in einen Warenkorb gelegt oder bestellt.
 
 Umrechnung: 1 USD = 0,8951 € (EZB-Referenzkurs 30.10.2026, `[cost] rates`). „Netto“ heißt ohne Umsatzsteuer, für
 Österreich kommen 20 % dazu.
@@ -12,19 +12,22 @@ Umrechnung: 1 USD = 0,8951 € (EZB-Referenzkurs 30.10.2026, `[cost] rates`). �
 
 | Platine (5 Stück) | JLCPCB | Eurocircuits | AISLER | PCBWay |
 |---|---|---|---|---|
-| tht, unbestückt | **4,65 €** (5,20 USD) | 82,60 € | 33,07 € (6 Stück) | nicht abgefragt |
-| esp32tht, unbestückt | **4,65 €** (5,20 USD) | wie tht (nicht einzeln abgefragt) | wie tht (nicht einzeln abgefragt) | nicht abgefragt |
-| main, bestückt | **21,74 €** (24,29 USD) | 234,55 € **ohne Bauteile** | nicht abgefragt | nicht abgefragt |
-| smd, bestückt | **31,66 €** (35,37 USD) | 295,05 € **ohne Bauteile** | 393,14 € ohne die Taster | nicht abgefragt |
-| esp32, bestückt | **34,58 €** (38,63 USD) | nicht abgefragt | nicht abgefragt | nicht abgefragt |
+| tht, unbestückt | **4,65 €** (5,20 USD) | 82,60 € | 33,07 € (6 Stück) | 5,82 € (6,50 USD) |
+| esp32tht, unbestückt | **4,65 €** (5,20 USD) | wie tht (nicht einzeln abgefragt) | wie tht (nicht einzeln abgefragt) | wie tht (Größe ist der einzige Eingabewert) |
+| main, bestückt | **21,74 €** (24,29 USD) | 234,55 € **ohne Bauteile** | nicht abgefragt | 31,78 € (35,50 USD) **ohne Bauteile** |
+| smd, bestückt | **31,66 €** (35,37 USD) | 295,05 € **ohne Bauteile** | 393,14 € ohne die Taster | 31,78 € (35,50 USD) **ohne Bauteile** |
+| esp32, bestückt | **34,58 €** (38,63 USD) | nicht abgefragt | nicht abgefragt | wie smd (gleiche Teilezahlen) **ohne Bauteile** |
 
 Alle Beträge netto, ohne Versand.
 
-**JLCPCB ist bei jeder Platine um den Faktor 7 bis 18 günstiger.** Die europäischen Hersteller scheitern schon an der
-Stückliste: Sie ist auf LCSC/JLCPCB zugeschnitten (KENTO-LEDs, Honor-Elko, hanxia-Stiftleiste, Hroparts-Taster).
-Eurocircuits findet für keines dieser Teile einen Preis, AISLER bekommt die Taster nicht, und beide verlangen für die
-Bestückung allein ein Vielfaches des gesamten JLCPCB-Preises. Ein Wechsel zu einem europäischen Hersteller wäre nur mit
-einer anderen Stückliste sinnvoll, und auch dann bliebe die Bestückung deutlich teurer.
+**JLCPCB ist am günstigsten und das einzige vollständige Angebot.** PCBWay liegt dank Aktionspreis für die
+Bestückung (29 USD statt 102–115 USD) und Frachtrabatt nahe dran, nennt aber die Bauteilkosten erst nach der Prüfung
+durch seine Ingenieure. Schon ohne Bauteile ist main dort um 10 € teurer als bei JLCPCB mit allem. Die europäischen
+Hersteller sind 7- bis 18-mal so teuer und scheitern schon an der Stückliste: Sie ist auf LCSC/JLCPCB zugeschnitten
+(KENTO-LEDs, Honor-Elko, hanxia-Stiftleiste, Hroparts-Taster). Eurocircuits findet für keines dieser Teile einen
+Preis, AISLER bekommt die Taster nicht, und beide verlangen allein für die Bestückung ein Vielfaches des gesamten
+JLCPCB-Preises. Ein Wechsel nach Europa wäre nur mit einer anderen Stückliste sinnvoll, und auch dann bliebe die
+Bestückung deutlich teurer.
 
 ## Gesamtkosten bei JLCPCB, Handlötteile eingeschlossen
 
@@ -114,12 +117,29 @@ bestückt). Konfiguration: 1,6 mm, HASL Lead Free, 35 µm, grün/weiß.
 - Den Versand zeigt AISLER erst nach „Continue to Checkout“. Die Seite rechnet mit 19 % Umsatzsteuer, für Österreich
   wären es 20 %: tht 39,68 €, smd 471,77 € brutto.
 
-### PCBWay
+### PCBWay (China)
 
-Nicht abgefragt: Claude in Chrome darf pcbway.com nicht öffnen („Navigation to this domain is not allowed“).
-Außerdem nennt PCBWay laut edakit-Profil den Bestückungspreis online ohne Bauteile; diese bepreisen erst die Ingenieure
-nach der Prüfung der Dateien (1–2 Tage), und die Dateien gehen erst nach der Erklärung „Agree“ im Namen des
-Bestellers hoch. Eine vollständige Zahl für die bestückten Platinen gibt es dort also ohnehin nicht sofort.
+Formular pcbway.com/orderonline.aspx, nicht angemeldet, ohne Dateien (PCBWay nimmt sie erst im Warenkorb). Eingaben:
+85 × 56 mm, 5 Stück, 2 Lagen, FR-4, 1,6 mm, grün/weiß, HASL lead free, 1 oz, „Remove product No.: Yes“.
+
+- **Unbestückt: 6,50 USD** = 5,00 USD + 1,50 USD für das Entfernen der Produktnummer (mit „No“: 5,00 USD). Bauzeit
+  24 Stunden. Da das Formular ohne Dateien nur die Größe kennt, gilt der Preis für tht und esp32tht.
+- **Bestückt** (Turnkey, Einzelplatinen, Oberseite, 5 Stück): Bestückung **29,00 USD**, ein Aktionspreis; der
+  Listenpreis steht durchgestrichen daneben, 115,38 USD bei smd (9 Teilearten, 18 SMD-Teile), 102,19 USD bei main
+  (4 Teilearten, 11 SMD-Teile). esp32 hat dieselben Teilezahlen wie smd. Mit der Platine 35,50 USD.
+- **Bauteile fehlen in jedem Angebot.** PCBWay kauft sie nach Herstellernummer und bepreist sie erst, wenn die
+  Ingenieure die Dateien geprüft haben (1–2 Tage). Die Dateien gehen erst im Warenkorb hoch, nach der Erklärung
+  „Agree“ (Exportkontrolle) im Namen des Bestellers. Ob PCBWay die LCSC-spezifischen Teile bekommt, ist offen.
+- **Versand nach Österreich:**
+
+  | Versandart | unbestückt (0,08 kg) | bestückt (0,58 kg) | Lieferzeit |
+  |---|---|---|---|
+  | DHL | 26,48 € (29,58 USD) | 29,68 € (33,16 USD) | 3–5 Werktage |
+  | FedEx ICP | 22,35 € (24,97 USD) | 28,82 € (32,20 USD) | 4–6 Werktage |
+  | Global Direct | 4,98 € (5,56 USD) | 9,72 € (10,86 USD) | 6–10 Werktage |
+
+  Mit Bestückung zieht PCBWay bis zu 30 USD von der Fracht ab („Order discount“). main mit DHL nach Österreich:
+  6,50 + 29,00 + 33,16 − 30,00 = **38,66 USD ohne Bauteile** und ohne Umsatzsteuer.
 
 ## Was die Abfrage gekostet hat
 
