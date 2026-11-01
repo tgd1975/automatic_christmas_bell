@@ -623,4 +623,6 @@ The owner's answers to the open points of D-38:
   (https://github.com/tgd1975/edakit/issues/97), #98 (https://github.com/tgd1975/edakit/issues/98). #97 accepted,
   built in #89 (features/proposals, not merged yet); #98 asked back – the owner's answer "1a 2a 3a, rest ok": a given
   `source` is judged by itself, `from` only without one; "stated" recognised positively (N-…, D-…, a repository file
-  that is not design data, a date); built in #96 after #89.
+  that is not design data, a date); accepted, built as DOCS.derived in #96 (rules/proposals), merged after #89 – run
+  on the bell at 2aec3c5 it warns on exactly R-1, R-3, R-4 and R-12 of D-32's files. After the merge and the plugin
+  update: `edakit: DOCS.derived`; those four warn until the proposal replaces the files after the order.
