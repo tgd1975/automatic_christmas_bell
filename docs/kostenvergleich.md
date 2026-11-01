@@ -50,9 +50,9 @@ Angebotsformular):
 | EuroPacket | 11,79 € (13,17 USD) | 12,93 € (14,45 USD) | 5–8 Werktage |
 | Global Standard Direct Line | 6,27 € (7,00 USD) | 7,27 € (8,12 USD) | 10–12 Werktage |
 
-Die bestückten Platinen wiegen laut JLCPCB 0,41–0,44 kg je 5 Stück. Den Versand für dieses Gewicht zeigt JLCPCB erst
-im Warenkorb; DHL Express kostete bis 0,28 kg gleich viel. Für LCSC kommt ein eigener Versand dazu, der nicht
-abgefragt wurde.
+Die bestückten Platinen wiegen laut JLCPCB 0,41–0,44 kg je 5 Stück. Für 0,42 kg (abgefragt mit der pytree-Platine am
+selben Abend) nennt das Formular: DHL Express 20,98 € (23,44 USD), EuroPacket 15,23 € (17,01 USD), Global Standard
+Direct Line 9,01 € (10,07 USD). Für LCSC kommt ein eigener Versand dazu, der nicht abgefragt wurde.
 
 Die Module (Arduino Nano, LILYGO T-Display) sind nirgends eingerechnet.
 
