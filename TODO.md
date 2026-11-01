@@ -13,7 +13,7 @@ Datum ans Ende, nach „## Erledigt“ am Ende verschieben, neueste zuerst – d
 die Zeile schrieb. Keine Zeile wird gelöscht. Überschriften gruppieren offene Todos; ist unter einer keines mehr offen,
 gehen Überschrift und Text, bis das nächste dazukommt.
 
-Nächste Kennung: TD-5
+Nächste Kennung: TD-6
 
 ## Für dich
 
@@ -30,6 +30,10 @@ Nächste Kennung: TD-5
   Bestückungsvorschau, Stückliste ohne Lücken, Preis) ansehen, dann bezahlen. Warum: alle fünf Platinen sind
   freigegeben, ihre Bestellaufträge lassen sich mit neuerem edakit erzeugen (geprüft am 1.11.).
   *(automatic-christmas-bell-b3, automatic-christmas-bell-41, automatic-christmas-bell-fe)*
+- [ ] TD-5 - **Vor der Bestellung entscheiden: blanke Stellen im GND-Kupfer schließen?** main oben 540 mm², smd oben
+  114 mm², esp32 oben und unten 42 mm² – Masseinseln, die EasyEDA verworfen hat; `stitch` in `[[pours]]` setzt je ein
+  Via zur Gegenseite, danach Gate und M-5 (Layout-Freigabe) neu für die drei. Warum: Optik – D-21 (4) hat main nur
+  akzeptiert, weil Schließen damals Neu-Routen hieß. *(Chat Kupferflächen)*
 
 ## Erledigt
 
