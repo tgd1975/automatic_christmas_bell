@@ -620,4 +620,7 @@ The owner's answers to the open points of D-38:
 - **To edakit:** the proposals A to G of docs/requirements-review.md go to edakit – A, B, C, F, G and D's list
   "already checked by edakit" as one feature proposal, E as a rule proposal; D's protocol line is not proposed,
   section 1 of the protocol shows the stages' counts already. edakit: #97
-  (https://github.com/tgd1975/edakit/issues/97), #98 (https://github.com/tgd1975/edakit/issues/98).
+  (https://github.com/tgd1975/edakit/issues/97), #98 (https://github.com/tgd1975/edakit/issues/98). #97 accepted,
+  built in #89 (features/proposals, not merged yet); #98 asked back – the owner's answer "1a 2a 3a, rest ok": a given
+  `source` is judged by itself, `from` only without one; "stated" recognised positively (N-…, D-…, a repository file
+  that is not design data, a date); built in #96 after #89.
