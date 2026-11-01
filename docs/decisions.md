@@ -645,3 +645,29 @@ layers over each other. Owner's decision: propose that one picture to edakit. ed
 `board_<b>_layers`, carried by pull request #101. Checked on a copy of run 20261101-005804: 14 pictures for main, the
 new one as D-40's view, 45 grey pads – the one via is tented and stays dark. After the merge and the plugin update:
 `edakit: #99 built`, the pictures come with the bell's next gate run.
+
+## D-41 Bare spots in the GND pour closed with stitching vias on main, smd and esp32 (2026-11-01)
+
+The owner asked for the bare areas in the copper views of D-40 that should be copper. Measured on the ten
+`kupfer_<b>_<side>` views (the released Gerber files): the substrate inside the outline, opened with a 1 mm disc –
+narrower gaps are clearance between foreign copper, no pour fits there (2 × 0.25 mm clearance + 0.25 mm least width) –,
+pieces from 2 mm², the keeps of the mounting and tooling holes left out:
+
+- **main top:** 446 mm² between the Nano's pin rows, down to C1 and S1 (D-21 (4)'s 12 mm circle), 77 mm² around S1 and
+  R6, 2 × 8 mm² between S1's pads – 540 mm²
+- **smd top:** 105 mm² along the Nano's lower pin row from R8 to S1 (x 19–60, y 15–24 mm), only 3.4 mm wide; 8 mm²
+  between S1's pads
+- **esp32:** top 8 + 8 + 5 mm² around S1 and R7, bottom 21 mm² at the T-Display's lower pin row (x 39–47, y 17–20 mm)
+- esp32tht bottom 2 mm² (left as it is), tht and every other side nothing
+
+Each is a GND island walled in by other nets' tracks and pads, without a GND pad inside – EasyEDA drops such pieces
+when it fills. The other side has GND copper at each spot (84–100 %). GEO.pour warned only on main (largest circle
+12 mm, above 5 mm); smd's strip passed with its 3.4 mm circle.
+
+Owner's decisions:
+
+- **Close them before the order** (TD-5): `stitch` in `[[pours]]` (edakit handbook 7.6) fills once keeping the
+  islands, puts a via into each where the other side pours, and fills again – no new routing. esp32 gets one entry per
+  side, since `stitch` takes one layer. This ends D-21 (4)'s acceptance on main, whose reason was that closing the spot
+  meant routing again. Gate and M-5 anew for the three boards; tht and esp32tht stay as released.
+- **GEO.pour should measure the bare area too**, not only the largest circle – proposed to edakit. edakit: open
