@@ -18,10 +18,10 @@ Nächste Kennung: TD-5
   Ruhestellung und ist 1 s später abgeschaltet. Warum: bisher nur übersetzt. *(automatic-christmas-bell-41)*
 - [x] TD-3 **T-Display vermessen, bevor die ESP32-Platine bestellt wird:** Reihenabstand 22,86 mm, Raster 2,54 mm.
   Warum: das Footprint beruht auf LILYGOs Zeichnungen (D-13). *(automatic-christmas-bell-41)*
-- [ ] TD-4 **Bestellen mit dem Skill cart:** in Claude Code im Repo „bestell die Platinen“ – füllt JLCPCBs Formular je
-  Board aus den Schlüsseln (Remove Mark, Österreich, DHL Express) und hält am Warenkorb; Vorschau ansehen (M-2), bei
-  esp32tht (ESP32 THT) besonders: sie hat keinen `JLCJLCJLCJLC`-Platzhalter, eine Bestellnummer stünde sichtbar oben.
-  Bezahlen machst du. Die Fertigungsdateien liegen nicht im Repo (D-22); läuft eine Platine:
-  `make publish-built TAG=<tag>`. Ersetzt die alte Zeile mit `make publish` und „Specify Position“, das es bei JLCPCB
-  nicht mehr gibt. Braucht das aktuelle edakit-Plugin (Todo in edakit/TODO.md). *(automatic-christmas-bell-b3,
-  automatic-christmas-bell-41, automatic-christmas-bell-fe)*
+- [ ] TD-4 **Platinen bestellen:** vorher das edakit-Plugin aktualisieren (Zeile in edakit/TODO.md) – mit dem
+  installierten 868e942 bricht `edakit cart prepare` an M-6 (regulatorische Prüfung) ab. Dann in Chrome bei JLCPCB
+  anmelden, in einem Profil ohne gespeicherte Karte, und in Claude Code im Repo „bestell die Platinen“ sagen: der
+  Skill cart füllt das Formular je Platine und hält am Warenkorb. Bei JLCPCB M-2 (Prüfung vor dem Bezahlen:
+  Bestückungsvorschau, Stückliste ohne Lücken, Preis) ansehen, dann bezahlen. Warum: alle fünf Platinen sind
+  freigegeben, ihre Bestellaufträge lassen sich mit neuerem edakit erzeugen (geprüft am 1.11.).
+  *(automatic-christmas-bell-b3, automatic-christmas-bell-41, automatic-christmas-bell-fe)*
