@@ -38,6 +38,6 @@ Nächste Kennung: TD-7
 ## Erledigt
 
 - [x] TD-5 - **Blanke Stellen im GND-Kupfer schließen:** ja – main, smd und esp32 mit Stitching-Vias gefüllt, M-5 neu
-  (D-41). [2026-11-01]
+  (D-41, 67f0b44). [2026-11-01]
 - [x] TD-3 - **T-Display vermessen, bevor die ESP32-Platine bestellt wird:** verworfen – D-37: CE-Zeichen vorhanden,
   kein Vermessen; das Footprint bleibt bei LILYGOs Zeichnungen (D-13) (bdc3678). [2026-11-01]
