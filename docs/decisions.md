@@ -626,3 +626,18 @@ The owner's answers to the open points of D-38:
   that is not design data, a date); accepted, built as DOCS.derived in #96 (rules/proposals), merged after #89 – run
   on the bell at 2aec3c5 it warns on exactly R-1, R-3, R-4 and R-12 of D-32's files. After the merge and the plugin
   update: `edakit: DOCS.derived`; those four warn until the proposal replaces the files after the order.
+
+## D-40 Board views from the released Gerber files; the overlay proposed to edakit (2026-11-01)
+
+The owner asked for the pictures of the released state in build/, then for "the views where I see the copper pours"
+and for the view of the EasyEDA editor (both copper layers over each other). The bell rendered them itself from each
+board's released Gerber zip (gerbonara, Inkscape for the PNG) into build/publish/bilder-2026-11-01/ – build output
+(D-22), the scripts are not in the repository: per board `kupfer_<b>_top|bottom` (the copper of one side on the board
+shape), `ansicht_<b>_top|bottom` (green mask, the copper lighter beneath it), `editor_<b>` (the editor's colours:
+bottom blue, top red, silkscreen yellow, through-hole pads grey), each SVG and PNG.
+
+edakit main draws most of it already (741cc9a, after the bell's runs with bc44fa7): every gate run with stage F puts
+the board as made, top and bottom, and every layer and drill file on its own into `<run>/pictures/`, and `release
+publish` takes them along – 13 pictures for main, drawn by edakit 702a4f4 on a copy of run 20261101-005804. The bell's
+current runs have none; they come with the next gate after the plugin update. Missing is only the editor's view, all
+layers over each other. Owner's decision: propose that one picture to edakit. edakit: open
