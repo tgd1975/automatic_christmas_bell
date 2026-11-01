@@ -34,6 +34,7 @@ automatic_christmas_bell/
 ├── src/
 │   └── firmware/
 │       └── buttons.ino     # Arduino-Sketch
+├── TODO.md                # Schritte, die nur der Besitzer tun kann
 ├── platformio.ini         # PlatformIO-Konfiguration
 ├── Makefile               # Arduino CLI; make publish = Fertigungsdateien veröffentlichen
 ├── tools/
