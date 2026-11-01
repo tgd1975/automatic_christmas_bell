@@ -133,9 +133,17 @@ rect = [64.2, 47.2, 65.8, 48.8]
 POWER = { width_mil = 30, nets = ["+5V"] }
 GND = { width_mil = 30, nets = ["GND"] }
 
+# GND islands walled in by other nets' tracks hold no GND pad, and EasyEDA drops them – bare spots on both sides.
+# stitch takes one layer per entry: one entry per side, each island gets a via to the other side's pour (D-41)
 [[pours]]
 net = "GND"
-layers = ["TOP", "BOTTOM"]
+layers = ["TOP"]
+stitch = "TOP"
+
+[[pours]]
+net = "GND"
+layers = ["BOTTOM"]
+stitch = "BOTTOM"
 
 [silk]
 designators = "top"

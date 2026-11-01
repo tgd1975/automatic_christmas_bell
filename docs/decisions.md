@@ -671,4 +671,23 @@ Owner's decisions:
   side, since `stitch` takes one layer. This ends D-21 (4)'s acceptance on main, whose reason was that closing the spot
   meant routing again. Gate and M-5 anew for the three boards; tht and esp32tht stay as released.
 - **GEO.pour should measure the bare area too**, not only the largest circle – proposed to edakit. edakit: #103
-  (https://github.com/tgd1975/edakit/issues/103)
+  (https://github.com/tgd1975/edakit/issues/103), accepted as an extension of GEO.pour (`[copper] max_bare_mm2`,
+  20 mm²), built in 9aad156 on rules/proposals after #102 was merged – no pull request carries it yet. After the merge
+  and the plugin update: `edakit: GEO.pour`.
+
+Done with edakit 8c6652c and EasyEDA Pro 3.2.209 (`route read`, `pours`, `reload`, `drc` – no new routing), DRC 0 on
+all three; gate runs main 20261101-125907, smd 20261101-130140, esp32 20261101-130240:
+
+| Board | Islands stitched | Copper added | Copper on the side |
+|---|---|---|---|
+| main | 4 vias, top | 494 mm² top | top 75 → 86 % |
+| smd | 2 vias, top | 87 mm² top | top 83.5 → 85.3 % |
+| esp32 | 3 vias top, 1 bottom | 15 mm² top, 19 mm² bottom | top 86.9 → 87.3 %, bottom 90.4 → 90.8 % |
+
+Measured again on the runs' pictures: nothing bare from 2 mm² but the hole keeps, the Nano's mounting holes and on
+esp32's bottom a 3.6 mm² gap between two tracks where no pour fits. `edakit fab diff` against the M-5-reviewed runs:
+only the top and bottom copper and the via drills changed – mask, silk, paste, outline, BOM, CPL and order.json equal,
+so the vias are tented. D-21 (4)'s acceptance is gone from main's sign-off file. M-5 signed anew on the three new fab
+hashes by the agent pcb-reviewer, OK with notes on looks only: a lone via dot in the open field at (55.25, 25.00) on
+main (one under the Nano would be hidden), seven vias within 8 mm around START on esp32 (three new) – both replace
+bare patches that showed more.

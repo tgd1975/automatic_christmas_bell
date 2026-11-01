@@ -3,7 +3,7 @@
   "state_sha256": "a8a4db484ef6b55fefc82ecc46b13b556b1cf453da05d4dda0c76a07eeb4afb3",
   "electrical_sha256": "4024ed6b5d036229a049cb91c6018d1a86e7c987219f1f187079f823357cdb1e",
   "layout_sha256": "dc785647946b99be7fe5f0023596a2813bd0559c27f9e8ef858dfcbf5f25c1d5",
-  "fab_sha256": "d1875bf708c0c9cfb8ea2608c44bae629e9a9cc5d584833ae430a86831b60b86",
+  "fab_sha256": "9bd3c784c2f78098095ce787b1a1e21a52d20cba4e777a36213dcfe44bd578b0",
   "manual": [
     {
       "id": "M-1",
@@ -21,7 +21,7 @@
       "text": "Layout reviewed independently (manufacturability; mechanics: USB at the edge; operation of the buttons; looks of the LED row) on the manufacturing files of a gate run – e.g. by the agent pcb-reviewer",
       "done_by": "agent pcb-reviewer (Claude, independent session)",
       "date": "2026-11-01",
-      "note": "M-5: OK for fab hash d1875bf7… (gate run 20261101-003727, edakit bc44fa7). Against the reviewed 4e79e5c0… (20261030-232631), edakit fab diff shows only the top silkscreen without the JLCJLCJLCJLC placeholder under U1 (−3.416 mm², y 27.5–28.6 mm, D-27) and the new order.json; copper, mask, paste, outline, drills, BOM and CPL are equal. Order: JLCPCB, 2 layers, 1.6 mm, green/white, LeadFree HASL, Remove Mark, Economic PCBA top with the 2 × Ø1.152 mm tooling holes at (3.5, 45)/(81.5, 20), mask open and copper-free. Stage L warnings only D-21 (C1, S1, S2, U1 print 0.4 mm beyond the left edge). Notes for the next layout change: hand_solder_keep_mm 0.5 and [looks] as on esp32tht."
+      "note": "M-5: OK for fab hash 9bd3c784… (gate run 20261101-130140, edakit 8c6652c). Against the reviewed d1875bf7… (20261101-003727), edakit fab diff shows the GND stitch of D-41 on top only: +87 mm² in two GND islands – 81 mm² along the Nano's lower pin row from R8 to S1 (x 18.8–59.7, y 15.2–23.7) and 6.3 mm² between S1's lower pads – and two vias Ø0.305/0.61 mm (ring 0.152 mm, tented, mask layers equal) at (31.49, 22.40) under U1 and (57.55, 7.72); bottom copper, silk, mask, paste, outline, NPTH, BOM, CPL and order.json equal (EasyEDA Pro 3.2.209). From the Gerber files: islands 0.255 mm from foreign copper, no neck under 0.3 mm, no corner under 60°, nothing loose; the via under U1 1.23 mm from the joints U1.26/U1.27 on the solder side, the other 1.0 mm from S1.1; top copper 83.5 → 85.3 %, bare only the tooling- and mounting-hole keeps. Order unchanged: JLCPCB, 2 layers, 1.6 mm, green/white, LeadFree HASL, Remove Mark, Economic PCBA top with the 2 × Ø1.152 mm tooling holes at (3.5, 45)/(81.5, 20), mask open and copper-free. Stage L warnings only D-21 (C1, S1, S2, U1 print 0.4 mm beyond the left edge). Notes for the next layout change: hand_solder_keep_mm 0.5 and [looks] as on esp32tht."
     },
     {
       "id": "M-6",
