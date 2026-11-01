@@ -604,3 +604,18 @@ same day:
 
 Open: when the proposal replaces the files of D-32 – after the order is recommended, because the circuit hash changes
 (five gate runs, M-1 and M-6 anew) –, and whether the proposals A to G of docs/requirements-review.md go to edakit.
+
+## D-39 The requirements proposal accepted; it replaces D-32's files after the order (2026-11-01)
+
+The owner's answers to the open points of D-38:
+
+- **All entries accepted:** the rest of docs/requirements-proposal.toml too – R-10, R-14, R-15, R-16, R-21, R-36,
+  N-8, N-9 and N-10. All 10 needs and 11 requirements are `accepted`.
+- **After the order:** the proposal replaces hardware/requirements.toml, hardware/requirements_nano.toml and
+  variants/esp32/hardware/requirements.toml only after the five boards are ordered. Then: the two new files
+  hardware/requirements_smd.toml and hardware/requirements_tht.toml, the `requirements` key of every edakit.toml
+  (main shared + nano; smd shared + nano + smd; tht shared + nano + tht; esp32 shared + esp32 + smd; esp32tht shared +
+  esp32 + tht), the 17 derived entries of D-32 and N-4 as `dropped` with the reasons at the end of the proposal, and
+  M-1 and M-6 signed anew on all five boards. Until then the files of D-32 stay as released.
+- **To edakit:** the proposals A to G of docs/requirements-review.md go to edakit as a feature proposal (skill
+  propose-feature).

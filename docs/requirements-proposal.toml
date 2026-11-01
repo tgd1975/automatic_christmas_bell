@@ -5,7 +5,8 @@
 # The "→" lines say which file a block would go to. Each board would read the shared file, its module's file and its
 # assembly's file: main shared + nano; smd shared + nano + smd; tht shared + nano + tht; esp32 shared + esp32 + smd;
 # esp32tht shared + esp32 + tht. On adoption the old entries become `dropped` (list at the end), and M-1 and M-6 are
-# signed again. Reviewed by the owner on 2026-11-01 (D-38): the level fits, the inferred points confirmed.
+# signed again. Reviewed by the owner on 2026-11-01 (D-38) and accepted as a whole (D-39); it replaces the files of
+# D-32 after the order.
 
 # ─── → hardware/requirements.toml (all five boards) ─────────────────────────────────────────────────────────────────
 
@@ -49,7 +50,7 @@ id = "N-10"
 text = "A real bell, struck mechanically – no electronic sound."
 who = "the owner"
 source = "README.md, Anwendung (Wichtig); docs/old/IMPLEMENTIERUNG.md"
-status = "draft"
+status = "accepted"
 
 [[requirement]]
 id = "R-13"
@@ -77,7 +78,7 @@ source = "README.md, Hardware; docs/old/IMPLEMENTIERUNG.md"
 from = ["N-1"]
 binding = "must"
 verify = [{ signoff = "M-1" }, { accept = "start starts the countdown, reset stops it" }]
-status = "draft"
+status = "accepted"
 
 [[requirement]]
 id = "R-15"
@@ -87,7 +88,7 @@ from = ["N-1", "N-10"]
 binding = "must"
 verify = [{ signoff = "M-1" }, { rows = "LIM.range servo-start U1 lowest supply voltage once started*" },
           { accept = "ring now 5 times in a row: the servo swings and strikes the bell each time, nothing restarts" }]
-status = "draft"
+status = "accepted"
 
 [[requirement]]
 id = "R-16"
@@ -97,7 +98,7 @@ from = ["N-1", "N-3"]
 binding = "must"
 verify = [{ rows = "LIM.i usb-* U1 current keeps the supply on*" }, { rows = "LIM.i usb-* U1 current from the supply*" },
           { accept = "on the power bank used at Christmas: plug in, wait 10 min, press start – the bank stays on and the bell rings" }]
-status = "draft"
+status = "accepted"
 
 [[requirement]]
 id = "R-10"
@@ -106,7 +107,7 @@ source = "D-16 (owner's decision); D-32 (item 11)"
 from = ["N-3", "N-6"]
 binding = "must"
 verify = [{ signoff = "M-6" }]
-status = "draft"
+status = "accepted"
 
 [[requirement]]
 id = "R-17"
@@ -126,7 +127,7 @@ source = "README.md, Hardware; docs/old/IMPLEMENTIERUNG.md; D-11 (owner: the mic
 from = ["N-1"]
 binding = "must"
 verify = [{ signoff = "M-1" }, { accept = "the Nano plugs in and runs the countdown" }]
-status = "draft"
+status = "accepted"
 
 # ─── → variants/esp32/hardware/requirements.toml (esp32, esp32tht) ──────────────────────────────────────────────────
 
@@ -144,7 +145,7 @@ source = "D-13 (owner's choice)"
 from = ["N-7"]
 binding = "must"
 verify = [{ signoff = "M-1" }, { accept = "the T-Display plugs in; its web page answers on the home Wi-Fi or its hotspot" }]
-status = "draft"
+status = "accepted"
 
 # ─── → hardware/requirements_smd.toml (new: smd, esp32) ──────────────────────────────────────────────────────────────
 
@@ -160,7 +161,7 @@ id = "N-8"
 text = "smd LEDs, the pins as SMD if possible, the microcontroller on headers to solder yourself, the capacitor only if it does not force the more expensive assembly."
 who = "the owner (board smd)"
 source = "D-11 (owner's wish)"
-status = "draft"
+status = "accepted"
 
 [[requirement]]
 id = "R-50"
@@ -178,7 +179,7 @@ id = "N-9"
 text = "Eine Version mit ESP32 und Pins zum selber Löten."
 who = "the owner (board esp32tht)"
 source = "D-23 (owner's wish)"
-status = "draft"
+status = "accepted"
 
 [[requirement]]
 id = "R-51"
