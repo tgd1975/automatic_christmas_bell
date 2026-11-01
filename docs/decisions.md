@@ -640,4 +640,5 @@ edakit main draws most of it already (741cc9a, after the bell's runs with bc44fa
 the board as made, top and bottom, and every layer and drill file on its own into `<run>/pictures/`, and `release
 publish` takes them along – 13 pictures for main, drawn by edakit 702a4f4 on a copy of run 20261101-005804. The bell's
 current runs have none; they come with the next gate after the plugin update. Missing is only the editor's view, all
-layers over each other. Owner's decision: propose that one picture to edakit. edakit: open
+layers over each other. Owner's decision: propose that one picture to edakit. edakit: #99
+(https://github.com/tgd1975/edakit/issues/99)
