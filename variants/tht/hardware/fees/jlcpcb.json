@@ -1,0 +1,19 @@
+{
+ "assembler": "JLCPCB",
+ "currency": "USD",
+ "about": "The project's fee table for JLCPCB: values from its own orders, written by edakit cart actual; edakit cost takes per fee the value with the newest date from this table or the shipped one.",
+ "pcba": {},
+ "pcb": {
+  "qty": 5,
+  "prices": [
+   {
+    "w_mm": 85.0,
+    "h_mm": 56.0,
+    "value": 5.2,
+    "date": "2026-11-02",
+    "source": "the order at JLCPCB, 2026-11-02 (edakit cart actual)"
+   }
+  ]
+ },
+ "date": "2026-11-02"
+}
