@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# edakit for the hook and the Makefile (D-25): $EDAKIT, else edakit on the PATH, else the installed Claude Code plugin
+# edakit for the Makefile (D-25): $EDAKIT, else edakit on the PATH, else the installed Claude Code plugin
 # (its install path in ~/.claude/plugins/installed_plugins.json – it follows the plugin's updates).
 if [ -n "$EDAKIT" ]; then exec "$EDAKIT" "$@"; fi
 if command -v edakit >/dev/null 2>&1; then exec edakit "$@"; fi

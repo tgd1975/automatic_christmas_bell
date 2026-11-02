@@ -57,7 +57,7 @@ each with the same files. "Every board" below means `hardware/…` and `variants
 | [variants/esp32/firmware/](../variants/esp32/firmware/) | Code | The ESP32's firmware (esp32, esp32tht): timer, display, web page, its tests |
 | [variants/esp32/hardware/lib/tdisplay_device.py](../variants/esp32/hardware/lib/tdisplay_device.py) | Code | Rebuilds the T-Display's symbol in the EasyEDA project library – the script `tdisplay`, on command only (D-13, D-25) |
 | [Makefile](../Makefile) | Code | The Arduino CLI build, and `make publish` for the releases (D-29) |
-| [tools/edakit](../tools/edakit) | Code | Finds edakit for the hook and the Makefile (D-25) |
+| [tools/edakit](../tools/edakit) | Code | Finds edakit for the Makefile (D-25); the hook's edakit block finds it itself (`edakit hook install`) |
 | [.githooks/pre-commit](../.githooks/pre-commit) | Code | Runs each staged board's checks: check, sim, graph json – firmware and docs where the board's edakit.toml has them |
 | [LIZENZ](../LIZENZ) | – | MIT licence |
 

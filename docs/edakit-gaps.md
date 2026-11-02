@@ -10,6 +10,8 @@ the project does meanwhile.
 2. **edakit is not on the PATH, and the plugin's path changes with every version.** A hook and a Makefile need their
    own locator (tools/edakit: `$EDAKIT`, PATH, `installed_plugins.json`). A shipped hook template or `edakit hook
    install` would save every project from writing one.
+   Closed for the hook by edakit 1.0.11 (2026-11-02): `edakit hook install` writes edakit's block, which finds edakit
+   itself; the hook has no locator of its own any more. The Makefile keeps tools/edakit.
 3. **`part footprint` from a dump older than footprint data** takes the pad places only – shape, size and hole are
    missing (PARTS.footprint), and only the project's script knew them (D-30). It could read them from the copy's
    library footprint in EasyEDA, or `pcb dump` could measure them for every part, not only for those with data.

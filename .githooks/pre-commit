@@ -1,35 +1,31 @@
 #!/usr/bin/env bash
-# Pre-commit hook of the Christmas bell (edakit handbook 2.7, new-project section 4; D-25): when a board's files are
-# staged, its configuration runs edakit check, edakit sim and edakit graph json --check – with [firmware] also
-# edakit firmware --check, with [docs] edakit docs. A failing check blocks the commit; never bypass it with --no-verify.
-# Activate once per clone: git config core.hooksPath .githooks
+# Pre-commit hook of the Christmas bell (edakit handbook 2.7; D-25): edakit's block below, written and renewed by
+# `edakit hook install` – when a board's files are staged, its configuration runs edakit check, edakit sim and
+# edakit graph json --check, with [firmware] also edakit firmware --check, with [docs] edakit docs. A failing check
+# blocks the commit; never bypass it with --no-verify. Activate once per clone: edakit hook install
+# >>> edakit hook 1 >>>
+# Written by `edakit hook install`, renewed by it – the project's own steps go outside this block (handbook 2.7).
+# edakit check, sim and the other steps of each configuration whose files are staged; a failure blocks the commit.
 cd "$(git rev-parse --show-toplevel)" || exit 1
-EK=tools/edakit
-staged=$(git diff --cached --name-only)
-fail=0
-
-run() {  # label, command … – the output through cat (uv from snap prints nothing into a file), exit code kept
-  local label=$1; shift
-  out=$("$@" 2>&1 | cat; exit "${PIPESTATUS[0]}"); rc=$?
-  if [ $rc -ne 0 ]; then
-    echo "pre-commit: $label failed (exit $rc)"; echo "$out" | tail -25; fail=1
-  else
-    echo "pre-commit: $label ok"
-  fi
-}
-
-for cfg in edakit.toml variants/*/edakit.toml; do
-  dir=$(dirname "$cfg")
-  prefix=$([ "$dir" = . ] && echo "" || echo "$dir/")
-  # this board's files, or the main configuration's hardware/ that every variant reads (art, requirements)
-  if ! echo "$staged" | grep -qE "^(${prefix}edakit\.toml|${prefix}hardware/|hardware/)"; then continue; fi
-  name=$([ "$dir" = . ] && echo main || basename "$dir")
-  run "$name: edakit check" $EK check --config "$cfg"
-  run "$name: edakit sim" $EK sim --config "$cfg"
-  run "$name: edakit graph json --check" $EK graph json --check --config "$cfg"
-  if grep -q '^\[firmware\]' "$cfg"; then run "$name: edakit firmware --check" $EK firmware --check --config "$cfg"; fi
-  if grep -q '^\[docs\]' "$cfg"; then run "$name: edakit docs" $EK docs --config "$cfg"; fi
-done
-
-[ $fail -eq 0 ] || echo "pre-commit: commit blocked – fix the findings (edakit explain <code>), stage again"
-exit $fail
+ek=${EDAKIT:-}
+[ -n "$ek" ] || ek=$(command -v edakit 2>/dev/null || true)
+[ -n "$ek" ] || ek=$(python3 -c 'import json, os, sys
+base = os.environ.get("CLAUDE_CONFIG_DIR") or os.path.expanduser("~/.claude")
+try:
+    d = json.load(open(os.path.join(base, "plugins", "installed_plugins.json")))
+except (OSError, ValueError):
+    sys.exit()
+rank = {"local": 0, "project": 1, "user": 2, "managed": 3}
+mine = [e for n, es in d.get("plugins", d).items() if n.startswith("edakit@") and isinstance(es, list) for e in es
+        if e.get("projectPath") in (None, sys.argv[1])]
+if mine:
+    print(os.path.join(min(mine, key=lambda e: rank.get(e.get("scope"), 9)).get("installPath", ""), "bin", "edakit"))' "$PWD" 2>/dev/null || true)
+if [ -z "$ek" ] || [ ! -x "$ek" ]; then
+  echo "pre-commit: edakit not found – set EDAKIT=/path/to/edakit, put it on the PATH or install the Claude Code plugin"
+  exit 1
+fi
+# through cat: uv from snap prints nothing and exits 120 when its output goes into a file
+# – and safe under the project's set -euo pipefail
+rcf=$(mktemp); { "$ek" hook run 2>&1 && echo 0 >"$rcf" || echo $? >"$rcf"; } | cat; rc=$(cat "$rcf"); rm -f "$rcf"
+[ "$rc" = 0 ] || exit "$rc"
+# <<< edakit hook <<<

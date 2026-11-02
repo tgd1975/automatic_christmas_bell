@@ -61,7 +61,7 @@ automatic_christmas_bell/
 ├── src/firmware/       # Nano-Firmware (buttons.ino)
 ├── hardware/           # Graph (graph.toml), Bauteile, Anforderungen, Platine, Freigaben
 ├── variants/           # smd, tht, esp32, esp32tht – je ein edakit-Projekt
-├── tools/edakit        # findet edakit für Hook und Makefile
+├── tools/edakit        # findet edakit für das Makefile
 ├── .githooks/          # pre-commit: edakit check, sim, graph json --check
 ├── LIZENZ
 ├── .gitignore
