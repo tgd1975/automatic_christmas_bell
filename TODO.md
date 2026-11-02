@@ -23,16 +23,13 @@ Nächste Kennung: TD-8
   und Servo erst auf der Platine. Warum: bisher nur übersetzt und am Rechner getestet. *(automatic-christmas-bell-41)*
 - [ ] TD-2 - **Nano-Firmware ausprobieren:** `pio run -e nano -t upload` im Repo; nach dem Läuten fährt das Servo in
   die Ruhestellung und ist 1 s später abgeschaltet. Warum: bisher nur übersetzt. *(automatic-christmas-bell-41)*
-- [ ] TD-4 - **Platinen bestellen:** vorher das edakit-Plugin aktualisieren (Zeile in edakit/TODO.md) – mit dem
-  installierten 868e942 bricht `edakit cart prepare` an M-6 (regulatorische Prüfung) ab. Dann in Chrome bei JLCPCB
-  anmelden, in einem Profil ohne gespeicherte Karte, und in Claude Code im Repo „bestell die Platinen“ sagen: der
-  Skill cart füllt das Formular je Platine und hält am Warenkorb. Bei JLCPCB M-2 (Prüfung vor dem Bezahlen:
-  Bestückungsvorschau, Stückliste ohne Lücken, Preis) ansehen, dann bezahlen. Warum: alle fünf Platinen sind
-  freigegeben, ihre Bestellaufträge lassen sich mit neuerem edakit erzeugen (geprüft am 1.11.).
-  *(automatic-christmas-bell-b3, automatic-christmas-bell-41, automatic-christmas-bell-fe)*
 
 ## Erledigt
 
+- [x] TD-4 - **Platinen bestellt:** die zwei THT-Varianten (tht, esp32tht) unbestückt, je 5 Stück, mit pytrees Baum in
+  einer JLCPCB-Bestellung; Teile bei LCSC, mit ihr zusammengelegt (dazu 2 gekerbte 1×40-Buchsenleisten C2916940 als
+  Extra), DHL Express. Die Glocken-Platinen gingen ohne Prüfprotokoll in den Warenkorb – edakit konnte unbestückte
+  JLCPCB-Platinen erst ab 0.4.17. Hauptplatine, smd und esp32 nicht bestellt. [2026-11-02]
 - [x] TD-7 - **edakit-Plugin auf 0.4.14 gehoben:** user- und Projekt-Eintrag 0.4.14, Bridge-Erweiterung 1.6.0 =
   Server 1.6.0 (edakit doctor); der Klon über SSH ging nicht (kein GitHub-Schlüssel) – git leitet
   `git@github.com:tgd1975/` jetzt auf HTTPS um. [2026-11-01]
