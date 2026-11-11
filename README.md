@@ -92,6 +92,7 @@ automatic_christmas_bell/
 - Stromversorgung: alles über die USB-Buchse des Moduls (Powerbank oder USB-Netzteil); das Servo hängt am 5V-Pin des Moduls (D-3)
 - Platinen: Fertigungsdateien (Gerber, BOM, CPL) unter [Releases](https://github.com/tgd1975/automatic_christmas_bell/releases);
   Aufbau in [hardware/README.md](hardware/README.md) und [variants/README.md](variants/README.md)
+- **Löten Schritt für Schritt** (THT und ESP32 THT): [docs/aufbau.md](docs/aufbau.md)
 
 ### 3. Software hochladen (3 Optionen)
 

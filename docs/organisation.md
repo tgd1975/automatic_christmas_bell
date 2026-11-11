@@ -30,6 +30,7 @@ each with the same files. "Every board" below means `hardware/…` and `variants
 | [README.md](../README.md) | Documentation | The start page, in German: use, position, flashing, the ESP32's web page, troubleshooting |
 | [hardware/README.md](../hardware/README.md) | Documentation | The main board: how it came about, its files, the commands, what the checks found |
 | [variants/README.md](../variants/README.md) | Documentation | The four variants side by side, their state and how to order them |
+| [docs/aufbau.md](aufbau.md), [docs/img/](img/) | Documentation | The build guide for the two bare boards tht and esp32tht, in German: what to solder in which order, polarity, measuring, firmware and test; the pictures are the board views of the ordered state (rev 1.0) |
 | [hardware/img/](../hardware/img/) | Documentation | Pictures of the main board for the READMEs: silkscreen, placement plan, routing |
 | [docs/organisation.md](organisation.md) | Documentation | This page |
 | [docs/decisions.md](decisions.md) | Source | The decision log D-1 …: the owner's decisions with reason and date; the notes of every release are taken from it (D-29) |
@@ -79,13 +80,13 @@ pre-commit hook fails when they differ.
 
 ## A review of the documentation
 
-- **Changes:** the files of kind documentation above – README.md, hardware/README.md, variants/README.md and this
-  page – outside the quoted values. A new document in `docs/` is a source unless it is listed here as documentation.
+- **Changes:** the files of kind documentation above – README.md, hardware/README.md, variants/README.md,
+  docs/aufbau.md and this page – outside the quoted values. A new document in `docs/` is a source unless it is listed here as documentation.
 - **Reads:** everything else, the design data above all: a claim that can be checked is checked against the graph,
   the parts entries, the simulation, the edakit.toml files, the firmware and the decisions. What is wrong in a source,
   in design data, in a record or in a generated file goes to the owner as a finding with its path and line; it is
   fixed in its place, by its role, on the owner's word.
 - **Decisions are a record.** A review reads docs/decisions.md and never rewrites it, not even its wording.
-- **Language:** README.md, AGENTS.md and TODO.md are German, everything else is English; a review keeps each file's language.
+- **Language:** README.md, docs/aufbau.md, AGENTS.md and TODO.md are German, everything else is English; a review keeps each file's language.
   A correct sentence stays as it is.
 - **Not legal advice:** content on M-6, CE, RoHS or radio (D-36) says once that it is support, not legal advice.

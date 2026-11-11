@@ -67,6 +67,7 @@ automatic_christmas_bell/
 ├── .gitignore
 └── docs/
     ├── decisions.md    # Entscheidungen D-1 …
+    ├── aufbau.md       # Bauanleitung der THT-Platinen (tht, esp32tht), Bilder in img/
     ├── organisation.md # was wo liegt, wer es pflegt, was ein Doku-Review ändern darf
     └── old/            # Historie: IMPLEMENTIERUNG.md, Fritzing
 ```
