@@ -42,8 +42,10 @@ td img { width: 84mm; margin: 0; }
 td img.ringe { display: inline; width: auto; height: 11mm; margin: 0; vertical-align: middle; }
 code { font-family: "DejaVu Sans Mono", monospace; font-size: 8.6pt; }
 pre { background: #f3f1ec; padding: 2mm 3mm; font-size: 8.4pt; white-space: pre-wrap; break-inside: avoid; }
-img { display: block; margin: 3mm auto; break-inside: avoid; }
+img { display: block; width: 105mm; margin: 3mm auto; break-inside: avoid; }
 a { color: #1f5c3a; text-decoration: none; }
+blockquote { border-left: 1.2mm solid #1f5c3a; background: #eef5ef; margin: 2mm 0 3mm; padding: 1.5mm 3mm; }
+blockquote p { margin: 0; }
 """
 
 # Farbringe: Wert in Ω → Dateiname; die Ringe aus dem Wert (3 Ziffern, Multiplikator, Toleranz 1 % = braun)
@@ -99,7 +101,126 @@ def schild(x, y, text, farbe, fs=2.4):
             f'font-size="{fs}" fill="white" text-anchor="middle">{text}</text>')
 
 
-def messbild(platine, seite, punkte, paare=(), name=""):
+LED_FARBE = {"XL-504UGD": "#2bd45a", "XL-504SYGD": "#b5e03a", "XL-504UYD": "#ffd21f", "XL-504SURD": "#ff3b30"}
+
+
+def _daten(platine):
+    v = REPO / "variants" / platine / "hardware"
+    return (json.loads((v / f"boards/{platine}.geometry.json").read_text()),
+            tomllib.loads((v / f"boards/{platine}.toml").read_text())["place"],
+            tomllib.loads((v / "graph.toml").read_text())["components"])
+
+
+def _ohm(wert):
+    z = wert.replace("Ω", "").replace(",", ".")
+    return round(float(z[:-1]) * 1000) if z.endswith("k") else round(float(z))
+
+
+def _lokal(platine, ref, x_mil, y_mil):
+    """Ein Punkt der Bauteilgeometrie (lokal, mil) in Plan-mm."""
+    _, place, _ = _daten(platine)
+    ort = place[ref]
+    x, y, r = x_mil * 0.0254, y_mil * 0.0254, math.radians(ort["rot"])
+    return ort["x"] + x * math.cos(r) - y * math.sin(r), ort["y"] + x * math.sin(r) + y * math.cos(r)
+
+
+def teile_svg(platine, mit_modul=False):
+    """Die bestückte Platine von oben, vereinfacht: jedes Teil an seinem Platz, mit Farbe und Polung."""
+    geo, place, graph = _daten(platine)
+
+    def s(x, y):
+        return x, HOEHE - y
+
+    def winkel(a, b):
+        return math.degrees(math.atan2(b[1] - a[1], b[0] - a[0]))
+
+    aus = []
+    for ref in sorted(geo, key=lambda r: (r == "U1", r)):
+        typ = graph[ref]["type"]
+        pads = {n: s(*pad(platine, ref, n)) for n in geo[ref]["pads"]}
+        if typ == "resistor":
+            a, b = pads["1"], pads["2"]
+            cx, cy, w = (a[0] + b[0]) / 2, (a[1] + b[1]) / 2, winkel(a, b)
+            gross = "1 W" in graph[ref]["part"]
+            lang, dick = (11.5, 4.5) if gross else (6.5, 2.2)
+            ringe_ = ringe_von(_ohm(graph[ref]["value"]))
+            streifen = "".join(
+                f'<rect x="{-lang / 2 + lang * f:.2f}" y="{-dick / 2:.2f}" width="{lang * 0.06:.2f}" height="{dick:.2f}" '
+                f'fill="{FARBEN[c]}"/>' for f, c in zip((0.15, 0.25, 0.35, 0.46, 0.69), ringe_))
+            aus.append(f'<line x1="{a[0]:.2f}" y1="{a[1]:.2f}" x2="{b[0]:.2f}" y2="{b[1]:.2f}" stroke="#c8c8c8" '
+                       f'stroke-width="0.55"/>'
+                       f'<g transform="translate({cx:.2f} {cy:.2f}) rotate({w:.1f})">'
+                       f'<rect x="{-lang / 2:.2f}" y="{-dick / 2:.2f}" width="{lang}" height="{dick}" rx="{dick * 0.4:.2f}" '
+                       f'fill="{KOERPER}" stroke="{RAND}" stroke-width="0.2"/>{streifen}</g>')
+        elif typ == "led":
+            kath = next(n for n, p in geo[ref]["pads"].items() if p["net"] == "GND")
+            anod = next(n for n in pads if n != kath)
+            k, a = pads[kath], pads[anod]
+            cx, cy = (k[0] + a[0]) / 2, (k[1] + a[1]) / 2
+            farbe = LED_FARBE[graph[ref]["part"]]
+            aus.append(f'<g transform="translate({cx:.2f} {cy:.2f}) rotate({winkel(a, k):.1f})">'
+                       f'<path d="M 2.4 -1.63 A 2.9 2.9 0 1 0 2.4 1.63 Z" fill="{farbe}" stroke="#333" stroke-width="0.25"/>'
+                       f'<circle r="2.45" fill="{farbe}" stroke="white" stroke-opacity="0.5" stroke-width="0.2"/>'
+                       f'<circle cx="-0.8" cy="-0.8" r="0.7" fill="white" opacity="0.55"/></g>')
+        elif typ == "button":
+            x, y = s(place[ref]["x"], place[ref]["y"])
+            aus.append(f'<rect x="{x - 3:.2f}" y="{y - 3:.2f}" width="6" height="6" rx="0.4" fill="#1b1b1b" '
+                       f'stroke="#555" stroke-width="0.2"/>'
+                       f'<circle cx="{x:.2f}" cy="{y:.2f}" r="1.75" fill="#3a3a3a" stroke="#666" stroke-width="0.2"/>')
+        elif typ == "capacitor":
+            minus = next(n for n, p in geo[ref]["pads"].items() if p["net"] == "GND")
+            plus = next(n for n in pads if n != minus)
+            m, p_ = pads[minus], pads[plus]
+            cx, cy = (m[0] + p_[0]) / 2, (m[1] + p_[1]) / 2
+            aus.append(f'<g transform="translate({cx:.2f} {cy:.2f}) rotate({winkel(p_, m):.1f})">'
+                       f'<circle r="5" fill="#1d3466" stroke="#0d1a33" stroke-width="0.3"/>'
+                       f'<path d="M 2.6 -4.27 A 5 5 0 0 1 2.6 4.27 Z" fill="#c9d3e0"/>'
+                       + "".join(f'<rect x="3.3" y="{yy - 0.15:.2f}" width="1" height="0.3" fill="#1d3466"/>'
+                                 for yy in (-2.2, 0, 2.2))
+                       + '<path d="M -2 0 L 2 0 M 0 -2 L 0 2" stroke="#8796b5" stroke-width="0.3"/></g>')
+        elif typ == "connector":
+            a, b = pads["1"], pads["3"]
+            cx, cy, w = (a[0] + b[0]) / 2, (a[1] + b[1]) / 2, winkel(a, b)
+            aus.append(f'<g transform="translate({cx:.2f} {cy:.2f}) rotate({w:.1f})">'
+                       f'<rect x="-3.81" y="-1.27" width="7.62" height="2.54" fill="#1b1b1b" stroke="#555" '
+                       f'stroke-width="0.2"/>'
+                       + "".join(f'<rect x="{xx - 0.32:.2f}" y="-0.32" width="0.64" height="0.64" fill="#d9b44a"/>'
+                                 for xx in (-2.54, 0, 2.54)) + "</g>")
+        elif typ == "module":
+            # die zwei Buchsenleisten: je Reihe ein schwarzer Balken, an jedem Kontakt eine Öffnung
+            reihen = {}
+            for n, (x, y) in pads.items():
+                reihen.setdefault(round(y, 1), []).append(x)
+            for y, xs in reihen.items():
+                aus.append(f'<rect x="{min(xs) - 1.27:.2f}" y="{y - 1.27:.2f}" width="{max(xs) - min(xs) + 2.54:.2f}" '
+                           f'height="2.54" fill="#1b1b1b" stroke="#555" stroke-width="0.2"/>'
+                           + "".join(f'<rect x="{x - 0.45:.2f}" y="{y - 0.45:.2f}" width="0.9" height="0.9" '
+                                     f'fill="#5a5a5a"/>' for x in xs))
+            if mit_modul:
+                bx = geo[ref]["bbox"]
+                ecken = [s(*_lokal(platine, ref, x, y)) for x in (bx[0], bx[2]) for y in (bx[1], bx[3])]
+                x0, x1 = min(e[0] for e in ecken), max(e[0] for e in ecken)
+                y0, y1 = min(e[1] for e in ecken), max(e[1] for e in ecken)
+                nano = platine == "tht"
+                grund = "#1f5fae" if nano else "#1b1b1b"
+                ym = (y0 + y1) / 2
+                aus.append(f'<rect x="{x0:.2f}" y="{y0:.2f}" width="{x1 - x0:.2f}" height="{y1 - y0:.2f}" rx="0.8" '
+                           f'fill="{grund}" stroke="#0b0b0b" stroke-width="0.3" opacity="0.96"/>'
+                           f'<rect x="{x0 - 1.5:.2f}" y="{ym - 4.5:.2f}" width="7" height="9" rx="1" fill="#c4c4c4" '
+                           f'stroke="#777" stroke-width="0.2"/>')
+                if nano:
+                    aus.append(f'<rect x="{(x0 + x1) / 2 - 3:.2f}" y="{ym - 3:.2f}" width="6" height="6" '
+                               f'transform="rotate(45 {(x0 + x1) / 2:.2f} {ym:.2f})" fill="#111"/>')
+                else:
+                    aus.append(f'<rect x="{x0 + 9:.2f}" y="{y0 + 3.5:.2f}" width="{x1 - x0 - 15:.2f}" '
+                               f'height="{y1 - y0 - 7:.2f}" fill="#0c2340" stroke="#333" stroke-width="0.3"/>')
+                aus.append(f'<text x="{(x0 + x1) / 2 + (0 if nano else 3):.2f}" y="{ym + (6.5 if nano else 1):.2f}" '
+                           f'font-family="DejaVu Sans, sans-serif" font-size="2.6" fill="white" text-anchor="middle">'
+                           f'{"Arduino Nano" if nano else "T-Display"}</text>')
+    return "".join(aus)
+
+
+def messbild(platine, seite, punkte, paare=(), name="", modul=False, dunkel=True):
     """punkte: (ref, pad, text, farbe, schild_x, schild_y) in Plan-mm; paare: Paare von Punkt-Indizes, gestrichelt
     verbunden (Durchgang)."""
     grund = (REPO / f"docs/img/aufbau_{platine}_{seite}.svg").read_text(encoding="utf-8")
@@ -108,7 +229,9 @@ def messbild(platine, seite, punkte, paare=(), name=""):
         return (BREITE - x if seite == "unten" else x), HOEHE - y
 
     lagen = [(svg(*pad(platine, ref, nr)), text, farbe, svg(sx, sy)) for ref, nr, text, farbe, sx, sy in punkte]
-    teile = ['<rect x="-3" y="-3" width="92" height="63" fill="black" opacity="0.35"/>']
+    teile = [teile_svg(platine, modul) if seite == "oben" else ""]
+    if dunkel:
+        teile.append('<rect x="-3" y="-3" width="92" height="63" fill="black" opacity="0.3"/>')
     for a, b in paare:
         (x1, y1), (x2, y2) = lagen[a][0], lagen[b][0]
         teile.append(f'<line x1="{x1:.2f}" y1="{y1:.2f}" x2="{x2:.2f}" y2="{y2:.2f}" stroke="white" '
@@ -187,6 +310,9 @@ def messbilder():
                   ("U1", b["SIG"], "c", BLAU, *(pad(platine, "U1", b["SIG"])[0] + 1.0, ry + (-4 if oben else 4))),
                   ("J1", 2, "a", BLAU, 85.5, 30.0), ("J1", 1, "b", BLAU, 85.5, 25.5), ("J1", 3, "c", BLAU, 85.5, 34.5)]
         namen.append(messbild(platine, "oben", punkte, paare=((0, 3), (1, 4), (2, 5)), name="durchgang"))
+        # Übersicht: alles gelötet, Modul noch nicht drin; 5 mit Modul: 5V an J1
+        namen.append(messbild(platine, "oben", [], name="bestueckt", dunkel=False))
+        namen.append(messbild(platine, "oben", [v5, gnd], name="modul", modul=True))
     # 5 Mit Modul: 3V3 des T-Displays von unten
     namen.append(messbild("esp32tht", "unten", [("U1", BUCHSE["esp32tht"]["3V3"], "3V3", ROT, 44.5, 6.0),
                                                 ("J1", 1, "GND", SCHWARZ, 74.0, 22.0)], name="3v3_unten"))
@@ -199,7 +325,7 @@ def bilder():
 
 
 # Seitenumbruch vor diesen Abschnitten (h2), damit Tabellen und Schritte nicht zerreißen
-NEUE_SEITE = ("Was du lötest", "Reihenfolge", "8 ·", "9 ·")
+NEUE_SEITE = ("Was du lötest", "Reihenfolge", "8 ·")
 
 
 def main():

@@ -79,22 +79,36 @@ Keine Polung haben Widerstände und Taster. Die Taster passen nur in zwei Lagen 
 
 ## Reihenfolge
 
-| Schritt | Was | ≈ min |
-|---|---|---:|
-| 1 | Sichtprüfung der Platine | 5 |
-| 2 | Widerstände R1–R7, flach | 15 |
-| 3 | R8, R9 mit Abstand | 5 |
-| 4 | Taster S1, S2 | 5 |
-| 5 | LEDs | 10 |
-| 6 | J1 und C1 | 5 |
-| 7 | Buchsenleisten mit dem Modul als Lehre | 15 |
-| 8 | Messen: ohne Modul, dann mit Modul | 20 |
-| 9 | Firmware und Test | 15 |
+| Schritt | Was | Modul | USB | Servo | ≈ min |
+|---|---|---|---|---|---:|
+| 1 | Sichtprüfung der Platine | draußen | ab | ab | 5 |
+| 2 | Widerstände R1–R7, flach | draußen | ab | ab | 15 |
+| 3 | R8, R9 mit Abstand | draußen | ab | ab | 5 |
+| 4 | Taster S1, S2 | draußen | ab | ab | 5 |
+| 5 | LEDs | draußen | ab | ab | 10 |
+| 6 | J1 und C1 | draußen | ab | ab | 5 |
+| 7 | Buchsenleisten löten | steckt nur als Lehre, danach **wieder abziehen** | ab | ab | 15 |
+| 8.1–8.4 | Messen ohne Modul | draußen | ab | ab | 15 |
+| 8.5 | Spannungen messen | **drin** | **an** | ab | 5 |
+| 9 | Firmware aufspielen, LEDs und Taster testen | drin | an (Rechner) | ab | 10 |
+| 9 | Servo testen | drin | erst **ab**, Servo stecken, dann **an** | **an** | 5 |
+
+**Strom gibt es nur über die USB-Buchse des Moduls** – die Platine selbst hat keinen Stromanschluss. Ohne Modul ist
+sie also immer stromlos, egal was du machst. Daraus folgen drei Regeln:
+
+1. **Gelötet wird ohne Strom:** USB ab. Das Modul steckt dabei nur in Schritt 7, als Lehre für die Buchsenleisten.
+2. **Modul und Servo nur stecken oder ziehen, wenn USB ab ist.**
+3. **Das Modul kommt erst in 8.5 zum ersten Mal mit Strom in die Platine** – nachdem 8.1–8.4 gezeigt haben, dass
+   kein Kurzschluss da ist.
+
+Jeder Schritt beginnt mit einer Zeile **Zustand**, die das noch einmal sagt.
 
 Von flach nach hoch: So liegt die Platine beim Umdrehen immer auf den zuletzt gesteckten, höchsten Teilen auf, und
 alles bleibt plan.
 
 ## 1 · Sichtprüfung
+
+> **Zustand (Schritt 1–6):** Modul draußen · USB ab · Servo ab
 
 Platine gegen das Licht halten: keine Brücken zwischen Pads, alle Löcher offen, Aufdruck „Weihnachtsglocke THT rev 1.0“
 bzw. „Weihnachtsglocke ESP32 THT rev 1.0“ unten links. Miss einmal zwischen dem mittleren Pad von J1 („5V“) und dem
@@ -149,6 +163,8 @@ bei den meisten Messgeräten schwach.
 
 ## 7 · Buchsenleisten mit dem Modul als Lehre
 
+> **Zustand:** Modul steckt **nur als Lehre**, ohne USB · Servo ab · am Ende Modul wieder abziehen
+
 Die Buchsenleisten werden mit eingestecktem Modul gelötet – dann stehen sie gerade und das Modul passt später ohne
 Spannung.
 
@@ -170,9 +186,17 @@ Spannung.
      ist symmetrisch: Umgedreht passt das Modul auch hinein und schließt dann 5V gegen GND kurz.
 2. Umdrehen, je Leiste einen Eckkontakt löten. Prüfen: Liegen beide Leisten plan auf der Platine? Wenn nicht,
    nachwärmen und nachdrücken. Dann den Kontakt in der Ecke gegenüber, noch einmal prüfen, dann alle übrigen.
-3. Modul abziehen.
+3. **Modul abziehen.** Es kommt erst in 8.5 wieder hinein.
 
 ## 8 · Messen
+
+> **Zustand (8.1–8.4):** alles gelötet · Modul **draußen** · USB ab · Servo ab
+
+So sieht die Platine jetzt aus – alle Teile gelötet, die Buchsenleisten leer:
+
+| THT | ESP32 THT |
+|---|---|
+| ![THT, fertig gelötet, ohne Modul](img/messen_tht_bestueckt.svg) | ![ESP32 THT, fertig gelötet, ohne Modul](img/messen_esp32tht_bestueckt.svg) |
 
 Bevor das Modul Strom bekommt, prüfst du jede Verbindung, die später zählt: Versorgung, die fünf LED-Strecken, die
 Taster und die Leitungen vom Modul zu J1. Ein Fehler, den du hier findest, kostet eine Lötstelle – mit Modul und
@@ -274,8 +298,21 @@ Zur Sicherheit die Querprobe: SIG gegen 5V und SIG gegen GND an J1 – beide **k
 
 ### 8.5 · Mit Modul: die Spannungen
 
-Jetzt das Modul einstecken (Schritt 7, Punkt 1 – USB links, beim T-Display der 5V-Pin am Aufdruck „5V“). Servo
-**nicht** angesteckt. USB an ein Netzteil oder den Rechner. Messgerät auf **V DC**.
+> **Zustand:** Modul **drin** · USB **an** · Servo ab
+
+Erst jetzt, wenn 8.1–8.4 gepasst haben, bekommt die Platine Strom. In dieser Reihenfolge:
+
+1. USB ist ab. **Modul einstecken** wie in Schritt 7, Punkt 1 – USB-Buchse links, beim T-Display Display nach oben und
+   der 5V-Pin am Aufdruck „5V“.
+2. Servo bleibt **ab**.
+3. **USB anstecken:** an ein USB-Netzteil, eine Powerbank oder den Rechner. Beim T-Display geht das Display an (oder
+   bleibt dunkel, wenn noch keine Firmware drauf ist – beides ist hier in Ordnung), der Nano lässt seine Power-LED
+   leuchten.
+4. Messgerät auf **V DC** und messen:
+
+| THT | ESP32 THT |
+|---|---|
+| ![THT mit Nano: J1 5V und GND](img/messen_tht_modul.svg) | ![ESP32 THT mit T-Display: J1 5V und GND](img/messen_esp32tht_modul.svg) |
 
 | Rot | Schwarz | Soll | Was es zeigt |
 |---|---|---|---|
@@ -288,11 +325,16 @@ Auf der Rückseite misst du mit eingestecktem Modul: Platine hochkant halten, di
 abrutschen – ein Ausrutscher zwischen zwei Lötstellen schließt sie kurz.
 
 Unter 4,4 V an J1: schwaches Netzteil oder dünnes Kabel – ein anderes probieren. Wird ein Teil heiß (nicht nur R8 und
-R9 handwarm): sofort USB ab und Schritt 8.1 wiederholen.
+R9 handwarm): sofort USB ab, Modul ziehen und Schritt 8.1 wiederholen.
+
+Danach: Hast du an einem Netzteil oder einer Powerbank gemessen, USB ab – für Schritt 9 kommt das Modul an den
+Rechner. Das Modul bleibt drin.
 
 ## 9 · Firmware und Test
 
-Das Modul steckt seit 8.5. USB an den Rechner, Servo noch nicht anstecken.
+> **Zustand:** Modul drin · USB **am Rechner** · Servo ab – erst ab Punkt 4 kommt das Servo dran, und dafür zuerst USB ab
+
+Das Modul steckt seit 8.5 und bleibt drin. USB-Kabel vom Rechner an die USB-Buchse des Moduls.
 
 ### [THT] Arduino Nano
 
@@ -311,6 +353,7 @@ Soll:
 5. **START halten und RESET drücken:** Die Glocke läutet sofort – das Servo schwingt sechsmal, fährt in die
    Ruhestellung und ist 1 s später abgeschaltet (`servo detached`).
 6. Einmal ganz: START drücken und warten, nach 65 s läutet es.
+7. Fertig: USB ab. Im Betrieb versorgt ein USB-Netzteil oder eine Powerbank die Glocke über dieselbe Buchse.
 
 ### [ESP32 THT] T-Display
 
@@ -328,6 +371,7 @@ Soll:
 4. USB ab, **Servo an J1** wie oben (braun unten an GND). Versorgen mit Netzteil oder Powerbank (≥ 1 A, A-auf-C-Kabel;
    bleibt das Modul an C-auf-C dunkel, den Stecker umdrehen).
 5. **START halten und RESET drücken:** Die Glocke läutet sofort.
+6. Fertig: USB ab. Im Betrieb versorgt ein USB-Netzteil oder eine Powerbank (≥ 1 A) die Glocke über dieselbe Buchse.
 
 Den LiPo-Anschluss des T-Displays frei lassen – R8 und R9 würden einen Akku leeren (D-13).
 
