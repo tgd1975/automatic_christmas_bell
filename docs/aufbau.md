@@ -23,23 +23,25 @@ der Rückseite. Dort ist links und rechts vertauscht und es gibt keinen Druck
 
 ## Was du lötest
 
+Die LCSC-Nummer steht auf jedem Sackerl der Lieferung.
+
 | Teil | Bezeichner | THT | ESP32 THT | je Platine |
 |---|---|---|---|---:|
-| Widerstand ¼ W, Vorwiderstand LED | R1, R2, R5 | 330 Ω | 330 Ω | 3 |
-| Widerstand ¼ W, Vorwiderstand LED | R3, R4 | 330 Ω | **100 Ω** | 2 |
-| Widerstand ¼ W, Pull-down Taster | R6, R7 | 4,7 kΩ | 4,7 kΩ | 2 |
-| Widerstand 1 W, Grundlast für Powerbanks | R8, R9 | 100 Ω | 100 Ω | 2 |
-| Taster 6 × 6 mm | S1 (START), S2 (RESET) | ✓ | ✓ | 2 |
-| LED 5 mm grün | LED5, LED4 | grün (XL-504UGD) | **gelbgrün** (XL-504SYGD) | 2 |
-| LED 5 mm gelb | LED3, LED2 | ✓ | ✓ | 2 |
-| LED 5 mm rot | LED1 | ✓ | ✓ | 1 |
-| Stiftleiste 1 × 3, Servo | J1 | ✓ | ✓ | 1 |
-| Elko 1000 µF / 16 V, Ø 10 mm | C1 | ✓ | ✓ | 1 |
-| Buchsenleiste 2,54 mm, 8,5 mm hoch | für U1 | 2 × 1×15 | 2 × 1×12 | 2 |
-| Modul | U1 | Arduino Nano V3 | LILYGO T-Display V1.1 | 1 |
+| Widerstand ¼ W, Vorwiderstand LED | R1, R2, R5 | 330 Ω – C58608 | 330 Ω – C58608 | 3 |
+| Widerstand ¼ W, Vorwiderstand LED | R3, R4 | 330 Ω – C58608 | **100 Ω – C57438** | 2 |
+| Widerstand ¼ W, Pull-down Taster | R6, R7 | 4,7 kΩ – C57204 | 4,7 kΩ – C57204 | 2 |
+| Widerstand 1 W, Grundlast für Powerbanks | R8, R9 | 100 Ω – C119469 | 100 Ω – C119469 | 2 |
+| Taster 6 × 6 mm | S1 (START), S2 (RESET) | C110153 | C110153 | 2 |
+| LED 5 mm grün | LED5, LED4 | grün XL-504UGD – C2895549 | **gelbgrün XL-504SYGD – C2895551** | 2 |
+| LED 5 mm gelb | LED3, LED2 | XL-504UYD – C2895495 | XL-504UYD – C2895495 | 2 |
+| LED 5 mm rot | LED1 | XL-504SURD – C2895493 | XL-504SURD – C2895493 | 1 |
+| Stiftleiste 1 × 3, Servo | J1 | C2937625 | C2937625 | 1 |
+| Elko 1000 µF / 16 V, Ø 10 mm | C1 | C439782 | C439782 | 1 |
+| Buchsenleiste 2,54 mm, 8,5 mm hoch | für U1 | 2 × 1×15 – C25503121 | 2 × 1×12 – C2905419 | 2 |
+| Modul | U1 | Arduino Nano V3 – nicht von LCSC | LILYGO T-Display V1.1 – nicht von LCSC | 1 |
 
 Die Buchsenleisten sind Extras der Bestellung, nicht im Graph. Schneidest du sie aus den gekerbten 1×40-Leisten
-(C2916940), geht an jeder Schnittstelle ein Kontakt verloren: aus einer Leiste werden 2 × 15 oder 3 × 12. Die
+(LCSC C2916940), geht an jeder Schnittstelle ein Kontakt verloren: aus einer Leiste werden 2 × 15 oder 3 × 12. Die
 Schnittkante mit Feile oder Schleifpapier glätten.
 
 **Widerstände nicht verwechseln.** Die ¼-W-Widerstände sind 1 %-Metallschicht mit fünf Ringen. Auf dem blauen Körper
