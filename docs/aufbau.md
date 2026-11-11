@@ -12,14 +12,15 @@ mit **[THT]** oder **[ESP32 THT]** dabei. Die Bilder sind die Ansichten der best
 
 | THT (Nano) | ESP32 THT (T-Display) |
 |---|---|
-| ![THT, Bestückungsseite](img/aufbau_tht_oben.png) | ![ESP32 THT, Bestückungsseite](img/aufbau_esp32tht_oben.png) |
+| ![THT, Bestückungsseite](img/aufbau_tht_oben.svg) | ![ESP32 THT, Bestückungsseite](img/aufbau_esp32tht_oben.svg) |
 
 **Richtungen:** „oben“, „unten“, „links“, „rechts“ meinen immer den Blick auf die **bedruckte Seite** wie im Bild –
 LED-Reihe oben, USB-Ende des Moduls links, J1 rechts. Alle Teile stecken von der bedruckten Seite, gelötet wird auf
 der Rückseite. Dort ist links und rechts vertauscht und es gibt keinen Druck
-([THT](img/aufbau_tht_unten.png), [ESP32 THT](img/aufbau_esp32tht_unten.png)).
+([THT](img/aufbau_tht_unten.svg), [ESP32 THT](img/aufbau_esp32tht_unten.svg)).
 
-Zum Ausdrucken baut `uv run docs/aufbau_pdf.py 2>&1 | cat` diese Seite als `build/aufbau/aufbau.pdf`.
+Zum Ausdrucken baut `uv run docs/aufbau.py 2>&1 | cat` diese Seite als `build/aufbau/aufbau.pdf`; das Skript zeichnet
+auch die Farbringe und die Messbilder.
 
 **Zeit:** ≈ 1 h je Platine, dazu ≈ 15 min für Firmware und Test.
 
@@ -87,7 +88,7 @@ Keine Polung haben Widerstände und Taster. Die Taster passen nur in zwei Lagen 
 | 5 | LEDs | 10 |
 | 6 | J1 und C1 | 5 |
 | 7 | Buchsenleisten mit dem Modul als Lehre | 15 |
-| 8 | Messen ohne Modul | 5 |
+| 8 | Messen: ohne Modul, dann mit Modul | 20 |
 | 9 | Firmware und Test | 15 |
 
 Von flach nach hoch: So liegt die Platine beim Umdrehen immer auf den zuletzt gesteckten, höchsten Teilen auf, und
@@ -171,20 +172,127 @@ Spannung.
    nachwärmen und nachdrücken. Dann den Kontakt in der Ecke gegenüber, noch einmal prüfen, dann alle übrigen.
 3. Modul abziehen.
 
-## 8 · Messen ohne Modul
+## 8 · Messen
 
-Modul ab, Multimeter auf Widerstand. Gemessen wird an J1: mittleres Pad (5V) gegen quadratisches Pad (GND).
+Bevor das Modul Strom bekommt, prüfst du jede Verbindung, die später zählt: Versorgung, die fünf LED-Strecken, die
+Taster und die Leitungen vom Modul zu J1. Ein Fehler, den du hier findest, kostet eine Lötstelle – mit Modul und
+Servo dran sucht man länger. Zum Schluss misst du mit Modul die Spannungen.
 
-| Messung | Soll | Was es zeigt |
+**So misst du:**
+
+- Schwarze Messleitung an COM, rote an V/Ω. In den Bildern ist **rot** die rote Spitze, **schwarz** die schwarze,
+  **blau** zeigt zwei Punkte, zwischen denen Durchgang sein muss (Richtung egal).
+- **In die Buchsen** der Modul-Leisten passt keine Messspitze. Steck ein abgeschnittenes Widerstandsbein hinein und
+  halte die Spitze daran, oder klemm eine Krokoklemme dran.
+- **J1** misst du oben an den Stiften: quadratisches Pad unten = GND, Mitte = 5V, oben = SIG.
+- Die Bilder zeigen die bedruckte Seite, nur 8.5 die Rückseite (gespiegelt).
+- Weicht ein Wert ab: Lötstellen der beteiligten Teile auf der Rückseite ansehen, nachlöten, neu messen.
+
+### 8.1 · Versorgung (ohne Modul)
+
+| THT | ESP32 THT |
+|---|---|
+| ![THT: J1 5V und GND](img/messen_tht_versorgung.svg) | ![ESP32 THT: J1 5V, GND und die 3V3-Buchse](img/messen_esp32tht_versorgung.svg) |
+
+| Rot | Schwarz | Messbereich | Soll | Wenn nicht |
+|---|---|---|---|---|
+| J1 5V | J1 GND | Ω | **≈ 50 Ω** (R8 ∥ R9). Der Wert steigt zuerst ein paar Sekunden, solange sich C1 lädt | < 10 Ω: Lötbrücke auf 5V suchen. ≈ 100 Ω: R8 oder R9 nicht verlötet. Kein Wert: J1, R8 und R9 nachlöten |
+| **[ESP32 THT]** Buchse 3V3 (untere Reihe, rechts) | J1 GND | Ω | **kein Durchgang** (OL) | Brücke an der 3V3-Buchse oder an S1/S2 suchen |
+| **[ESP32 THT]** Buchse 3V3 | J1 5V | Ω | **kein Durchgang** (OL) | Brücke zwischen den beiden Reihen der Buchsenleiste |
+
+**Unter 10 Ω zwischen 5V und GND kommt das Modul nicht in die Buchse.** Ein Kurzschluss dort ginge über den
+USB-Anschluss des Moduls.
+
+### 8.2 · LEDs (Diodentest)
+
+| THT | ESP32 THT |
+|---|---|
+| ![THT: Buchsen der fünf LEDs gegen GND](img/messen_tht_leds.svg) | ![ESP32 THT: Buchsen der fünf LEDs gegen GND](img/messen_esp32tht_leds.svg) |
+
+Messgerät auf **Diodentest** (Symbol ▶|). Schwarz bleibt an J1 GND, rot nacheinander in die fünf Buchsen. Jede Buchse
+führt über ihren Vorwiderstand zu ihrer LED – so prüfst du in einem Zug Widerstand, LED, Polung und vier Lötstellen.
+
+| Rot in Buchse | Strecke | Soll |
 |---|---|---|
-| J1 5V gegen GND | ≈ 50 Ω, steigt erst kurz an (C1 lädt sich) | R8 ∥ R9 sitzen, kein Kurzschluss auf 5V |
-| **[ESP32 THT]** Buchse unten rechts (letzte der unteren Reihe, 3V3) gegen J1 GND | kein Durchgang; mit gedrücktem START oder RESET ≈ 4,7 kΩ | 3V3 frei, Taster und R6/R7 in Ordnung |
+| LED5 | R4 → LED5 | Anzeige etwa **1,7–2,6 V**, die LED glimmt schwach |
+| LED4 | R3 → LED4 | wie LED5 |
+| LED3 | R2 → LED3 | wie LED5 |
+| LED2 | R1 → LED2 | wie LED5 |
+| LED1 | R5 → LED1 | wie LED5 |
 
-Unter 10 Ω zwischen 5V und GND: Lötbrücke suchen, bevor das Modul Strom bekommt.
+- **[THT]** Die grünen LEDs (LED5, LED4) brauchen mehr Spannung: etwa 2,6–3,2 V, oder **OL**, wenn die Prüfspannung
+  deines Messgeräts nicht reicht. Dann prüfst du sie beim ersten Strom (Schritt 9).
+- Glimmt die **falsche** LED: Die Reihenfolge der Buchsen in den Bildern stimmt – dann ist die LED an einen anderen
+  Platz geraten. Farben nachsehen (Schritt 5).
+- **OL** bei einer roten, gelben oder gelbgrünen LED: LED verkehrt herum (langes Bein muss links), oder eine
+  Lötstelle an LED oder Vorwiderstand ist kalt.
+- **Gegenprobe:** Spitzen tauschen (schwarz in die Buchse, rot an GND): jetzt muss bei allen fünf **OL** stehen.
+  Steht ein Wert, hat die Strecke eine Brücke nach GND.
+
+### 8.3 · Taster
+
+| THT | ESP32 THT |
+|---|---|
+| ![THT: Buchsen START und RESET gegen 5V](img/messen_tht_taster.svg) | ![ESP32 THT: Buchsen START und RESET gegen 3V3 und GND](img/messen_esp32tht_taster.svg) |
+
+Messbereich Ω. Jede Messung zweimal: Taster los, dann Taster gedrückt.
+
+**[THT]** – die Taster schalten 5V:
+
+| Rot | Schwarz | Taster los | gedrückt |
+|---|---|---|---|
+| Buchse START | J1 5V | ≈ 4,75 kΩ (R7 + R8 ∥ R9) | START: **≈ 0 Ω**. RESET drücken ändert nichts |
+| Buchse RESET | J1 5V | ≈ 4,75 kΩ (R6 + R8 ∥ R9) | RESET: **≈ 0 Ω**. START drücken ändert nichts |
+
+**[ESP32 THT]** – die Taster schalten 3V3:
+
+| Rot | Schwarz | Taster los | gedrückt |
+|---|---|---|---|
+| Buchse START | Buchse 3V3 | OL | START: **≈ 0 Ω**. RESET drücken ändert nichts |
+| Buchse RESET | Buchse 3V3 | OL | RESET: **≈ 0 Ω**. START drücken ändert nichts |
+| Buchse START | J1 GND | ≈ 4,7 kΩ (R7) | – |
+| Buchse RESET | J1 GND | ≈ 4,7 kΩ (R6) | – |
+
+Wenn nicht: Bleibt der Wert beim Drücken gleich, Taster-Lötstellen nachlöten. Stimmt der Wert „los“ nicht, ist es der
+Pull-down (R7 bzw. R6) – Wert nachmessen, ob dort 4,7 kΩ sitzt (gelb – violett – schwarz – braun – braun).
+
+### 8.4 · Modul-Buchsen zu J1 (Durchgang)
+
+| THT | ESP32 THT |
+|---|---|
+| ![THT: 5V, GND und Servo-Signal von der Buchse zu J1](img/messen_tht_durchgang.svg) | ![ESP32 THT: 5V, GND und Servo-Signal von der Buchse zu J1](img/messen_esp32tht_durchgang.svg) |
+
+Messgerät auf **Durchgang** (piepst). Die blauen Paare:
+
+| Paar | Buchse | J1 | Soll |
+|---|---|---|---|
+| a | 5V | 5V (Mitte) | piepst (< 1 Ω) |
+| b | GND | GND (unten, quadratisch) | piepst |
+| c | Servo-Signal | SIG (oben) | piepst |
+
+Zur Sicherheit die Querprobe: SIG gegen 5V und SIG gegen GND an J1 – beide **kein** Piepen.
+
+### 8.5 · Mit Modul: die Spannungen
+
+Jetzt das Modul einstecken (Schritt 7, Punkt 1 – USB links, beim T-Display der 5V-Pin am Aufdruck „5V“). Servo
+**nicht** angesteckt. USB an ein Netzteil oder den Rechner. Messgerät auf **V DC**.
+
+| Rot | Schwarz | Soll | Was es zeigt |
+|---|---|---|---|
+| J1 5V (wie Bild 8.1) | J1 GND | **4,4–5,0 V** | USB minus die Schutzdiode des Moduls; R8 und R9 ziehen ≈ 0,1 A und werden handwarm |
+| **[ESP32 THT]** Lötstelle 3V3 auf der Rückseite (Bild unten) | J1 GND, ebenfalls auf der Rückseite | **3,2–3,4 V** | Der Spannungsregler des T-Displays läuft |
+
+![ESP32 THT, Rückseite: Lötstelle der 3V3-Buchse und GND an J1](img/messen_esp32tht_3v3_unten.svg)
+
+Auf der Rückseite misst du mit eingestecktem Modul: Platine hochkant halten, die Spitzen ruhig aufsetzen und nicht
+abrutschen – ein Ausrutscher zwischen zwei Lötstellen schließt sie kurz.
+
+Unter 4,4 V an J1: schwaches Netzteil oder dünnes Kabel – ein anderes probieren. Wird ein Teil heiß (nicht nur R8 und
+R9 handwarm): sofort USB ab und Schritt 8.1 wiederholen.
 
 ## 9 · Firmware und Test
 
-Das Modul einstecken (Schritt 7, Punkt 1), USB an den Rechner. Servo noch nicht anstecken.
+Das Modul steckt seit 8.5. USB an den Rechner, Servo noch nicht anstecken.
 
 ### [THT] Arduino Nano
 
@@ -231,4 +339,4 @@ Den LiPo-Anschluss des T-Displays frei lassen – R8 und R9 würden einen Akku l
 | Upload schlägt fehl [THT] | anderer Bootloader: `-e nano_new`; Kabel ohne Datenleitungen |
 | START startet nicht, RESET schon | Taster vertauscht gesteckt? Beide sind gleich – dann Lötstelle an R6/R7 prüfen |
 | Modul startet neu, sobald das Servo läuft | C1 fehlt oder ist kalt gelötet; schwache USB-Quelle (README, Troubleshooting) |
-| Powerbank schaltet ab | R8 oder R9 nicht gelötet: Messung in Schritt 8 wiederholen |
+| Powerbank schaltet ab | R8 oder R9 nicht gelötet: Messung 8.1 wiederholen |
