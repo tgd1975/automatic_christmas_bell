@@ -30,11 +30,11 @@ Die LCSC-Nummer steht auf jedem Sackerl der Lieferung.
 <table>
 <tr><th>Teil</th><th>Bezeichner</th><th>THT</th><th>ESP32 THT</th><th align="right">je Platine</th></tr>
 <tr><td>Widerstand ¼ W, Vorwiderstand LED</td><td>R1, R2, R5</td><td colspan="2" align="center">330 Ω – C58608</td><td align="right">3</td></tr>
-<tr><td>Widerstand ¼ W, Vorwiderstand LED</td><td>R3, R4</td><td>330 Ω – C58608</td><td><strong>100 Ω – C57438</strong></td><td align="right">2</td></tr>
+<tr><td>Widerstand ¼ W, Vorwiderstand LED</td><td>R3, R4</td><td>330 Ω – C58608</td><td>100 Ω – C57438</td><td align="right">2</td></tr>
 <tr><td>Widerstand ¼ W, Pull-down Taster</td><td>R6, R7</td><td colspan="2" align="center">4,7 kΩ – C57204</td><td align="right">2</td></tr>
 <tr><td>Widerstand 1 W, Grundlast für Powerbanks</td><td>R8, R9</td><td colspan="2" align="center">100 Ω – C119469</td><td align="right">2</td></tr>
 <tr><td>Taster 6 × 6 mm</td><td>S1 (START), S2 (RESET)</td><td colspan="2" align="center">C110153</td><td align="right">2</td></tr>
-<tr><td>LED 5 mm grün</td><td>LED5, LED4</td><td>grün XL-504UGD – C2895549</td><td><strong>gelbgrün XL-504SYGD – C2895551</strong></td><td align="right">2</td></tr>
+<tr><td>LED 5 mm grün</td><td>LED5, LED4</td><td>grün XL-504UGD – C2895549</td><td>gelbgrün XL-504SYGD – C2895551</td><td align="right">2</td></tr>
 <tr><td>LED 5 mm gelb</td><td>LED3, LED2</td><td colspan="2" align="center">XL-504UYD – C2895495</td><td align="right">2</td></tr>
 <tr><td>LED 5 mm rot</td><td>LED1</td><td colspan="2" align="center">XL-504SURD – C2895493</td><td align="right">1</td></tr>
 <tr><td>Stiftleiste 1 × 3, Servo</td><td>J1</td><td colspan="2" align="center">C2937625</td><td align="right">1</td></tr>
