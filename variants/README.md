@@ -146,5 +146,15 @@ D-29); once a board of that state has been built and works, `make publish-built 
 - ESP32 firmware: built and its countdown logic tested on the computer, not yet on a module (see above).
 - smd, cosmetic: a tented GND via sits on LED4's silkscreen outline at (37.82, 48.00); a keep-out
   `rect = [37.2, 46.6, 38.4, 49.4]` would move it (then route, silk, gate and M-5 again).
+- **For a next revision (rev 1.1)** – what building the first tht and esp32tht boards would have been easier with
+  (the owner, 2026-11-11; the build guide [../docs/aufbau.md](../docs/aufbau.md) works around each today):
+  1. Net names in the silkscreen next to the module's female headers – LED5 … LED1, START, RESET, SIG, 5V, GND, and
+     3V3 on esp32/esp32tht – on all five boards. Today step 8 of the guide needs a picture per measurement to say
+     which socket is which.
+  2. LED1 (red) with a footprint marked like the others: LED-TH_BD5.9-P2.54-FD-RED on main, tht and esp32tht makes
+     its square pad the anode, where most boards mark the cathode – the guide warns about it.
+  3. A GND loop (wire bridge or THT test-point loop) for the black lead's clip – today J1's GND pin serves.
+  4. esp32/esp32tht: a 3V3 test pad on the top side – today the 3V3 check with the module plugged in is probed on the
+     bottom.
 - The EasyEDA project library still holds a device "zz-test-copy-nano" from the T-Display experiments; it is used
   nowhere and can be deleted in EasyEDA (Library → Project).
