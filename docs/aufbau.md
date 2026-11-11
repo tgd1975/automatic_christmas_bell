@@ -51,9 +51,9 @@ sind die Farben schwer zu lesen – miss jeden vor dem Einsetzen kurz nach:
 
 | Wert | Ringe | wo |
 |---|---|---|
-| 100 Ω | braun – schwarz – schwarz – schwarz – braun | [ESP32 THT] R3, R4; die dicken 1-W-Widerstände R8, R9 auf beiden Platinen |
-| 330 Ω | orange – orange – schwarz – schwarz – braun | R1, R2, R5; [THT] auch R3, R4 |
-| 4,7 kΩ | gelb – violett – schwarz – braun – braun | R6, R7 |
+| 100 Ω | ![100 Ω](img/ringe_100.svg)<br>braun – schwarz – schwarz – schwarz – braun | [ESP32 THT] R3, R4; die dicken 1-W-Widerstände R8, R9 auf beiden Platinen |
+| 330 Ω | ![330 Ω](img/ringe_330.svg)<br>orange – orange – schwarz – schwarz – braun | R1, R2, R5; [THT] auch R3, R4 |
+| 4,7 kΩ | ![4,7 kΩ](img/ringe_4k7.svg)<br>gelb – violett – schwarz – braun – braun | R6, R7 |
 
 ## Polung – drei Teile, auf die es ankommt
 
