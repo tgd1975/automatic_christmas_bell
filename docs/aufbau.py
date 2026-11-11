@@ -38,6 +38,7 @@ p:has(+ table) { break-after: avoid; }
 table { border-collapse: collapse; margin: 2mm 0 3mm; font-size: 9pt; break-inside: avoid; }
 th, td { border: 0.3pt solid #bbb; padding: 1mm 2mm; text-align: left; vertical-align: top; }
 th { background: #eceae4; }
+p.stand { font-size: 9pt; color: #555; margin: -2mm 0 4mm; }
 td[align="center"] { text-align: center; }
 td[align="right"], th[align="right"] { text-align: right; }
 td img { width: 84mm; margin: 0; }
@@ -50,7 +51,6 @@ blockquote { border-left: 1.2mm solid #1f5c3a; background: #eef5ef; margin: 2mm 
 blockquote { break-after: avoid; }
 blockquote p { margin: 0; }
 blockquote.achtung { border-left-color: #c0392b; background: #fdf0ee; }
-blockquote.achtung ul { margin: 1mm 0; }
 table.protokoll { width: 100%; break-inside: auto; }
 table.bilder { break-inside: auto; }
 table.bilder tr { break-inside: avoid; }
@@ -294,6 +294,9 @@ def buchsen_prüfen():
         for nr, text in ((1, "GND"), (2, "5V"), (3, "SIG")):
             if geo["J1"]["pads"][str(nr)]["net"] != NETZ[text]:
                 sys.exit(f"{platine}: J1.{nr} ist nicht {text}")
+        for nr, text in ((1, "5V"), (2, "GND")):     # Messpunkte von 8.5
+            if geo["R9"]["pads"][str(nr)]["net"] != NETZ[text]:
+                sys.exit(f"{platine}: R9.{nr} ist nicht {text}")
 
 
 def messbilder():
@@ -324,12 +327,15 @@ def messbilder():
                   ("U1", b["SIG"], "c", BLAU, *(pad(platine, "U1", b["SIG"])[0] + 1.0, ry + (-4 if oben else 4))),
                   ("J1", 2, "a", BLAU, 85.5, 30.0), ("J1", 1, "b", BLAU, 85.5, 25.5), ("J1", 3, "c", BLAU, 85.5, 34.5)]
         namen.append(messbild(platine, "oben", punkte, paare=((0, 3), (1, 4), (2, 5)), name="durchgang"))
-        # Übersicht: alles gelötet, Modul noch nicht drin; 5 mit Modul: 5V an J1
+        # Übersicht: alles gelötet, Modul noch nicht drin
         namen.append(messbild(platine, "oben", [], name="bestueckt", dunkel=False))
-        namen.append(messbild(platine, "oben", [v5, gnd], name="modul", modul=True))
-    # 5 Mit Modul: 3V3 des T-Displays von unten
+        # 5 Mit Modul: 5V an den Beinen von R9 – unter Spannung nicht an J1, dort liegt 5V 2,54 mm neben SIG und GND
+        x9 = pad(platine, "R9", 1)[0]
+        namen.append(messbild(platine, "oben", [("R9", 1, "5V", ROT, x9 + 8.0, 16.0),
+                                                ("R9", 2, "GND", SCHWARZ, x9 + 8.0, 41.0)], name="modul", modul=True))
+    # 5 Mit Modul: 3V3 des T-Displays von unten, GND an der Lötstelle von R9
     namen.append(messbild("esp32tht", "unten", [("U1", BUCHSE["esp32tht"]["3V3"], "3V3", ROT, 44.5, 6.0),
-                                                ("J1", 1, "GND", SCHWARZ, 74.0, 22.0)], name="3v3_unten"))
+                                                ("R9", 2, "GND", SCHWARZ, 68.0, 30.0)], name="3v3_unten"))
     print(f"Messbilder → docs/img/{{{', '.join(namen)}}}")
 
 
@@ -340,6 +346,24 @@ def bilder():
 
 # Seitenumbruch vor diesen Abschnitten (h2), damit Tabellen und Schritte nicht zerreißen
 NEUE_SEITE = ("Was du lötest", "Reihenfolge", "8 ·")
+
+
+def stand():
+    """Was auf Deckblatt und Seitenrand steht: Revision der Platinen, Commit und sein Datum.
+
+    Der Commit trägt ein „+“, solange die Anleitung, ihr Skript oder ihre Bilder nicht eingecheckt sind.
+    """
+    platinen = " · ".join(
+        f"{name} rev " + tomllib.loads((REPO / f"variants/{p}/hardware/boards/{p}.toml").read_text())["revision"]
+        for p, name in (("tht", "THT"), ("esp32tht", "ESP32 THT")))
+
+    def git(*args):
+        return subprocess.run(["git", "-C", str(REPO), *args], capture_output=True, text=True, check=True).stdout.strip()
+
+    commit, datum = git("log", "-1", "--format=%h %cs").split()
+    if git("status", "--porcelain", "--", "docs/aufbau.md", "docs/aufbau.py", "docs/img"):
+        commit += "+"
+    return platinen, commit, datum
 
 
 def main():
@@ -363,10 +387,19 @@ def main():
         html = html.replace(f"<h2>{anfang}", f'<h2 class="seite">{anfang}')
     # Verweise ins Repository führen im Ausdruck nirgendwohin – als Text lassen
     html = re.sub(r'<a href="(?!https?:)[^"]*">([^<]*)</a>', r"\1", html)
+    # Deckblatt: Stand der Platinen und der Anleitung; Kopf- und Fußzeile auf jeder Seite
+    platinen, commit, datum = stand()
+    html = html.replace("</h1>", f'</h1>\n<p class="stand">Platinen: {platinen}<br>Anleitung: Commit {commit} vom '
+                                 f"{datum}</p>", 1)
+    rand = 'font-family: "DejaVu Sans", sans-serif; font-size: 7.5pt; color: #666;'
+    kopf_fuss = (f'@page {{ @top-left {{ content: "Weihnachtsglocke THT – Aufbau"; {rand} }} '
+                 f'@top-right {{ content: "{platinen}"; {rand} }} '
+                 f'@bottom-left {{ content: "Commit {commit} · {datum}"; {rand} }} '
+                 f'@bottom-right {{ content: "Seite " counter(page) " von " counter(pages); {rand} }} }}')
     PDF.parent.mkdir(parents=True, exist_ok=True)
     seite = PDF.with_suffix(".html")
     seite.write_text(f'<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><title>Weihnachtsglocke – Aufbau'
-                     f"</title><style>{CSS}</style></head><body>{html}</body></html>", encoding="utf-8")
+                     f"</title><style>{CSS}{kopf_fuss}</style></head><body>{html}</body></html>", encoding="utf-8")
     exe = next((shutil.which(n) for n in ("chromium", "chromium-browser", "google-chrome") if shutil.which(n)), None)
     if not exe:
         sys.exit("Kein Chromium/Chrome gefunden")

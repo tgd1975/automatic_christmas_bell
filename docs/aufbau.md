@@ -329,19 +329,11 @@ Zur Sicherheit die Querprobe: SIG gegen 5V und SIG gegen GND an J1 – beide **k
 
 > **Zustand:** Modul **drin** · USB **an** (Netzteil, Powerbank oder Rechner) · Servo ab · Messgerät auf **V DC**
 
-Hier prüfst du mit Strom, ob am Servo-Stecker J1 die 5 V ankommen und beim T-Display der 3,3-V-Regler läuft. Erst
+Hier prüfst du mit Strom, ob die 5 V des Moduls auf der Platine ankommen und beim T-Display der 3,3-V-Regler läuft. Erst
 jetzt, wenn 8.1–8.4 gepasst haben, bekommt die Platine Strom.
 
-> **Achtung – ab jetzt liegt Spannung an.** An J1 sitzt der 5V-Stift zwischen GND und SIG, 2,54 mm daneben. Berührt
-> eine Messspitze zwei Stifte zugleich, kann das Bauteile kosten:
->
-> - **5V und SIG:** 5 V kommen auf den Servo-Pin des Moduls. Das T-Display verträgt dort nur 3,3 V – der Pin oder das
->   ganze Modul kann kaputtgehen.
-> - **5V und GND:** Kurzschluss der Versorgung. Netzteil oder Powerbank schalten ab, beim Nano kann die Schutzdiode
->   durchbrennen.
->
-> Deshalb: Platine fest auflegen, zuerst die schwarze Spitze auf GND, dann die rote gerade von oben auf das Stiftende
-> von 5V – nie zwischen zwei Stifte. Dasselbe gilt für die Lötstellen von J1 auf der Rückseite.
+> **Achtung – Spannung liegt an.** Nicht an J1 messen: Dort liegt 5V direkt zwischen GND und SIG, ein Ausrutscher
+> kann das Modul kosten. Gemessen wird an den Beinen von R9.
 
 In dieser Reihenfolge:
 
@@ -351,19 +343,20 @@ In dieser Reihenfolge:
 3. **USB anstecken:** an ein USB-Netzteil, eine Powerbank oder den Rechner. Beim T-Display geht das Display an (oder
    bleibt dunkel, wenn noch keine Firmware drauf ist – beides ist hier in Ordnung), der Nano lässt seine Power-LED
    leuchten.
-4. Messen. Die 3V3-Lötstelle des T-Displays misst du auf der Rückseite, mit eingestecktem Modul: Platine hochkant
-   halten und abstützen, damit sie beim Aufsetzen der Spitzen nicht wegrutscht.
+4. Messen. Die 5 V oben an den Beinen von R9, dort wo sie aus dem Körper kommen. Die 3V3-Lötstelle des T-Displays
+   misst du auf der Rückseite, mit eingestecktem Modul: Platine hochkant halten und abstützen, damit sie beim
+   Aufsetzen der Spitzen nicht wegrutscht.
 
 | Rot | Schwarz | Soll | Wenn nicht |
 |---|---|---|---|
-| J1-Stift 5V | J1-Stift GND | **4,4–5,0 V** (USB minus die Schutzdiode des Moduls) | Schwaches Netzteil oder dünnes Kabel – ein anderes probieren |
-| **[ESP32 THT]** Lötstelle 3V3 auf der Rückseite (Bild „Rückseite“) | J1 GND, ebenfalls auf der Rückseite | **3,2–3,4 V** (der Regler des T-Displays) | USB ab, Modul ziehen, 8.1 wiederholen |
+| R9, unteres Bein (zu den Tastern) | R9, oberes Bein (zu den LEDs) | **4,4–5,0 V** (USB minus die Schutzdiode des Moduls) | Schwaches Netzteil oder dünnes Kabel – ein anderes probieren |
+| **[ESP32 THT]** Lötstelle 3V3 auf der Rückseite (Bild „Rückseite“) | Lötstelle des oberen Beins von R9, ebenfalls auf der Rückseite | **3,2–3,4 V** (der Regler des T-Displays) | USB ab, Modul ziehen, 8.1 wiederholen |
 | Fingerprobe nach 1 min: alle Teile kurz anfassen | – | R8 und R9 handwarm (≈ 0,1 A), alles andere kalt | Wird etwas heiß: sofort USB ab, Modul ziehen, 8.1 wiederholen |
 
 | THT | ESP32 THT |
 |---|---|
-| ![THT mit Nano: J1 5V und GND](img/messen_tht_modul.svg) | ![ESP32 THT mit T-Display: J1 5V und GND](img/messen_esp32tht_modul.svg) |
-| Rückseite: nichts zu messen | Rückseite: ![ESP32 THT, Rückseite: Lötstelle der 3V3-Buchse und GND an J1](img/messen_esp32tht_3v3_unten.svg) |
+| ![THT mit Nano: 5V und GND an den Beinen von R9](img/messen_tht_modul.svg) | ![ESP32 THT mit T-Display: 5V und GND an den Beinen von R9](img/messen_esp32tht_modul.svg) |
+| Rückseite: nichts zu messen | Rückseite: ![ESP32 THT, Rückseite: Lötstelle der 3V3-Buchse und GND an R9](img/messen_esp32tht_3v3_unten.svg) |
 
 ## 9 · Firmware und Test
 
@@ -469,7 +462,7 @@ für diese Platine, bei der anderen streichen.
 | Schritt | Prüfung | Soll | Gemessen | ✓ |
 |---|---|---|---|:-:|
 | 8.5 | Modul richtig herum: USB links; [ESP32 THT] Display oben, 5V-Pin am Aufdruck „5V“ | | – | ☐ |
-| 8.5 | J1 5V gegen J1 GND | 4,4–5,0 V | V | ☐ |
+| 8.5 | R9: unteres Bein (5V) gegen oberes Bein (GND) | 4,4–5,0 V | V | ☐ |
 | 8.5 | [ESP32 THT] Lötstelle 3V3 gegen GND, Rückseite | 3,2–3,4 V | V | ☐ |
 | 8.5 | Nach 1 min: nichts heiß, R8 und R9 handwarm | | – | ☐ |
 
