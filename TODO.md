@@ -13,10 +13,14 @@ Datum ans Ende, nach „## Erledigt“ am Ende verschieben, neueste zuerst – d
 die Zeile schrieb. Keine Zeile wird gelöscht. Überschriften gruppieren offene Todos; ist unter einer keines mehr offen,
 gehen Überschrift und Text, bis das nächste dazukommt.
 
-Nächste Kennung: TD-8
+Nächste Kennung: TD-9
 
 ## Für dich
 
+- [ ] TD-8 - **THT-Platinen aufbauen** (tht und esp32tht, geliefert 2026-11-11): Schritt für Schritt nach
+  [docs/aufbau.md](docs/aufbau.md), zum Drucken `build/aufbau/aufbau.pdf`; die Messwerte aus Schritt 8 (Messen) in den
+  Chat. Warum: erst dann gehen TD-1 und TD-2 auf der Platine, und eine laufende Platine kommt mit
+  `edakit release publish --built` in die Freigabe. *(automatic-christmas-bell, 2026-11-11)*
 - [ ] TD-1 - **ESP32-Firmware auf einem T-Display ausprobieren:**
   `cd variants/esp32/firmware && pio run -e tdisplay -t upload`, dann Hotspot `Glocke-XXXX` (WLAN-Analyse-App: Kanal
   1–13, WPA2), Einrichtung, <http://glocke.local> und Display prüfen, Aufdruck „T-DISPLAY V1.1“ ansehen; Tasten, LEDs
