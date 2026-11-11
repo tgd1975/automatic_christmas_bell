@@ -1,18 +1,13 @@
 # Aufbau der THT-Glocke – löten und in Betrieb nehmen
 
-Was nach der Lieferung von JLCPCB noch zu tun ist, Schritt für Schritt: welches Teil wann, wie herum und wie gelötet
-wird, was du vor dem ersten Strom misst und wie du die Glocke danach prüfst. Gilt für die beiden bestellten
-Platinen, die unbestückt kommen – alles wird von Hand gelötet:
+Schritt-für-Schritt-Anleitung für die beiden Platinen, die unbestückt kommen:
 
-- **THT** (Arduino Nano) – [variants/tht](../variants/tht), Entscheidung D-12
-- **ESP32 THT** (LILYGO T-Display) – [variants/esp32tht](../variants/esp32tht), Entscheidung D-23
-
-Kürzel wie D-12 oder D-8 verweisen auf die [Entscheidungen](decisions.md), in denen steht, warum etwas so ist. Zum
-Bauen brauchst du sie nicht.
+- **THT** (Arduino Nano) – [variants/tht](../variants/tht)
+- **ESP32 THT** (LILYGO T-Display) – [variants/esp32tht](../variants/esp32tht)
 
 Auf beiden liegen alle Teile am selben Platz, nur das Modul U1 und die Widerstände R6/R7 nicht. Was nur für eine
 Platine gilt, steht mit **[THT]** oder **[ESP32 THT]** dabei. Die Bilder sind die Ansichten der bestellten Fassung
-(rev 1.0). Jeder Platz trägt auf der Platine seinen Bezeichner – R1, LED5, C1 … –, so wie er hier im Text steht.
+(rev 1.0).
 
 | THT (Nano) | ESP32 THT (T-Display) |
 |---|---|
@@ -47,18 +42,7 @@ Die LCSC-Nummer steht auf jedem Sackerl der Lieferung.
 | Buchsenleiste 2,54 mm, 8,5 mm hoch | für U1 | 2 × 1×15 – C25503121 | 2 × 1×12 – C2905419 | 2 |
 | Modul | U1 | Arduino Nano V3 – nicht von LCSC | LILYGO T-Display V1.1 – nicht von LCSC | 1 |
 
-**Wozu die Widerstände da sind:** Ein *Vorwiderstand* begrenzt den Strom seiner LED. Ein *Pull-down* hält den Eingang
-des Moduls auf 0, solange der Taster nicht gedrückt ist. Die *Grundlast* R8 und R9 zieht dauernd ≈ 0,1 A – sonst
-schaltet eine Powerbank ab, weil ihr die Glocke zu wenig Strom braucht.
-
-Die Buchsenleisten sind Extras der Bestellung und stehen nicht in der Stückliste der Platine. Schneidest du sie aus den gekerbten 1×40-Leisten
-(LCSC C2916940), geht an jeder Schnittstelle ein Kontakt verloren: aus einer Leiste werden 2 × 15 oder 3 × 12. Die
-Schnittkante mit Feile oder Schleifpapier glätten.
-
-**Widerstände nicht verwechseln.** Alle haben fünf Ringe (1 %, Metallschicht). Gelesen wird von der Seite, an der die
-Ringe eng beisammen stehen; der einzelne braune Ring mit Abstand ist der letzte. Auf dem blauen Körper sind die Farben
-schwer zu lesen – miss deshalb jeden vor dem Einsetzen kurz nach: Messgerät auf Ω, eine Spitze an jedes Bein. Nimm
-immer nur die Widerstände eines Werts aus ihrem Sackerl, dann kommt nichts durcheinander.
+**Farbringe der Widerstände:**
 
 | Wert | Ringe | wo |
 |---|---|---|
@@ -117,7 +101,7 @@ sie also immer stromlos, egal was du machst. Daraus folgen drei Regeln:
 Die grün hinterlegte Zeile **Zustand** am Anfang der Schritte sagt das jedes Mal noch einmal.
 
 Gelötet wird von flach nach hoch: So liegt die Platine beim Umdrehen immer auf den zuletzt gesteckten, höchsten
-Teilen auf, und jedes Teil sitzt plan – also ohne Spalt – auf der Platine.
+Teilen auf, und jedes Teil sitzt plan auf der Platine.
 
 ## 1 · Sichtprüfung
 
@@ -144,7 +128,7 @@ Beine kürzen.
 ## 3 · R8 und R9 – Grundlast
 
 Die beiden dicken 1-W-Widerstände (100 Ω) kommen zwischen Modul und C1, im Bild hochkant nebeneinander. Die Beine
-wieder ≈ 2 mm neben dem Körper abbiegen (Lochabstand 15,5 mm). Sie werden im Betrieb warm (je ≈ 0,25 W, D-8).
+wieder ≈ 2 mm neben dem Körper abbiegen (Lochabstand 15,5 mm). Sie werden im Betrieb warm (je ≈ 0,25 W).
 Deshalb liegen sie nicht auf der Platine auf: den Kartonstreifen unter den Körper legen, löten, Karton herausziehen.
 Der Körper schwebt dann 1–2 mm über der Platine.
 
@@ -231,9 +215,6 @@ misst du erst in 8.5, mit Modul und USB.
   halte die Spitze daran, oder klemm eine Krokoklemme dran.
 - **J1** misst du oben an den Stiften: quadratisches Pad unten = GND, Mitte = 5V, oben = SIG.
 - Die Bilder zeigen die bedruckte Seite, nur 8.5 die Rückseite (gespiegelt).
-- **„OL“** in den Tabellen heißt: kein Durchgang, der Wert liegt über dem Messbereich. Je nach Messgerät steht dann
-  „OL“, „0L“ oder eine „1“ ganz links in der Anzeige – dasselbe wie bei Spitzen in der Luft.
-- **„∥“** heißt parallel geschaltet: R8 ∥ R9 sind zwei mal 100 Ω nebeneinander, zusammen 50 Ω.
 - Weicht ein Wert ab: Lötstellen der beteiligten Teile auf der Rückseite ansehen, nachlöten, neu messen.
 
 ### 8.1 · Versorgungsleitungen (ohne Modul, Widerstand)
@@ -284,7 +265,7 @@ der LEDs: von links LED5, LED4, LED1, LED2, LED3 – so wie die Schilder im Bild
 - Glimmt eine **andere** LED als die in der Tabelle: Du bist in der Buchse daneben – im Bild nachzählen. Glimmt die
   richtige Stelle in der falschen Farbe, sind zwei LEDs vertauscht (Tabelle in Schritt 5).
 - **OL** bei einer einzelnen roten, gelben oder gelbgrünen LED: LED verkehrt herum (langes Bein muss links), oder
-  eine Lötstelle an LED oder Vorwiderstand hat keinen Kontakt („kalte Lötstelle“: matt, kugelig – nachlöten).
+  eine Lötstelle an LED oder Vorwiderstand ist kalt.
 - **OL bei allen fünf**, auch bei der roten: Die Prüfspannung deines Messgeräts ist zu klein für LEDs. Dann zeigt
   sich in Schritt 9, ob sie leuchten.
 - **Gegenprobe:** Spitzen tauschen (schwarz in die Buchse, rot an GND): jetzt muss bei allen fünf **OL** stehen.
@@ -417,7 +398,7 @@ Soll:
 6. Einmal ganz: START drücken und warten, nach 65 s läutet es.
 7. Fertig: USB ab. Im Betrieb versorgt ein USB-Netzteil oder eine Powerbank (≥ 1 A) die Glocke über dieselbe Buchse.
 
-Den LiPo-Anschluss des T-Displays frei lassen – R8 und R9 würden einen Akku leeren (D-13).
+Den LiPo-Anschluss des T-Displays frei lassen – R8 und R9 würden einen Akku leeren.
 
 ### Wenn etwas nicht geht
 
