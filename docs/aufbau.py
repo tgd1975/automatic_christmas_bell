@@ -47,6 +47,8 @@ a { color: #1f5c3a; text-decoration: none; }
 blockquote { border-left: 1.2mm solid #1f5c3a; background: #eef5ef; margin: 2mm 0 3mm; padding: 1.5mm 3mm; }
 blockquote { break-after: avoid; }
 blockquote p { margin: 0; }
+blockquote.achtung { border-left-color: #c0392b; background: #fdf0ee; }
+blockquote.achtung ul { margin: 1mm 0; }
 table.protokoll { width: 100%; break-inside: auto; }
 table.bilder { break-inside: auto; }
 table.bilder tr { break-inside: avoid; }
@@ -348,6 +350,7 @@ def main():
     html = html.replace('src="img/', f'src="{(REPO / "docs/img").as_uri()}/')
     html = re.sub(r'<img alt="([^"]*)" src="([^"]*ringe_\w+\.svg)"', r'<img class="ringe" alt="\1" src="\2"', html)
     html = html.replace("<h3>Prüfprotokoll", '<h3 class="seite">Prüfprotokoll')
+    html = html.replace("<blockquote>\n<p><strong>Achtung", '<blockquote class="achtung">\n<p><strong>Achtung')
     html = re.sub(r"<h3>(8\.\d)", r'<h3 class="seite">\1', html)   # jeder Messschritt auf eigener Seite
     # Tabellen mit Kästchen sind zum Ausfüllen: volle Breite, höhere Zeilen
     html = re.sub(r"<table>((?:(?!</table>).)*☐)", r'<table class="protokoll">\1', html, flags=re.S)

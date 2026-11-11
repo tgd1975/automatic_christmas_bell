@@ -329,7 +329,20 @@ Zur Sicherheit die Querprobe: SIG gegen 5V und SIG gegen GND an J1 – beide **k
 > **Zustand:** Modul **drin** · USB **an** (Netzteil, Powerbank oder Rechner) · Servo ab · Messgerät auf **V DC**
 
 Hier prüfst du mit Strom, ob am Servo-Stecker J1 die 5 V ankommen und beim T-Display der 3,3-V-Regler läuft. Erst
-jetzt, wenn 8.1–8.4 gepasst haben, bekommt die Platine Strom. In dieser Reihenfolge:
+jetzt, wenn 8.1–8.4 gepasst haben, bekommt die Platine Strom.
+
+> **Achtung – ab jetzt liegt Spannung an.** An J1 sitzt der 5V-Stift zwischen GND und SIG, 2,54 mm daneben. Berührt
+> eine Messspitze zwei Stifte zugleich, kann das Bauteile kosten:
+>
+> - **5V und SIG:** 5 V kommen auf den Servo-Pin des Moduls. Das T-Display verträgt dort nur 3,3 V – der Pin oder das
+>   ganze Modul kann kaputtgehen.
+> - **5V und GND:** Kurzschluss der Versorgung. Netzteil oder Powerbank schalten ab, beim Nano kann die Schutzdiode
+>   durchbrennen.
+>
+> Deshalb: Platine fest auflegen, zuerst die schwarze Spitze auf GND, dann die rote gerade von oben auf das Stiftende
+> von 5V – nie zwischen zwei Stifte. Dasselbe gilt für die Lötstellen von J1 auf der Rückseite.
+
+In dieser Reihenfolge:
 
 1. USB ist ab. **Modul einstecken** wie in Schritt 7, Punkt 1 – USB-Buchse links, beim T-Display Display nach oben und
    der 5V-Pin am Aufdruck „5V“.
@@ -338,7 +351,7 @@ jetzt, wenn 8.1–8.4 gepasst haben, bekommt die Platine Strom. In dieser Reihen
    bleibt dunkel, wenn noch keine Firmware drauf ist – beides ist hier in Ordnung), der Nano lässt seine Power-LED
    leuchten.
 4. Messen. Die 3V3-Lötstelle des T-Displays misst du auf der Rückseite, mit eingestecktem Modul: Platine hochkant
-   halten, die Spitzen ruhig aufsetzen – ein Ausrutscher zwischen zwei Lötstellen schließt sie kurz.
+   halten und abstützen, damit sie beim Aufsetzen der Spitzen nicht wegrutscht.
 
 | Rot | Schwarz | Soll | Wenn nicht |
 |---|---|---|---|
