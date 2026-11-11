@@ -220,9 +220,12 @@ misst du erst in 8.5, mit Modul und USB.
 
 ### 8.1 · Versorgungsleitungen (ohne Modul, Widerstand)
 
-Gemessen wird, was zwischen den Leitungen 5V und GND sitzt. Das sind nur die beiden Grundlast-Widerstände R8 und R9,
+> **Zustand:** Modul **draußen** · USB ab · Servo ab · Platine stromlos · Messgerät auf **Ω**
+
+Hier prüfst du, ob zwischen der 5V- und der GND-Leitung ein Kurzschluss ist und ob R8 und R9 verlötet sind – bevor
+das Modul je Strom bekommt. Gemessen wird, was zwischen den Leitungen 5V und GND sitzt. Das sind nur die beiden Grundlast-Widerstände R8 und R9,
 je 100 Ω, parallel geschaltet: zusammen 50 Ω. Zeigt das Messgerät das, sind beide verlötet, und es gibt keinen
-Kurzschluss zwischen 5V und GND. Messgerät auf **Ω**.
+Kurzschluss zwischen 5V und GND.
 
 | THT | ESP32 THT |
 |---|---|
@@ -239,12 +242,16 @@ USB-Anschluss des Moduls.
 
 ### 8.2 · LEDs (Diodentest)
 
+> **Zustand:** Modul **draußen** · USB ab · Servo ab · Platine stromlos · Messgerät auf **Diodentest** (▶|)
+
+Hier prüfst du die fünf LED-Strecken – Vorwiderstand, LED, ihre Polung und die Lötstellen – von der Buchse des Moduls
+bis GND. Der kleine Prüfstrom des Messgeräts lässt jede LED schwach glimmen.
+
 | THT | ESP32 THT |
 |---|---|
 | ![THT: Buchsen der fünf LEDs gegen GND](img/messen_tht_leds.svg) | ![ESP32 THT: Buchsen der fünf LEDs gegen GND](img/messen_esp32tht_leds.svg) |
 
-Messgerät auf **Diodentest** (Symbol ▶|). Schwarz bleibt an J1 GND, rot nacheinander in die fünf Buchsen. Jede Buchse
-führt über ihren Vorwiderstand zu ihrer LED – so prüfst du in einem Zug Widerstand, LED, Polung und vier Lötstellen.
+Schwarz bleibt an J1 GND, rot nacheinander in die fünf Buchsen.
 
 | Rot in Buchse | Strecke | Soll |
 |---|---|---|
@@ -265,11 +272,14 @@ führt über ihren Vorwiderstand zu ihrer LED – so prüfst du in einem Zug Wid
 
 ### 8.3 · Taster
 
+> **Zustand:** Modul **draußen** · USB ab · Servo ab · Platine stromlos · Messgerät auf **Ω**
+
+Hier prüfst du, ob START und RESET schalten, ob jeder an der richtigen Buchse ankommt und ob die Pull-downs R6 und R7
+sitzen. Jede Messung zweimal: Taster los, dann gedrückt.
+
 | THT | ESP32 THT |
 |---|---|
 | ![THT: Buchsen START und RESET gegen 5V](img/messen_tht_taster.svg) | ![ESP32 THT: Buchsen START und RESET gegen 3V3 und GND](img/messen_esp32tht_taster.svg) |
-
-Messbereich Ω. Jede Messung zweimal: Taster los, dann Taster gedrückt.
 
 **[THT]** – die Taster schalten 5V:
 
@@ -292,11 +302,16 @@ Pull-down (R7 bzw. R6) – Wert nachmessen, ob dort 4,7 kΩ sitzt (gelb – viol
 
 ### 8.4 · Modul-Buchsen zu J1 (Durchgang)
 
+> **Zustand:** Modul **draußen** · USB ab · Servo ab · Platine stromlos · Messgerät auf **Durchgang** (piepst)
+
+Hier prüfst du die drei Leitungen vom Modul zum Servo-Stecker J1: 5V, GND und das Servo-Signal. Und dass das Signal
+keine Verbindung zu 5V oder GND hat.
+
 | THT | ESP32 THT |
 |---|---|
 | ![THT: 5V, GND und Servo-Signal von der Buchse zu J1](img/messen_tht_durchgang.svg) | ![ESP32 THT: 5V, GND und Servo-Signal von der Buchse zu J1](img/messen_esp32tht_durchgang.svg) |
 
-Messgerät auf **Durchgang** (piepst). Die blauen Paare:
+Die blauen Paare:
 
 | Paar | Buchse | J1 | Soll |
 |---|---|---|---|
@@ -308,9 +323,10 @@ Zur Sicherheit die Querprobe: SIG gegen 5V und SIG gegen GND an J1 – beide **k
 
 ### 8.5 · Mit Modul: die Spannungen
 
-> **Zustand:** Modul **drin** · USB **an** · Servo ab
+> **Zustand:** Modul **drin** · USB **an** (Netzteil, Powerbank oder Rechner) · Servo ab · Messgerät auf **V DC**
 
-Erst jetzt, wenn 8.1–8.4 gepasst haben, bekommt die Platine Strom. In dieser Reihenfolge:
+Hier prüfst du mit Strom, ob am Servo-Stecker J1 die 5 V ankommen und beim T-Display der 3,3-V-Regler läuft. Erst
+jetzt, wenn 8.1–8.4 gepasst haben, bekommt die Platine Strom. In dieser Reihenfolge:
 
 1. USB ist ab. **Modul einstecken** wie in Schritt 7, Punkt 1 – USB-Buchse links, beim T-Display Display nach oben und
    der 5V-Pin am Aufdruck „5V“.
@@ -318,33 +334,26 @@ Erst jetzt, wenn 8.1–8.4 gepasst haben, bekommt die Platine Strom. In dieser R
 3. **USB anstecken:** an ein USB-Netzteil, eine Powerbank oder den Rechner. Beim T-Display geht das Display an (oder
    bleibt dunkel, wenn noch keine Firmware drauf ist – beides ist hier in Ordnung), der Nano lässt seine Power-LED
    leuchten.
-4. Messgerät auf **V DC** und messen:
+4. Messen. Die 3V3-Lötstelle des T-Displays misst du auf der Rückseite, mit eingestecktem Modul: Platine hochkant
+   halten, die Spitzen ruhig aufsetzen – ein Ausrutscher zwischen zwei Lötstellen schließt sie kurz.
+
+| Rot | Schwarz | Soll | Wenn nicht |
+|---|---|---|---|
+| J1-Stift 5V | J1-Stift GND | **4,4–5,0 V** (USB minus die Schutzdiode des Moduls) | Schwaches Netzteil oder dünnes Kabel – ein anderes probieren |
+| **[ESP32 THT]** Lötstelle 3V3 auf der Rückseite (Bild „Rückseite“) | J1 GND, ebenfalls auf der Rückseite | **3,2–3,4 V** (der Regler des T-Displays) | USB ab, Modul ziehen, 8.1 wiederholen |
+| Nach 1 min mit dem Finger: die Teile | | R8 und R9 handwarm (≈ 0,1 A), alles andere kalt | Wird etwas heiß: sofort USB ab, Modul ziehen, 8.1 wiederholen |
 
 | THT | ESP32 THT |
 |---|---|
 | ![THT mit Nano: J1 5V und GND](img/messen_tht_modul.svg) | ![ESP32 THT mit T-Display: J1 5V und GND](img/messen_esp32tht_modul.svg) |
-
-| Rot | Schwarz | Soll | Was es zeigt |
-|---|---|---|---|
-| J1 5V (wie Bild 8.1) | J1 GND | **4,4–5,0 V** | USB minus die Schutzdiode des Moduls; R8 und R9 ziehen ≈ 0,1 A und werden handwarm |
-| **[ESP32 THT]** Lötstelle 3V3 auf der Rückseite (Bild unten) | J1 GND, ebenfalls auf der Rückseite | **3,2–3,4 V** | Der Spannungsregler des T-Displays läuft |
-
-![ESP32 THT, Rückseite: Lötstelle der 3V3-Buchse und GND an J1](img/messen_esp32tht_3v3_unten.svg)
-
-Auf der Rückseite misst du mit eingestecktem Modul: Platine hochkant halten, die Spitzen ruhig aufsetzen und nicht
-abrutschen – ein Ausrutscher zwischen zwei Lötstellen schließt sie kurz.
-
-Unter 4,4 V an J1: schwaches Netzteil oder dünnes Kabel – ein anderes probieren. Wird ein Teil heiß (nicht nur R8 und
-R9 handwarm): sofort USB ab, Modul ziehen und Schritt 8.1 wiederholen.
-
-Danach: Hast du an einem Netzteil oder einer Powerbank gemessen, USB ab – für Schritt 9 kommt das Modul an den
-Rechner. Das Modul bleibt drin.
+| Rückseite: nichts zu messen | Rückseite: ![ESP32 THT, Rückseite: Lötstelle der 3V3-Buchse und GND an J1](img/messen_esp32tht_3v3_unten.svg) |
 
 ## 9 · Firmware und Test
 
 > **Zustand:** Modul drin · USB **am Rechner** · Servo ab – erst ab Punkt 4 kommt das Servo dran, und dafür zuerst USB ab
 
-Das Modul steckt seit 8.5 und bleibt drin. USB-Kabel vom Rechner an die USB-Buchse des Moduls.
+Das Modul steckt seit 8.5 und bleibt drin. Hast du dort an einem Netzteil oder einer Powerbank gemessen: USB ab, dann
+das USB-Kabel vom Rechner an die USB-Buchse des Moduls.
 
 ### [THT] Arduino Nano
 

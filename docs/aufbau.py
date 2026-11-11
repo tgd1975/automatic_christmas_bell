@@ -42,11 +42,14 @@ td img { width: 84mm; margin: 0; }
 td img.ringe { display: inline; width: auto; height: 11mm; margin: 0; vertical-align: middle; }
 code { font-family: "DejaVu Sans Mono", monospace; font-size: 8.6pt; }
 pre { background: #f3f1ec; padding: 2mm 3mm; font-size: 8.4pt; white-space: pre-wrap; break-inside: avoid; }
-img { display: block; width: 105mm; margin: 3mm auto; break-inside: avoid; }
+img { display: block; width: 72mm; margin: 3mm auto; break-inside: avoid; }
 a { color: #1f5c3a; text-decoration: none; }
 blockquote { border-left: 1.2mm solid #1f5c3a; background: #eef5ef; margin: 2mm 0 3mm; padding: 1.5mm 3mm; }
+blockquote { break-after: avoid; }
 blockquote p { margin: 0; }
 table.protokoll { width: 100%; break-inside: auto; }
+table.bilder { break-inside: auto; }
+table.bilder tr { break-inside: avoid; }
 table.protokoll td { height: 5.6mm; padding: 0.6mm 1.6mm; vertical-align: middle; }
 table.protokoll tr > :first-child { width: 11mm; }
 table.protokoll tr > :nth-child(3) { width: 48mm; }
@@ -345,8 +348,12 @@ def main():
     html = html.replace('src="img/', f'src="{(REPO / "docs/img").as_uri()}/')
     html = re.sub(r'<img alt="([^"]*)" src="([^"]*ringe_\w+\.svg)"', r'<img class="ringe" alt="\1" src="\2"', html)
     html = html.replace("<h3>Prüfprotokoll", '<h3 class="seite">Prüfprotokoll')
+    html = re.sub(r"<h3>(8\.\d)", r'<h3 class="seite">\1', html)   # jeder Messschritt auf eigener Seite
     # Tabellen mit Kästchen sind zum Ausfüllen: volle Breite, höhere Zeilen
     html = re.sub(r"<table>((?:(?!</table>).)*☐)", r'<table class="protokoll">\1', html, flags=re.S)
+    # Bildtabellen dürfen zwischen zwei Bildzeilen umbrechen, nie in einer
+    html = re.sub(r"<table>(?=(?:(?!</table>).)*<img(?:(?!</table>).)*<tr>(?:(?!</table>).)*<img)", '<table class="bilder">',
+                  html, flags=re.S)
     for anfang in NEUE_SEITE:
         html = html.replace(f"<h2>{anfang}", f'<h2 class="seite">{anfang}')
     # Verweise ins Repository führen im Ausdruck nirgendwohin – als Text lassen
