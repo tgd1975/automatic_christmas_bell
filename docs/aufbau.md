@@ -7,8 +7,12 @@ Platinen, die unbestückt kommen – alles wird von Hand gelötet:
 - **THT** (Arduino Nano) – [variants/tht](../variants/tht), Entscheidung D-12
 - **ESP32 THT** (LILYGO T-Display) – [variants/esp32tht](../variants/esp32tht), Entscheidung D-23
 
-Beide haben dieselbe Lage aller Teile außer Modul U1 und den Pull-downs R6/R7. Was nur für eine Platine gilt, steht
-mit **[THT]** oder **[ESP32 THT]** dabei. Die Bilder sind die Ansichten der bestellten Fassung (rev 1.0).
+Kürzel wie D-12 oder D-8 verweisen auf die [Entscheidungen](decisions.md), in denen steht, warum etwas so ist. Zum
+Bauen brauchst du sie nicht.
+
+Auf beiden liegen alle Teile am selben Platz, nur das Modul U1 und die Widerstände R6/R7 nicht. Was nur für eine
+Platine gilt, steht mit **[THT]** oder **[ESP32 THT]** dabei. Die Bilder sind die Ansichten der bestellten Fassung
+(rev 1.0). Jeder Platz trägt auf der Platine seinen Bezeichner – R1, LED5, C1 … –, so wie er hier im Text steht.
 
 | THT (Nano) | ESP32 THT (T-Display) |
 |---|---|
@@ -19,7 +23,7 @@ LED-Reihe oben, USB-Ende des Moduls links, J1 rechts. Alle Teile stecken von der
 der Rückseite. Dort ist links und rechts vertauscht und es gibt keinen Druck
 ([THT](img/aufbau_tht_unten.svg), [ESP32 THT](img/aufbau_esp32tht_unten.svg)).
 
-Zum Ausdrucken baut `uv run docs/aufbau.py 2>&1 | cat` diese Seite als `build/aufbau/aufbau.pdf`; das Skript zeichnet
+Zum Ausdrucken baut `uv run docs/aufbau.py` diese Seite als `build/aufbau/aufbau.pdf`; das Skript zeichnet
 auch die Farbringe und die Messbilder.
 
 **Zeit:** ≈ 1 h je Platine, dazu ≈ 15 min für Firmware und Test.
@@ -43,12 +47,18 @@ Die LCSC-Nummer steht auf jedem Sackerl der Lieferung.
 | Buchsenleiste 2,54 mm, 8,5 mm hoch | für U1 | 2 × 1×15 – C25503121 | 2 × 1×12 – C2905419 | 2 |
 | Modul | U1 | Arduino Nano V3 – nicht von LCSC | LILYGO T-Display V1.1 – nicht von LCSC | 1 |
 
-Die Buchsenleisten sind Extras der Bestellung, nicht im Graph. Schneidest du sie aus den gekerbten 1×40-Leisten
+**Wozu die Widerstände da sind:** Ein *Vorwiderstand* begrenzt den Strom seiner LED. Ein *Pull-down* hält den Eingang
+des Moduls auf 0, solange der Taster nicht gedrückt ist. Die *Grundlast* R8 und R9 zieht dauernd ≈ 0,1 A – sonst
+schaltet eine Powerbank ab, weil ihr die Glocke zu wenig Strom braucht.
+
+Die Buchsenleisten sind Extras der Bestellung und stehen nicht in der Stückliste der Platine. Schneidest du sie aus den gekerbten 1×40-Leisten
 (LCSC C2916940), geht an jeder Schnittstelle ein Kontakt verloren: aus einer Leiste werden 2 × 15 oder 3 × 12. Die
 Schnittkante mit Feile oder Schleifpapier glätten.
 
-**Widerstände nicht verwechseln.** Die ¼-W-Widerstände sind 1 %-Metallschicht mit fünf Ringen. Auf dem blauen Körper
-sind die Farben schwer zu lesen – miss jeden vor dem Einsetzen kurz nach:
+**Widerstände nicht verwechseln.** Alle haben fünf Ringe (1 %, Metallschicht). Gelesen wird von der Seite, an der die
+Ringe eng beisammen stehen; der einzelne braune Ring mit Abstand ist der letzte. Auf dem blauen Körper sind die Farben
+schwer zu lesen – miss deshalb jeden vor dem Einsetzen kurz nach: Messgerät auf Ω, eine Spitze an jedes Bein. Nimm
+immer nur die Widerstände eines Werts aus ihrem Sackerl, dann kommt nichts durcheinander.
 
 | Wert | Ringe | wo |
 |---|---|---|
@@ -59,9 +69,10 @@ sind die Farben schwer zu lesen – miss jeden vor dem Einsetzen kurz nach:
 ## Polung – drei Teile, auf die es ankommt
 
 - **LEDs:** das **lange Bein (Anode, +) nach links**, die abgeflachte Seite des Rands und das kurze Bein nach rechts.
-  Das gilt für alle fünf, auch wenn die Drucke verschieden aussehen. Achtung bei **LED1 (rot):** Ihr **quadratisches
-  Pad ist die Anode** – anders als bei vielen anderen Platinen, wo das Quadrat die Kathode markiert. Verkehrt herum
-  leuchtet eine LED einfach nicht, kaputt geht nichts.
+  Das gilt für alle fünf. Auf der Platine steht dazu an jedem LED-Platz ein kleines **„+“ am linken Loch**, und der
+  gedruckte Kreis ist rechts abgeflacht. Lass dich bei **LED1 (rot)** nicht vom quadratischen Pad irren: Es ist das
+  linke, also „+“ – auf vielen anderen Platinen markiert das Quadrat den Minuspol. Verkehrt herum leuchtet eine LED
+  einfach nicht, kaputt geht nichts.
 - **C1:** das **„+“ nach links** (längeres Bein), der helle Streifen mit „–“ auf dem Becher nach rechts zu J1.
   Verkehrt herum kann ein Elko platzen.
 - **Modul U1:** USB-Buchse nach links an die Platinenkante (Schritt 7). Verkehrt eingesteckt schließt es 5 V kurz.
@@ -71,11 +82,13 @@ Keine Polung haben Widerstände und Taster. Die Taster passen nur in zwei Lagen 
 ## Werkzeug und Material
 
 - Lötkolben mit feiner Spitze, ≈ 330 °C, Lot mit Flussmittelseele 0,5–0,8 mm.
-- Seitenschneider, Flachzange, Pinzette, Multimeter mit Widerstands- und Durchgangsmessung.
+- Seitenschneider, Flachzange, Pinzette.
+- Multimeter mit Widerstand (Ω), Durchgang (piepst), Diodentest (▶|) und Gleichspannung (V DC).
 - Ein Streifen Karton, ≈ 1,5 mm dick, als Abstandhalter für R8 und R9 (Schritt 3).
 - Ein Stück Schaumstoff oder ein Buch, damit die Teile beim Umdrehen nicht herausfallen.
 - Ein Servo SG90 (analog) und ein USB-Netzteil oder eine Powerbank mit mindestens 1 A.
-- Rechner mit dem Repository und PlatformIO (`pio`), ein USB-Kabel mit Datenleitungen zum Modul.
+- Rechner mit dem Repository und PlatformIO (`pio`; Einrichten: [README](../README.md), Schnellstart), ein USB-Kabel
+  mit Datenleitungen zum Modul.
 
 ## Reihenfolge
 
@@ -101,10 +114,10 @@ sie also immer stromlos, egal was du machst. Daraus folgen drei Regeln:
 3. **Das Modul kommt erst in 8.5 zum ersten Mal mit Strom in die Platine** – nachdem 8.1–8.4 gezeigt haben, dass
    kein Kurzschluss da ist.
 
-Jeder Schritt beginnt mit einer Zeile **Zustand**, die das noch einmal sagt.
+Die grün hinterlegte Zeile **Zustand** am Anfang der Schritte sagt das jedes Mal noch einmal.
 
-Von flach nach hoch: So liegt die Platine beim Umdrehen immer auf den zuletzt gesteckten, höchsten Teilen auf, und
-alles bleibt plan.
+Gelötet wird von flach nach hoch: So liegt die Platine beim Umdrehen immer auf den zuletzt gesteckten, höchsten
+Teilen auf, und jedes Teil sitzt plan – also ohne Spalt – auf der Platine.
 
 ## 1 · Sichtprüfung
 
@@ -117,21 +130,23 @@ nicht von dir.
 
 ## 2 · Widerstände R1–R7
 
-Die Beine knapp hinter dem Körper auf das Raster **10,5 mm** biegen, den Widerstand flach auf die Platine legen.
-Werte nach der Tabelle oben – auf der ESP32 THT sind **R3 und R4 100 Ω**, alle anderen Vorwiderstände 330 Ω.
+Beide Beine ≈ 2 mm neben dem Körper rechtwinklig abbiegen – dann passen sie in die Löcher, die 10,5 mm
+auseinanderliegen. Den Widerstand flach auf die Platine legen. Werte nach der Tabelle oben – auf der ESP32 THT sind
+**R3 und R4 100 Ω**, alle anderen Vorwiderstände 330 Ω. Der Bezeichner steht auf der Platine neben jedem Platz.
 
 - R1–R5 liegen versetzt in zwei Reihen unter den LEDs.
-- **[THT]** R6 und R7 stehen senkrecht links neben ihren Tastern. **[ESP32 THT]** liegen sie waagrecht über den
-  Tastern.
+- **[THT]** R6 und R7 liegen links neben ihren Tastern, im Bild hochkant (ein Bein oben, eines unten).
+  **[ESP32 THT]** liegen sie quer über den Tastern.
 
 Alle sieben stecken, Beine auf der Rückseite leicht auseinanderbiegen, damit nichts herausfällt, umdrehen, löten,
 Beine kürzen.
 
 ## 3 · R8 und R9 – Grundlast
 
-Die beiden dicken 1-W-Widerstände (100 Ω) stehen senkrecht zwischen Modul und C1, Beine auf das Raster **15,5 mm**.
-Sie werden im Betrieb warm (je ≈ 0,25 W, D-8). Deshalb liegen sie nicht auf: den Kartonstreifen unter den Körper
-legen, löten, Karton herausziehen. Der Körper steht dann 1–2 mm über der Platine.
+Die beiden dicken 1-W-Widerstände (100 Ω) kommen zwischen Modul und C1, im Bild hochkant nebeneinander. Die Beine
+wieder ≈ 2 mm neben dem Körper abbiegen (Lochabstand 15,5 mm). Sie werden im Betrieb warm (je ≈ 0,25 W, D-8).
+Deshalb liegen sie nicht auf der Platine auf: den Kartonstreifen unter den Körper legen, löten, Karton herausziehen.
+Der Körper schwebt dann 1–2 mm über der Platine.
 
 ## 4 · Taster S1 und S2
 
@@ -147,7 +162,7 @@ Farben von links nach rechts – so blinkt auch der Countdown:
 | THT | grün | grün | gelb | gelb | rot |
 | ESP32 THT | gelbgrün | gelbgrün | gelb | gelb | rot |
 
-1. Alle fünf stecken, **langes Bein links** (Polung oben). Den Rand der LED plan auf die Platine.
+1. Alle fünf stecken, **langes Bein links** ins Loch mit dem „+“ (Polung oben). Den Rand der LED plan auf die Platine.
 2. Schaumstoff oder Buch auf die LEDs legen, mit der Platine zusammen umdrehen.
 3. Je LED **ein** Bein löten. Umdrehen und prüfen: stehen alle gerade und gleich hoch? Wenn nicht, die Lötstelle kurz
    erhitzen und die LED nachdrücken. Dann das zweite Bein löten und kürzen.
@@ -216,6 +231,9 @@ misst du erst in 8.5, mit Modul und USB.
   halte die Spitze daran, oder klemm eine Krokoklemme dran.
 - **J1** misst du oben an den Stiften: quadratisches Pad unten = GND, Mitte = 5V, oben = SIG.
 - Die Bilder zeigen die bedruckte Seite, nur 8.5 die Rückseite (gespiegelt).
+- **„OL“** in den Tabellen heißt: kein Durchgang, der Wert liegt über dem Messbereich. Je nach Messgerät steht dann
+  „OL“, „0L“ oder eine „1“ ganz links in der Anzeige – dasselbe wie bei Spitzen in der Luft.
+- **„∥“** heißt parallel geschaltet: R8 ∥ R9 sind zwei mal 100 Ω nebeneinander, zusammen 50 Ω.
 - Weicht ein Wert ab: Lötstellen der beteiligten Teile auf der Rückseite ansehen, nachlöten, neu messen.
 
 ### 8.1 · Versorgungsleitungen (ohne Modul, Widerstand)
@@ -223,9 +241,8 @@ misst du erst in 8.5, mit Modul und USB.
 > **Zustand:** Modul **draußen** · USB ab · Servo ab · Platine stromlos · Messgerät auf **Ω**
 
 Hier prüfst du, ob zwischen der 5V- und der GND-Leitung ein Kurzschluss ist und ob R8 und R9 verlötet sind – bevor
-das Modul je Strom bekommt. Gemessen wird, was zwischen den Leitungen 5V und GND sitzt. Das sind nur die beiden Grundlast-Widerstände R8 und R9,
-je 100 Ω, parallel geschaltet: zusammen 50 Ω. Zeigt das Messgerät das, sind beide verlötet, und es gibt keinen
-Kurzschluss zwischen 5V und GND.
+das Modul je Strom bekommt. Zwischen den beiden Leitungen sitzen ohne Modul nur die Grundlast-Widerstände R8 und R9,
+je 100 Ω, parallel: zusammen 50 Ω. Zeigt das Messgerät das, stimmt beides.
 
 | THT | ESP32 THT |
 |---|---|
@@ -233,12 +250,12 @@ Kurzschluss zwischen 5V und GND.
 
 | Rot | Schwarz | Messbereich | Soll | Wenn nicht |
 |---|---|---|---|---|
-| J1-Stift 5V (Mitte) | J1-Stift GND (unten) | Ω | **≈ 50 Ω** (R8 ∥ R9). Der Wert steigt zuerst ein paar Sekunden, solange sich C1 lädt | < 10 Ω: Lötbrücke auf 5V suchen. ≈ 100 Ω: R8 oder R9 nicht verlötet. Kein Wert: J1, R8 und R9 nachlöten |
+| J1-Stift 5V (Mitte) | J1-Stift GND (unten) | Ω | **≈ 50 Ω** (R8 ∥ R9). Der Wert pendelt sich in 1–2 s ein, weil sich C1 erst lädt | < 10 Ω: Lötbrücke auf 5V suchen. ≈ 100 Ω: R8 oder R9 nicht verlötet. Kein Wert: J1, R8 und R9 nachlöten |
 | **[ESP32 THT]** Buchse 3V3 (untere Reihe, rechts) | J1 GND | Ω | **kein Durchgang** (OL) | Brücke an der 3V3-Buchse oder an S1/S2 suchen |
 | **[ESP32 THT]** Buchse 3V3 | J1 5V | Ω | **kein Durchgang** (OL) | Brücke zwischen den beiden Reihen der Buchsenleiste |
 
-**Unter 10 Ω zwischen 5V und GND kommt das Modul nicht in die Buchse.** Ein Kurzschluss dort ginge über den
-USB-Anschluss des Moduls.
+**Zeigt das Messgerät unter 10 Ω zwischen 5V und GND, darf das Modul nicht in die Buchse.** Es würde sonst den
+Kurzschluss über seinen USB-Anschluss speisen. Erst die Lötbrücke suchen.
 
 ### 8.2 · LEDs (Diodentest)
 
@@ -251,7 +268,8 @@ bis GND. Der kleine Prüfstrom des Messgeräts lässt jede LED schwach glimmen.
 |---|---|
 | ![THT: Buchsen der fünf LEDs gegen GND](img/messen_tht_leds.svg) | ![ESP32 THT: Buchsen der fünf LEDs gegen GND](img/messen_esp32tht_leds.svg) |
 
-Schwarz bleibt an J1 GND, rot nacheinander in die fünf Buchsen.
+Schwarz bleibt an J1 GND, rot nacheinander in die fünf Buchsen. **[THT]** Die Buchsen liegen nicht in der Reihenfolge
+der LEDs: von links LED5, LED4, LED1, LED2, LED3 – so wie die Schilder im Bild.
 
 | Rot in Buchse | Strecke | Soll |
 |---|---|---|
@@ -263,10 +281,12 @@ Schwarz bleibt an J1 GND, rot nacheinander in die fünf Buchsen.
 
 - **[THT]** Die grünen LEDs (LED5, LED4) brauchen mehr Spannung: etwa 2,6–3,2 V, oder **OL**, wenn die Prüfspannung
   deines Messgeräts nicht reicht. Dann prüfst du sie beim ersten Strom (Schritt 9).
-- Glimmt die **falsche** LED: Die Reihenfolge der Buchsen in den Bildern stimmt – dann ist die LED an einen anderen
-  Platz geraten. Farben nachsehen (Schritt 5).
-- **OL** bei einer roten, gelben oder gelbgrünen LED: LED verkehrt herum (langes Bein muss links), oder eine
-  Lötstelle an LED oder Vorwiderstand ist kalt.
+- Glimmt eine **andere** LED als die in der Tabelle: Du bist in der Buchse daneben – im Bild nachzählen. Glimmt die
+  richtige Stelle in der falschen Farbe, sind zwei LEDs vertauscht (Tabelle in Schritt 5).
+- **OL** bei einer einzelnen roten, gelben oder gelbgrünen LED: LED verkehrt herum (langes Bein muss links), oder
+  eine Lötstelle an LED oder Vorwiderstand hat keinen Kontakt („kalte Lötstelle“: matt, kugelig – nachlöten).
+- **OL bei allen fünf**, auch bei der roten: Die Prüfspannung deines Messgeräts ist zu klein für LEDs. Dann zeigt
+  sich in Schritt 9, ob sie leuchten.
 - **Gegenprobe:** Spitzen tauschen (schwarz in die Buchse, rot an GND): jetzt muss bei allen fünf **OL** stehen.
   Steht ein Wert, hat die Strecke eine Brücke nach GND.
 
@@ -281,14 +301,16 @@ sitzen. Jede Messung zweimal: Taster los, dann gedrückt.
 |---|---|
 | ![THT: Buchsen START und RESET gegen 5V](img/messen_tht_taster.svg) | ![ESP32 THT: Buchsen START und RESET gegen 3V3 und GND](img/messen_esp32tht_taster.svg) |
 
-**[THT]** – die Taster schalten 5V:
+**[THT]** – die Taster schalten 5V. Bei losgelassenem Taster misst du den Weg von der Buchse über den Pull-down
+nach GND und von dort über R8 ∥ R9 nach 5V: 4,7 kΩ + 50 Ω.
 
 | Rot | Schwarz | Taster los | gedrückt |
 |---|---|---|---|
 | Buchse START | J1 5V | ≈ 4,75 kΩ (R7 + R8 ∥ R9) | START: **≈ 0 Ω**. RESET drücken ändert nichts |
 | Buchse RESET | J1 5V | ≈ 4,75 kΩ (R6 + R8 ∥ R9) | RESET: **≈ 0 Ω**. START drücken ändert nichts |
 
-**[ESP32 THT]** – die Taster schalten 3V3:
+**[ESP32 THT]** – die Taster schalten 3V3. Der Pull-down führt hier von der Buchse nach GND, deshalb zwei Messungen
+mehr:
 
 | Rot | Schwarz | Taster los | gedrückt |
 |---|---|---|---|
@@ -341,7 +363,7 @@ jetzt, wenn 8.1–8.4 gepasst haben, bekommt die Platine Strom. In dieser Reihen
 |---|---|---|---|
 | J1-Stift 5V | J1-Stift GND | **4,4–5,0 V** (USB minus die Schutzdiode des Moduls) | Schwaches Netzteil oder dünnes Kabel – ein anderes probieren |
 | **[ESP32 THT]** Lötstelle 3V3 auf der Rückseite (Bild „Rückseite“) | J1 GND, ebenfalls auf der Rückseite | **3,2–3,4 V** (der Regler des T-Displays) | USB ab, Modul ziehen, 8.1 wiederholen |
-| Nach 1 min mit dem Finger: die Teile | | R8 und R9 handwarm (≈ 0,1 A), alles andere kalt | Wird etwas heiß: sofort USB ab, Modul ziehen, 8.1 wiederholen |
+| Fingerprobe nach 1 min: alle Teile kurz anfassen | – | R8 und R9 handwarm (≈ 0,1 A), alles andere kalt | Wird etwas heiß: sofort USB ab, Modul ziehen, 8.1 wiederholen |
 
 | THT | ESP32 THT |
 |---|---|
@@ -365,13 +387,15 @@ pio device monitor                  # 115200 Baud
 Soll:
 
 1. Nach dem Start schreibt der Nano `setup` und seine Einstellungen, **alle fünf LEDs leuchten**.
-2. **START** drücken: `pressed A`, `countdown started`. Die LEDs blinken nacheinander je 12 s, von LED5 links bis
-   LED1 rechts. Leuchtet keine oder eine falsche LED: Polung und Wert in Schritt 2 und 5 nachsehen.
+2. **START** drücken: `pressed A`, `countdown started`. Die LEDs zeigen die Restzeit: LED5 links blinkt 12 s und
+   geht aus, dann LED4 – bis LED1 rechts. Die LEDs rechts von der blinkenden leuchten noch. Bleibt eine dunkel:
+   Polung und Wert in Schritt 2 und 5 nachsehen.
 3. **RESET** drücken: `pressed B`, `countdown reset`, alle LEDs wieder an.
 4. USB ab, **Servo an J1**: braun unten an GND, rot Mitte, orange oben an SIG. USB wieder an.
 5. **START halten und RESET drücken:** Die Glocke läutet sofort – das Servo schwingt sechsmal, fährt in die
    Ruhestellung und ist 1 s später abgeschaltet (`servo detached`).
-6. Einmal ganz: START drücken und warten, nach 65 s läutet es.
+6. Einmal ganz: START drücken und warten. Nach 60 s blinken alle fünf LEDs 5 s lang, dann läutet es und die LEDs
+   sind aus.
 7. Fertig: USB ab. Im Betrieb versorgt ein USB-Netzteil oder eine Powerbank die Glocke über dieselbe Buchse.
 
 ### [ESP32 THT] T-Display
@@ -390,7 +414,8 @@ Soll:
 4. USB ab, **Servo an J1** wie oben (braun unten an GND). Versorgen mit Netzteil oder Powerbank (≥ 1 A, A-auf-C-Kabel;
    bleibt das Modul an C-auf-C dunkel, den Stecker umdrehen).
 5. **START halten und RESET drücken:** Die Glocke läutet sofort.
-6. Fertig: USB ab. Im Betrieb versorgt ein USB-Netzteil oder eine Powerbank (≥ 1 A) die Glocke über dieselbe Buchse.
+6. Einmal ganz: START drücken und warten, nach 65 s läutet es.
+7. Fertig: USB ab. Im Betrieb versorgt ein USB-Netzteil oder eine Powerbank (≥ 1 A) die Glocke über dieselbe Buchse.
 
 Den LiPo-Anschluss des T-Displays frei lassen – R8 und R9 würden einen Akku leeren (D-13).
 
@@ -398,9 +423,9 @@ Den LiPo-Anschluss des T-Displays frei lassen – R8 und R9 würden einen Akku l
 
 | Befund | Ursache, meist |
 |---|---|
-| Eine LED bleibt dunkel | verkehrt herum (langes Bein muss links) oder Vorwiderstand nicht gelöst |
+| Eine LED bleibt dunkel | verkehrt herum (langes Bein muss links) oder Vorwiderstand nicht gelötet |
 | Upload schlägt fehl [THT] | anderer Bootloader: `-e nano_new`; Kabel ohne Datenleitungen |
-| START startet nicht, RESET schon | Taster vertauscht gesteckt? Beide sind gleich – dann Lötstelle an R6/R7 prüfen |
+| START startet nicht, RESET schon | Lötstellen an S1 und an seinem Pull-down R7 prüfen, Messung 8.3 wiederholen. Die Taster selbst sind gleich, vertauschen kann man sie nicht |
 | Modul startet neu, sobald das Servo läuft | C1 fehlt oder ist kalt gelötet; schwache USB-Quelle (README, Troubleshooting) |
 | Powerbank schaltet ab | R8 oder R9 nicht gelötet: Messung 8.1 wiederholen |
 
