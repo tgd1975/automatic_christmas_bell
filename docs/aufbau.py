@@ -32,7 +32,7 @@ body { font-family: "DejaVu Sans", sans-serif; font-size: 10pt; line-height: 1.3
 h1 { font-size: 19pt; margin: 0 0 4mm; color: #1f5c3a; }
 h2 { font-size: 14pt; margin: 6mm 0 2mm; color: #1f5c3a; break-after: avoid; }
 h3 { font-size: 12pt; margin: 4mm 0 2mm; break-after: avoid; }
-h2.seite { break-before: page; }
+h2.seite, h3.seite { break-before: page; }
 p, li { orphans: 3; widows: 3; }
 p:has(+ table) { break-after: avoid; }
 table { border-collapse: collapse; margin: 2mm 0 3mm; font-size: 9pt; break-inside: avoid; }
@@ -46,6 +46,13 @@ img { display: block; width: 105mm; margin: 3mm auto; break-inside: avoid; }
 a { color: #1f5c3a; text-decoration: none; }
 blockquote { border-left: 1.2mm solid #1f5c3a; background: #eef5ef; margin: 2mm 0 3mm; padding: 1.5mm 3mm; }
 blockquote p { margin: 0; }
+table.protokoll { width: 100%; break-inside: auto; }
+table.protokoll td { height: 5.6mm; padding: 0.6mm 1.6mm; vertical-align: middle; }
+table.protokoll tr > :first-child { width: 11mm; }
+table.protokoll tr > :nth-child(3) { width: 48mm; }
+table.protokoll tr > :nth-child(4):not(:last-child) { width: 21mm; }
+table.protokoll td:last-child, table.protokoll th:last-child { width: 7mm; text-align: center; font-size: 12pt; }
+table.protokoll tr { break-inside: avoid; }
 """
 
 # Farbringe: Wert in Ω → Dateiname; die Ringe aus dem Wert (3 Ziffern, Multiplikator, Toleranz 1 % = braun)
@@ -337,6 +344,9 @@ def main():
     html = markdown.markdown(text, extensions=["tables", "fenced_code"])
     html = html.replace('src="img/', f'src="{(REPO / "docs/img").as_uri()}/')
     html = re.sub(r'<img alt="([^"]*)" src="([^"]*ringe_\w+\.svg)"', r'<img class="ringe" alt="\1" src="\2"', html)
+    html = html.replace("<h3>Prüfprotokoll", '<h3 class="seite">Prüfprotokoll')
+    # Tabellen mit Kästchen sind zum Ausfüllen: volle Breite, höhere Zeilen
+    html = re.sub(r"<table>((?:(?!</table>).)*☐)", r'<table class="protokoll">\1', html, flags=re.S)
     for anfang in NEUE_SEITE:
         html = html.replace(f"<h2>{anfang}", f'<h2 class="seite">{anfang}')
     # Verweise ins Repository führen im Ausdruck nirgendwohin – als Text lassen

@@ -384,3 +384,70 @@ Den LiPo-Anschluss des T-Displays frei lassen – R8 und R9 würden einen Akku l
 | START startet nicht, RESET schon | Taster vertauscht gesteckt? Beide sind gleich – dann Lötstelle an R6/R7 prüfen |
 | Modul startet neu, sobald das Servo läuft | C1 fehlt oder ist kalt gelötet; schwache USB-Quelle (README, Troubleshooting) |
 | Powerbank schaltet ab | R8 oder R9 nicht gelötet: Messung 8.1 wiederholen |
+
+### Prüfprotokoll
+
+Zum Ausdrucken, eins je Platine. Abhaken, wenn der Sollwert stimmt, und die Messwerte eintragen – dann siehst du
+später, wenn eine Glocke Ärger macht, wie sie am Anfang war. Zeilen mit **[THT]** oder **[ESP32 THT]** gelten nur
+für diese Platine, bei der anderen streichen.
+
+**Platine:** ☐ THT ☐ ESP32 THT  **Nummer (1–5):** ……… **Datum:** ………………
+
+**A · Nach dem Löten** – Modul draußen · USB ab · Servo ab
+
+| Schritt | Prüfung | Soll | Gemessen | ✓ |
+|---|---|---|---|:-:|
+| 1 | Leere Platine: J1-Pads 5V gegen GND | kein Durchgang | – | ☐ |
+| 2 | [ESP32 THT] R3, R4 = 100 Ω, alle anderen Vorwiderstände 330 Ω; [THT] alle fünf 330 Ω | Ringe wie Tabelle | – | ☐ |
+| 3 | R8, R9 stehen 1–2 mm über der Platine | | – | ☐ |
+| 5 | LEDs: langes Bein links, Abflachung rechts, alle plan, Farben wie Tabelle | | – | ☐ |
+| 6 | C1: „+“ links, Streifen rechts zu J1 | | – | ☐ |
+| 7 | Buchsenleisten plan und gerade, Modul passt ohne Spannung | | – | ☐ |
+| 2–7 | Alle Lötstellen glänzend und kegelförmig, keine Brücken, Beine gekürzt | | – | ☐ |
+
+**B · Messen ohne Modul** – Modul draußen · USB ab · Servo ab
+
+| Schritt | Prüfung | Soll | Gemessen | ✓ |
+|---|---|---|---|:-:|
+| 8.1 | J1 5V gegen J1 GND | ≈ 50 Ω | Ω | ☐ |
+| 8.1 | [ESP32 THT] Buchse 3V3 gegen J1 GND | OL | | ☐ |
+| 8.1 | [ESP32 THT] Buchse 3V3 gegen J1 5V | OL | | ☐ |
+| 8.2 | Diodentest Buchse LED5 gegen GND | 1,7–2,6 V, glimmt ([THT] grün: bis 3,2 V oder OL) | V | ☐ |
+| 8.2 | Diodentest Buchse LED4 gegen GND | wie LED5 | V | ☐ |
+| 8.2 | Diodentest Buchse LED3 gegen GND | 1,7–2,6 V, glimmt | V | ☐ |
+| 8.2 | Diodentest Buchse LED2 gegen GND | 1,7–2,6 V, glimmt | V | ☐ |
+| 8.2 | Diodentest Buchse LED1 gegen GND | 1,7–2,6 V, glimmt | V | ☐ |
+| 8.2 | Gegenprobe, Spitzen getauscht, alle fünf | OL | – | ☐ |
+| 8.3 | Buchse START: los / START gedrückt | [THT] ≈ 4,75 kΩ / ≈ 0 Ω gegen 5V · [ESP32 THT] OL / ≈ 0 Ω gegen 3V3 | / | ☐ |
+| 8.3 | Buchse RESET: los / RESET gedrückt | wie START | / | ☐ |
+| 8.3 | Der jeweils andere Taster ändert nichts | | – | ☐ |
+| 8.3 | [ESP32 THT] Buchse START bzw. RESET gegen J1 GND | je ≈ 4,7 kΩ | / | ☐ |
+| 8.4 | Durchgang Buchse → J1: a 5V · b GND · c SIG | piepst | ☐a ☐b ☐c | ☐ |
+| 8.4 | Querprobe an J1: SIG gegen 5V, SIG gegen GND | kein Piepen | – | ☐ |
+
+**C · Mit Modul** – Modul drin · USB an · Servo ab
+
+| Schritt | Prüfung | Soll | Gemessen | ✓ |
+|---|---|---|---|:-:|
+| 8.5 | Modul richtig herum: USB links; [ESP32 THT] Display oben, 5V-Pin am Aufdruck „5V“ | | – | ☐ |
+| 8.5 | J1 5V gegen J1 GND | 4,4–5,0 V | V | ☐ |
+| 8.5 | [ESP32 THT] Lötstelle 3V3 gegen GND, Rückseite | 3,2–3,4 V | V | ☐ |
+| 8.5 | Nach 1 min: nichts heiß, R8 und R9 handwarm | | – | ☐ |
+
+**D · Firmware und Funktion** – Modul drin · USB am Rechner · Servo erst ab „Servo“, vorher USB ab
+
+| Schritt | Prüfung | Soll | ✓ |
+|---|---|---|:-:|
+| 9 | Firmware aufgespielt | ohne Fehlermeldung | ☐ |
+| 9 | [THT] Nach dem Start | alle fünf LEDs leuchten | ☐ |
+| 9 | [ESP32 THT] Nach dem Start | Display zeigt den Hotspot `Glocke-XXXX` | ☐ |
+| 9 | START drücken | Countdown läuft, LEDs blinken von LED5 nach LED1 | ☐ |
+| 9 | RESET drücken | Countdown stoppt | ☐ |
+| 9 | [ESP32 THT] RESET 3 s halten | gelbgrüne LEDs leuchten, WLAN schaltet um | ☐ |
+| 9 | Servo an J1: braun unten an GND | | ☐ |
+| 9 | START halten, RESET drücken | Glocke läutet sofort, Servo danach in Ruhe | ☐ |
+| 9 | START drücken und warten | nach 65 s läutet es | ☐ |
+| 9 | [ESP32 THT] Heimnetz eingerichtet | <http://glocke.local> öffnet sich | ☐ |
+| 9 | USB ab | | ☐ |
+
+**Ergebnis:** ☐ in Ordnung ☐ nachgearbeitet: …………………………………………………………………
