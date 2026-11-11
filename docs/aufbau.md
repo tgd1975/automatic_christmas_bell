@@ -202,6 +202,12 @@ Bevor das Modul Strom bekommt, prüfst du jede Verbindung, die später zählt: V
 Taster und die Leitungen vom Modul zu J1. Ein Fehler, den du hier findest, kostet eine Lötstelle – mit Modul und
 Servo dran sucht man länger. Zum Schluss misst du mit Modul die Spannungen.
 
+**Ohne Modul ist die Platine stromlos – in 8.1 bis 8.4 misst du keine Spannung, sondern Widerstand (Ω), Diodentest
+und Durchgang.** Das Messgerät schickt dabei selbst einen kleinen Prüfstrom durch die Schaltung. „5V“, „GND“, „3V3“
+und „SIG“ sind in diesen Schritten die **Namen der Leitungen**, wie sie auf dem Druck an J1 stehen – nicht Spannungen,
+die anliegen. „J1 5V gegen J1 GND“ heißt also: der Widerstand zwischen der 5V-Leitung und der GND-Leitung. Spannung
+misst du erst in 8.5, mit Modul und USB.
+
 **So misst du:**
 
 - Schwarze Messleitung an COM, rote an V/Ω. In den Bildern ist **rot** die rote Spitze, **schwarz** die schwarze,
@@ -212,7 +218,11 @@ Servo dran sucht man länger. Zum Schluss misst du mit Modul die Spannungen.
 - Die Bilder zeigen die bedruckte Seite, nur 8.5 die Rückseite (gespiegelt).
 - Weicht ein Wert ab: Lötstellen der beteiligten Teile auf der Rückseite ansehen, nachlöten, neu messen.
 
-### 8.1 · Versorgung (ohne Modul)
+### 8.1 · Versorgungsleitungen (ohne Modul, Widerstand)
+
+Gemessen wird, was zwischen den Leitungen 5V und GND sitzt. Das sind nur die beiden Grundlast-Widerstände R8 und R9,
+je 100 Ω, parallel geschaltet: zusammen 50 Ω. Zeigt das Messgerät das, sind beide verlötet, und es gibt keinen
+Kurzschluss zwischen 5V und GND. Messgerät auf **Ω**.
 
 | THT | ESP32 THT |
 |---|---|
@@ -220,7 +230,7 @@ Servo dran sucht man länger. Zum Schluss misst du mit Modul die Spannungen.
 
 | Rot | Schwarz | Messbereich | Soll | Wenn nicht |
 |---|---|---|---|---|
-| J1 5V | J1 GND | Ω | **≈ 50 Ω** (R8 ∥ R9). Der Wert steigt zuerst ein paar Sekunden, solange sich C1 lädt | < 10 Ω: Lötbrücke auf 5V suchen. ≈ 100 Ω: R8 oder R9 nicht verlötet. Kein Wert: J1, R8 und R9 nachlöten |
+| J1-Stift 5V (Mitte) | J1-Stift GND (unten) | Ω | **≈ 50 Ω** (R8 ∥ R9). Der Wert steigt zuerst ein paar Sekunden, solange sich C1 lädt | < 10 Ω: Lötbrücke auf 5V suchen. ≈ 100 Ω: R8 oder R9 nicht verlötet. Kein Wert: J1, R8 und R9 nachlöten |
 | **[ESP32 THT]** Buchse 3V3 (untere Reihe, rechts) | J1 GND | Ω | **kein Durchgang** (OL) | Brücke an der 3V3-Buchse oder an S1/S2 suchen |
 | **[ESP32 THT]** Buchse 3V3 | J1 5V | Ω | **kein Durchgang** (OL) | Brücke zwischen den beiden Reihen der Buchsenleiste |
 
@@ -405,7 +415,7 @@ für diese Platine, bei der anderen streichen.
 | 7 | Buchsenleisten plan und gerade, Modul passt ohne Spannung | | – | ☐ |
 | 2–7 | Alle Lötstellen glänzend und kegelförmig, keine Brücken, Beine gekürzt | | – | ☐ |
 
-**B · Messen ohne Modul** – Modul draußen · USB ab · Servo ab
+**B · Messen ohne Modul** – Modul draußen · USB ab · Servo ab · Widerstand, Diodentest, Durchgang – keine Spannung
 
 | Schritt | Prüfung | Soll | Gemessen | ✓ |
 |---|---|---|---|:-:|
