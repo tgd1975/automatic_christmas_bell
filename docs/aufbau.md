@@ -27,20 +27,21 @@ auch die Farbringe und die Messbilder.
 
 Die LCSC-Nummer steht auf jedem Sackerl der Lieferung.
 
-| Teil | Bezeichner | THT | ESP32 THT | je Platine |
-|---|---|---|---|---:|
-| Widerstand ¼ W, Vorwiderstand LED | R1, R2, R5 | 330 Ω – C58608 | 330 Ω – C58608 | 3 |
-| Widerstand ¼ W, Vorwiderstand LED | R3, R4 | 330 Ω – C58608 | **100 Ω – C57438** | 2 |
-| Widerstand ¼ W, Pull-down Taster | R6, R7 | 4,7 kΩ – C57204 | 4,7 kΩ – C57204 | 2 |
-| Widerstand 1 W, Grundlast für Powerbanks | R8, R9 | 100 Ω – C119469 | 100 Ω – C119469 | 2 |
-| Taster 6 × 6 mm | S1 (START), S2 (RESET) | C110153 | C110153 | 2 |
-| LED 5 mm grün | LED5, LED4 | grün XL-504UGD – C2895549 | **gelbgrün XL-504SYGD – C2895551** | 2 |
-| LED 5 mm gelb | LED3, LED2 | XL-504UYD – C2895495 | XL-504UYD – C2895495 | 2 |
-| LED 5 mm rot | LED1 | XL-504SURD – C2895493 | XL-504SURD – C2895493 | 1 |
-| Stiftleiste 1 × 3, Servo | J1 | C2937625 | C2937625 | 1 |
-| Elko 1000 µF / 16 V, Ø 10 mm | C1 | C439782 | C439782 | 1 |
-| Buchsenleiste 2,54 mm, 8,5 mm hoch | für U1 | 2 × 1×15 – C25503121 | 2 × 1×12 – C2905419 | 2 |
-| Modul | U1 | Arduino Nano V3 – nicht von LCSC | LILYGO T-Display V1.1 – nicht von LCSC | 1 |
+<table>
+<tr><th>Teil</th><th>Bezeichner</th><th>THT</th><th>ESP32 THT</th><th align="right">je Platine</th></tr>
+<tr><td>Widerstand ¼ W, Vorwiderstand LED</td><td>R1, R2, R5</td><td colspan="2" align="center">330 Ω – C58608</td><td align="right">3</td></tr>
+<tr><td>Widerstand ¼ W, Vorwiderstand LED</td><td>R3, R4</td><td>330 Ω – C58608</td><td><strong>100 Ω – C57438</strong></td><td align="right">2</td></tr>
+<tr><td>Widerstand ¼ W, Pull-down Taster</td><td>R6, R7</td><td colspan="2" align="center">4,7 kΩ – C57204</td><td align="right">2</td></tr>
+<tr><td>Widerstand 1 W, Grundlast für Powerbanks</td><td>R8, R9</td><td colspan="2" align="center">100 Ω – C119469</td><td align="right">2</td></tr>
+<tr><td>Taster 6 × 6 mm</td><td>S1 (START), S2 (RESET)</td><td colspan="2" align="center">C110153</td><td align="right">2</td></tr>
+<tr><td>LED 5 mm grün</td><td>LED5, LED4</td><td>grün XL-504UGD – C2895549</td><td><strong>gelbgrün XL-504SYGD – C2895551</strong></td><td align="right">2</td></tr>
+<tr><td>LED 5 mm gelb</td><td>LED3, LED2</td><td colspan="2" align="center">XL-504UYD – C2895495</td><td align="right">2</td></tr>
+<tr><td>LED 5 mm rot</td><td>LED1</td><td colspan="2" align="center">XL-504SURD – C2895493</td><td align="right">1</td></tr>
+<tr><td>Stiftleiste 1 × 3, Servo</td><td>J1</td><td colspan="2" align="center">C2937625</td><td align="right">1</td></tr>
+<tr><td>Elko 1000 µF / 16 V, Ø 10 mm</td><td>C1</td><td colspan="2" align="center">C439782</td><td align="right">1</td></tr>
+<tr><td>Buchsenleiste 2,54 mm, 8,5 mm hoch</td><td>für U1</td><td>2 × 1×15 – C25503121</td><td>2 × 1×12 – C2905419</td><td align="right">2</td></tr>
+<tr><td>Modul</td><td>U1</td><td>Arduino Nano V3 – nicht von LCSC</td><td>LILYGO T-Display V1.1 – nicht von LCSC</td><td align="right">1</td></tr>
+</table>
 
 **Farbringe der Widerstände:**
 

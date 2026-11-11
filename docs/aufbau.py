@@ -38,6 +38,8 @@ p:has(+ table) { break-after: avoid; }
 table { border-collapse: collapse; margin: 2mm 0 3mm; font-size: 9pt; break-inside: avoid; }
 th, td { border: 0.3pt solid #bbb; padding: 1mm 2mm; text-align: left; vertical-align: top; }
 th { background: #eceae4; }
+td[align="center"] { text-align: center; }
+td[align="right"], th[align="right"] { text-align: right; }
 td img { width: 84mm; margin: 0; }
 td img.ringe { display: inline; width: auto; height: 11mm; margin: 0; vertical-align: middle; }
 code { font-family: "DejaVu Sans Mono", monospace; font-size: 8.6pt; }
