@@ -19,6 +19,8 @@ LED-Reihe oben, USB-Ende des Moduls links, J1 rechts. Alle Teile stecken von der
 der Rückseite. Dort ist links und rechts vertauscht und es gibt keinen Druck
 ([THT](img/aufbau_tht_unten.png), [ESP32 THT](img/aufbau_esp32tht_unten.png)).
 
+Zum Ausdrucken baut `uv run docs/aufbau_pdf.py 2>&1 | cat` diese Seite als `build/aufbau/aufbau.pdf`.
+
 **Zeit:** ≈ 1 h je Platine, dazu ≈ 15 min für Firmware und Test.
 
 ## Was du lötest
